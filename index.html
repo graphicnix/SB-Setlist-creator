@@ -584,62 +584,12 @@
 
         function addToSetlist(song, category) {
             const setlistId = prompt("Enter Setlist Number (1, 2, or 3):");
-            if (!setlistId || !['1', '2', '3'].includes(setlistId)) return;
-
-            const setlistKey = `setlist-${setlistId}`;
-            const currentSongs = setlists[setlistKey];
-            const songHasX = (songIcons[song] || []).includes('X');
-            const xCount = currentSongs.filter(s => (songIcons[s] || []).includes('X')).length;
-
-            // Check for vocal strain (X icon combos)
-            if (songHasX) {
-                if (xCount === 1) {
-                    const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                    let message;
-                    if (popupChoice === 1) {
-                        message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
-                    } else {
-                        message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's: Fun! Three X's: Vocal cords in shambles.\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
-                    }
-                    if (!confirm(message)) return;
-                } else if (xCount >= 2) {
-                    const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                    let message;
-                    if (popupChoice === 1) {
-                        message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer’s voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
-                    } else {
-                        message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer’s gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
-                    }
-                    if (!confirm(message)) return;
-                }
+            if (setlistId && ['1', '2', '3'].includes(setlistId)) {
+                const setlistKey = `setlist-${setlistId}`;
+                setlists[setlistKey].push(song);
+                updateSetlistDisplay(setlistKey);
+                updateDuration(setlistKey);
             }
-
-            // Check for crossfade opportunities
-            const crossfadeOptions = songData[song]?.crossfadeInto || [];
-            if (crossfadeOptions.length > 0 && currentSongs.length > 0) {
-                const lastSong = currentSongs[currentSongs.length - 1];
-                const isCrossfadable = crossfadeOptions.includes(lastSong);
-                if (isCrossfadable) {
-                    const popupChoice = Math.random();
-                    let message;
-                    if (popupChoice < 0.33) {
-                        message = `👯 ‘${lastSong}’ and ‘${song}’ go together like tequila and poor choices. Adding them back-to-back is basically setting up a threesome for your ears.\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
-                    } else if (popupChoice < 0.66) {
-                        message = `🤷 *‘${lastSong}’ → ‘${song}’ = instant crowd hype. Or you could, like, not do that. But why?\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
-                    } else {
-                        message = `🚨 SETLIST CRIME ALERT 🚨\nYou’re NOT crossfading ‘${lastSong}’ into ‘${song}’? That’s like choosing Natty Light over a Miller High Life\n\nOK = FINE, DAD\nCancel = I HATE FUN`;
-                    }
-                    confirm(message); // Informational only, proceed regardless
-                } else if (crossfadeOptions.length > 1) {
-                    const compatibleSong = crossfadeOptions[0];
-                    const message = `PSST, '${song}' AND '${compatibleSong}' AREN’T JUST ‘COMPATIBLE’—THEY FUCK.\n✓ "F* YES, BLEND THAT SHT" (Crowd loses minds)\n✓ "NEITHER, I DO WHAT I WANT" (Chaotic evil)\n\nOK = F* YES, BLEND THAT SHT\nCancel = NEITHER, I DO WHAT I WANT`;
-                    confirm(message); // Informational only
-                }
-            }
-
-            setlists[setlistKey].push(song);
-            updateSetlistDisplay(setlistKey);
-            updateDuration(setlistKey);
         }
 
         function updateIcons(selectElement, song, iconIndex) {
@@ -666,7 +616,7 @@
             const windowHeight = 1056;
             const maxTitleFontSize = 60;
             const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
-            const setlistTitleFontSize = baseTitleFontSize - 10;
+            const setlistTitleFontSize = baseTitleFontSize - 10; // Slightly smaller than song titles
             const artistFontSize = 8;
             const iconFontSize = 20;
 
@@ -861,7 +811,6 @@
                 }
                 populateSongTable();
                 updateAllSetlists();
-                saveData();
             }
         }
 
@@ -882,7 +831,6 @@
                 document.getElementById('new-song-riff').value = '';
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
-                saveData();
             }
         }
 
@@ -929,7 +877,6 @@
                 populateSongTable();
                 document.getElementById('paste-song-details').value = '';
                 alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
-                saveData();
             }
         }
 
