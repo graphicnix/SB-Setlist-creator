@@ -35,6 +35,7 @@
         th {
             background-color: #f4f4f4;
             cursor: pointer;
+            color: #000; /* Changed to black for visibility */
         }
         th:hover {
             background-color: #ddd;
@@ -68,6 +69,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            color: #000; /* Changed to black for visibility */
         }
         .crossfade-highlight {
             background-color: #90EE90;
@@ -149,11 +151,25 @@
             cursor: pointer;
             margin-left: 5px;
         }
+        .sync-btn {
+            background: #000; /* Black background */
+            color: #fff; /* White text */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: block;
+            text-align: center;
+        }
         .print-btn:hover {
             background: #c51717;
         }
         .delete-btn:hover, .save-btn:hover {
             background: #c51717;
+        }
+        .sync-btn:hover {
+            background: #333; /* Darker grey on hover */
         }
         .duration-total {
             margin-top: 10px;
@@ -224,6 +240,7 @@
         }
     </script>
 
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
     <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
 
@@ -305,6 +322,7 @@
     </div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
 
     <script>
         let songData = {};
@@ -352,6 +370,7 @@
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
             syncToGitHub(data);
+            alert('Data saved and sync initiated! Check console for status.');
         }
 
         async function syncToGitHub(data) {
@@ -382,7 +401,7 @@
                 });
 
                 if (updateResponse.ok) {
-                    console.log('Auto-saved to GitHub');
+                    console.log('Auto-saved to GitHub successfully');
                     lastSaveTime = Date.now();
                 } else {
                     console.error('Sync failed:', await updateResponse.json());
