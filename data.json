@@ -141,7 +141,9 @@
       "riff": "E",
       "bpm": "85",
       "duration": "4:24",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Sweet Emotion - Aerosmith"
+      ],
       "lyrics": ""
     },
     "Love Me Two Times - The Doors": {
@@ -149,7 +151,9 @@
       "riff": "Am",
       "bpm": "116",
       "duration": "3:16",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Cherub Rock - The Smashing Pumpkins"
+      ],
       "lyrics": ""
     },
     "Lydia - Highly Suspect": {
@@ -245,7 +249,9 @@
       "riff": "Em",
       "bpm": "136",
       "duration": "7:58",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Sod Off - Clutch"
+      ],
       "lyrics": ""
     },
     "Cumbersome - Seven Mary Three": {
@@ -293,7 +299,9 @@
       "riff": "Em",
       "bpm": "110",
       "duration": "4:54",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Zero - The Smashing Pumpkins"
+      ],
       "lyrics": ""
     },
     "Beautiful Disaster - 311": {
@@ -389,7 +397,9 @@
       "riff": "G",
       "bpm": "116",
       "duration": "4:58",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
+      ],
       "lyrics": ""
     },
     "Black Like a Stone - Audioslave": {
@@ -478,7 +488,32 @@
     "setlist-2": [],
     "setlist-3": []
   },
-  "songIcons": {},
+  "songIcons": {
+    "Pride and Joy - Stevie Ray Vaughan": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Stillborn - Black Label Society": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Zero - The Smashing Pumpkins": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Cult of Personality - Living Colour": [
+      "X",
+      "",
+      "",
+      ""
+    ]
+  },
   "songColors": {},
   "savedSetlists": {}
 }
