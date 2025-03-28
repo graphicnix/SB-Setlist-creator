@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Chords Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+            max-width: 100%;
+            overflow-x: hidden;
+            background-color: #565656;
+            color: #fff; /* Adjusted text color for readability on dark background */
+        }
+        h1, h2 {
+            color: #fff; /* Adjusted for dark background */
+        }
+        .category {
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            min-width: 600px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+ decadef th {
+            background-color: #f4f4f4;
+            cursor: pointer;
+        }
+        th:hover {
+            background-color: #ddd;
+        }
+        .setlist {
+            margin-top: 20px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        .setlist h3 {
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .setlist ul {
+            list-style-type: none;
+            padding: 0;
+            min-height: 50px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background: white;
+        }
+        .setlist li {
+            margin-bottom: 5px;
+            padding: 8px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            cursor: move;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .crossfade-highlight {
+            background-color: #90EE90;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+        .add-song {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f4f4f4;
+            border-radius: 5px;
+        }
+        .icon-container {
+            display: flex;
+            gap: 5px;
+        }
+        .icon-dropdown, .crossfade-select {
+            padding: 3px;
+            width: 50px;
+            text-align: center;
+        }
+        .crossfade-select {
+            width: 300px;
+            height: 100px;
+        }
+        .icon-O { color: blue; }
+        .icon-X { color: red; }
+        .icon-G { color: #8B4513; }
+        .icon-M { color: orange; }
+        .icon-→ { color: black; }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            margin-left: 10px;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+        .color-picker {
+            margin-left: 5px;
+            width: 100px;
+            padding: 3px;
+        }
+        .print-btn {
+            background: #e31c1c; /* Updated Print/Share button color */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .delete-btn, .save-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .print-btn:hover {
+            background: #c51717; /* Darker red on hover */
+        }
+        .delete-btn:hover, .save-btn:hover {
+            background: #45a049;
+        }
+        .duration-total {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        .song-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .song-title {
+            flex: 1;
+            text-align: center;
+        }
+        .icons {
+            margin-right: 5px;
+        }
+        input, textarea {
+            background-color: #d9d9d3; /* Updated text box color */
+            border: 1px solid #ccc;
+            padding: 5px;
+            color: #333; /* Dark text for readability */
+        }
+        th:nth-child(1), td:nth-child(1) { width: 25%; }
+        th:nth-child(3), td:nth-child(3) { width: 5%; }
+        th:nth-child(4), td:nth-child(4) { width: 5%; }
+        @media (max-width: 768px) {
+            body { margin: 10px; }
+            table { font-size: 14px; }
+            .add-song input { width: 100%; margin-bottom: 5px; }
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        .spiralbound-btn {
+            background: #e31c1c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 0;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+        }
+        .spiralbound-btn:hover {
+            background: #c51717;
+        }
+        .logo {
+            display: block;
+            margin: 20px auto;
+            max-width: 500px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Password protection
+        const correctPassword = "haircut";
+        let userPassword = localStorage.getItem('sitePassword');
+        if (userPassword !== correctPassword) {
+            userPassword = prompt("Enter the password to access this site:");
+            if (userPassword !== correctPassword) {
+                document.body.innerHTML = "<h1>Access Denied</h1>";
+                throw new Error("Incorrect password");
+            } else {
+                localStorage.setItem('sitePassword', userPassword);
+            }
+        }
+    </script>
+
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
+
+    <h1>Song Chords Information</h1>
+
+    <div class="tooltip">Icon Legend
+        <span class="tooltiptext">
+            <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
+            <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
+            <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
+            <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
+            <strong class="icon-→">→</strong> = Crossfade (Black)
+        </span>
+    </div>
+
+    <div class="category">
+        <h2>Alternative/Grunge/Rock</h2>
+        <table id="alternative-grunge-rock">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
+                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
+                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
+                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
+                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th>Can crossfade with</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="song-table-body"></tbody>
+        </table>
+    </div>
+
+    <div class="setlist">
+        <h3>Setlist 1 
+            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <h3>Setlist 2 
+            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <h3>Setlist 3 
+            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+    </div>
+
+    <div id="saved-setlists" class="category">
+        <!-- Saved setlists will be populated here as buttons -->
+    </div>
+
+    <div class="add-song">
+        <h3>Add New Song</h3>
+        <input type="text" id="new-song-title" placeholder="Song Title">
+        <input type="text" id="new-song-artist" placeholder="Artist">
+        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
+        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
+        <input type="text" id="new-song-bpm" placeholder="BPM">
+        <input type="text" id="new-song-duration" placeholder="Duration">
+        <button onclick="addNewSong()">Add Song</button>
+        <h3>Paste Song Details</h3>
+        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs, e.g.:\nX, M, Stillborn\nArtist: Black Label Society\nKey: Em\nRiff: Em\nBPM: 92\nDuration: 3:16\n\nNo Excuses\nArtist: Alice in Chains\nKey: Am\nRiff: Am\nBPM: 104\nDuration: 4:16"></textarea>
+        <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
+    <div class="popup-overlay" id="popup-overlay"></div>
+    <div class="popup" id="sync-popup">
+        <h3>Save and Sync</h3>
+        <p>Enter your GitHub Personal Access Token to sync changes:</p>
+        <input type="password" id="github-token" placeholder="GitHub Token">
+        <p>Commit message (optional):</p>
+        <input type="text" id="commit-message" placeholder="e.g., Updated setlist">
+        <button onclick="syncToGitHub()">Sync to GitHub</button>
+        <button onclick="closePopup()">Cancel</button>
+    </div>
+
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+
+    <script>
+        let songData = {};
+        let setlists = { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
+        let songIcons = {};
+        let songColors = {};
+        let savedSetlists = {};
+        const validIcons = ['O', 'X', 'G', 'M', '→'];
+        let dataToSync;
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                songData = data.songData || {};
+                setlists = data.setlists || { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
+                songIcons = data.songIcons || {};
+                songColors = data.songColors || {};
+                savedSetlists = data.savedSetlists || {};
+            } catch (error) {
+                console.error('Error loading data:', error);
+                const storedSongs = localStorage.getItem('songData');
+                const storedSetlists = localStorage.getItem('setlists');
+                const storedIcons = localStorage.getItem('songIcons');
+                const storedColors = localStorage.getItem('songColors');
+                const storedSavedSetlists = localStorage.getItem('savedSetlists');
+                if (storedSongs) songData = JSON.parse(storedSongs);
+                if (storedSetlists) setlists = JSON.parse(storedSetlists);
+                if (storedIcons) songIcons = JSON.parse(storedIcons);
+                if (storedColors) songColors = JSON.parse(storedColors);
+                if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
+            }
+            populateSongTable();
+            updateAllSetlists();
+            displaySavedSetlists();
+        }
+
+        function saveData() {
+            const data = { songData, setlists, songIcons, songColors, savedSetlists };
+            localStorage.setItem('songData', JSON.stringify(songData));
+            localStorage.setItem('setlists', JSON.stringify(setlists));
+            localStorage.setItem('songIcons', JSON.stringify(songIcons));
+            localStorage.setItem('songColors', JSON.stringify(songColors));
+            localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
+            showSyncPopup(data);
+        }
+
+        function showSyncPopup(data) {
+            dataToSync = data;
+            document.getElementById('popup-overlay').style.display = 'block';
+            document.getElementById('sync-popup').style.display = 'block';
+            document.getElementById('github-token').value = localStorage.getItem('githubToken') || '';
+        }
+
+        function closePopup() {
+            document.getElementById('popup-overlay').style.display = 'none';
+            document.getElementById('sync-popup').style.display = 'none';
+        }
+
+        async function syncToGitHub() {
+            const token = document.getElementById('github-token').value;
+            const commitMessage = document.getElementById('commit-message').value || 'Updated song data';
+            if (!token) {
+                alert('Please enter a GitHub token.');
+                return;
+            }
+            localStorage.setItem('githubToken', token);
+
+            const repoOwner = 'yourusername'; // Replace with your GitHub username
+            const repoName = 'song-chords';   // Replace with your repository name
+            const filePath = 'data.json';
+            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+
+            try {
+                const getResponse = await fetch(url, {
+                    headers: { 'Authorization': `token ${token}` }
+                });
+                const fileData = await getResponse.json();
+                const sha = fileData.sha;
+
+                const content = btoa(JSON.stringify(dataToSync, null, 2));
+                const updateResponse = await fetch(url, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: commitMessage,
+                        content: content,
+                        sha: sha
+                    })
+                });
+
+                if (updateResponse.ok) {
+                    alert('Successfully synced to GitHub!');
+                    closePopup();
+                } else {
+                    const errorData = await updateResponse.json();
+                    alert(`Sync failed: ${errorData.message}`);
+                }
+            } catch (error) {
+                alert(`Error syncing: ${error.message}`);
+            }
+        }
+
+        function populateSongTable() {
+            const tbody = document.getElementById('song-table-body');
+            tbody.innerHTML = '';
+            for (const song in songData) {
+                const songInfo = songData[song];
+                const [title, artist] = song.split(' - ');
+                const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon => 
+                    `<span class="icon-${icon}">${icon}</span>`).join(' ');
+                const crossfadeOptions = Object.keys(songData).filter(s => s !== song).map(s => 
+                    `<option value="${s}" ${songInfo.crossfadeInto.includes(s) ? 'selected' : ''}>${songInfo.crossfadeInto.includes(s) ? '✔ ' : ''}${s}</option>`).join('');
+                const row = document.createElement('tr');
+                row.setAttribute('data-song', song);
+                row.innerHTML = `
+                    <td class="song-cell">
+                        <div class="icons">${iconsHtml}</div>
+                        <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
+                    </td>
+                    <td>${artist}</td>
+                    <td>${songInfo.key}</td>
+                    <td>${songInfo.riff}</td>
+                    <td>${songInfo.bpm}</td>
+                    <td>${songInfo.duration}</td>
+                    <td>
+                        <select class="crossfade-select" multiple onchange="updateCrossfade('${song}', this)">
+                            ${crossfadeOptions}
+                        </select>
+                    </td>
+                    <td>
+                        <div class="icon-container">
+                            ${[0,1,2,3].map(i => `
+                                <select class="icon-dropdown" onchange="updateIcons(this, '${song}', ${i})">
+                                    <option value="">-</option>
+                                    <option value="O" ${songIcons[song]?.[i] === 'O' ? 'selected' : ''}>O</option>
+                                    <option value="X" ${songIcons[song]?.[i] === 'X' ? 'selected' : ''}>X</option>
+                                    <option value="G" ${songIcons[song]?.[i] === 'G' ? 'selected' : ''}>G</option>
+                                    <option value="M" ${songIcons[song]?.[i] === 'M' ? 'selected' : ''}>M</option>
+                                    <option value="→" ${songIcons[song]?.[i] === '→' ? 'selected' : ''}>→</option>
+                                </select>
+                            `).join('')}
+                        </div>
+                        <button onclick="addToSetlist('${song}', 'alternative-grunge-rock')">Add</button>
+                        <select class="color-picker" onchange="updateColor(this, '${song}')">
+                            <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
+                            <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
+                            <option value="#90EE90" ${songColors[song] === '#90EE90' ? 'selected' : ''}>Bright Green</option>
+                            <option value="#FFFF00" ${songColors[song] === '#FFFF00' ? 'selected' : ''}>Yellow</option>
+                            <option value="#FFC1CC" ${songColors[song] === '#FFC1CC' ? 'selected' : ''}>Pink</option>
+                            <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
+                        </select>
+                        <button onclick="editSong('${song}')">Edit</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        function openLyrics(song) {
+            const lyrics = songData[song].lyrics || '';
+            const lines = lyrics.split('\n').filter(line => line.trim() !== '');
+            const longestLine = lines.reduce((a, b) => a.length > b.length ? a : b, '');
+            const tabletWidth = 728;
+            const charWidthEstimate = 0.6;
+            const maxFontSize = Math.min(40, Math.floor(tabletWidth / (longestLine.length * charWidthEstimate)));
+            const windowHeight = Math.max(400, lines.length * (maxFontSize + 10));
+            
+            let lyricsWindow = window.open('', '', `width=768,height=${windowHeight}`);
+            lyricsWindow.document.write(`
+                <html>
+                <head>
+                    <title>Lyrics - ${song.split(' - ')[0]}</title>
+                    <style>
+                        body { margin: 20px; font-family: Arial, sans-serif; }
+                        textarea { 
+                            width: 728px; 
+                            height: ${windowHeight - 100}px; 
+                            margin-bottom: 10px; 
+                            font-size: ${maxFontSize}px; 
+                            line-height: 1.2; 
+                            resize: none;
+                            white-space: pre-wrap;
+                            overflow-x: hidden;
+                        }
+                        button { 
+                            padding: 5px 10px; 
+                            background: #4CAF50; 
+                            color: white; 
+                            border: none; 
+                            border-radius: 3px; 
+                            cursor: pointer; 
+                            margin-right: 10px; 
+                        }
+                        button:hover { background: #45a049; }
+                    </style>
+                </head>
+                <body>
+                    <h2>${song.split(' - ')[0]}</h2>
+                    <textarea id="lyrics">${lyrics}</textarea><br>
+                    <button onclick="window.opener.printLyrics('${song}', document.getElementById('lyrics').value)">Print/Share</button>
+                    <button onclick="window.opener.saveLyrics('${song}', document.getElementById('lyrics').value); window.close();">Save</button>
+                </body>
+                </html>
+            `);
+            lyricsWindow.document.close();
+        }
+
+        function saveLyrics(song, lyrics) {
+            songData[song].lyrics = lyrics;
+            saveData();
+        }
+
+        function printLyrics(song, lyrics) {
+            const lines = lyrics.split('\n').filter(line => line.trim() !== '');
+            const lineCount = lines.length;
+            const baseFontSize = 40;
+            const fontSize = lineCount > 5 ? Math.max(12, baseFontSize - (lineCount * 2)) : baseFontSize;
+            let printWindow = window.open('', '', 'width=816,height=1056');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Lyrics - ${song.split(' - ')[0]}</title>
+                    <style>
+                        body { margin: 20px; text-align: center; font-family: Arial, sans-serif; }
+                        h2 { font-size: ${fontSize + 10}px; }
+                        pre { 
+                            font-size: ${fontSize}px; 
+                            margin: 10px 0; 
+                            white-space: pre-wrap; 
+                            text-align: left; 
+                            max-width: 776px; 
+                            margin-left: auto; 
+                            margin-right: auto; 
+                        }
+                        button { 
+                            padding: 5px 10px; 
+                            background: #4CAF50; 
+                            color: white; 
+                            border: none; 
+                            border-radius: 3px; 
+                        }
+                    </style>
+                </head>
+                <body>
+                    <h2>${song.split(' - ')[0]}</h2>
+                    <pre>${lyrics}</pre>
+                    <button onclick="window.print()">Print</button>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+        }
+
+        function addToSetlist(song, category) {
+            const setlistId = prompt("Enter Setlist Number (1, 2, or 3):");
+            if (setlistId && ['1', '2', '3'].includes(setlistId)) {
+                const setlistKey = `setlist-${setlistId}`;
+                const setlist = setlists[setlistKey];
+                const lastSong = setlist[setlist.length - 1];
+                const secondLastSong = setlist[setlist.length - 2];
+                let shouldAddSong = true;
+
+                if (lastSong && songIcons[song]?.includes('X') && songIcons[lastSong]?.includes('X')) {
+                    shouldAddSong = confirm("Warning: This song and the previous song both have Hard Vocals (X). Are you sure you want them back-to-back?");
+                }
+
+                if (shouldAddSong && secondLastSong && lastSong && 
+                    songIcons[song]?.includes('X') && songIcons[lastSong]?.includes('X') && songIcons[secondLastSong]?.includes('X')) {
+                    const randomXXXMessage = Math.random() < 0.5 ? 0 : 1;
+                    let xxxMessage;
+                    if (randomXXXMessage === 0) {
+                        xxxMessage = `🔬 FACT: This XXX sequence has a 100% chance of:\n✓ Voice cracks\n✓ Regret\n✓ The crowd yelling ‘YOU OKAY, BRO?!’\nStill wanna do it?\n\n[FOR THE VINE]           [I’LL ADD A WATER BREAK (WEAK)]`;
+                    } else {
+                        xxxMessage = `🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\nBRO, YOU JUST STACKED THREE X SONGS IN A ROW?!\nOur singer’s gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\n\n[NO ONE CARES]           [FINE, PUSSY]`;
+                    }
+                    shouldAddSong = confirm(xxxMessage);
+                }
+
+                if (shouldAddSong) {
+                    setlists[setlistKey].push(song);
+
+                    const crossfadeOptions = songData[song]?.crossfadeInto || [];
+                    if (crossfadeOptions.length > 0) {
+                        const randomMessage = Math.floor(Math.random() * 4);
+                        let message, selectedCrossfadeSong;
+
+                        if (crossfadeOptions.length === 1) {
+                            selectedCrossfadeSong = crossfadeOptions[0];
+                            if (randomMessage === 0) {
+                                message = `YO DUMBSHIT—\n‘${song.split(' - ')[0]}’ and ‘${selectedCrossfadeSong}’ fuck. Like, sonically. Wanna let them smash?\n\n[Bet.]           [Hard Pass]`;
+                            } else {
+                                message = `🚨 SETLIST CRIME ALERT 🚨\nYou’re NOT crossfading ‘${song.split(' - ')[0]}’ into ‘${selectedCrossfadeSong}’?\nThat’s like choosing Natty Light over a Miller High Life. Fix it.\n\n[FINE, DAD]           [I HATE FUN]`;
+                            }
+                        } else {
+                            if (randomMessage === 0 || randomMessage === 1) {
+                                selectedCrossfadeSong = crossfadeOptions[Math.floor(Math.random() * crossfadeOptions.length)];
+                                message = `PSA: Skipping this crossfade (‘${song.split(' - ')[0]}’ → ‘${selectedCrossfadeSong}’) automatically adds Wonderwall to the setlist.\nYou’ve been warned.\n\n[ANYTHING BUT THAT]           [I UNIRONICALLY LOVE WONDERWALL]`;
+                            } else {
+                                message = `🚨 YOUR SETLIST IS IN DANGER OF BEING MID 🚨\nSave it by crossfading ‘${song.split(' - ')[0]}’ with:\n${crossfadeOptions.map(s => `✅ ‘${s}’ –`).join('\n')}\nTick tock, the dancing drunk people are waiting.\n\n[I LIVE FOR CHAOS]           [I’M A COWARD]`;
+                                selectedCrossfadeSong = crossfadeOptions[Math.floor(Math.random() * crossfadeOptions.length)];
+                            }
+                        }
+
+                        if (confirm(message)) {
+                            setlists[setlistKey].push(selectedCrossfadeSong);
+                        } else if (crossfadeOptions.length > 1 && (randomMessage === 0 || randomMessage === 1)) {
+                            const wonderwall = "Wonderwall - Oasis";
+                            if (!songData[wonderwall]) {
+                                songData[wonderwall] = { key: "F#m", riff: "F#m", bpm: "174", duration: "4:18", crossfadeInto: [], lyrics: "" };
+                                populateSongTable();
+                            }
+                            setlists[setlistKey].push(wonderwall);
+                        }
+                    }
+
+                    updateSetlistDisplay(setlistKey);
+                    updateDuration(setlistKey);
+                    saveData();
+                }
+            }
+        }
+
+        function updateIcons(selectElement, song, iconIndex) {
+            if (!songIcons[song]) songIcons[song] = ["", "", "", ""];
+            songIcons[song][iconIndex] = selectElement.value;
+            saveData();
+            populateSongTable();
+            updateAllSetlists();
+        }
+
+        function updateColor(selectElement, song) {
+            songColors[song] = selectElement.value;
+            saveData();
+            updateAllSetlists();
+        }
+
+        function deleteFromSetlist(setlistKey, song) {
+            setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
+            updateSetlistDisplay(setlistKey);
+            updateDuration(setlistKey);
+            saveData();
+        }
+
+        function updateCrossfade(song, selectElement) {
+            const selectedSongs = Array.from(selectElement.selectedOptions).map(opt => opt.value);
+            songData[song].crossfadeInto = selectedSongs;
+            selectElement.querySelectorAll('option').forEach(opt => {
+                opt.textContent = selectedSongs.includes(opt.value) ? `✔ ${opt.value}` : opt.value.replace('✔ ', '');
+            });
+            saveData();
+        }
+
+        function printSetlist(setlistId) {
+            const songs = setlists[setlistId];
+            const songCount = songs.length;
+            const baseFontSize = 40;
+            const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
+            let printWindow = window.open('', '', 'width=816,height=1056');
+            printWindow.document.write(`
+                <html><head><title>Setlist</title>
+                <style>
+                    body { margin: 20px; text-align: center; }
+                    .icon-O { color: blue; }
+                    .icon-X { color: red; }
+                    .icon-G { color: #8B4513; }
+                    .icon-M { color: orange; }
+                    .icon-→ { color: black; }
+                    .crossfade-highlight { background-color: #90EE90; padding: 2px 5px; border-radius: 3px; }
+                    h2 { font-size: ${fontSize + 10}px; }
+                    li { font-size: ${fontSize}px; margin: 10px 0; }
+                </style>
+                </head><body>
+                <h2>${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
+                <ol>${songs.map((song, index) => {
+                    const icons = (songIcons[song] || []).filter(i => i).map(icon =>
+                        `<span class="icon-${icon}">${icon}</span>`
+                    ).join(' ');
+                    const nextSong = songs[index + 1];
+                    const prevSong = songs[index - 1];
+                    const isCrossfadeStart = nextSong && songData[song]?.crossfadeInto?.includes(nextSong);
+                    const isCrossfadeEnd = prevSong && songData[prevSong]?.crossfadeInto?.includes(song);
+                    const displayText = (isCrossfadeStart || isCrossfadeEnd) 
+                        ? `<span class="crossfade-highlight">---->${song}<----</span>` 
+                        : song;
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}">${icons} ${displayText}</li>`;
+                }).join('')}</ol>
+                <button onclick="window.print()">Print</button>
+                </body></html>
+            `);
+            printWindow.document.close();
+        }
+
+        function saveSetlist(setlistId) {
+            const name = document.getElementById(`${setlistId}-name`).value;
+            if (name) {
+                savedSetlists[name] = [...setlists[setlistId]];
+                alert(`Setlist saved as "${name}"`);
+                displaySavedSetlists();
+                saveData();
+            } else {
+                alert("Please enter a name for the setlist.");
+            }
+        }
+
+        function viewSavedSetlist(name) {
+            const songs = savedSetlists[name];
+            const songCount = songs.length;
+            const baseFontSize = 40;
+            const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
+            let setlistWindow = window.open('', '', 'width=816,height=1056');
+            setlistWindow.document.write(`
+                <html><head><title>Saved Setlist - ${name}</title>
+                <style>
+                    body { margin: 20px; text-align: center; }
+                    .icon-O { color: blue; }
+                    .icon-X { color: red; }
+                    .icon-G { color: #8B4513; }
+                    .icon-M { color: orange; }
+                    .icon-→ { color: black; }
+                    .crossfade-highlight { background-color: #90EE90; padding: 2px 5px; border-radius: 3px; }
+                    h2 { font-size: ${fontSize + 10}px; }
+                    li { font-size: ${fontSize}px; margin: 10px 0; }
+                </style>
+                </head><body>
+                <h2>${name}</h2>
+                <ol>${songs.map((song, index) => {
+                    const icons = (songIcons[song] || []).filter(i => i).map(icon =>
+                        `<span class="icon-${icon}">${icon}</span>`
+                    ).join(' ');
+                    const nextSong = songs[index + 1];
+                    const prevSong = songs[index - 1];
+                    const isCrossfadeStart = nextSong && songData[song]?.crossfadeInto?.includes(nextSong);
+                    const isCrossfadeEnd = prevSong && songData[prevSong]?.crossfadeInto?.includes(song);
+                    const displayText = (isCrossfadeStart || isCrossfadeEnd) 
+                        ? `<span class="crossfade-highlight">---->${song}<----</span>` 
+                        : song;
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}">${icons} ${displayText}</li>`;
+                }).join('')}</ol>
+                <button onclick="window.print()">Print</button>
+                </body></html>
+            `);
+            setlistWindow.document.close();
+        }
+
+        function allowDrop(ev) { ev.preventDefault(); }
+        function drag(ev) { ev.dataTransfer.setData("text", ev.target.dataset.song); }
+        function drop(ev) {
+            ev.preventDefault();
+            const song = ev.dataTransfer.getData("text");
+            const setlistId = ev.target.closest('ul').id;
+            const setlist = setlists[setlistId];
+            const lastSong = setlist[setlist.length - 1];
+            if (lastSong && songIcons[song]?.includes('X') && songIcons[lastSong]?.includes('X')) {
+                if (!confirm("Warning: This song and the previous song both have Hard Vocals (X). Are you sure you want them back-to-back?")) {
+                    return;
+                }
+            }
+            setlists[setlistId].push(song);
+            updateSetlistDisplay(setlistId);
+            updateDuration(setlistId);
+            saveData();
+        }
+
+        function updateAllSetlists() {
+            ['setlist-1', 'setlist-2', 'setlist-3'].forEach(setlistKey => {
+                updateSetlistDisplay(setlistKey);
+                updateDuration(setlistKey);
+            });
+        }
+
+        function updateSetlistDisplay(setlistKey) {
+            const setlistElement = document.getElementById(setlistKey);
+            const songs = setlists[setlistKey];
+            setlistElement.innerHTML = songs.map((song, index) => {
+                const icons = (songIcons[song] || []).filter(i => i).map(icon =>
+                    `<span class="icon-${icon}">${icon}</span>`
+                ).join(' ');
+                const nextSong = songs[index + 1];
+                const prevSong = songs[index - 1];
+                const isCrossfadeStart = nextSong && songData[song]?.crossfadeInto?.includes(nextSong);
+                const isCrossfadeEnd = prevSong && songData[prevSong]?.crossfadeInto?.includes(song);
+                const displayText = (isCrossfadeStart || isCrossfadeEnd) 
+                    ? `<span class="crossfade-highlight">---->${song}<----</span>` 
+                    : song;
+                return `
+                    <li draggable="true" data-song="${song}" ondragstart="drag(event)"
+                        style="background:${songColors[song] || '#f9f9f9'}">
+                        ${icons} ${displayText}
+                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
+                    </li>
+                `;
+            }).join('');
+        }
+
+        function displaySavedSetlists() {
+            const savedSetlistsDiv = document.getElementById('saved-setlists');
+            savedSetlistsDiv.innerHTML = '<h2>Saved Setlists</h2>';
+            for (const name in savedSetlists) {
+                const button = document.createElement('button');
+                button.textContent = name;
+                button.className = 'print-btn';
+                button.onclick = () => viewSavedSetlist(name);
+                savedSetlistsDiv.appendChild(button);
+                savedSetlistsDiv.appendChild(document.createElement('br'));
+            }
+        }
+
+        function sortTable(columnIndex, tableId) {
+            const table = document.getElementById(tableId);
+            const rows = Array.from(table.rows).slice(1);
+            const isAscending = table.rows[0].cells[columnIndex].getAttribute('data-order') !== 'desc';
+            
+            rows.sort((a, b) => {
+                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText : 
+                          columnIndex === 6 ? a.cells[6].querySelector('select').value : 
+                          a.cells[columnIndex].innerText;
+                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText : 
+                          columnIndex === 6 ? b.cells[6].querySelector('select').value : 
+                          b.cells[columnIndex].innerText;
+                cellA = cellA?.trim() || '';
+                cellB = cellB?.trim() || '';
+                
+                if (columnIndex === 4) {
+                    return isAscending ? 
+                        (parseInt(cellA) || 0) - (parseInt(cellB) || 0) :
+                        (parseInt(cellB) || 0) - (parseInt(cellA) || 0);
+                } else if (columnIndex === 5) {
+                    const timeA = cellA.split(':').map(Number);
+                    const timeB = cellB.split(':').map(Number);
+                    const secA = (timeA[0] || 0) * 60 + (timeA[1] || 0);
+                    const secB = (timeB[0] || 0) * 60 + (timeB[1] || 0);
+                    return isAscending ? secA - secB : secB - secA;
+                } else {
+                    return isAscending ? 
+                        cellA.localeCompare(cellB) : 
+                        cellB.localeCompare(cellA);
+                }
+            });
+            
+            table.tBodies[0].append(...rows);
+            table.rows[0].cells[columnIndex].setAttribute('data-order', isAscending ? 'desc' : 'asc');
+        }
+
+        function editSong(song) {
+            const songInfo = songData[song];
+            if (!songInfo) return;
+            const [oldTitle, oldArtist] = song.split(' - ');
+            const title = prompt("Song Title:", oldTitle);
+            const artist = prompt("Artist:", oldArtist);
+            const key = prompt("Key:", songInfo.key);
+            const riff = prompt("Riff:", songInfo.riff);
+            const bpm = prompt("BPM:", songInfo.bpm);
+            const duration = prompt("Duration:", songInfo.duration);
+
+            if (title && artist) {
+                const newSongKey = `${title} - ${artist}`;
+                if (newSongKey !== song) {
+                    songData[newSongKey] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "" };
+                    delete songData[song];
+                    Object.keys(setlists).forEach(key => {
+                        setlists[key] = setlists[key].map(s => s === song ? newSongKey : s);
+                    });
+                    if (songIcons[song]) {
+                        songIcons[newSongKey] = songIcons[song];
+                        delete songIcons[song];
+                    }
+                    if (songColors[song]) {
+                        songColors[newSongKey] = songColors[song];
+                        delete songColors[song];
+                    }
+                    Object.keys(savedSetlists).forEach(name => {
+                        savedSetlists[name] = savedSetlists[name].map(s => s === song ? newSongKey : s);
+                    });
+                } else {
+                    songData[song] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "" };
+                }
+                populateSongTable();
+                updateAllSetlists();
+                saveData();
+            }
+        }
+
+        function addNewSong() {
+            const title = document.getElementById('new-song-title').value;
+            const artist = document.getElementById('new-song-artist').value;
+            const key = document.getElementById('new-song-key').value;
+            const riff = document.getElementById('new-song-riff').value;
+            const bpm = document.getElementById('new-song-bpm').value;
+            const duration = document.getElementById('new-song-duration').value;
+            if (title && artist) {
+                const song = `${title} - ${artist}`;
+                songData[song] = { key, riff, bpm, duration, crossfadeInto: [], lyrics: "" };
+                populateSongTable();
+                saveData();
+                document.getElementById('new-song-title').value = '';
+                document.getElementById('new-song-artist').value = '';
+                document.getElementById('new-song-key').value = '';
+                document.getElementById('new-song-riff').value = '';
+                document.getElementById('new-song-bpm').value = '';
+                document.getElementById('new-song-duration').value = '';
+            } else {
+                alert("Please enter both a title and an artist.");
+            }
+        }
+
+        function parseAndAddSongs() {
+            const text = document.getElementById('paste-song-details').value.trim();
+            if (!text) return;
+
+            const songBlocks = text.split(/\n\s*\n/).filter(block => block.trim());
+            let addedCount = 0;
+
+            songBlocks.forEach(block => {
+                const lines = block.split('\n').map(line => line.trim());
+                let title, artist, key, riff, bpm, duration, icons = [];
+
+                if (lines.length >= 6) {
+                    const firstLineParts = lines[0].split(',').map(part => part.trim());
+                    if (firstLineParts.length > 1 && firstLineParts.every(part => validIcons.includes(part) || !validIcons.includes(part.split(' ')[0]))) {
+                        icons = firstLineParts.filter(part => validIcons.includes(part));
+                        title = firstLineParts.filter(part => !validIcons.includes(part)).join(' ').trim();
+                        artist = lines[1].replace('Artist:', '').trim();
+                        key = lines[2].replace('Key:', '').trim();
+                        riff = lines[3].replace('Riff:', '').trim();
+                        bpm = lines[4].replace('BPM:', '').trim();
+                        duration = lines[5].replace('Duration:', '').trim();
+                    } else {
+                        title = lines[0];
+                        artist = lines[1].replace('Artist:', '').trim();
+                        key = lines[2].replace('Key:', '').trim();
+                        riff = lines[3].replace('Riff:', '').trim();
+                        bpm = lines[4].replace('BPM:', '').trim();
+                        duration = lines[5].replace('Duration:', '').trim();
+                    }
+
+                    if (title && artist) {
+                        const song = `${title} - ${artist}`;
+                        songData[song] = { key, riff, bpm, duration, crossfadeInto: [], lyrics: "" };
+                        if (icons.length) songIcons[song] = icons.concat(Array(4 - icons.length).fill(""));
+                        addedCount++;
+                    }
+                }
+            });
+
+            if (addedCount > 0) {
+                populateSongTable();
+                saveData();
+                document.getElementById('paste-song-details').value = '';
+                alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
+            } else {
+                alert("No valid songs found. Please use the format:\n[Optional Icons: X, M, etc.] Title\nArtist: [artist]\nKey: [key]\nRiff: [riff]\nBPM: [bpm]\nDuration: [duration]\n\nSeparate multiple songs with a blank line.");
+            }
+        }
+
+        function updateDuration(setlistKey) {
+            const songs = setlists[setlistKey];
+            let totalSeconds = 0;
+            songs.forEach(song => {
+                const duration = songData[song]?.duration;
+                if (duration) {
+                    const [minutes, seconds] = duration.split(':').map(Number);
+                    totalSeconds += (minutes * 60) + seconds;
+                }
+            });
+            const totalMinutes = Math.floor(totalSeconds / 60);
+            const remainingSeconds = totalSeconds % 60;
+            document.getElementById(`duration-${setlistKey.split('-')[1]}`).innerText = 
+                `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+        }
+
+        loadData();
+    </script>
+</body>
+</html>
