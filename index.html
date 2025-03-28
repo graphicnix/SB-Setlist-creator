@@ -594,33 +594,23 @@
             // Check for vocal strain (X icon combos)
             if (songHasX) {
                 if (xCount === 1) {
-                    // Second X song warning
                     const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                    let message, button1, button2;
+                    let message;
                     if (popupChoice === 1) {
-                        message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"";
-                        button1 = "Live Fast Die Raspy";
-                        button2 = "Fine, I'll Be Responsible";
+                        message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
                     } else {
-                        message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's: Fun! Three X's: Vocal cords in shambles.\"";
-                        button1 = "Live Fast Die Raspy";
-                        button2 = "Fine, I'll Be Responsible";
+                        message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's: Fun! Three X's: Vocal cords in shambles.\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
                     }
-                    if (!confirmPopup(message, button1, button2)) return;
+                    if (!confirm(message)) return;
                 } else if (xCount >= 2) {
-                    // Third X song warning
                     const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                    let message, button1, button2;
+                    let message;
                     if (popupChoice === 1) {
-                        message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer’s voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"";
-                        button1 = "I BELIEVE IN PAIN";
-                        button2 = "FINE, WHAT A PUSSY";
+                        message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer’s voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
                     } else {
-                        message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer’s gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"";
-                        button1 = "I CAN KICK HIS TESTIES FOR HIM";
-                        button2 = "FINE, WONDERWALL IT IS";
+                        message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer’s gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
                     }
-                    if (!confirmPopup(message, button1, button2)) return;
+                    if (!confirm(message)) return;
                 }
             }
 
@@ -631,60 +621,25 @@
                 const isCrossfadable = crossfadeOptions.includes(lastSong);
                 if (isCrossfadable) {
                     const popupChoice = Math.random();
-                    let message, button1, button2;
+                    let message;
                     if (popupChoice < 0.33) {
-                        message = `👯 ‘${lastSong}’ and ‘${song}’ go together like tequila and poor choices. Adding them back-to-back is basically setting up a threesome for your ears.*`;
-                        button1 = "FINE, TWIST MY ARM";
-                        button2 = "I HATE DANCING CHICKS";
+                        message = `👯 ‘${lastSong}’ and ‘${song}’ go together like tequila and poor choices. Adding them back-to-back is basically setting up a threesome for your ears.\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
                     } else if (popupChoice < 0.66) {
-                        message = `🤷 *‘${lastSong}’ → ‘${song}’ = instant crowd hype. Or you could, like, not do that. But why?*`;
-                        button1 = "FINE, TWIST MY ARM";
-                        button2 = "I HATE DANCING CHICKS";
+                        message = `🤷 *‘${lastSong}’ → ‘${song}’ = instant crowd hype. Or you could, like, not do that. But why?\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
                     } else {
-                        message = `🚨 SETLIST CRIME ALERT 🚨\nYou’re NOT crossfading ‘${lastSong}’ into ‘${song}’? That’s like choosing Natty Light over a Miller High Life`;
-                        button1 = "FINE, DAD";
-                        button2 = "I HATE FUN";
+                        message = `🚨 SETLIST CRIME ALERT 🚨\nYou’re NOT crossfading ‘${lastSong}’ into ‘${song}’? That’s like choosing Natty Light over a Miller High Life\n\nOK = FINE, DAD\nCancel = I HATE FUN`;
                     }
-                    confirmPopup(message, button1, button2);
+                    confirm(message); // Informational only, proceed regardless
                 } else if (crossfadeOptions.length > 1) {
                     const compatibleSong = crossfadeOptions[0];
-                    const message = `PSST, '${song}' AND '${compatibleSong}' AREN’T JUST ‘COMPATIBLE’—THEY FUCK.\n✓ "F* YES, BLEND THAT SHT" (Crowd loses minds)\n✓ "NEITHER, I DO WHAT I WANT" (Chaotic evil)`;
-                    const button1 = "F* YES, BLEND THAT SHT";
-                    const button2 = "NEITHER, I DO WHAT I WANT";
-                    confirmPopup(message, button1, button2);
+                    const message = `PSST, '${song}' AND '${compatibleSong}' AREN’T JUST ‘COMPATIBLE’—THEY FUCK.\n✓ "F* YES, BLEND THAT SHT" (Crowd loses minds)\n✓ "NEITHER, I DO WHAT I WANT" (Chaotic evil)\n\nOK = F* YES, BLEND THAT SHT\nCancel = NEITHER, I DO WHAT I WANT`;
+                    confirm(message); // Informational only
                 }
             }
 
             setlists[setlistKey].push(song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
-        }
-
-        function confirmPopup(message, button1Text, button2Text) {
-            return new Promise((resolve) => {
-                const overlay = document.createElement('div');
-                overlay.className = 'overlay';
-                const popup = document.createElement('div');
-                popup.className = 'welcome-popup';
-                popup.innerHTML = `
-                    <p>${message.replace(/\n/g, '<br>')}</p>
-                    <button onclick="this.closest('.welcome-popup').dataset.choice='yes';">${button1Text}</button>
-                    <button onclick="this.closest('.welcome-popup').dataset.choice='no';">${button2Text}</button>
-                `;
-                document.body.appendChild(overlay);
-                document.body.appendChild(popup);
-
-                function handleChoice() {
-                    const choice = popup.dataset.choice === 'yes';
-                    overlay.remove();
-                    popup.remove();
-                    resolve(choice);
-                }
-
-                popup.querySelectorAll('button').forEach(btn => btn.addEventListener('click', handleChoice));
-            }).then(choice => {
-                return choice;
-            });
         }
 
         function updateIcons(selectElement, song, iconIndex) {
@@ -906,6 +861,7 @@
                 }
                 populateSongTable();
                 updateAllSetlists();
+                saveData();
             }
         }
 
@@ -926,6 +882,7 @@
                 document.getElementById('new-song-riff').value = '';
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
+                saveData();
             }
         }
 
@@ -941,7 +898,7 @@
                 let title, artist, key, riff, bpm, duration, icons = [];
 
                 if (lines.length >= 6) {
-                    const firstLineParts = lines[0].split',').map(part => part.trim());
+                    const firstLineParts = lines[0].split(',').map(part => part.trim());
                     if (firstLineParts.length > 1 && firstLineParts.every(part => validIcons.includes(part) || !validIcons.includes(part.split(' ')[0]))) {
                         icons = firstLineParts.filter(part => validIcons.includes(part));
                         title = firstLineParts.filter(part => !validIcons.includes(part)).join(' ').trim();
@@ -972,6 +929,7 @@
                 populateSongTable();
                 document.getElementById('paste-song-details').value = '';
                 alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
+                saveData();
             }
         }
 
