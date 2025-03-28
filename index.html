@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=10">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpiralBound Setlist Creator</title>
     <style>
         body {
@@ -25,10 +25,7 @@
         .icon-legend-container {
             display: flex;
             justify-content: space-between;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
+            margin: 10px 0;
             z-index: 10;
         }
         .tooltip {
@@ -113,14 +110,14 @@
         }
         .crossfade-btn {
             padding: 5px 10px;
-            background: #4CAF50;
+            background: #774a3b;
             color: white;
             border: none;
             border-radius: 3px;
             cursor: pointer;
         }
         .crossfade-btn:hover {
-            background: #45a049;
+            background: #5f3a2e;
         }
         .crossfade-popup {
             display: none;
@@ -171,6 +168,15 @@
             cursor: pointer;
             margin-left: 5px;
         }
+        .add-btn {
+            background: #450202;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
         .sync-btn {
             background: #000;
             color: #fff;
@@ -182,7 +188,7 @@
             display: block;
             text-align: center;
         }
-        .print-btn:hover, .delete-btn:hover, .save-btn:hover {
+        .print-btn:hover, .delete-btn:hover, .save-btn:hover, .add-btn:hover {
             background: #c51717;
         }
         .sync-btn:hover {
@@ -308,7 +314,6 @@
             displaySavedSetlists();
             setInterval(checkAndSave, 60000);
 
-            // Popups after data load
             if (!localStorage.getItem('welcomeShown')) {
                 document.body.insertAdjacentHTML('beforeend', `
                     <div class="overlay"></div>
@@ -418,11 +423,14 @@
                     <td>
                         <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
                         <div class="crossfade-popup" id="crossfade-${safeSongId}">
-                            ${Object.keys(songData).filter(s => s !== song).map(s => `
-                                <label><input type="checkbox" value="${s}" 
-                                    ${songInfo.crossfadeInto.includes(s) ? 'checked' : ''} 
-                                    onchange="updateCrossfade('${song}', this)"> ${s}</label>
-                            `).join('')}
+                            ${Object.keys(songData)
+                                .filter(s => s !== song)
+                                .sort((a, b) => a.split(' - ')[0].localeCompare(b.split(' - ')[0]))
+                                .map(s => `
+                                    <label><input type="checkbox" value="${s}" 
+                                        ${songInfo.crossfadeInto.includes(s) ? 'checked' : ''} 
+                                        onchange="updateCrossfade('${song}', this)"> ${s}</label>
+                                `).join('')}
                         </div>
                     </td>
                     <td>
@@ -438,7 +446,7 @@
                                 </select>
                             `).join('')}
                         </div>
-                        <button onclick="addToSetlist('${song}', 'alternative-grunge-rock')">Add</button>
+                        <button class="add-btn" onclick="addToSetlist('${song}', 'alternative-grunge-rock')">Add</button>
                         <select class="color-picker" onchange="updateColor(this, '${song}')">
                             <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
                             <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
@@ -608,6 +616,7 @@
             const windowHeight = 1056;
             const maxTitleFontSize = 60;
             const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
+            const setlistTitleFontSize = baseTitleFontSize - 10; // Slightly smaller than song titles
             const artistFontSize = 8;
             const iconFontSize = 20;
 
@@ -621,7 +630,7 @@
                     .icon-G { color: #8B4513; font-size: ${iconFontSize}px; }
                     .icon-M { color: orange; font-size: ${iconFontSize}px; }
                     .icon-→ { color: black; font-size: ${iconFontSize}px; }
-                    h2 { font-size: ${baseTitleFontSize + 10}px; }
+                    h2 { font-size: ${setlistTitleFontSize}px; background-color: yellow; display: inline-block; padding: 5px 10px; }
                     li { margin: 10px 0; display: flex; align-items: center; justify-content: center; }
                     .song-title { font-size: ${baseTitleFontSize}px; }
                     .artist { font-size: ${artistFontSize}px; margin-left: 10px; }
@@ -907,27 +916,6 @@
         loadData();
     </script>
 
-    <div class="icon-legend-container">
-        <div class="tooltip">Icon Legend
-            <span class="tooltiptext">
-                <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                <strong class="icon-→">→</strong> = Crossfade (Black)
-            </span>
-        </div>
-        <div class="tooltip">Icon Legend
-            <span class="tooltiptext">
-                <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                <strong class="icon-→">→</strong> = Crossfade (Black)
-            </span>
-        </div>
-    </div>
-
     <button class="sync-btn" onclick="saveData()">Save and Sync</button>
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
     <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
@@ -936,6 +924,26 @@
 
     <div class="category">
         <h2>Alternative/Grunge/Rock</h2>
+        <div class="icon-legend-container">
+            <div class="tooltip">Icon Legend
+                <span class="tooltiptext">
+                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
+                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
+                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
+                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
+                    <strong class="icon-→">→</strong> = Crossfade (Black)
+                </span>
+            </div>
+            <div class="tooltip">Icon Legend
+                <span class="tooltiptext">
+                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
+                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
+                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
+                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
+                    <strong class="icon-→">→</strong> = Crossfade (Black)
+                </span>
+            </div>
+        </div>
         <table id="alternative-grunge-rock">
             <thead>
                 <tr>
