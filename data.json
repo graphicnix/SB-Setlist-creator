@@ -16,22 +16,6 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
-    "Stillborn - Black Label Society": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "92",
-      "duration": "3:16",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Zero - The Smashing Pumpkins": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "144",
-      "duration": "2:40",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Creep - Radiohead": {
       "key": "G",
       "riff": "G",
@@ -104,24 +88,6 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
-    "Interstate Love Song - Stone Temple Pilots": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "104",
-      "duration": "3:15",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Under the Bridge - Red Hot Chili Peppers": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "85",
-      "duration": "4:24",
-      "crossfadeInto": [
-        "Sweet Emotion - Aerosmith"
-      ],
-      "lyrics": ""
-    },
     "Love Me Two Times - The Doors": {
       "key": "Am",
       "riff": "Am",
@@ -153,14 +119,6 @@
       "riff": "Em",
       "bpm": "110",
       "duration": "3:58",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Plush - Stone Temple Pilots": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "132",
-      "duration": "5:14",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -232,14 +190,6 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
-    "Short Skirt / Long Jacket - Cake": {
-      "key": "Am",
-      "riff": "Am",
-      "bpm": "128",
-      "duration": "3:24",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Cult of Personality - Living Colour": {
       "key": "Em",
       "riff": "Em",
@@ -290,14 +240,6 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
-    "Shotgun - Junior Walker & The All Stars": {
-      "key": "Eb",
-      "riff": "Eb",
-      "bpm": "136",
-      "duration": "3:00",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Sweet Emotion - Aerosmith": {
       "key": "Em",
       "riff": "Em",
@@ -338,16 +280,6 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
-    "Cherub Rock - The Smashing Pumpkins": {
-      "key": "G",
-      "riff": "G",
-      "bpm": "116",
-      "duration": "4:58",
-      "crossfadeInto": [
-        "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
-      ],
-      "lyrics": ""
-    },
     "Superstition - Stevie Wonder": {
       "key": "Eb",
       "riff": "Eb",
@@ -369,14 +301,6 @@
       "riff": "E",
       "bpm": "138",
       "duration": "4:03",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "No One Knows - Queens of the Stone Age": {
-      "key": "C",
-      "riff": "C",
-      "bpm": "120",
-      "duration": "4:38",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -499,27 +423,95 @@
       "duration": "2:14",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "Under the Bridge - RHCP": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "85",
+      "duration": "4:24",
+      "crossfadeInto": [
+        "Sweet Emotion - Aerosmith"
+      ],
+      "lyrics": ""
+    },
+    "Interstate Love Song - STP": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "104",
+      "duration": "3:15",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Zero - Smashing Pumpkins": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "144",
+      "duration": "2:40",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Stillborn - BLS": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "3:16",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "SOS - SAWD OFF SHOTTY": {
+      "key": "Eb",
+      "riff": "Eb",
+      "bpm": "136",
+      "duration": "3:00",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Plush - STP": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "132",
+      "duration": "5:14",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Cherub Rock - Smashing Pumpkins": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "116",
+      "duration": "4:58",
+      "crossfadeInto": [
+        "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
+      ],
+      "lyrics": ""
+    },
+    "No One Knows - Queens Stone Age": {
+      "key": "",
+      "riff": "",
+      "bpm": "",
+      "duration": "",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Short SkirtLong Jacket - Cake": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "128",
+      "duration": "3:24",
+      "crossfadeInto": [],
+      "lyrics": ""
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Fell on Black Days - Soundgarden",
+      "Sex on Fire - Kings of Leon",
+      "Lydia - Highly Suspect"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
-      "O",
-      "",
-      "",
-      ""
-    ],
-    "Stillborn - Black Label Society": [
-      "X",
-      "",
-      "",
-      ""
-    ],
-    "Zero - The Smashing Pumpkins": [
       "O",
       "",
       "",
@@ -580,12 +572,6 @@
       ""
     ],
     "Blister in the Sun - Violent Femmes": [
-      "O",
-      "",
-      "",
-      ""
-    ],
-    "Short Skirt / Long Jacket - Cake": [
       "O",
       "",
       "",
@@ -662,13 +648,31 @@
       "",
       "",
       ""
+    ],
+    "Zero - Smashing Pumpkins": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Stillborn - BLS": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Short SkirtLong Jacket - Cake": [
+      "O",
+      "",
+      "",
+      ""
     ]
   },
   "songColors": {},
   "savedSetlists": {
     "Setlist1 - Matt": [
       "Breed - Nirvana",
-      "Interstate Love Song - Stone Temple Pilots",
+      "Interstate Love Song - STP",
       "Like a Stone - Audioslave",
       "Say it aint so - Weezer ",
       "Bullet w Butterfly - TSP",
