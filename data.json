@@ -96,7 +96,7 @@
       "bpm": "116",
       "duration": "3:16",
       "crossfadeInto": [
-        "Cherub Rock - The Smashing Pumpkins"
+        "Cherub Rock - Smashing Pumpkins"
       ],
       "lyrics": ""
     },
@@ -198,7 +198,7 @@
       "bpm": "110",
       "duration": "4:54",
       "crossfadeInto": [
-        "Zero - The Smashing Pumpkins"
+        "Zero - Smashing Pumpkins"
       ],
       "lyrics": ""
     },
@@ -484,7 +484,7 @@
       "bpm": "116",
       "duration": "4:58",
       "crossfadeInto": [
-        "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
+        "Tripping on a Hole - STP"
       ],
       "lyrics": ""
     },
@@ -509,7 +509,9 @@
       "riff": "",
       "bpm": "158",
       "duration": "4:11",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Even Flow - Pearl Jam"
+      ],
       "lyrics": ""
     }
   },
@@ -522,7 +524,9 @@
       "Short SkirtLong Jacket - Cake",
       "No One Knows - Queens Stone Age",
       "Cherub Rock - Smashing Pumpkins",
-      "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
+      "Tripping on a Hole in a Paper Heart - Stone Temple Pilots",
+      "Stillborn - BLS",
+      "Hash Pipe - Weezer"
     ],
     "setlist-2": [],
     "setlist-3": []
