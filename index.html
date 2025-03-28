@@ -35,7 +35,7 @@
         th {
             background-color: #f4f4f4;
             cursor: pointer;
-            color: #000; /* Black for visibility */
+            color: #000;
         }
         th:hover {
             background-color: #ddd;
@@ -69,7 +69,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #000; /* Black for visibility */
+            color: #000;
         }
         .crossfade-highlight {
             background-color: #90EE90;
@@ -226,7 +226,6 @@
 </head>
 <body>
     <script>
-        // Password protection
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
         if (userPassword !== correctPassword) {
@@ -332,7 +331,7 @@
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let lastSaveTime = Date.now();
-        const githubToken = "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"; // Replace with new token if regenerated
+        const githubToken = "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";
 
         async function loadData() {
             try {
