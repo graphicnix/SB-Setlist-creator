@@ -16,10 +16,34 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
+    "Stillborn - Black Label Society": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "3:16",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Zero - The Smashing Pumpkins": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "144",
+      "duration": "2:40",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
     "Creep - Radiohead": {
       "key": "G",
       "riff": "G",
       "bpm": "92",
+      "duration": "3:56",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Hemorrhage (In My Hands) - Fuel": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "120",
       "duration": "3:56",
       "crossfadeInto": [],
       "lyrics": ""
@@ -29,6 +53,22 @@
       "riff": "Em",
       "bpm": "94",
       "duration": "3:51",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Good Times Bad Times - Led Zeppelin": {
+      "key": "A",
+      "riff": "A",
+      "bpm": "138",
+      "duration": "2:46",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Bullet with Butterfly Wings - The Smashing Pumpkins": {
+      "key": "F",
+      "riff": "F",
+      "bpm": "120",
+      "duration": "4:18",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -88,6 +128,24 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
+    "Interstate Love Song - Stone Temple Pilots": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "104",
+      "duration": "3:15",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Under the Bridge - Red Hot Chili Peppers": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "85",
+      "duration": "4:24",
+      "crossfadeInto": [
+        "Sweet Emotion - Aerosmith"
+      ],
+      "lyrics": ""
+    },
     "Love Me Two Times - The Doors": {
       "key": "Am",
       "riff": "Am",
@@ -122,11 +180,43 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
+    "Blue on Black - Kenny Wayne Shepherd Band": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "94",
+      "duration": "4:00",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Tripping on a Hole in a Paper Heart - Stone Temple Pilots": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "108",
+      "duration": "2:55",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Plush - Stone Temple Pilots": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "132",
+      "duration": "5:14",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
     "Come Down - Bush": {
       "key": "Em",
       "riff": "Em",
       "bpm": "120",
       "duration": "5:23",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Soul to Squeeze - Red Hot Chili Peppers": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "80",
+      "duration": "4:50",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -182,11 +272,27 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
+    "Lump - The Presidents of the United States of America": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "140",
+      "duration": "2:14",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
     "Blister in the Sun - Violent Femmes": {
       "key": "D",
       "riff": "D",
       "bpm": "152",
       "duration": "2:25",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Short Skirt / Long Jacket - Cake": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "128",
+      "duration": "3:24",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -240,6 +346,14 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
+    "Shotgun - Junior Walker & The All Stars": {
+      "key": "Eb",
+      "riff": "Eb",
+      "bpm": "136",
+      "duration": "3:00",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
     "Sweet Emotion - Aerosmith": {
       "key": "Em",
       "riff": "Em",
@@ -280,6 +394,24 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
+    "Cherub Rock - The Smashing Pumpkins": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "116",
+      "duration": "4:58",
+      "crossfadeInto": [
+        "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
+      ],
+      "lyrics": ""
+    },
+    "Black Like a Stone - Audioslave": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "72",
+      "duration": "4:54",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
     "Superstition - Stevie Wonder": {
       "key": "Eb",
       "riff": "Eb",
@@ -301,6 +433,14 @@
       "riff": "E",
       "bpm": "138",
       "duration": "4:03",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "No One Knows - Queens of the Stone Age": {
+      "key": "C",
+      "riff": "C",
+      "bpm": "120",
+      "duration": "4:38",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -343,164 +483,6 @@
       "duration": "4:41",
       "crossfadeInto": [],
       "lyrics": ""
-    },
-    "Like a Stone - Audioslave": {
-      "key": "Am",
-      "riff": "Am",
-      "bpm": "72",
-      "duration": "4:54",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Say it aint so - Weezer ": {
-      "key": "",
-      "riff": "",
-      "bpm": "",
-      "duration": "4:18",
-      "crossfadeInto": [
-        "Pride and Joy - Stevie Ray Vaughan"
-      ],
-      "lyrics": ""
-    },
-    "Bullet w Butterfly - TSP": {
-      "key": "F",
-      "riff": "F",
-      "bpm": "120",
-      "duration": "4:18",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Hemorrhage - Fuel": {
-      "key": "Am",
-      "riff": "Am",
-      "bpm": "120",
-      "duration": "3:56",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Good Times Bad - Led Zeppelin": {
-      "key": "A",
-      "riff": "A",
-      "bpm": "138",
-      "duration": "2:46",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Devils Bleedin - Volbeat": {
-      "key": "",
-      "riff": "",
-      "bpm": "",
-      "duration": "3:58",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Tripping on a Hole - STP": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "108",
-      "duration": "2:55",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Soul to Squeeze - R.H.C.P": {
-      "key": "G",
-      "riff": "G",
-      "bpm": "80",
-      "duration": "4:50",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Blue on Black - Kenny Wayne": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "94",
-      "duration": "4:00",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Lump - The Presidents USA": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "140",
-      "duration": "2:14",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Under the Bridge - RHCP": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "85",
-      "duration": "4:24",
-      "crossfadeInto": [
-        "Sweet Emotion - Aerosmith"
-      ],
-      "lyrics": ""
-    },
-    "Interstate Love Song - STP": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "104",
-      "duration": "3:15",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Zero - Smashing Pumpkins": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "144",
-      "duration": "2:40",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Stillborn - BLS": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "92",
-      "duration": "3:16",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "SOS - SAWD OFF SHOTTY": {
-      "key": "Eb",
-      "riff": "Eb",
-      "bpm": "136",
-      "duration": "3:00",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Plush - STP": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "132",
-      "duration": "5:14",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Cherub Rock - Smashing Pumpkins": {
-      "key": "G",
-      "riff": "G",
-      "bpm": "116",
-      "duration": "4:58",
-      "crossfadeInto": [
-        "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
-      ],
-      "lyrics": ""
-    },
-    "No One Knows - Queens Stone Age": {
-      "key": "",
-      "riff": "",
-      "bpm": "",
-      "duration": "",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
-    "Short SkirtLong Jacket - Cake": {
-      "key": "Am",
-      "riff": "Am",
-      "bpm": "128",
-      "duration": "3:24",
-      "crossfadeInto": [],
-      "lyrics": ""
     }
   },
   "setlists": {
@@ -515,6 +497,18 @@
       "",
       ""
     ],
+    "Stillborn - Black Label Society": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Zero - The Smashing Pumpkins": [
+      "O",
+      "",
+      "",
+      ""
+    ],
     "Cult of Personality - Living Colour": [
       "X",
       "",
@@ -522,6 +516,12 @@
       ""
     ],
     "What If - Creed": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Hemorrhage (In My Hands) - Fuel": [
       "X",
       "",
       "",
@@ -551,6 +551,12 @@
       "",
       ""
     ],
+    "Tripping on a Hole in a Paper Heart - Stone Temple Pilots": [
+      "X",
+      "",
+      "",
+      ""
+    ],
     "Drunken Lullabies - Flogging Molly": [
       "X",
       "",
@@ -569,7 +575,19 @@
       "",
       ""
     ],
+    "Lump - The Presidents of the United States of America": [
+      "M",
+      "",
+      "",
+      ""
+    ],
     "Blister in the Sun - Violent Femmes": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Short Skirt / Long Jacket - Cake": [
       "O",
       "",
       "",
@@ -616,70 +634,8 @@
       "",
       "",
       ""
-    ],
-    "Like a Stone - Audioslave": [
-      "X",
-      "",
-      "",
-      ""
-    ],
-    "Hemorrhage - Fuel": [
-      "X",
-      "",
-      "",
-      ""
-    ],
-    "Devils Bleedin - Volbeat": [
-      "X",
-      "",
-      "",
-      ""
-    ],
-    "Tripping on a Hole - STP": [
-      "X",
-      "",
-      "",
-      ""
-    ],
-    "Lump - The Presidents USA": [
-      "M",
-      "",
-      "",
-      ""
-    ],
-    "Zero - Smashing Pumpkins": [
-      "O",
-      "",
-      "",
-      ""
-    ],
-    "Stillborn - BLS": [
-      "X",
-      "",
-      "",
-      ""
-    ],
-    "Short SkirtLong Jacket - Cake": [
-      "O",
-      "",
-      "",
-      ""
     ]
   },
   "songColors": {},
-  "savedSetlists": {
-    "Setlist1 - Matt": [
-      "Breed - Nirvana",
-      "Interstate Love Song - STP",
-      "Like a Stone - Audioslave",
-      "Say it aint so - Weezer ",
-      "Bullet w Butterfly - TSP",
-      "Possum Kingdom - Toadies",
-      "Feeling Good - various",
-      "Inside Out - Eve 6",
-      "I Alone - Live",
-      "Even Flow - Pearl Jam",
-      "Lola Montez - Volbeat"
-    ]
-  }
+  "savedSetlists": {}
 }
