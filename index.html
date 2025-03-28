@@ -12,10 +12,10 @@
             max-width: 100%;
             overflow-x: hidden;
             background-color: #565656;
-            color: #fff; /* Adjusted text color for readability on dark background */
+            color: #fff;
         }
         h1, h2 {
-            color: #fff; /* Adjusted for dark background */
+            color: #fff;
         }
         .category {
             margin-bottom: 40px;
@@ -32,7 +32,7 @@
             padding: 8px;
             text-align: left;
         }
- decadef th {
+        th {
             background-color: #f4f4f4;
             cursor: pointer;
         }
@@ -41,7 +41,7 @@
         }
         .setlist {
             margin-top: 20px;
-            background: #f9f9f9;
+            background: #565656;
             padding: 15px;
             border-radius: 5px;
         }
@@ -92,6 +92,7 @@
         .crossfade-select {
             width: 300px;
             height: 100px;
+            background-color: #d9d9d3;
         }
         .icon-O { color: blue; }
         .icon-X { color: red; }
@@ -131,7 +132,7 @@
             padding: 3px;
         }
         .print-btn {
-            background: #e31c1c; /* Updated Print/Share button color */
+            background: #e31c1c;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -140,7 +141,7 @@
             margin-left: 5px;
         }
         .delete-btn, .save-btn {
-            background: #4CAF50;
+            background: #e31c1c;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -149,10 +150,10 @@
             margin-left: 5px;
         }
         .print-btn:hover {
-            background: #c51717; /* Darker red on hover */
+            background: #c51717;
         }
         .delete-btn:hover, .save-btn:hover {
-            background: #45a049;
+            background: #c51717;
         }
         .duration-total {
             margin-top: 10px;
@@ -171,10 +172,10 @@
             margin-right: 5px;
         }
         input, textarea {
-            background-color: #d9d9d3; /* Updated text box color */
+            background-color: #d9d9d3;
             border: 1px solid #ccc;
             padding: 5px;
-            color: #333; /* Dark text for readability */
+            color: #333;
         }
         th:nth-child(1), td:nth-child(1) { width: 25%; }
         th:nth-child(3), td:nth-child(3) { width: 5%; }
@@ -183,29 +184,6 @@
             body { margin: 10px; }
             table { font-size: 14px; }
             .add-song input { width: 100%; margin-bottom: 5px; }
-        }
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            z-index: 1000;
-        }
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
         }
         .spiralbound-btn {
             background: #e31c1c;
@@ -326,17 +304,6 @@
         <button onclick="parseAndAddSongs()">Add from Paste</button>
     </div>
 
-    <div class="popup-overlay" id="popup-overlay"></div>
-    <div class="popup" id="sync-popup">
-        <h3>Save and Sync</h3>
-        <p>Enter your GitHub Personal Access Token to sync changes:</p>
-        <input type="password" id="github-token" placeholder="GitHub Token">
-        <p>Commit message (optional):</p>
-        <input type="text" id="commit-message" placeholder="e.g., Updated setlist">
-        <button onclick="syncToGitHub()">Sync to GitHub</button>
-        <button onclick="closePopup()">Cancel</button>
-    </div>
-
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
 
     <script>
@@ -346,7 +313,8 @@
         let songColors = {};
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
-        let dataToSync;
+        let lastSaveTime = Date.now();
+        const githubToken = "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";
 
         async function loadData() {
             try {
@@ -373,6 +341,7 @@
             populateSongTable();
             updateAllSetlists();
             displaySavedSetlists();
+            setInterval(checkAndSave, 60000); // Check every minute
         }
 
         function saveData() {
@@ -382,65 +351,51 @@
             localStorage.setItem('songIcons', JSON.stringify(songIcons));
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
-            showSyncPopup(data);
+            syncToGitHub(data);
         }
 
-        function showSyncPopup(data) {
-            dataToSync = data;
-            document.getElementById('popup-overlay').style.display = 'block';
-            document.getElementById('sync-popup').style.display = 'block';
-            document.getElementById('github-token').value = localStorage.getItem('githubToken') || '';
-        }
-
-        function closePopup() {
-            document.getElementById('popup-overlay').style.display = 'none';
-            document.getElementById('sync-popup').style.display = 'none';
-        }
-
-        async function syncToGitHub() {
-            const token = document.getElementById('github-token').value;
-            const commitMessage = document.getElementById('commit-message').value || 'Updated song data';
-            if (!token) {
-                alert('Please enter a GitHub token.');
-                return;
-            }
-            localStorage.setItem('githubToken', token);
-
-            const repoOwner = 'yourusername'; // Replace with your GitHub username
-            const repoName = 'song-chords';   // Replace with your repository name
+        async function syncToGitHub(data) {
+            const repoOwner = 'graphinix';
+            const repoName = 'SB-Setlist-creator';
             const filePath = 'data.json';
             const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
             try {
                 const getResponse = await fetch(url, {
-                    headers: { 'Authorization': `token ${token}` }
+                    headers: { 'Authorization': `token ${githubToken}` }
                 });
                 const fileData = await getResponse.json();
                 const sha = fileData.sha;
 
-                const content = btoa(JSON.stringify(dataToSync, null, 2));
+                const content = btoa(JSON.stringify(data, null, 2));
                 const updateResponse = await fetch(url, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `token ${token}`,
+                        'Authorization': `token ${githubToken}`,
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: commitMessage,
+                        message: 'Auto-save update ' + new Date().toISOString(),
                         content: content,
                         sha: sha
                     })
                 });
 
                 if (updateResponse.ok) {
-                    alert('Successfully synced to GitHub!');
-                    closePopup();
+                    console.log('Auto-saved to GitHub');
+                    lastSaveTime = Date.now();
                 } else {
-                    const errorData = await updateResponse.json();
-                    alert(`Sync failed: ${errorData.message}`);
+                    console.error('Sync failed:', await updateResponse.json());
                 }
             } catch (error) {
-                alert(`Error syncing: ${error.message}`);
+                console.error('Error syncing:', error);
+            }
+        }
+
+        function checkAndSave() {
+            const currentTime = Date.now();
+            if (currentTime - lastSaveTime >= 300000) { // 5 minutes in milliseconds
+                saveData();
             }
         }
 
@@ -528,14 +483,14 @@
                         }
                         button { 
                             padding: 5px 10px; 
-                            background: #4CAF50; 
+                            background: #e31c1c; 
                             color: white; 
                             border: none; 
                             border-radius: 3px; 
                             cursor: pointer; 
                             margin-right: 10px; 
                         }
-                        button:hover { background: #45a049; }
+                        button:hover { background: #c51717; }
                     </style>
                 </head>
                 <body>
@@ -578,7 +533,7 @@
                         }
                         button { 
                             padding: 5px 10px; 
-                            background: #4CAF50; 
+                            background: #e31c1c; 
                             color: white; 
                             border: none; 
                             border-radius: 3px; 
@@ -659,7 +614,6 @@
 
                     updateSetlistDisplay(setlistKey);
                     updateDuration(setlistKey);
-                    saveData();
                 }
             }
         }
@@ -667,14 +621,12 @@
         function updateIcons(selectElement, song, iconIndex) {
             if (!songIcons[song]) songIcons[song] = ["", "", "", ""];
             songIcons[song][iconIndex] = selectElement.value;
-            saveData();
             populateSongTable();
             updateAllSetlists();
         }
 
         function updateColor(selectElement, song) {
             songColors[song] = selectElement.value;
-            saveData();
             updateAllSetlists();
         }
 
@@ -682,7 +634,6 @@
             setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
-            saveData();
         }
 
         function updateCrossfade(song, selectElement) {
@@ -691,7 +642,6 @@
             selectElement.querySelectorAll('option').forEach(opt => {
                 opt.textContent = selectedSongs.includes(opt.value) ? `✔ ${opt.value}` : opt.value.replace('✔ ', '');
             });
-            saveData();
         }
 
         function printSetlist(setlistId) {
@@ -802,7 +752,6 @@
             setlists[setlistId].push(song);
             updateSetlistDisplay(setlistId);
             updateDuration(setlistId);
-            saveData();
         }
 
         function updateAllSetlists() {
@@ -920,7 +869,6 @@
                 }
                 populateSongTable();
                 updateAllSetlists();
-                saveData();
             }
         }
 
@@ -935,7 +883,6 @@
                 const song = `${title} - ${artist}`;
                 songData[song] = { key, riff, bpm, duration, crossfadeInto: [], lyrics: "" };
                 populateSongTable();
-                saveData();
                 document.getElementById('new-song-title').value = '';
                 document.getElementById('new-song-artist').value = '';
                 document.getElementById('new-song-key').value = '';
@@ -988,7 +935,6 @@
 
             if (addedCount > 0) {
                 populateSongTable();
-                saveData();
                 document.getElementById('paste-song-details').value = '';
                 alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
             } else {
