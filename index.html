@@ -330,8 +330,8 @@
         let songColors = {};
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
+        let githubToken = localStorage.getItem('githubToken'); // Load token from localStorage
         let lastSaveTime = Date.now();
-        const githubToken = "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";
 
         async function loadData() {
             try {
@@ -361,7 +361,7 @@
             populateSongTable();
             updateAllSetlists();
             displaySavedSetlists();
-            setInterval(checkAndSave, 60000);
+            setInterval(checkAndSave, 60000); // Auto-save every minute
         }
 
         function saveData() {
@@ -380,6 +380,15 @@
         }
 
         async function syncToGitHub(data) {
+            if (!githubToken) {
+                githubToken = prompt('Enter your GitHub token (one-time setup):');
+                if (!githubToken) {
+                    console.log('No token provided, sync aborted.');
+                    return;
+                }
+                localStorage.setItem('githubToken', githubToken);
+            }
+
             const repoOwner = 'graphicnix';
             const repoName = 'SB-Setlist-creator';
             const filePath = 'data.json';
@@ -427,7 +436,7 @@
         function checkAndSave() {
             const currentTime = Date.now();
             console.log('Checking auto-save... Last save:', new Date(lastSaveTime));
-            if (currentTime - lastSaveTime >= 300000) {
+            if (currentTime - lastSaveTime >= 300000) { // 5 minutes
                 saveData();
             }
         }
