@@ -35,7 +35,7 @@
         th {
             background-color: #f4f4f4;
             cursor: pointer;
-            color: #000; /* Changed to black for visibility */
+            color: #000; /* Black for visibility */
         }
         th:hover {
             background-color: #ddd;
@@ -69,7 +69,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #000; /* Changed to black for visibility */
+            color: #000; /* Black for visibility */
         }
         .crossfade-highlight {
             background-color: #90EE90;
@@ -152,8 +152,8 @@
             margin-left: 5px;
         }
         .sync-btn {
-            background: #000; /* Black background */
-            color: #fff; /* White text */
+            background: #000;
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -169,7 +169,7 @@
             background: #c51717;
         }
         .sync-btn:hover {
-            background: #333; /* Darker grey on hover */
+            background: #333;
         }
         .duration-total {
             margin-top: 10px;
@@ -332,19 +332,21 @@
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let lastSaveTime = Date.now();
-        const githubToken = "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";
+        const githubToken = "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"; // Replace with new token if regenerated
 
         async function loadData() {
             try {
                 const response = await fetch('data.json');
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 songData = data.songData || {};
                 setlists = data.setlists || { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
                 songIcons = data.songIcons || {};
                 songColors = data.songColors || {};
                 savedSetlists = data.savedSetlists || {};
+                console.log('Loaded data from data.json:', data);
             } catch (error) {
-                console.error('Error loading data:', error);
+                console.error('Error loading data.json:', error);
                 const storedSongs = localStorage.getItem('songData');
                 const storedSetlists = localStorage.getItem('setlists');
                 const storedIcons = localStorage.getItem('songIcons');
@@ -355,11 +357,12 @@
                 if (storedIcons) songIcons = JSON.parse(storedIcons);
                 if (storedColors) songColors = JSON.parse(storedColors);
                 if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
+                console.log('Loaded data from local storage instead.');
             }
             populateSongTable();
             updateAllSetlists();
             displaySavedSetlists();
-            setInterval(checkAndSave, 60000); // Check every minute
+            setInterval(checkAndSave, 60000);
         }
 
         function saveData() {
@@ -369,22 +372,32 @@
             localStorage.setItem('songIcons', JSON.stringify(songIcons));
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
-            syncToGitHub(data);
-            alert('Data saved and sync initiated! Check console for status.');
+            console.log('Saved to local storage:', data);
+            syncToGitHub(data).then(() => {
+                alert('Save and sync completed! Check console for details.');
+            }).catch(err => {
+                alert('Save to local storage succeeded, but sync failed. Check console.');
+            });
         }
 
         async function syncToGitHub(data) {
-            const repoOwner = 'graphinix';
+            const repoOwner = 'graphicnix';
             const repoName = 'SB-Setlist-creator';
             const filePath = 'data.json';
             const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
+            console.log('Attempting to sync to GitHub...');
             try {
                 const getResponse = await fetch(url, {
                     headers: { 'Authorization': `token ${githubToken}` }
                 });
+                if (!getResponse.ok) {
+                    const errorText = await getResponse.text();
+                    throw new Error(`Failed to fetch current data.json: ${getResponse.status} - ${errorText}`);
+                }
                 const fileData = await getResponse.json();
                 const sha = fileData.sha;
+                console.log('Current SHA:', sha);
 
                 const content = btoa(JSON.stringify(data, null, 2));
                 const updateResponse = await fetch(url, {
@@ -404,16 +417,18 @@
                     console.log('Auto-saved to GitHub successfully');
                     lastSaveTime = Date.now();
                 } else {
-                    console.error('Sync failed:', await updateResponse.json());
+                    const errorText = await updateResponse.text();
+                    throw new Error(`Sync failed: ${updateResponse.status} - ${errorText}`);
                 }
             } catch (error) {
-                console.error('Error syncing:', error);
+                console.error('Error syncing to GitHub:', error.message);
             }
         }
 
         function checkAndSave() {
             const currentTime = Date.now();
-            if (currentTime - lastSaveTime >= 300000) { // 5 minutes in milliseconds
+            console.log('Checking auto-save... Last save:', new Date(lastSaveTime));
+            if (currentTime - lastSaveTime >= 300000) {
                 saveData();
             }
         }
