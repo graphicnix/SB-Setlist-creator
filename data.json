@@ -357,7 +357,9 @@
       "riff": "",
       "bpm": "",
       "duration": "4:18",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Pride and Joy - Stevie Ray Vaughan"
+      ],
       "lyrics": ""
     },
     "Bullet w Butterfly - TSP": {
@@ -502,11 +504,7 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Fell on Black Days - Soundgarden",
-      "Sex on Fire - Kings of Leon",
-      "Lydia - Highly Suspect"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
