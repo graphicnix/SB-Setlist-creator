@@ -259,7 +259,9 @@
       "riff": "A",
       "bpm": "112",
       "duration": "4:10",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Breed - Nirvana"
+      ],
       "lyrics": ""
     },
     "La Grange - ZZ Top": {
@@ -508,6 +510,126 @@
       ""
     ],
     "Cult of Personality - Living Colour": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "What If - Creed": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Hemorrhage (In My Hands) - Fuel": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "I Alone - Live": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Fell on Black Days - Soundgarden": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Sex on Fire - Kings of Leon": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Lydia - Highly Suspect": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Tripping on a Hole in a Paper Heart - Stone Temple Pilots": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Drunken Lullabies - Flogging Molly": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Cumbersome - Seven Mary Three": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "La Grange - ZZ Top": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Lump - The Presidents of the United States of America": [
+      "M",
+      "",
+      "",
+      ""
+    ],
+    "Blister in the Sun - Violent Femmes": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Short Skirt / Long Jacket - Cake": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Beautiful Disaster - 311": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Sultans of Swing - Dire Straits": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Possum Kingdom - Toadies": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Sweet Emotion - Aerosmith": [
+      "O",
+      "",
+      "",
+      ""
+    ],
+    "Lola Montez - Volbeat": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Breed - Nirvana": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "Cowboys from Hell - Pantera": [
       "X",
       "",
       "",
