@@ -404,14 +404,6 @@
       ],
       "lyrics": ""
     },
-    "Black Like a Stone - Audioslave": {
-      "key": "Am",
-      "riff": "Am",
-      "bpm": "72",
-      "duration": "4:54",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Superstition - Stevie Wonder": {
       "key": "Eb",
       "riff": "Eb",
@@ -483,12 +475,37 @@
       "duration": "4:41",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "Like a Stone - Audioslave": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "72",
+      "duration": "4:54",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Say it aint so - Weezer ": {
+      "key": "",
+      "riff": "",
+      "bpm": "",
+      "duration": "4:18",
+      "crossfadeInto": [],
+      "lyrics": ""
     }
   },
   "setlists": {
     "setlist-1": [
       "Breed - Nirvana",
-      "Interstate Love Song - Stone Temple Pilots"
+      "Interstate Love Song - Stone Temple Pilots",
+      "Like a Stone - Audioslave",
+      "Say it aint so - Weezer ",
+      "Bullet with Butterfly Wings - The Smashing Pumpkins",
+      "Possum Kingdom - Toadies",
+      "Feeling Good - various",
+      "Inside Out - Eve 6",
+      "I Alone - Live",
+      "Even Flow - Pearl Jam",
+      "Lola Montez - Volbeat"
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -637,8 +654,28 @@
       "",
       "",
       ""
+    ],
+    "Like a Stone - Audioslave": [
+      "X",
+      "",
+      "",
+      ""
     ]
   },
   "songColors": {},
-  "savedSetlists": {}
+  "savedSetlists": {
+    "Setlist1 - Matt": [
+      "Breed - Nirvana",
+      "Interstate Love Song - Stone Temple Pilots",
+      "Like a Stone - Audioslave",
+      "Say it aint so - Weezer ",
+      "Bullet with Butterfly Wings - The Smashing Pumpkins",
+      "Possum Kingdom - Toadies",
+      "Feeling Good - various",
+      "Inside Out - Eve 6",
+      "I Alone - Live",
+      "Even Flow - Pearl Jam",
+      "Lola Montez - Volbeat"
+    ]
+  }
 }
