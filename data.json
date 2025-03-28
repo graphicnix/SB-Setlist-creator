@@ -504,7 +504,16 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Feeling Good - various",
+      "Creep - Radiohead",
+      "I Alone - Live",
+      "Short SkirtLong Jacket - Cake",
+      "No One Knows - Queens Stone Age",
+      "Cherub Rock - Smashing Pumpkins",
+      "Tripping on a Hole in a Paper Heart - Stone Temple Pilots"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
