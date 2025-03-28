@@ -1,5 +1,478 @@
 {
-  "songData": {},
+  "songData": {
+    "Pride and Joy - Stevie Ray Vaughan": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "112",
+      "duration": "3:39",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Feeling Good - various": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "92",
+      "duration": "3:56",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Stillborn - Black Label Society": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "3:16",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Zero - The Smashing Pumpkins": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "144",
+      "duration": "2:40",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Creep - Radiohead": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "92",
+      "duration": "3:56",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Hemorrhage (In My Hands) - Fuel": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "120",
+      "duration": "3:56",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "I Alone - Live": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "94",
+      "duration": "3:51",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Good Times Bad Times - Led Zeppelin": {
+      "key": "A",
+      "riff": "A",
+      "bpm": "138",
+      "duration": "2:46",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Bullet with Butterfly Wings - The Smashing Pumpkins": {
+      "key": "F",
+      "riff": "F",
+      "bpm": "120",
+      "duration": "4:18",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Santeria - Sublime": {
+      "key": "Dm",
+      "riff": "Dm",
+      "bpm": "98",
+      "duration": "3:03",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "No Excuses - Alice in Chains": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "104",
+      "duration": "4:16",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Say It Ain't So - Weezer": {
+      "key": "C",
+      "riff": "C",
+      "bpm": "112",
+      "duration": "4:18",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Fell on Black Days - Soundgarden": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "108",
+      "duration": "4:42",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Sex on Fire - Kings of Leon": {
+      "key": "B",
+      "riff": "B",
+      "bpm": "153",
+      "duration": "3:23",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Sponge - Plowed": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "4:32",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Ruby Soho - Rancid": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "168",
+      "duration": "2:37",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Interstate Love Song - Stone Temple Pilots": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "104",
+      "duration": "3:15",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Under the Bridge - Red Hot Chili Peppers": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "85",
+      "duration": "4:24",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Love Me Two Times - The Doors": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "116",
+      "duration": "3:16",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Lydia - Highly Suspect": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "120",
+      "duration": "4:03",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Thunder Kiss '65 - White Zombie": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "116",
+      "duration": "3:54",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Devil's Bleeding Crown - Volbeat": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "110",
+      "duration": "3:58",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Blue on Black - Kenny Wayne Shepherd Band": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "94",
+      "duration": "4:00",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Tripping on a Hole in a Paper Heart - Stone Temple Pilots": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "108",
+      "duration": "2:55",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Plush - Stone Temple Pilots": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "132",
+      "duration": "5:14",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Come Down - Bush": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "120",
+      "duration": "5:23",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Soul to Squeeze - Red Hot Chili Peppers": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "80",
+      "duration": "4:50",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Tennessee Whiskey - Chris Stapleton": {
+      "key": "A",
+      "riff": "A",
+      "bpm": "95",
+      "duration": "4:53",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Drunken Lullabies - Flogging Molly": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "136",
+      "duration": "3:50",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Shipping Up to Boston - Dropkick Murphys": {
+      "key": "D",
+      "riff": "D",
+      "bpm": "132",
+      "duration": "2:34",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "War Pigs - Black Sabbath": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "136",
+      "duration": "7:58",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Cumbersome - Seven Mary Three": {
+      "key": "A",
+      "riff": "A",
+      "bpm": "112",
+      "duration": "4:10",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "La Grange - ZZ Top": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "144",
+      "duration": "3:52",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Lump - The Presidents of the United States of America": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "140",
+      "duration": "2:14",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Blister in the Sun - Violent Femmes": {
+      "key": "D",
+      "riff": "D",
+      "bpm": "152",
+      "duration": "2:25",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Short Skirt / Long Jacket - Cake": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "128",
+      "duration": "3:24",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Cult of Personality - Living Colour": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "110",
+      "duration": "4:54",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Beautiful Disaster - 311": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "4:02",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Inside Out - Eve 6": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "132",
+      "duration": "3:39",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Sultans of Swing - Dire Straits": {
+      "key": "Dm",
+      "riff": "Dm",
+      "bpm": "148",
+      "duration": "5:48",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Possum Kingdom - Toadies": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "132",
+      "duration": "5:17",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Sod Off - Clutch": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "120",
+      "duration": "3:36",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Shotgun - Junior Walker & The All Stars": {
+      "key": "Eb",
+      "riff": "Eb",
+      "bpm": "136",
+      "duration": "3:00",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Sweet Emotion - Aerosmith": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "4:34",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Even Flow - Pearl Jam": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "112",
+      "duration": "4:53",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Schism - Tool": {
+      "key": "D",
+      "riff": "D",
+      "bpm": "90",
+      "duration": "6:47",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Come Together - The Beatles": {
+      "key": "D",
+      "riff": "D",
+      "bpm": "118",
+      "duration": "4:19",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Lola Montez - Volbeat": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "140",
+      "duration": "4:25",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Cherub Rock - The Smashing Pumpkins": {
+      "key": "G",
+      "riff": "G",
+      "bpm": "116",
+      "duration": "4:58",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Black Like a Stone - Audioslave": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "72",
+      "duration": "4:54",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Superstition - Stevie Wonder": {
+      "key": "Eb",
+      "riff": "Eb",
+      "bpm": "100",
+      "duration": "4:26",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Breed - Nirvana": {
+      "key": "F5",
+      "riff": "F5",
+      "bpm": "144",
+      "duration": "3:03",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Cowboys from Hell - Pantera": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "138",
+      "duration": "4:03",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "No One Knows - Queens of the Stone Age": {
+      "key": "C",
+      "riff": "C",
+      "bpm": "120",
+      "duration": "4:38",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Hash Pipe - Weezer": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "104",
+      "duration": "3:06",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Plowed - Sponge": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "92",
+      "duration": "4:32",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "She Talks to Angels - The Black Crowes": {
+      "key": "Am",
+      "riff": "Am",
+      "bpm": "69",
+      "duration": "6:16",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "46 & 2 - Tool": {
+      "key": "D",
+      "riff": "D",
+      "bpm": "85",
+      "duration": "6:04",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "What If - Creed": {
+      "key": "Em",
+      "riff": "Em",
+      "bpm": "112",
+      "duration": "4:41",
+      "crossfadeInto": [],
+      "lyrics": ""
+    }
+  },
   "setlists": {
     "setlist-1": [],
     "setlist-2": [],
