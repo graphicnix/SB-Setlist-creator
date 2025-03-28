@@ -13,7 +13,9 @@
       "riff": "Am",
       "bpm": "92",
       "duration": "3:56",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Creep - Radiohead"
+      ],
       "lyrics": ""
     },
     "Creep - Radiohead": {
@@ -499,6 +501,14 @@
       "riff": "Am",
       "bpm": "128",
       "duration": "3:24",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Everlong - Foo Fighters": {
+      "key": "Bm",
+      "riff": "",
+      "bpm": "158",
+      "duration": "4:11",
       "crossfadeInto": [],
       "lyrics": ""
     }
