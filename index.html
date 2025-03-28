@@ -1,9 +1,8 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=10">
-    <title>SpiralBound Setlist Creator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Song Chords Information</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,49 +12,9 @@
             overflow-x: hidden;
             background-color: #565656;
             color: #fff;
-            position: relative;
         }
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        h2 {
+        h1, h2 {
             color: #fff;
-        }
-        .icon-legend-container {
-            display: flex;
-            justify-content: space-between;
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            right: 20px;
-            z-index: 10;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
         }
         .category {
             margin-bottom: 40px;
@@ -111,31 +70,10 @@
             align-items: center;
             color: #000;
         }
-        .crossfade-btn {
-            padding: 5px 10px;
-            background: #4CAF50;
-            color: white;
-            border: none;
+        .crossfade-highlight {
+            background-color: #90EE90;
+            padding: 2px 5px;
             border-radius: 3px;
-            cursor: pointer;
-        }
-        .crossfade-btn:hover {
-            background: #45a049;
-        }
-        .crossfade-popup {
-            display: none;
-            position: absolute;
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 10px;
-            max-height: 300px;
-            overflow-y: auto;
-            z-index: 1000;
-            color: #000;
-        }
-        .crossfade-popup label {
-            display: block;
-            margin: 5px 0;
         }
         .add-song {
             margin-top: 20px;
@@ -147,22 +85,63 @@
             display: flex;
             gap: 5px;
         }
-        .icon-dropdown {
+        .icon-dropdown, .crossfade-select {
             padding: 3px;
             width: 50px;
             text-align: center;
+        }
+        .crossfade-select {
+            width: 300px;
+            height: 100px;
+            background-color: #d9d9d3;
         }
         .icon-O { color: blue; }
         .icon-X { color: red; }
         .icon-G { color: #8B4513; }
         .icon-M { color: orange; }
         .icon-→ { color: black; }
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+            margin-left: 10px;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 200px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -100px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
         .color-picker {
             margin-left: 5px;
             width: 100px;
             padding: 3px;
         }
-        .print-btn, .delete-btn, .save-btn {
+        .print-btn {
+            background: #e31c1c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .delete-btn, .save-btn {
             background: #e31c1c;
             color: white;
             border: none;
@@ -182,7 +161,10 @@
             display: block;
             text-align: center;
         }
-        .print-btn:hover, .delete-btn:hover, .save-btn:hover {
+        .print-btn:hover {
+            background: #c51717;
+        }
+        .delete-btn:hover, .save-btn:hover {
             background: #c51717;
         }
         .sync-btn:hover {
@@ -210,27 +192,13 @@
             padding: 5px;
             color: #333;
         }
-        .welcome-popup, .instructions-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            z-index: 1000;
-            color: #000;
-            max-width: 400px;
-            text-align: center;
-        }
-        .overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
+        th:nth-child(1), td:nth-child(1) { width: 25%; }
+        th:nth-child(3), td:nth-child(3) { width: 5%; }
+        th:nth-child(4), td:nth-child(4) { width: 5%; }
+        @media (max-width: 768px) {
+            body { margin: 10px; }
+            table { font-size: 14px; }
+            .add-song input { width: 100%; margin-bottom: 5px; }
         }
         .spiralbound-btn {
             background: #e31c1c;
@@ -259,23 +227,109 @@
     <script>
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
-        if (!userPassword || userPassword.toLowerCase() !== correctPassword) {
+        if (userPassword !== correctPassword) {
             userPassword = prompt("Enter the password to access this site:");
-            if (userPassword && userPassword.toLowerCase() !== correctPassword) {
+            if (userPassword !== correctPassword) {
                 document.body.innerHTML = "<h1>Access Denied</h1>";
                 throw new Error("Incorrect password");
-            } else if (userPassword) {
+            } else {
                 localStorage.setItem('sitePassword', userPassword);
             }
         }
+    </script>
 
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
+
+    <h1>Song Chords Information</h1>
+
+    <div class="tooltip">Icon Legend
+        <span class="tooltiptext">
+            <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
+            <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
+            <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
+            <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
+            <strong class="icon-→">→</strong> = Crossfade (Black)
+        </span>
+    </div>
+
+    <div class="category">
+        <h2>Alternative/Grunge/Rock</h2>
+        <table id="alternative-grunge-rock">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
+                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
+                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
+                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
+                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th>Can crossfade with</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="song-table-body"></tbody>
+        </table>
+    </div>
+
+    <div class="setlist">
+        <h3>Setlist 1 
+            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <h3>Setlist 2 
+            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <h3>Setlist 3 
+            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+    </div>
+
+    <div id="saved-setlists" class="category">
+        <!-- Saved setlists will be populated here as buttons -->
+    </div>
+
+    <div class="add-song">
+        <h3>Add New Song</h3>
+        <input type="text" id="new-song-title" placeholder="Song Title">
+        <input type="text" id="new-song-artist" placeholder="Artist">
+        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
+        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
+        <input type="text" id="new-song-bpm" placeholder="BPM">
+        <input type="text" id="new-song-duration" placeholder="Duration">
+        <button onclick="addNewSong()">Add Song</button>
+        <h3>Paste Song Details</h3>
+        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs, e.g.:\nX, M, Stillborn\nArtist: Black Label Society\nKey: Em\nRiff: Em\nBPM: 92\nDuration: 3:16\n\nNo Excuses\nArtist: Alice in Chains\nKey: Am\nRiff: Am\nBPM: 104\nDuration: 4:16"></textarea>
+        <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+
+    <script>
         let songData = {};
         let setlists = { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
         let songIcons = {};
         let songColors = {};
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
-        let githubToken = localStorage.getItem('githubToken');
+        let githubToken = localStorage.getItem('githubToken'); // Load token from localStorage
         let lastSaveTime = Date.now();
 
         async function loadData() {
@@ -288,7 +342,7 @@
                 songIcons = data.songIcons || {};
                 songColors = data.songColors || {};
                 savedSetlists = data.savedSetlists || {};
-                console.log('Loaded data:', data);
+                console.log('Loaded data from data.json:', data);
             } catch (error) {
                 console.error('Error loading data.json:', error);
                 const storedSongs = localStorage.getItem('songData');
@@ -301,38 +355,12 @@
                 if (storedIcons) songIcons = JSON.parse(storedIcons);
                 if (storedColors) songColors = JSON.parse(storedColors);
                 if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
-                console.log('Loaded from localStorage:', { songData, setlists, songIcons, songColors, savedSetlists });
+                console.log('Loaded data from local storage instead.');
             }
             populateSongTable();
             updateAllSetlists();
             displaySavedSetlists();
-            setInterval(checkAndSave, 60000);
-
-            // Popups after data load
-            if (!localStorage.getItem('welcomeShown')) {
-                document.body.insertAdjacentHTML('beforeend', `
-                    <div class="overlay"></div>
-                    <div class="welcome-popup">
-                        <h3>Welcome to SpiralBound Setlist Creator</h3>
-                        <p>To save changes to GitHub, you'll need a personal access token from Weston.</p>
-                        <button onclick="this.parentElement.remove(); document.querySelector('.overlay').remove(); localStorage.setItem('welcomeShown', 'true')">Got it!</button>
-                    </div>
-                `);
-            }
-
-            setTimeout(() => {
-                document.body.insertAdjacentHTML('beforeend', `
-                    <div class="instructions-popup">
-                        <p><strong>How to Use:</strong><br>
-                        - Drag songs to a setlist or click "Add"<br>
-                        - Click "Save Setlist" to name and store<br>
-                        - Click "Print/Share" to generate a printable view</p>
-                    </div>
-                `);
-                setTimeout(() => {
-                    document.querySelector('.instructions-popup')?.remove();
-                }, 10000);
-            }, 1000);
+            setInterval(checkAndSave, 60000); // Auto-save every minute
         }
 
         function saveData() {
@@ -342,17 +370,21 @@
             localStorage.setItem('songIcons', JSON.stringify(songIcons));
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
+            console.log('Saved to local storage:', data);
             syncToGitHub(data).then(() => {
-                alert('Save and sync completed!');
+                alert('Save and sync completed! Check console for details.');
             }).catch(err => {
-                alert('Save to local storage succeeded, but sync failed.');
+                alert('Save to local storage succeeded, but sync failed. Check console.');
             });
         }
 
         async function syncToGitHub(data) {
             if (!githubToken) {
                 githubToken = prompt('Enter your GitHub token (one-time setup):');
-                if (!githubToken) return;
+                if (!githubToken) {
+                    console.log('No token provided, sync aborted.');
+                    return;
+                }
                 localStorage.setItem('githubToken', githubToken);
             }
 
@@ -361,13 +393,18 @@
             const filePath = 'data.json';
             const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
+            console.log('Attempting to sync to GitHub...');
             try {
                 const getResponse = await fetch(url, {
                     headers: { 'Authorization': `token ${githubToken}` }
                 });
-                if (!getResponse.ok) throw new Error('Failed to fetch current file');
+                if (!getResponse.ok) {
+                    const errorText = await getResponse.text();
+                    throw new Error(`Failed to fetch current data.json: ${getResponse.status} - ${errorText}`);
+                }
                 const fileData = await getResponse.json();
                 const sha = fileData.sha;
+                console.log('Current SHA:', sha);
 
                 const content = btoa(JSON.stringify(data, null, 2));
                 const updateResponse = await fetch(url, {
@@ -383,15 +420,24 @@
                     })
                 });
 
-                if (!updateResponse.ok) throw new Error('Sync failed');
-                lastSaveTime = Date.now();
+                if (updateResponse.ok) {
+                    console.log('Auto-saved to GitHub successfully');
+                    lastSaveTime = Date.now();
+                } else {
+                    const errorText = await updateResponse.text();
+                    throw new Error(`Sync failed: ${updateResponse.status} - ${errorText}`);
+                }
             } catch (error) {
-                console.error('Sync error:', error);
+                console.error('Error syncing to GitHub:', error.message);
             }
         }
 
         function checkAndSave() {
-            if (Date.now() - lastSaveTime >= 300000) saveData();
+            const currentTime = Date.now();
+            console.log('Checking auto-save... Last save:', new Date(lastSaveTime));
+            if (currentTime - lastSaveTime >= 300000) { // 5 minutes
+                saveData();
+            }
         }
 
         function populateSongTable() {
@@ -402,7 +448,8 @@
                 const [title, artist] = song.split(' - ');
                 const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon => 
                     `<span class="icon-${icon}">${icon}</span>`).join(' ');
-                const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
+                const crossfadeOptions = Object.keys(songData).filter(s => s !== song).map(s => 
+                    `<option value="${s}" ${songInfo.crossfadeInto.includes(s) ? 'selected' : ''}>${songInfo.crossfadeInto.includes(s) ? '✔ ' : ''}${s}</option>`).join('');
                 const row = document.createElement('tr');
                 row.setAttribute('data-song', song);
                 row.innerHTML = `
@@ -416,14 +463,9 @@
                     <td>${songInfo.bpm}</td>
                     <td>${songInfo.duration}</td>
                     <td>
-                        <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
-                        <div class="crossfade-popup" id="crossfade-${safeSongId}">
-                            ${Object.keys(songData).filter(s => s !== song).map(s => `
-                                <label><input type="checkbox" value="${s}" 
-                                    ${songInfo.crossfadeInto.includes(s) ? 'checked' : ''} 
-                                    onchange="updateCrossfade('${song}', this)"> ${s}</label>
-                            `).join('')}
-                        </div>
+                        <select class="crossfade-select" multiple onchange="updateCrossfade('${song}', this)">
+                            ${crossfadeOptions}
+                        </select>
                     </td>
                     <td>
                         <div class="icon-container">
@@ -448,35 +490,10 @@
                             <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
                         </select>
                         <button onclick="editSong('${song}')">Edit</button>
-                        <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(row);
             }
-        }
-
-        function showCrossfadePopup(song, button) {
-            const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
-            const popup = document.getElementById(`crossfade-${safeSongId}`);
-            popup.style.display = 'block';
-            popup.style.left = `${button.getBoundingClientRect().left}px`;
-            popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
-            document.addEventListener('click', function closePopup(e) {
-                if (!popup.contains(e.target) && e.target !== button) {
-                    popup.style.display = 'none';
-                    document.removeEventListener('click', closePopup);
-                }
-            });
-        }
-
-        function updateCrossfade(song, checkbox) {
-            const selected = Array.from(document.querySelectorAll(`#crossfade-${btoa(song).replace(/[^a-zA-Z0-9]/g, '')} input:checked`)).map(input => input.value);
-            if (selected.length > 3) {
-                checkbox.checked = false;
-                alert("You can only select up to 3 songs for crossfading.");
-                return;
-            }
-            songData[song].crossfadeInto = selected;
         }
 
         function openLyrics(song) {
@@ -578,9 +595,67 @@
             const setlistId = prompt("Enter Setlist Number (1, 2, or 3):");
             if (setlistId && ['1', '2', '3'].includes(setlistId)) {
                 const setlistKey = `setlist-${setlistId}`;
-                setlists[setlistKey].push(song);
-                updateSetlistDisplay(setlistKey);
-                updateDuration(setlistKey);
+                const setlist = setlists[setlistKey];
+                const lastSong = setlist[setlist.length - 1];
+                const secondLastSong = setlist[setlist.length - 2];
+                let shouldAddSong = true;
+
+                if (lastSong && songIcons[song]?.includes('X') && songIcons[lastSong]?.includes('X')) {
+                    shouldAddSong = confirm("Warning: This song and the previous song both have Hard Vocals (X). Are you sure you want them back-to-back?");
+                }
+
+                if (shouldAddSong && secondLastSong && lastSong && 
+                    songIcons[song]?.includes('X') && songIcons[lastSong]?.includes('X') && songIcons[secondLastSong]?.includes('X')) {
+                    const randomXXXMessage = Math.random() < 0.5 ? 0 : 1;
+                    let xxxMessage;
+                    if (randomXXXMessage === 0) {
+                        xxxMessage = `🔬 FACT: This XXX sequence has a 100% chance of:\n✓ Voice cracks\n✓ Regret\n✓ The crowd yelling ‘YOU OKAY, BRO?!’\nStill wanna do it?\n\n[FOR THE VINE]           [I’LL ADD A WATER BREAK (WEAK)]`;
+                    } else {
+                        xxxMessage = `🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\nBRO, YOU JUST STACKED THREE X SONGS IN A ROW?!\nOur singer’s gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\n\n[NO ONE CARES]           [FINE, PUSSY]`;
+                    }
+                    shouldAddSong = confirm(xxxMessage);
+                }
+
+                if (shouldAddSong) {
+                    setlists[setlistKey].push(song);
+
+                    const crossfadeOptions = songData[song]?.crossfadeInto || [];
+                    if (crossfadeOptions.length > 0) {
+                        const randomMessage = Math.floor(Math.random() * 4);
+                        let message, selectedCrossfadeSong;
+
+                        if (crossfadeOptions.length === 1) {
+                            selectedCrossfadeSong = crossfadeOptions[0];
+                            if (randomMessage === 0) {
+                                message = `YO DUMBSHIT—\n‘${song.split(' - ')[0]}’ and ‘${selectedCrossfadeSong}’ fuck. Like, sonically. Wanna let them smash?\n\n[Bet.]           [Hard Pass]`;
+                            } else {
+                                message = `🚨 SETLIST CRIME ALERT 🚨\nYou’re NOT crossfading ‘${song.split(' - ')[0]}’ into ‘${selectedCrossfadeSong}’?\nThat’s like choosing Natty Light over a Miller High Life. Fix it.\n\n[FINE, DAD]           [I HATE FUN]`;
+                            }
+                        } else {
+                            if (randomMessage === 0 || randomMessage === 1) {
+                                selectedCrossfadeSong = crossfadeOptions[Math.floor(Math.random() * crossfadeOptions.length)];
+                                message = `PSA: Skipping this crossfade (‘${song.split(' - ')[0]}’ → ‘${selectedCrossfadeSong}’) automatically adds Wonderwall to the setlist.\nYou’ve been warned.\n\n[ANYTHING BUT THAT]           [I UNIRONICALLY LOVE WONDERWALL]`;
+                            } else {
+                                message = `🚨 YOUR SETLIST IS IN DANGER OF BEING MID 🚨\nSave it by crossfading ‘${song.split(' - ')[0]}’ with:\n${crossfadeOptions.map(s => `✅ ‘${s}’ –`).join('\n')}\nTick tock, the dancing drunk people are waiting.\n\n[I LIVE FOR CHAOS]           [I’M A COWARD]`;
+                                selectedCrossfadeSong = crossfadeOptions[Math.floor(Math.random() * crossfadeOptions.length)];
+                            }
+                        }
+
+                        if (confirm(message)) {
+                            setlists[setlistKey].push(selectedCrossfadeSong);
+                        } else if (crossfadeOptions.length > 1 && (randomMessage === 0 || randomMessage === 1)) {
+                            const wonderwall = "Wonderwall - Oasis";
+                            if (!songData[wonderwall]) {
+                                songData[wonderwall] = { key: "F#m", riff: "F#m", bpm: "174", duration: "4:18", crossfadeInto: [], lyrics: "" };
+                                populateSongTable();
+                            }
+                            setlists[setlistKey].push(wonderwall);
+                        }
+                    }
+
+                    updateSetlistDisplay(setlistKey);
+                    updateDuration(setlistKey);
+                }
             }
         }
 
@@ -602,43 +677,47 @@
             updateDuration(setlistKey);
         }
 
+        function updateCrossfade(song, selectElement) {
+            const selectedSongs = Array.from(selectElement.selectedOptions).map(opt => opt.value);
+            songData[song].crossfadeInto = selectedSongs;
+            selectElement.querySelectorAll('option').forEach(opt => {
+                opt.textContent = selectedSongs.includes(opt.value) ? `✔ ${opt.value}` : opt.value.replace('✔ ', '');
+            });
+        }
+
         function printSetlist(setlistId) {
             const songs = setlists[setlistId];
             const songCount = songs.length;
-            const windowHeight = 1056;
-            const maxTitleFontSize = 60;
-            const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
-            const artistFontSize = 8;
-            const iconFontSize = 20;
-
+            const baseFontSize = 40;
+            const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
             let printWindow = window.open('', '', 'width=816,height=1056');
             printWindow.document.write(`
                 <html><head><title>Setlist</title>
                 <style>
-                    body { margin: 20px; text-align: center; font-family: Arial, sans-serif; }
-                    .icon-O { color: blue; font-size: ${iconFontSize}px; }
-                    .icon-X { color: red; font-size: ${iconFontSize}px; }
-                    .icon-G { color: #8B4513; font-size: ${iconFontSize}px; }
-                    .icon-M { color: orange; font-size: ${iconFontSize}px; }
-                    .icon-→ { color: black; font-size: ${iconFontSize}px; }
-                    h2 { font-size: ${baseTitleFontSize + 10}px; }
-                    li { margin: 10px 0; display: flex; align-items: center; justify-content: center; }
-                    .song-title { font-size: ${baseTitleFontSize}px; }
-                    .artist { font-size: ${artistFontSize}px; margin-left: 10px; }
-                    .icons { margin-right: 10px; }
+                    body { margin: 20px; text-align: center; }
+                    .icon-O { color: blue; }
+                    .icon-X { color: red; }
+                    .icon-G { color: #8B4513; }
+                    .icon-M { color: orange; }
+                    .icon-→ { color: black; }
+                    .crossfade-highlight { background-color: #90EE90; padding: 2px 5px; border-radius: 3px; }
+                    h2 { font-size: ${fontSize + 10}px; }
+                    li { font-size: ${fontSize}px; margin: 10px 0; }
                 </style>
                 </head><body>
                 <h2>${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
-                <ol>${songs.map((song) => {
+                <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
-                    const [title, artist] = song.split(' - ');
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}">
-                        <span class="icons">${icons}</span>
-                        <span class="song-title">${title}</span>
-                        <span class="artist">${artist}</span>
-                    </li>`;
+                    const nextSong = songs[index + 1];
+                    const prevSong = songs[index - 1];
+                    const isCrossfadeStart = nextSong && songData[song]?.crossfadeInto?.includes(nextSong);
+                    const isCrossfadeEnd = prevSong && songData[prevSong]?.crossfadeInto?.includes(song);
+                    const displayText = (isCrossfadeStart || isCrossfadeEnd) 
+                        ? `<span class="crossfade-highlight">---->${song}<----</span>` 
+                        : song;
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}">${icons} ${displayText}</li>`;
                 }).join('')}</ol>
                 <button onclick="window.print()">Print</button>
                 </body></html>
@@ -673,16 +752,24 @@
                     .icon-G { color: #8B4513; }
                     .icon-M { color: orange; }
                     .icon-→ { color: black; }
+                    .crossfade-highlight { background-color: #90EE90; padding: 2px 5px; border-radius: 3px; }
                     h2 { font-size: ${fontSize + 10}px; }
                     li { font-size: ${fontSize}px; margin: 10px 0; }
                 </style>
                 </head><body>
                 <h2>${name}</h2>
-                <ol>${songs.map((song) => {
+                <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}">${icons} ${song}</li>`;
+                    const nextSong = songs[index + 1];
+                    const prevSong = songs[index - 1];
+                    const isCrossfadeStart = nextSong && songData[song]?.crossfadeInto?.includes(nextSong);
+                    const isCrossfadeEnd = prevSong && songData[prevSong]?.crossfadeInto?.includes(song);
+                    const displayText = (isCrossfadeStart || isCrossfadeEnd) 
+                        ? `<span class="crossfade-highlight">---->${song}<----</span>` 
+                        : song;
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}">${icons} ${displayText}</li>`;
                 }).join('')}</ol>
                 <button onclick="window.print()">Print</button>
                 </body></html>
@@ -696,6 +783,13 @@
             ev.preventDefault();
             const song = ev.dataTransfer.getData("text");
             const setlistId = ev.target.closest('ul').id;
+            const setlist = setlists[setlistId];
+            const lastSong = setlist[setlist.length - 1];
+            if (lastSong && songIcons[song]?.includes('X') && songIcons[lastSong]?.includes('X')) {
+                if (!confirm("Warning: This song and the previous song both have Hard Vocals (X). Are you sure you want them back-to-back?")) {
+                    return;
+                }
+            }
             setlists[setlistId].push(song);
             updateSetlistDisplay(setlistId);
             updateDuration(setlistId);
@@ -711,14 +805,21 @@
         function updateSetlistDisplay(setlistKey) {
             const setlistElement = document.getElementById(setlistKey);
             const songs = setlists[setlistKey];
-            setlistElement.innerHTML = songs.map((song) => {
+            setlistElement.innerHTML = songs.map((song, index) => {
                 const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                     `<span class="icon-${icon}">${icon}</span>`
                 ).join(' ');
+                const nextSong = songs[index + 1];
+                const prevSong = songs[index - 1];
+                const isCrossfadeStart = nextSong && songData[song]?.crossfadeInto?.includes(nextSong);
+                const isCrossfadeEnd = prevSong && songData[prevSong]?.crossfadeInto?.includes(song);
+                const displayText = (isCrossfadeStart || isCrossfadeEnd) 
+                    ? `<span class="crossfade-highlight">---->${song}<----</span>` 
+                    : song;
                 return `
                     <li draggable="true" data-song="${song}" ondragstart="drag(event)"
                         style="background:${songColors[song] || '#f9f9f9'}">
-                        ${icons} ${song}
+                        ${icons} ${displayText}
                         <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
                 `;
@@ -744,8 +845,12 @@
             const isAscending = table.rows[0].cells[columnIndex].getAttribute('data-order') !== 'desc';
             
             rows.sort((a, b) => {
-                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText : a.cells[columnIndex].innerText;
-                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText : b.cells[columnIndex].innerText;
+                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText : 
+                          columnIndex === 6 ? a.cells[6].querySelector('select').value : 
+                          a.cells[columnIndex].innerText;
+                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText : 
+                          columnIndex === 6 ? b.cells[6].querySelector('select').value : 
+                          b.cells[columnIndex].innerText;
                 cellA = cellA?.trim() || '';
                 cellB = cellB?.trim() || '';
                 
@@ -797,6 +902,9 @@
                         songColors[newSongKey] = songColors[song];
                         delete songColors[song];
                     }
+                    Object.keys(savedSetlists).forEach(name => {
+                        savedSetlists[name] = savedSetlists[name].map(s => s === song ? newSongKey : s);
+                    });
                 } else {
                     songData[song] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "" };
                 }
@@ -822,6 +930,8 @@
                 document.getElementById('new-song-riff').value = '';
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
+            } else {
+                alert("Please enter both a title and an artist.");
             }
         }
 
@@ -868,6 +978,8 @@
                 populateSongTable();
                 document.getElementById('paste-song-details').value = '';
                 alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
+            } else {
+                alert("No valid songs found. Please use the format:\n[Optional Icons: X, M, etc.] Title\nArtist: [artist]\nKey: [key]\nRiff: [riff]\nBPM: [bpm]\nDuration: [duration]\n\nSeparate multiple songs with a blank line.");
             }
         }
 
@@ -887,117 +999,7 @@
                 `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
 
-        function deleteSong(song) {
-            if (confirm(`Are you sure you want to delete "${song}"?`)) {
-                delete songData[song];
-                delete songIcons[song];
-                delete songColors[song];
-                Object.keys(setlists).forEach(key => {
-                    setlists[key] = setlists[key].filter(s => s !== song);
-                });
-                Object.keys(savedSetlists).forEach(name => {
-                    savedSetlists[name] = savedSetlists[name].filter(s => s !== song);
-                });
-                populateSongTable();
-                updateAllSetlists();
-                saveData();
-            }
-        }
-
         loadData();
     </script>
-
-    <div class="icon-legend-container">
-        <div class="tooltip">Icon Legend
-            <span class="tooltiptext">
-                <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                <strong class="icon-→">→</strong> = Crossfade (Black)
-            </span>
-        </div>
-        <div class="tooltip">Icon Legend
-            <span class="tooltiptext">
-                <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                <strong class="icon-→">→</strong> = Crossfade (Black)
-            </span>
-        </div>
-    </div>
-
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
-
-    <h1>SpiralBound Setlist Creator</h1>
-
-    <div class="category">
-        <h2>Alternative/Grunge/Rock</h2>
-        <table id="alternative-grunge-rock">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
-                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
-                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
-                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
-                    <th>Crossfade Options</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="song-table-body"></tbody>
-        </table>
-    </div>
-
-    <div class="setlist">
-        <h3>Setlist 1 
-            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
-            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
-    </div>
-    <div class="setlist">
-        <h3>Setlist 2 
-            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
-            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
-    </div>
-    <div class="setlist">
-        <h3>Setlist 3 
-            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
-            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
-    </div>
-
-    <div id="saved-setlists" class="category"></div>
-
-    <div class="add-song">
-        <h3>Add New Song</h3>
-        <input type="text" id="new-song-title" placeholder="Song Title">
-        <input type="text" id="new-song-artist" placeholder="Artist">
-        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
-        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
-        <input type="text" id="new-song-bpm" placeholder="BPM">
-        <input type="text" id="new-song-duration" placeholder="Duration">
-        <button onclick="addNewSong()">Add Song</button>
-        <h3>Paste Song Details</h3>
-        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
-        <button onclick="parseAndAddSongs()">Add from Paste</button>
-    </div>
-
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
 </body>
 </html>
