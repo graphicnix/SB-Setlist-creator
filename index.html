@@ -93,10 +93,11 @@
         }
         h2 {
             color: #fff;
+            text-align: center;
         }
         .icon-legend-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             margin: 10px 0;
             z-index: 10;
         }
@@ -211,6 +212,7 @@
             padding: 15px;
             background: #f4f4f4;
             border-radius: 5px;
+            color: #000;
         }
         .icon-container {
             display: flex;
@@ -387,6 +389,30 @@
         .edit-setlist-popup button {
             margin-top: 10px;
         }
+        #saved-setlists {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .saved-setlist-item {
+            background: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            min-width: 200px;
+        }
+        .saved-setlist-item h3 {
+            margin-top: 0;
+            color: black;
+        }
+        .saved-setlist-buttons {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+        .non-standard-tuning {
+            background-color: #87CEEB !important;
+        }
     </style>
 </head>
 <body>
@@ -484,9 +510,9 @@
                                 ${icons} ${song}
                             </div>
                             <div>
-                                <button class="add-btn" onclick="addSongFromSearch('${song}', 1)">1</button>
-                                <button class="add-btn" onclick="addSongFromSearch('${song}', 2)">2</button>
-                                <button class="add-btn" onclick="addSongFromSearch('${song}', 3)">3</button>
+                                <button class="add-btn" onclick="addSongFromSearch('${song}', 1, this)">1</button>
+                                <button class="add-btn" onclick="addSongFromSearch('${song}', 2, this)">2</button>
+                                <button class="add-btn" onclick="addSongFromSearch('${song}', 3, this)">3</button>
                             </div>
                         `;
                         searchResults.appendChild(item);
@@ -603,8 +629,77 @@
             currentSelectedSong = null;
         }
 
-        function addSongFromSearch(song, setlistNumber) {
+        function addSongFromSearch(song, setlistNumber, button) {
             const setlistKey = `setlist-${setlistNumber}`;
+            const currentSongs = setlists[setlistKey];
+            const songHasX = (songIcons[song] || []).includes('X');
+
+            // Check for vocal strain (X icon) warnings
+            if (songHasX && currentSongs.length > 0) {
+                const lastSong = currentSongs[currentSongs.length - 1];
+                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
+
+                if (lastSongHasX) {
+                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
+                        let message;
+                        if (popupChoice === 1) {
+                            message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
+                        } else {
+                            message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's in a row: Fun! Three X's: Vocal cords in shambles.\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
+                        }
+                        if (!confirm(message)) {
+                            document.getElementById('search-results').style.display = 'none';
+                            return;
+                        }
+                    }
+                    else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
+                        let message;
+                        if (popupChoice === 1) {
+                            message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer's voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
+                        } else {
+                            message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer's gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
+                        }
+                        if (!confirm(message)) {
+                            document.getElementById('search-results').style.display = 'none';
+                            return;
+                        }
+                    }
+                }
+            }
+
+            // Check for crossfade suggestions
+            const crossfadeOptions = songData[song]?.crossfadeInto || [];
+            if (crossfadeOptions.length > 0) {
+                const currentSongTitle = song.split(' - ')[0];
+                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
+                
+                const popupChoice = Math.random();
+                let message;
+                
+                if (popupChoice < 0.33) {
+                    message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
+                } else if (popupChoice < 0.66) {
+                    message = `🎸 CROSSFADE GOLD:\n${compatibleSongs}\nwould sound 🔥 after ${currentSongTitle}\n\nAdd a match?`;
+                } else {
+                    message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
+                }
+                
+                if (confirm(message)) {
+                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
+                        setlists[setlistKey].push(song);
+                        setlists[setlistKey].push(selectedSong);
+                        updateSetlistDisplay(setlistKey);
+                        updateDuration(setlistKey);
+                        document.getElementById('song-search').value = '';
+                        document.getElementById('search-results').style.display = 'none';
+                        return;
+                    }
+                }
+            }
+
             setlists[setlistKey].push(song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
@@ -967,6 +1062,7 @@
                     .song-title { font-size: ${baseTitleFontSize}px; }
                     .artist { font-size: ${artistFontSize}px; margin-left: 10px; }
                     .icons { margin-right: 10px; }
+                    .non-standard-tuning { background-color: #87CEEB !important; }
                 </style>
                 </head><body>
                 <h2>${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
@@ -975,7 +1071,9 @@
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
                     const [title, artist] = song.split(' - ');
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}">
+                    const tuning = songData[song]?.tuning || '';
+                    const tuningClass = tuning && !tuning.toLowerCase().includes('standard') && tuning.toLowerCase() !== 'undefined' ? 'non-standard-tuning' : '';
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass}">
                         <span class="icons">${icons}</span>
                         <span class="song-title">${title}</span>
                         <span class="artist">${artist}</span>
@@ -1024,6 +1122,7 @@
                     .icon-→ { color: black; }
                     h2 { font-size: ${fontSize + 10}px; }
                     li { font-size: ${fontSize}px; margin: 10px 0; }
+                    .non-standard-tuning { background-color: #87CEEB !important; }
                 </style>
                 </head><body>
                 <h2>${name}</h2>
@@ -1031,7 +1130,9 @@
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}">${icons} ${song}</li>`;
+                    const tuning = songData[song]?.tuning || '';
+                    const tuningClass = tuning && !tuning.toLowerCase().includes('standard') && tuning.toLowerCase() !== 'undefined' ? 'non-standard-tuning' : '';
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass}">${icons} ${song}</li>`;
                 }).join('')}</ol>
                 <button onclick="window.print()">Print</button>
                 </body></html>
@@ -1139,25 +1240,17 @@
             const savedSetlistsDiv = document.getElementById('saved-setlists');
             savedSetlistsDiv.innerHTML = '<h2>Saved Setlists</h2>';
             for (const name in savedSetlists) {
-                const button = document.createElement('button');
-                button.textContent = name;
-                button.className = 'print-btn';
-                button.onclick = () => viewSavedSetlist(name);
-                savedSetlistsDiv.appendChild(button);
-                savedSetlistsDiv.appendChild(document.createElement('br'));
-
-                const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
-                editButton.className = 'edit-btn';
-                editButton.onclick = () => editSavedSetlist(name);
-                savedSetlistsDiv.appendChild(editButton);
-
-                const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
-                deleteButton.className = 'delete-btn';
-                deleteButton.onclick = () => deleteSavedSetlist(name);
-                savedSetlistsDiv.appendChild(deleteButton);
-                savedSetlistsDiv.appendChild(document.createElement('br'));
+                const setlistItem = document.createElement('div');
+                setlistItem.className = 'saved-setlist-item';
+                setlistItem.innerHTML = `
+                    <h3>${name}</h3>
+                    <div class="saved-setlist-buttons">
+                        <button class="print-btn" onclick="viewSavedSetlist('${name}')">View</button>
+                        <button class="edit-btn" onclick="editSavedSetlist('${name}')">Edit</button>
+                        <button class="delete-btn" onclick="deleteSavedSetlist('${name}')">Delete</button>
+                    </div>
+                `;
+                savedSetlistsDiv.appendChild(setlistItem);
             }
         }
 
