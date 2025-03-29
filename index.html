@@ -315,13 +315,13 @@
             <h2>Enter Password</h2>
             <input type="password" id="password-input" placeholder="Enter password">
             <div>
-                <button onclick="checkPassword()">Submit</button>
+                <button id="password-submit">Submit</button>
                 <button onclick="window.close()">Cancel</button>
             </div>
         </div>
     </div>
 
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+    <button class="sync-btn" id="save-sync-btn">Save and Sync</button>
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
     <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
 
@@ -343,13 +343,13 @@
         <table id="alternative-grunge-rock">
             <thead>
                 <tr>
-                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
-                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
-                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
-                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
-                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
+                    <th>Song Title</th>
+                    <th>Artist</th>
+                    <th>Key</th>
+                    <th>Riff</th>
+                    <th>BPM</th>
+                    <th>Duration</th>
+                    <th>Tuning</th>
                     <th>Crossfade Options</th>
                     <th>Actions</th>
                 </tr>
@@ -360,29 +360,29 @@
 
     <div class="setlist">
         <h3>Setlist 1
-            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <button class="print-btn" id="print-setlist-1">Print/Share</button>
+            <button class="save-btn" id="save-setlist-1">Save Setlist</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </h3>
-        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <ul id="setlist-1"></ul>
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
     </div>
     <div class="setlist">
         <h3>Setlist 2
-            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <button class="print-btn" id="print-setlist-2">Print/Share</button>
+            <button class="save-btn" id="save-setlist-2">Save Setlist</button>
             <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </h3>
-        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <ul id="setlist-2"></ul>
         <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
     </div>
     <div class="setlist">
         <h3>Setlist 3
-            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <button class="print-btn" id="print-setlist-3">Print/Share</button>
+            <button class="save-btn" id="save-setlist-3">Save Setlist</button>
             <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </h3>
-        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <ul id="setlist-3"></ul>
         <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
     </div>
 
@@ -397,16 +397,17 @@
         <input type="text" id="new-song-bpm" placeholder="BPM">
         <input type="text" id="new-song-duration" placeholder="Duration">
         <input type="text" id="new-song-tuning" placeholder="Tuning">
-        <button onclick="addNewSong()">Add Song</button>
+        <button id="add-new-song-btn">Add Song</button>
         <h3>Paste Song Details</h3>
         <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
-        <button onclick="parseAndAddSongs()">Add from Paste</button>
+        <button id="parse-add-songs-btn">Add from Paste</button>
     </div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+    <button class="sync-btn" id="save-sync-btn-bottom">Save and Sync</button>
 
     <script>
+        // Global variables
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
         let songData = {};
@@ -418,6 +419,7 @@
         let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
 
+        // Password protection
         function checkPassword() {
             const input = document.getElementById('password-input').value;
             if (input.toLowerCase() === correctPassword) {
@@ -430,17 +432,28 @@
             }
         }
 
-        if (userPassword && userPassword.toLowerCase() === correctPassword) {
-            document.getElementById('password-protection').style.display = 'none';
-            initializeApp();
-        } else {
-            localStorage.removeItem('sitePassword');
-        }
-
+        // Initialize the application
         function initializeApp() {
+            // Set up event listeners
+            document.getElementById('password-submit').addEventListener('click', checkPassword);
+            document.getElementById('save-sync-btn').addEventListener('click', saveData);
+            document.getElementById('save-sync-btn-bottom').addEventListener('click', saveData);
+            document.getElementById('add-new-song-btn').addEventListener('click', addNewSong);
+            document.getElementById('parse-add-songs-btn').addEventListener('click', parseAndAddSongs);
+            
+            // Setlist buttons
+            document.getElementById('print-setlist-1').addEventListener('click', () => printSetlist('setlist-1'));
+            document.getElementById('print-setlist-2').addEventListener('click', () => printSetlist('setlist-2'));
+            document.getElementById('print-setlist-3').addEventListener('click', () => printSetlist('setlist-3'));
+            document.getElementById('save-setlist-1').addEventListener('click', () => saveSetlist('setlist-1'));
+            document.getElementById('save-setlist-2').addEventListener('click', () => saveSetlist('setlist-2'));
+            document.getElementById('save-setlist-3').addEventListener('click', () => saveSetlist('setlist-3'));
+
+            // Load data
             loadData();
         }
 
+        // Load data from JSON or localStorage
         async function loadData() {
             try {
                 const response = await fetch('data.json');
@@ -477,26 +490,33 @@
                     <div class="welcome-popup">
                         <h3>Welcome to SpiralBound Setlist Creator</h3>
                         <p>To save changes to GitHub, you'll need a personal access token from Weston.</p>
-                        <button onclick="this.parentElement.remove(); document.querySelector('.overlay').remove(); localStorage.setItem('welcomeShown', 'true')">Got it!</button>
+                        <button id="welcome-ok-btn">Got it!</button>
                     </div>
                 `);
+                document.getElementById('welcome-ok-btn').addEventListener('click', () => {
+                    document.querySelector('.welcome-popup').remove();
+                    document.querySelector('.overlay').remove();
+                    localStorage.setItem('welcomeShown', 'true');
+                });
             }
 
             setTimeout(() => {
-                document.body.insertAdjacentHTML('beforeend', `
-                    <div class="instructions-popup">
-                        <p><strong>How to Use:</strong><br>
-                        - Drag songs to a setlist or click "Add"<br>
-                        - Click "Save Setlist" to name and store<br>
-                        - Click "Print/Share" to generate a printable view</p>
-                    </div>
-                `);
+                const instructions = document.createElement('div');
+                instructions.className = 'instructions-popup';
+                instructions.innerHTML = `
+                    <p><strong>How to Use:</strong><br>
+                    - Drag songs to a setlist or click "Add"<br>
+                    - Click "Save Setlist" to name and store<br>
+                    - Click "Print/Share" to generate a printable view</p>
+                `;
+                document.body.appendChild(instructions);
                 setTimeout(() => {
-                    document.querySelector('.instructions-popup')?.remove();
+                    instructions.remove();
                 }, 10000);
             }, 1000);
         }
 
+        // Save data to localStorage and GitHub
         function saveData() {
             const data = { songData, setlists, songIcons, songColors, savedSetlists };
             localStorage.setItem('songData', JSON.stringify(songData));
@@ -511,6 +531,7 @@
             });
         }
 
+        // Sync to GitHub
         async function syncToGitHub(data) {
             if (!githubToken) {
                 githubToken = prompt('Enter your GitHub token (one-time setup):');
@@ -549,13 +570,16 @@
                 lastSaveTime = Date.now();
             } catch (error) {
                 console.error('Sync error:', error);
+                throw error;
             }
         }
 
+        // Check and save periodically
         function checkAndSave() {
             if (Date.now() - lastSaveTime >= 300000) saveData();
         }
 
+        // Populate the song table
         function populateSongTable() {
             const tbody = document.getElementById('song-table-body');
             tbody.innerHTML = '';
@@ -570,10 +594,10 @@
                 row.innerHTML = `
                     <td class="song-cell">
                         <div class="icons">${iconsHtml}</div>
-                        <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
+                        <div class="song-title" style="cursor: pointer;">${title}</div>
                         <div>
-                            <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
-                            <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
+                            <button class="add-btn">Add</button>
+                            <button class="edit-btn">Edit</button>
                         </div>
                     </td>
                     <td>${artist}</td>
@@ -583,22 +607,21 @@
                     <td>${songInfo.duration}</td>
                     <td>${songInfo.tuning}</td>
                     <td>
-                        <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
+                        <button class="crossfade-btn">Select Crossfades</button>
                         <div class="crossfade-popup" id="crossfade-${safeSongId}">
                             ${Object.keys(songData)
                                 .filter(s => s !== song)
                                 .sort((a, b) => a.split(' - ')[0].localeCompare(b.split(' - ')[0]))
                                 .map(s => `
                                     <label><input type="checkbox" value="${s}"
-                                        ${songInfo.crossfadeInto && songInfo.crossfadeInto.includes(s) ? 'checked' : ''}
-                                        onchange="updateCrossfade('${song}', this)"> ${s}</label>
+                                        ${songInfo.crossfadeInto && songInfo.crossfadeInto.includes(s) ? 'checked' : ''}> ${s}</label>
                                 `).join('')}
                         </div>
                     </td>
                     <td>
                         <div class="icon-container">
                             ${[0,1,2,3].map(i => `
-                                <select class="icon-dropdown" onchange="updateIcons(this, '${song}', ${i})">
+                                <select class="icon-dropdown">
                                     <option value="">-</option>
                                     <option value="O" ${songIcons[song]?.[i] === 'O' ? 'selected' : ''}>O</option>
                                     <option value="X" ${songIcons[song]?.[i] === 'X' ? 'selected' : ''}>X</option>
@@ -608,7 +631,7 @@
                                 </select>
                             `).join('')}
                         </div>
-                        <select class="color-picker" onchange="updateColor(this, '${song}')">
+                        <select class="color-picker">
                             <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
                             <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
                             <option value="#90EE90" ${songColors[song] === '#90EE90' ? 'selected' : ''}>Bright Green</option>
@@ -616,27 +639,57 @@
                             <option value="#FFC1CC" ${songColors[song] === '#FFC1CC' ? 'selected' : ''}>Pink</option>
                             <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
                         </select>
-                        <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
+                        <button class="delete-btn">Delete</button>
                     </td>
                 `;
+                
+                // Add event listeners to the new row
+                row.querySelector('.song-title').addEventListener('click', () => openLyrics(song));
+                row.querySelector('.add-btn').addEventListener('click', () => showSetlistSelection(song));
+                row.querySelector('.edit-btn').addEventListener('click', () => editSong(song));
+                row.querySelector('.crossfade-btn').addEventListener('click', (e) => showCrossfadePopup(song, e.target));
+                
+                // Icon dropdowns
+                const iconDropdowns = row.querySelectorAll('.icon-dropdown');
+                iconDropdowns.forEach((dropdown, index) => {
+                    dropdown.addEventListener('change', (e) => updateIcons(e.target, song, index));
+                });
+                
+                // Color picker
+                row.querySelector('.color-picker').addEventListener('change', (e) => updateColor(e.target, song));
+                
+                // Delete button
+                row.querySelector('.delete-btn').addEventListener('click', () => deleteSong(song));
+                
+                // Crossfade checkboxes
+                const checkboxes = row.querySelectorAll('.crossfade-popup input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.addEventListener('change', (e) => updateCrossfade(song, e.target));
+                });
+                
                 tbody.appendChild(row);
             }
         }
 
+        // Show crossfade popup
         function showCrossfadePopup(song, button) {
             const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
             const popup = document.getElementById(`crossfade-${safeSongId}`);
             popup.style.display = 'block';
             popup.style.left = `${button.getBoundingClientRect().left}px`;
             popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
-            document.addEventListener('click', function closePopup(e) {
+            
+            const closePopup = function(e) {
                 if (!popup.contains(e.target) && e.target !== button) {
                     popup.style.display = 'none';
                     document.removeEventListener('click', closePopup);
                 }
-            });
+            };
+            
+            document.addEventListener('click', closePopup);
         }
 
+        // Update crossfade options
         function updateCrossfade(song, checkbox) {
             if (!songData[song].crossfadeInto) {
                 songData[song].crossfadeInto = [];
@@ -650,6 +703,7 @@
             songData[song].crossfadeInto = selected;
         }
 
+        // Open lyrics window
         function openLyrics(song) {
             const lyrics = songData[song].lyrics || '';
             const lines = lyrics.split('\n').filter(line => line.trim() !== '');
@@ -691,19 +745,32 @@
                 <body>
                     <h2>${song.split(' - ')[0]}</h2>
                     <textarea id="lyrics">${lyrics}</textarea><br>
-                    <button onclick="window.opener.printLyrics('${song}', document.getElementById('lyrics').value)">Print/Share</button>
-                    <button onclick="window.opener.saveLyrics('${song}', document.getElementById('lyrics').value); window.close();">Save</button>
+                    <button id="print-lyrics-btn">Print/Share</button>
+                    <button id="save-lyrics-btn">Save</button>
                 </body>
                 </html>
             `);
+            
+            // Add event listeners in the new window
+            lyricsWindow.document.getElementById('print-lyrics-btn').addEventListener('click', () => {
+                printLyrics(song, lyricsWindow.document.getElementById('lyrics').value);
+            });
+            
+            lyricsWindow.document.getElementById('save-lyrics-btn').addEventListener('click', () => {
+                saveLyrics(song, lyricsWindow.document.getElementById('lyrics').value);
+                lyricsWindow.close();
+            });
+            
             lyricsWindow.document.close();
         }
 
+        // Save lyrics
         function saveLyrics(song, lyrics) {
             songData[song].lyrics = lyrics;
             saveData();
         }
 
+        // Print lyrics
         function printLyrics(song, lyrics) {
             const lines = lyrics.split('\n').filter(line => line.trim() !== '');
             const lineCount = lines.length;
@@ -745,25 +812,43 @@
             printWindow.document.close();
         }
 
+        // Show setlist selection popup
         function showSetlistSelection(song) {
             // Create overlay and selection popup
-            document.body.insertAdjacentHTML('beforeend', `
-                <div class="setlist-selection-overlay" onclick="closeSetlistSelection()"></div>
-                <div class="setlist-selection" id="setlist-selection-popup">
-                    <h3>Add to which setlist?</h3>
-                    <button onclick="addToSetlist('${song}', 'setlist-1')">Setlist 1</button>
-                    <button onclick="addToSetlist('${song}', 'setlist-2')">Setlist 2</button>
-                    <button onclick="addToSetlist('${song}', 'setlist-3')">Setlist 3</button>
-                    <button onclick="closeSetlistSelection()">Cancel</button>
-                </div>
-            `);
+            const overlay = document.createElement('div');
+            overlay.className = 'setlist-selection-overlay';
+            overlay.addEventListener('click', closeSetlistSelection);
+            
+            const popup = document.createElement('div');
+            popup.className = 'setlist-selection';
+            popup.id = 'setlist-selection-popup';
+            popup.innerHTML = `
+                <h3>Add to which setlist?</h3>
+                <button class="setlist-option" data-setlist="setlist-1">Setlist 1</button>
+                <button class="setlist-option" data-setlist="setlist-2">Setlist 2</button>
+                <button class="setlist-option" data-setlist="setlist-3">Setlist 3</button>
+                <button onclick="closeSetlistSelection()">Cancel</button>
+            `;
+            
+            document.body.appendChild(overlay);
+            document.body.appendChild(popup);
+            
+            // Add event listeners to setlist options
+            const options = popup.querySelectorAll('.setlist-option');
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    addToSetlist(song, option.dataset.setlist);
+                });
+            });
         }
 
+        // Close setlist selection
         function closeSetlistSelection() {
             document.querySelector('.setlist-selection-overlay')?.remove();
             document.getElementById('setlist-selection-popup')?.remove();
         }
 
+        // Add song to setlist
         function addToSetlist(song, setlistKey) {
             closeSetlistSelection();
             const currentSongs = setlists[setlistKey];
@@ -834,6 +919,7 @@
             updateDuration(setlistKey);
         }
 
+        // Update song icons
         function updateIcons(selectElement, song, iconIndex) {
             if (!songIcons[song]) songIcons[song] = ["", "", "", ""];
             songIcons[song][iconIndex] = selectElement.value;
@@ -841,17 +927,20 @@
             updateAllSetlists();
         }
 
+        // Update song color
         function updateColor(selectElement, song) {
             songColors[song] = selectElement.value;
             updateAllSetlists();
         }
 
+        // Delete song from setlist
         function deleteFromSetlist(setlistKey, song) {
             setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
         }
 
+        // Print setlist
         function printSetlist(setlistId) {
             const songs = setlists[setlistId];
             const songCount = songs.length;
@@ -897,6 +986,7 @@
             printWindow.document.close();
         }
 
+        // Save setlist with name
         function saveSetlist(setlistId) {
             const name = document.getElementById(`${setlistId}-name`).value;
             if (name) {
@@ -909,6 +999,7 @@
             }
         }
 
+        // Delete saved setlist
         function deleteSavedSetlist(name) {
             if (confirm(`Are you sure you want to delete the saved setlist "${name}"?`)) {
                 delete savedSetlists[name];
@@ -917,6 +1008,7 @@
             }
         }
 
+        // Edit saved setlist
         function editSavedSetlist(name) {
             const editWindow = window.open('', '_blank', 'width=600,height=800');
             editWindow.document.write(`
@@ -931,12 +1023,12 @@
                 <h2>Edit Setlist: ${name}</h2>
                 <ul id="edit-setlist">${savedSetlists[name].map(song => 
                     `<li draggable="true" data-song="${song}">${song}
-                        <button onclick="window.opener.removeSongFromSavedSetlist('${name}', '${song}'); this.parentElement.remove();">Remove</button>
+                        <button class="remove-song-btn">Remove</button>
                     </li>`
                 ).join('')}</ul>
                 <div>
-                    <button onclick="window.opener.saveEditedSetlist('${name}', Array.from(document.getElementById('edit-setlist').children).map(li => li.dataset.song))">Save Changes</button>
-                    <button onclick="window.close()">Cancel</button>
+                    <button id="save-changes-btn">Save Changes</button>
+                    <button id="cancel-btn">Cancel</button>
                 </div>
                 <script>
                     // Make the list sortable
@@ -971,24 +1063,58 @@
                         item.addEventListener('dragend', () => {
                             item.classList.remove('dragging');
                         });
+                        
+                        item.querySelector('.remove-song-btn').addEventListener('click', function() {
+                            window.opener.postMessage({
+                                action: 'removeSong',
+                                setlistName: '${name}',
+                                song: item.dataset.song
+                            }, '*');
+                            item.remove();
+                        });
+                    });
+                    
+                    document.getElementById('save-changes-btn').addEventListener('click', function() {
+                        const songs = Array.from(document.getElementById('edit-setlist').children).map(li => li.dataset.song);
+                        window.opener.postMessage({
+                            action: 'saveEditedSetlist',
+                            setlistName: '${name}',
+                            songs: songs
+                        }, '*');
+                        window.close();
+                    });
+                    
+                    document.getElementById('cancel-btn').addEventListener('click', function() {
+                        window.close();
                     });
                 </script>
                 </body></html>
             `);
-            editWindow.document.close();
+            
+            // Listen for messages from the edit window
+            window.addEventListener('message', function(e) {
+                if (e.data.action === 'removeSong') {
+                    removeSongFromSavedSetlist(e.data.setlistName, e.data.song);
+                } else if (e.data.action === 'saveEditedSetlist') {
+                    saveEditedSetlist(e.data.setlistName, e.data.songs);
+                }
+            });
         }
 
+        // Remove song from saved setlist
         function removeSongFromSavedSetlist(setlistName, song) {
             savedSetlists[setlistName] = savedSetlists[setlistName].filter(s => s !== song);
         }
 
+        // Save edited setlist
         function saveEditedSetlist(setlistName, songs) {
             savedSetlists[setlistName] = songs;
             displaySavedSetlists();
             saveData();
-            window.alert('Setlist updated successfully!');
+            alert('Setlist updated successfully!');
         }
 
+        // View saved setlist
         function viewSavedSetlist(name) {
             const songs = savedSetlists[name];
             const songCount = songs.length;
@@ -1021,6 +1147,7 @@
             setlistWindow.document.close();
         }
 
+        // Drag and drop functions
         function allowDrop(ev) { ev.preventDefault(); }
         function drag(ev) {
             const song = ev.target.closest('li').dataset.song;
@@ -1048,6 +1175,7 @@
             updateAllSetlists();
         }
 
+        // Update all setlists
         function updateAllSetlists() {
             ['setlist-1', 'setlist-2', 'setlist-3'].forEach(setlistKey => {
                 updateSetlistDisplay(setlistKey);
@@ -1055,6 +1183,7 @@
             });
         }
 
+        // Update setlist display
         function updateSetlistDisplay(setlistKey) {
             const setlistElement = document.getElementById(setlistKey);
             const songs = setlists[setlistKey];
@@ -1063,14 +1192,25 @@
                     `<span class="icon-${icon}">${icon}</span>`
                 ).join(' ');
                 return `
-                    <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)">
+                    <li draggable="true" data-song="${song}">
                         ${icons} ${song}
-                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
+                        <button class="delete-btn">Delete</button>
                     </li>
                 `;
             }).join('');
+            
+            // Add event listeners to the new items
+            setlistElement.querySelectorAll('li').forEach(li => {
+                li.addEventListener('dragstart', drag);
+                li.addEventListener('dragover', allowDrop);
+                li.addEventListener('drop', drop);
+                li.querySelector('.delete-btn').addEventListener('click', () => {
+                    deleteFromSetlist(setlistKey, li.dataset.song);
+                });
+            });
         }
 
+        // Display saved setlists
         function displaySavedSetlists() {
             const savedSetlistsDiv = document.getElementById('saved-setlists');
             savedSetlistsDiv.innerHTML = '<h2>Saved Setlists</h2>';
@@ -1078,57 +1218,26 @@
                 const button = document.createElement('button');
                 button.textContent = name;
                 button.className = 'print-btn';
-                button.onclick = () => viewSavedSetlist(name);
+                button.addEventListener('click', () => viewSavedSetlist(name));
                 savedSetlistsDiv.appendChild(button);
                 
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
                 editButton.className = 'edit-btn';
-                editButton.onclick = () => editSavedSetlist(name);
+                editButton.addEventListener('click', () => editSavedSetlist(name));
                 savedSetlistsDiv.appendChild(editButton);
                 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.className = 'delete-btn';
-                deleteButton.onclick = () => deleteSavedSetlist(name);
+                deleteButton.addEventListener('click', () => deleteSavedSetlist(name));
                 savedSetlistsDiv.appendChild(deleteButton);
                 
                 savedSetlistsDiv.appendChild(document.createElement('br'));
             }
         }
 
-        function sortTable(columnIndex, tableId) {
-            const table = document.getElementById(tableId);
-            const rows = Array.from(table.rows).slice(1);
-            const isAscending = table.rows[0].cells[columnIndex].getAttribute('data-order') !== 'desc';
-
-            rows.sort((a, b) => {
-                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText : a.cells[columnIndex].innerText;
-                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText : b.cells[columnIndex].innerText;
-                cellA = cellA?.trim() || '';
-                cellB = cellB?.trim() || '';
-
-                if (columnIndex === 4) {
-                    return isAscending ?
-                        (parseInt(cellA) || 0) - (parseInt(cellB) || 0) :
-                        (parseInt(cellB) || 0) - (parseInt(cellA) || 0);
-                } else if (columnIndex === 5) {
-                    const timeA = cellA.split(':').map(Number);
-                    const timeB = cellB.split(':').map(Number);
-                    const secA = (timeA[0] || 0) * 60 + (timeA[1] || 0);
-                    const secB = (timeB[0] || 0) * 60 + (timeB[1] || 0);
-                    return isAscending ? secA - secB : secB - secA;
-                } else {
-                    return isAscending ?
-                        cellA.localeCompare(cellB) :
-                        cellB.localeCompare(cellA);
-                }
-            });
-
-            table.tBodies[0].append(...rows);
-            table.rows[0].cells[columnIndex].setAttribute('data-order', isAscending ? 'desc' : 'asc');
-        }
-
+        // Edit song
         function editSong(song) {
             const songInfo = songData[song];
             if (!songInfo) return;
@@ -1166,6 +1275,7 @@
             }
         }
 
+        // Add new song
         function addNewSong() {
             const title = document.getElementById('new-song-title').value;
             const artist = document.getElementById('new-song-artist').value;
@@ -1189,6 +1299,7 @@
             }
         }
 
+        // Parse and add songs from pasted text
         function parseAndAddSongs() {
             const text = document.getElementById('paste-song-details').value.trim();
             if (!text) return;
@@ -1238,6 +1349,7 @@
             }
         }
 
+        // Update duration display
         function updateDuration(setlistKey) {
             const songs = setlists[setlistKey];
             let totalSeconds = 0;
@@ -1254,6 +1366,7 @@
                 `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
 
+        // Delete song
         function deleteSong(song) {
             if (confirm(`Are you sure you want to delete "${song}"?`)) {
                 delete songData[song];
@@ -1269,6 +1382,12 @@
                 updateAllSetlists();
                 saveData();
             }
+        }
+
+        // Initialize the app if password is correct
+        if (userPassword && userPassword.toLowerCase() === correctPassword) {
+            document.getElementById('password-protection').style.display = 'none';
+            initializeApp();
         }
     </script>
 </body>
