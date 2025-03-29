@@ -279,6 +279,42 @@
             margin: 0 5px;
             cursor: pointer;
         }
+        .edit-setlist-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            z-index: 1000;
+            color: #000;
+            max-width: 400px;
+            width: 90%;
+        }
+        .edit-setlist-popup h3 {
+            margin-top: 0;
+        }
+        .edit-setlist-popup ul {
+            list-style-type: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .edit-setlist-popup li {
+            margin-bottom: 5px;
+            padding: 5px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .edit-setlist-popup button {
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -820,6 +856,52 @@
             setlistWindow.document.close();
         }
 
+        function editSavedSetlist(name) {
+            const songs = savedSetlists[name];
+            if (!songs) return;
+
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class="overlay"></div>
+                <div class="edit-setlist-popup">
+                    <h3>Edit Setlist: ${name}</h3>
+                    <ul id="edit-setlist-songs">
+                        ${songs.map(song => `
+                            <li>
+                                ${song}
+                                <button class="delete-btn" onclick="removeSongFromSavedSetlist('${name}', '${song}')">Remove</button>
+                            </li>
+                        `).join('')}
+                    </ul>
+                    <div>
+                        <button onclick="loadSavedSetlistToWorkingSetlist('${name}')">Load to Working Setlist</button>
+                        <button onclick="document.querySelector('.edit-setlist-popup').remove(); document.querySelector('.overlay').remove();">Close</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function removeSongFromSavedSetlist(setlistName, song) {
+            if (confirm(`Remove "${song}" from "${setlistName}"?`)) {
+                savedSetlists[setlistName] = savedSetlists[setlistName].filter(s => s !== song);
+                document.querySelector('.edit-setlist-popup').remove();
+                document.querySelector('.overlay').remove();
+                editSavedSetlist(setlistName);
+                saveData();
+            }
+        }
+
+        function loadSavedSetlistToWorkingSetlist(setlistName) {
+            const setlistId = prompt("Which working setlist should this replace? (1, 2, or 3)", "1");
+            if (setlistId && ['1', '2', '3'].includes(setlistId)) {
+                const setlistKey = `setlist-${setlistId}`;
+                setlists[setlistKey] = [...savedSetlists[setlistName]];
+                updateSetlistDisplay(setlistKey);
+                updateDuration(setlistKey);
+                document.querySelector('.edit-setlist-popup').remove();
+                document.querySelector('.overlay').remove();
+            }
+        }
+
         function allowDrop(ev) { ev.preventDefault(); }
         function drag(ev) {
             const song = ev.target.closest('li').dataset.song;
@@ -880,6 +962,12 @@
                 button.onclick = () => viewSavedSetlist(name);
                 savedSetlistsDiv.appendChild(button);
                 savedSetlistsDiv.appendChild(document.createElement('br'));
+
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'edit-btn';
+                editButton.onclick = () => editSavedSetlist(name);
+                savedSetlistsDiv.appendChild(editButton);
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
