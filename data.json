@@ -565,16 +565,10 @@
   },
   "setlists": {
     "setlist-1": [
-      "Hash Pipe - Weezer",
-      "No One Knows - Queens Stone Age",
-      "Love Me Two Times - The Doors",
-      "Tripping on a Hole - STP",
-      "Cult of Personality - Living Colour",
-      "Breed - Nirvana",
-      "Sweet Emotion - Aerosmith",
-      "Say it aint so - Weezer ",
-      "Everlong - Foo Fighters",
-      "Even Flow - Pearl Jam"
+      "No Rest for the Wicked - Cage the Elephant",
+      "Loser - Beck",
+      "99 Quite Bitter Beings - CKY",
+      "Song 2 - Blur"
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -672,7 +666,7 @@
     ],
     "Lola Montez - Volbeat": [
       "X",
-      "",
+      "M",
       "",
       ""
     ],
@@ -741,22 +735,33 @@
       "",
       "G",
       ""
+    ],
+    "Holiday - Green Day": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "No One Knows - Queens Stone Age": [
+      "X",
+      "",
+      "",
+      ""
+    ],
+    "SOS - SAWD OFF SHOTTY": [
+      "X",
+      "",
+      "",
+      ""
     ]
   },
   "songColors": {},
   "savedSetlists": {
-    "Setlist1 - Matt": [
-      "Breed - Nirvana",
-      "Interstate Love Song - STP",
-      "Like a Stone - Audioslave",
-      "Say it aint so - Weezer ",
-      "Bullet w Butterfly - TSP",
-      "Possum Kingdom - Toadies",
-      "Feeling Good - various",
-      "Inside Out - Eve 6",
-      "I Alone - Live",
-      "Even Flow - Pearl Jam",
-      "Lola Montez - Volbeat"
+    "test 1": [
+      "No Rest for the Wicked - Cage the Elephant",
+      "Loser - Beck",
+      "99 Quite Bitter Beings - CKY",
+      "Song 2 - Blur"
     ]
   }
 }
