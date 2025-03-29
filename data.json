@@ -521,6 +521,46 @@
       "duration": "5:52",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "Holiday - Green Day": {
+      "key": "Em",
+      "riff": "E",
+      "bpm": "144",
+      "duration": "3:53",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Song 2 - Blur": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "144",
+      "duration": "2:02",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "99 Quite Bitter Beings - CKY": {
+      "key": "Dm",
+      "riff": "D",
+      "bpm": "120",
+      "duration": "3:44",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "Loser - Beck": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "100",
+      "duration": "3:22",
+      "crossfadeInto": [],
+      "lyrics": ""
+    },
+    "No Rest for the Wicked - Cage the Elephant": {
+      "key": "Am",
+      "riff": "A",
+      "bpm": "104",
+      "duration": "3:45",
+      "crossfadeInto": [],
+      "lyrics": ""
     }
   },
   "setlists": {
