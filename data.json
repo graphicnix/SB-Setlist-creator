@@ -332,7 +332,8 @@
       "bpm": "69",
       "duration": "6:16",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Open E"
     },
     "46 & 2 - Tool": {
       "key": "D",
