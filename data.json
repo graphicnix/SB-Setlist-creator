@@ -574,7 +574,13 @@
       "Sweet Emotion - Aerosmith",
       "Say it aint so - Weezer ",
       "Everlong - Foo Fighters",
-      "Even Flow - Pearl Jam"
+      "Even Flow - Pearl Jam",
+      "Feeling Good - various",
+      "Fell on Black Days - Soundgarden",
+      "Drunken Lullabies - Flogging Molly",
+      "La Grange - ZZ Top",
+      "Possum Kingdom - Toadies",
+      "Say it aint so - Weezer "
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -744,19 +750,5 @@
     ]
   },
   "songColors": {},
-  "savedSetlists": {
-    "Setlist1 - Matt": [
-      "Breed - Nirvana",
-      "Interstate Love Song - STP",
-      "Like a Stone - Audioslave",
-      "Say it aint so - Weezer ",
-      "Bullet w Butterfly - TSP",
-      "Possum Kingdom - Toadies",
-      "Feeling Good - various",
-      "Inside Out - Eve 6",
-      "I Alone - Live",
-      "Even Flow - Pearl Jam",
-      "Lola Montez - Volbeat"
-    ]
-  }
+  "savedSetlists": {}
 }
