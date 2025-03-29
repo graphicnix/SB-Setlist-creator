@@ -13,9 +13,7 @@
       "riff": "Am",
       "bpm": "92",
       "duration": "3:56",
-      "crossfadeInto": [
-        "Creep - Radiohead"
-      ],
+      "crossfadeInto": [],
       "lyrics": ""
     },
     "Creep - Radiohead": {
@@ -572,7 +570,19 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Breed - Nirvana",
+      "Interstate Love Song - STP",
+      "Like a Stone - Audioslave",
+      "Say it aint so - Weezer ",
+      "Bullet w Butterfly - TSP",
+      "Possum Kingdom - Toadies",
+      "Feeling Good - various",
+      "Inside Out - Eve 6",
+      "I Alone - Live",
+      "Even Flow - Pearl Jam",
+      "Lola Montez - Volbeat"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
@@ -759,5 +769,19 @@
     ]
   },
   "songColors": {},
-  "savedSetlists": {}
+  "savedSetlists": {
+    "Marc initial setlist 1": [
+      "Breed - Nirvana",
+      "Interstate Love Song - STP",
+      "Like a Stone - Audioslave",
+      "Say it aint so - Weezer ",
+      "Bullet w Butterfly - TSP",
+      "Possum Kingdom - Toadies",
+      "Feeling Good - various",
+      "Inside Out - Eve 6",
+      "I Alone - Live",
+      "Even Flow - Pearl Jam",
+      "Lola Montez - Volbeat"
+    ]
+  }
 }
