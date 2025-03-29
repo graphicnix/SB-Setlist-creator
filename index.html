@@ -250,21 +250,52 @@
             max-width: 500px;
             height: auto;
         }
+        .password-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .password-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: #000;
+        }
+        .password-box input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 200px;
+        }
+        .password-box button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <div id="password-protection" class="password-container">
+        <div class="password-box">
+            <h2>Enter Password</h2>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <div>
+                <button onclick="checkPassword()">Submit</button>
+                <button onclick="window.close()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
-        if (!userPassword || userPassword.toLowerCase() !== correctPassword) {
-            userPassword = prompt("Enter the password to access this site:", "");
-            if (!userPassword || userPassword.toLowerCase() !== correctPassword) {
-                window.close();
-            } else {
-                localStorage.setItem('sitePassword', userPassword);
-            }
-        }
-
         let songData = {};
         let setlists = { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
         let songIcons = {};
@@ -273,6 +304,31 @@
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
+
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            if (input.toLowerCase() === correctPassword) {
+                localStorage.setItem('sitePassword', input);
+                document.getElementById('password-protection').style.display = 'none';
+                initializeApp();
+            } else {
+                alert('Incorrect password');
+                window.close();
+            }
+        }
+
+        // Check if password exists in localStorage and is correct
+        if (userPassword && userPassword.toLowerCase() === correctPassword) {
+            document.getElementById('password-protection').style.display = 'none';
+            initializeApp();
+        } else {
+            // Clear any invalid stored password
+            localStorage.removeItem('sitePassword');
+        }
+
+        function initializeApp() {
+            loadData();
+        }
 
         async function loadData() {
             try {
@@ -423,7 +479,7 @@
                                 .sort((a, b) => a.split(' - ')[0].localeCompare(b.split(' - ')[0]))
                                 .map(s => `
                                     <label><input type="checkbox" value="${s}"
-                                        ${songInfo.crossfadeInto.includes(s) ? 'checked' : ''}
+                                        ${songInfo.crossfadeInto && songInfo.crossfadeInto.includes(s) ? 'checked' : ''}
                                         onchange="updateCrossfade('${song}', this)"> ${s}</label>
                                 `).join('')}
                         </div>
@@ -471,6 +527,9 @@
         }
 
         function updateCrossfade(song, checkbox) {
+            if (!songData[song].crossfadeInto) {
+                songData[song].crossfadeInto = [];
+            }
             const selected = Array.from(document.querySelectorAll(`#crossfade-${btoa(song).replace(/[^a-zA-Z0-9]/g, '')} input:checked`)).map(input => input.value);
             if (selected.length > 3) {
                 checkbox.checked = false;
@@ -605,9 +664,9 @@
                         const popupChoice = Math.random() < 0.5 ? 1 : 2;
                         let message;
                         if (popupChoice === 1) {
-                            message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer’s voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
+                            message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer's voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
                         } else {
-                            message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer’s gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
+                            message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer's gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
                         }
                         if (!confirm(message)) return;
                     }
@@ -623,16 +682,22 @@
                     const popupChoice = Math.random();
                     let message;
                     if (popupChoice < 0.33) {
-                        message = `👯 ‘${lastSong}’ and ‘${song}’ go together like tequila and poor choices. Adding them back-to-back is basically setting up a threesome for your ears.\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
+                        message = `👯 '${lastSong.split(' - ')[0]}' and '${song.split(' - ')[0]}' go together like tequila and poor choices. Adding them back-to-back is basically setting up a threesome for your ears.\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
                     } else if (popupChoice < 0.66) {
-                        message = `🤷 *‘${lastSong}’ → ‘${song}’ = instant crowd hype. Or you could, like, not do that. But why?\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
+                        message = `🤷 *'${lastSong.split(' - ')[0]}' → '${song.split(' - ')[0]}' = instant crowd hype. Or you could, like, not do that. But why?\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
                     } else {
-                        message = `🚨 SETLIST CRIME ALERT 🚨\nYou’re NOT crossfading ‘${lastSong}’ into ‘${song}’? That’s like choosing Natty Light over a Miller High Life\n\nOK = FINE, DAD\nCancel = I HATE FUN`;
+                        message = `🚨 SETLIST CRIME ALERT 🚨\nYou're NOT crossfading '${lastSong.split(' - ')[0]}' into '${song.split(' - ')[0]}'? That's like choosing Natty Light over a Miller High Life\n\nOK = FINE, DAD\nCancel = I HATE FUN`;
                     }
-                    confirm(message); // Informational only, proceed regardless
+                    if (confirm(message)) {
+                        // Add the song to the selected setlist
+                        setlists[setlistKey].push(song);
+                        updateSetlistDisplay(setlistKey);
+                        updateDuration(setlistKey);
+                        return;
+                    }
                 } else if (crossfadeOptions.length > 1) {
                     const compatibleSong = crossfadeOptions[0];
-                    const message = `PSST, '${song}' AND '${compatibleSong}' AREN’T JUST ‘COMPATIBLE’—THEY FUCK.\n✓ "F* YES, BLEND THAT SHT" (Crowd loses minds)\n✓ "NEITHER, I DO WHAT I WANT" (Chaotic evil)\n\nOK = F* YES, BLEND THAT SHT\nCancel = NEITHER, I DO WHAT I WANT`;
+                    const message = `PSST, '${song.split(' - ')[0]}' AND '${compatibleSong.split(' - ')[0]}' AREN'T JUST 'COMPATIBLE'—THEY FUCK.\n✓ "F* YES, BLEND THAT SHT" (Crowd loses minds)\n✓ "NEITHER, I DO WHAT I WANT" (Chaotic evil)\n\nOK = F* YES, BLEND THAT SHT\nCancel = NEITHER, I DO WHAT I WANT`;
                     confirm(message); // Informational only
                 }
             }
@@ -1001,8 +1066,6 @@
                 saveData();
             }
         }
-
-        loadData();
     </script>
 
     <button class="sync-btn" onclick="saveData()">Save and Sync</button>
