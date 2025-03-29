@@ -279,6 +279,68 @@
             margin: 0 5px;
             cursor: pointer;
         }
+        /* New styles for search and setlist selection */
+        .search-container {
+            margin: 20px 0;
+            position: relative;
+        }
+        #song-search {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+        .search-results {
+            position: absolute;
+            width: 100%;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            border: 1px solid #ddd;
+            z-index: 100;
+            display: none;
+        }
+        .search-result-item {
+            padding: 8px;
+            cursor: pointer;
+            color: #000;
+            border-bottom: 1px solid #eee;
+        }
+        .search-result-item:hover {
+            background-color: #f0f0f0;
+        }
+        .setlist-selection {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            z-index: 1000;
+            color: #000;
+            text-align: center;
+        }
+        .setlist-option {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 25px;
+            background: #e31c1c;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .setlist-option:hover {
+            background: #c51717;
+        }
+        .close-setlist-selection {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -304,6 +366,7 @@
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
+        let currentSongForSetlist = null;
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -326,6 +389,45 @@
 
         function initializeApp() {
             loadData();
+            setupSearch();
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('song-search');
+            const searchResults = document.getElementById('search-results');
+            
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase();
+                if (query.length < 2) {
+                    searchResults.style.display = 'none';
+                    return;
+                }
+                
+                const results = Object.keys(songData).filter(song => {
+                    return song.toLowerCase().includes(query);
+                }).slice(0, 10); // Limit to 10 results
+                
+                if (results.length > 0) {
+                    searchResults.innerHTML = results.map(song => {
+                        const [title, artist] = song.split(' - ');
+                        return `<div class="search-result-item" data-song="${song}">
+                            ${title} - ${artist}
+                            <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
+                            <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
+                        </div>`;
+                    }).join('');
+                    searchResults.style.display = 'block';
+                } else {
+                    searchResults.style.display = 'none';
+                }
+            });
+            
+            // Hide results when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!searchResults.contains(e.target) {
+                    searchResults.style.display = 'none';
+                }
+            });
         }
 
         async function loadData() {
@@ -459,7 +561,7 @@
                         <div class="icons">${iconsHtml}</div>
                         <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
                         <div>
-                            <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
+                            <button class="add-btn" onclick="showSetlistSelectionButtons('${song}')">Add</button>
                             <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         </div>
                     </td>
@@ -632,10 +734,16 @@
             printWindow.document.close();
         }
 
-        function showSetlistSelection(song) {
-            const setlistId = prompt("Select Setlist (1, 2, or 3):", "1");
-            if (!setlistId || !['1', '2', '3'].includes(setlistId)) return;
+        function showSetlistSelectionButtons(song) {
+            currentSongForSetlist = song;
+            document.getElementById('setlist-selection').style.display = 'block';
+        }
 
+        function selectSetlist(setlistId) {
+            document.getElementById('setlist-selection').style.display = 'none';
+            if (!currentSongForSetlist) return;
+            
+            const song = currentSongForSetlist;
             const setlistKey = `setlist-${setlistId}`;
             const currentSongs = setlists[setlistKey];
             const songHasX = (songIcons[song] || []).includes('X');
@@ -788,6 +896,24 @@
             }
         }
 
+        function editSavedSetlist(name) {
+            if (confirm(`Load the setlist "${name}" for editing? This will replace the current setlists.`)) {
+                // Clear current setlists
+                setlists = { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
+                
+                // Copy songs to setlist 1 for editing
+                setlists['setlist-1'] = [...savedSetlists[name]];
+                
+                // Update display
+                updateAllSetlists();
+                
+                // Set the setlist name
+                document.getElementById('setlist-1-name').value = name;
+                
+                alert(`Setlist "${name}" loaded into Setlist 1 for editing. Make changes and click "Save Setlist" to update.`);
+            }
+        }
+
         function viewSavedSetlist(name) {
             const songs = savedSetlists[name];
             const songCount = songs.length;
@@ -879,13 +1005,19 @@
                 button.className = 'print-btn';
                 button.onclick = () => viewSavedSetlist(name);
                 savedSetlistsDiv.appendChild(button);
-                savedSetlistsDiv.appendChild(document.createElement('br'));
-
+                
+                const editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'edit-btn';
+                editButton.onclick = () => editSavedSetlist(name);
+                savedSetlistsDiv.appendChild(editButton);
+                
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.className = 'delete-btn';
                 deleteButton.onclick = () => deleteSavedSetlist(name);
                 savedSetlistsDiv.appendChild(deleteButton);
+                
                 savedSetlistsDiv.appendChild(document.createElement('br'));
             }
         }
@@ -1071,6 +1203,12 @@
 
     <h1>SpiralBound Setlist Creator</h1>
 
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="song-search" placeholder="Search for songs...">
+        <div id="search-results" class="search-results"></div>
+    </div>
+
     <div class="category">
         <h2>Alternative/Grunge/Rock</h2>
         <div class="icon-legend-container">
@@ -1145,6 +1283,15 @@
         <h3>Paste Song Details</h3>
         <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
         <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
+    <!-- Setlist Selection Popup -->
+    <div id="setlist-selection" class="setlist-selection">
+        <span class="close-setlist-selection" onclick="document.getElementById('setlist-selection').style.display = 'none'">×</span>
+        <h3>Select Setlist</h3>
+        <div class="setlist-option" onclick="selectSetlist(1)">1</div>
+        <div class="setlist-option" onclick="selectSetlist(2)">2</div>
+        <div class="setlist-option" onclick="selectSetlist(3)">3</div>
     </div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
