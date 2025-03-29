@@ -93,7 +93,6 @@
         }
         h2 {
             color: #fff;
-            text-align: center;
         }
         .icon-legend-container {
             display: flex;
@@ -410,8 +409,52 @@
             gap: 5px;
             margin-top: 10px;
         }
-        .non-standard-tuning {
-            background-color: #87CEEB !important;
+        .tuning-D {
+            background-color: #D3D3D3 !important; /* Light grey */
+        }
+        .tuning-Eb {
+            background-color: #87CEEB !important; /* Light blue */
+        }
+        .tuning-E {
+            background-color: #87CEEB !important; /* Light blue */
+        }
+        .tuning-other {
+            background-color: #FFFF00 !important; /* Yellow */
+        }
+        .crossfade-pair {
+            background-color: #90EE90 !important; /* Light green */
+            position: relative;
+        }
+        .crossfade-pair::before {
+            content: "⇄";
+            position: absolute;
+            left: -20px;
+            font-size: 16px;
+            color: #006400;
+        }
+        .crossfade-pair::after {
+            content: "⇄";
+            position: absolute;
+            right: -20px;
+            font-size: 16px;
+            color: #006400;
+        }
+        .tuning-legend {
+            display: flex;
+            gap: 10px;
+            margin-left: 10px;
+            font-size: 12px;
+            align-items: center;
+        }
+        .tuning-legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .tuning-legend-color {
+            width: 15px;
+            height: 15px;
+            border: 1px solid #000;
         }
     </style>
 </head>
@@ -1047,6 +1090,17 @@
             const artistFontSize = 8;
             const iconFontSize = 20;
 
+            // Check for crossfade pairs
+            const crossfadePairs = [];
+            for (let i = 0; i < songs.length - 1; i++) {
+                const currentSong = songs[i];
+                const nextSong = songs[i + 1];
+                if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
+                    crossfadePairs.push(i);
+                    crossfadePairs.push(i + 1);
+                }
+            }
+
             let printWindow = window.open('', '', 'width=816,height=1056');
             printWindow.document.write(`
                 <html><head><title>Setlist</title>
@@ -1057,23 +1111,127 @@
                     .icon-G { color: #8B4513; font-size: ${iconFontSize}px; }
                     .icon-M { color: orange; font-size: ${iconFontSize}px; }
                     .icon-→ { color: black; font-size: ${iconFontSize}px; }
-                    h2 { font-size: ${setlistTitleFontSize}px; background-color: yellow; display: inline-block; padding: 5px 10px; }
-                    li { margin: 10px 0; display: flex; align-items: center; justify-content: center; }
+                    .setlist-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+                    }
+                    .setlist-title {
+                        font-size: ${setlistTitleFontSize}px; 
+                        background-color: yellow; 
+                        display: inline-block; 
+                        padding: 5px 10px;
+                    }
+                    .tuning-legend {
+                        display: flex;
+                        gap: 10px;
+                        font-size: 12px;
+                    }
+                    .tuning-legend-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                    }
+                    .tuning-legend-color {
+                        width: 15px;
+                        height: 15px;
+                        border: 1px solid #000;
+                    }
+                    .tuning-D-color {
+                        background-color: #D3D3D3;
+                    }
+                    .tuning-Eb-color {
+                        background-color: #87CEEB;
+                    }
+                    .tuning-other-color {
+                        background-color: #FFFF00;
+                    }
+                    .crossfade-color {
+                        background-color: #90EE90;
+                    }
+                    li { 
+                        margin: 10px 0; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
+                        position: relative;
+                    }
                     .song-title { font-size: ${baseTitleFontSize}px; }
                     .artist { font-size: ${artistFontSize}px; margin-left: 10px; }
                     .icons { margin-right: 10px; }
-                    .non-standard-tuning { background-color: #87CEEB !important; }
+                    .tuning-D {
+                        background-color: #D3D3D3 !important; /* Light grey */
+                    }
+                    .tuning-Eb, .tuning-E {
+                        background-color: #87CEEB !important; /* Light blue */
+                    }
+                    .tuning-other {
+                        background-color: #FFFF00 !important; /* Yellow */
+                    }
+                    .crossfade-pair {
+                        background-color: #90EE90 !important; /* Light green */
+                    }
+                    .crossfade-pair::before {
+                        content: "⇄";
+                        position: absolute;
+                        left: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
+                    .crossfade-pair::after {
+                        content: "⇄";
+                        position: absolute;
+                        right: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
                 </style>
                 </head><body>
-                <h2>${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
-                <ol>${songs.map((song) => {
+                <div class="setlist-header">
+                    <h2 class="setlist-title">${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
+                    <div class="tuning-legend">
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color tuning-D-color"></div>
+                            <span>D</span>
+                        </div>
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color tuning-Eb-color"></div>
+                            <span>Eb/E</span>
+                        </div>
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color tuning-other-color"></div>
+                            <span>Other</span>
+                        </div>
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color crossfade-color"></div>
+                            <span>⇄ Crossfade</span>
+                        </div>
+                    </div>
+                </div>
+                <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
                     const [title, artist] = song.split(' - ');
                     const tuning = songData[song]?.tuning || '';
-                    const tuningClass = tuning && !tuning.toLowerCase().includes('standard') && tuning.toLowerCase() !== 'undefined' ? 'non-standard-tuning' : '';
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass}">
+                    let tuningClass = '';
+                    
+                    if (tuning) {
+                        const tuningLower = tuning.toLowerCase();
+                        if (tuningLower.includes('d') && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
+                            tuningClass = 'tuning-D';
+                        } else if ((tuningLower.includes('eb') || tuningLower.includes('e')) && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
+                            tuningClass = 'tuning-Eb';
+                        } else if (!tuningLower.includes('standard') && tuningLower !== 'undefined') {
+                            tuningClass = 'tuning-other';
+                        }
+                    }
+                    
+                    const isCrossfadePair = crossfadePairs.includes(index);
+                    const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
+                    
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass} ${crossfadeClass}">
                         <span class="icons">${icons}</span>
                         <span class="song-title">${title}</span>
                         <span class="artist">${artist}</span>
@@ -1110,29 +1268,143 @@
             const songCount = songs.length;
             const baseFontSize = 40;
             const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
+            
+            // Check for crossfade pairs
+            const crossfadePairs = [];
+            for (let i = 0; i < songs.length - 1; i++) {
+                const currentSong = songs[i];
+                const nextSong = songs[i + 1];
+                if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
+                    crossfadePairs.push(i);
+                    crossfadePairs.push(i + 1);
+                }
+            }
+
             let setlistWindow = window.open('', '_blank', 'width=816,height=1056');
             setlistWindow.document.write(`
                 <html><head><title>Saved Setlist - ${name}</title>
                 <style>
-                    body { margin: 20px; text-align: center; }
+                    body { margin: 20px; text-align: center; font-family: Arial, sans-serif; }
                     .icon-O { color: blue; }
                     .icon-X { color: red; }
                     .icon-G { color: #8B4513; }
                     .icon-M { color: orange; }
                     .icon-→ { color: black; }
-                    h2 { font-size: ${fontSize + 10}px; }
-                    li { font-size: ${fontSize}px; margin: 10px 0; }
-                    .non-standard-tuning { background-color: #87CEEB !important; }
+                    .setlist-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        margin-bottom: 10px;
+                    }
+                    .setlist-title {
+                        font-size: ${fontSize + 10}px; 
+                        background-color: yellow; 
+                        display: inline-block; 
+                        padding: 5px 10px;
+                    }
+                    .tuning-legend {
+                        display: flex;
+                        gap: 10px;
+                        font-size: 12px;
+                    }
+                    .tuning-legend-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+                    }
+                    .tuning-legend-color {
+                        width: 15px;
+                        height: 15px;
+                        border: 1px solid #000;
+                    }
+                    .tuning-D-color {
+                        background-color: #D3D3D3;
+                    }
+                    .tuning-Eb-color {
+                        background-color: #87CEEB;
+                    }
+                    .tuning-other-color {
+                        background-color: #FFFF00;
+                    }
+                    .crossfade-color {
+                        background-color: #90EE90;
+                    }
+                    li { 
+                        font-size: ${fontSize}px; 
+                        margin: 10px 0;
+                        position: relative;
+                    }
+                    .tuning-D {
+                        background-color: #D3D3D3 !important;
+                    }
+                    .tuning-Eb, .tuning-E {
+                        background-color: #87CEEB !important;
+                    }
+                    .tuning-other {
+                        background-color: #FFFF00 !important;
+                    }
+                    .crossfade-pair {
+                        background-color: #90EE90 !important;
+                    }
+                    .crossfade-pair::before {
+                        content: "⇄";
+                        position: absolute;
+                        left: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
+                    .crossfade-pair::after {
+                        content: "⇄";
+                        position: absolute;
+                        right: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
                 </style>
                 </head><body>
-                <h2>${name}</h2>
-                <ol>${songs.map((song) => {
+                <div class="setlist-header">
+                    <h2 class="setlist-title">${name}</h2>
+                    <div class="tuning-legend">
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color tuning-D-color"></div>
+                            <span>D</span>
+                        </div>
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color tuning-Eb-color"></div>
+                            <span>Eb/E</span>
+                        </div>
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color tuning-other-color"></div>
+                            <span>Other</span>
+                        </div>
+                        <div class="tuning-legend-item">
+                            <div class="tuning-legend-color crossfade-color"></div>
+                            <span>⇄ Crossfade</span>
+                        </div>
+                    </div>
+                </div>
+                <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
                     const tuning = songData[song]?.tuning || '';
-                    const tuningClass = tuning && !tuning.toLowerCase().includes('standard') && tuning.toLowerCase() !== 'undefined' ? 'non-standard-tuning' : '';
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass}">${icons} ${song}</li>`;
+                    let tuningClass = '';
+                    
+                    if (tuning) {
+                        const tuningLower = tuning.toLowerCase();
+                        if (tuningLower.includes('d') && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
+                            tuningClass = 'tuning-D';
+                        } else if ((tuningLower.includes('eb') || tuningLower.includes('e')) && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
+                            tuningClass = 'tuning-Eb';
+                        } else if (!tuningLower.includes('standard') && tuningLower !== 'undefined') {
+                            tuningClass = 'tuning-other';
+                        }
+                    }
+                    
+                    const isCrossfadePair = crossfadePairs.includes(index);
+                    const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
+                    
+                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass} ${crossfadeClass}">${icons} ${song}</li>`;
                 }).join('')}</ol>
                 <button onclick="window.print()">Print</button>
                 </body></html>
