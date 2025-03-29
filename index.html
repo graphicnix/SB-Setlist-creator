@@ -317,12 +317,10 @@
             }
         }
 
-        // Check if password exists in localStorage and is correct
         if (userPassword && userPassword.toLowerCase() === correctPassword) {
             document.getElementById('password-protection').style.display = 'none';
             initializeApp();
         } else {
-            // Clear any invalid stored password
             localStorage.removeItem('sitePassword');
         }
 
@@ -642,13 +640,42 @@
             const currentSongs = setlists[setlistKey];
             const songHasX = (songIcons[song] || []).includes('X');
 
-            // Check for consecutive vocal strain (X icon combos)
+            // 1. FIRST check for crossfade suggestions (independent of current setlist)
+            const crossfadeOptions = songData[song]?.crossfadeInto || [];
+            if (crossfadeOptions.length > 0) {
+                const currentSongTitle = song.split(' - ')[0];
+                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
+                
+                const popupChoice = Math.random();
+                let message;
+                
+                if (popupChoice < 0.33) {
+                    message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
+                } else if (popupChoice < 0.66) {
+                    message = `🎸 CROSSFADE GOLD:\n${compatibleSongs}\nwould sound 🔥 after ${currentSongTitle}\n\nAdd a match?`;
+                } else {
+                    message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
+                }
+                
+                if (confirm(message)) {
+                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
+                        // Add both the original and the compatible song
+                        setlists[setlistKey].push(song);
+                        setlists[setlistKey].push(selectedSong);
+                        updateSetlistDisplay(setlistKey);
+                        updateDuration(setlistKey);
+                        return;
+                    }
+                }
+            }
+
+            // 2. THEN check for vocal strain (X icon) warnings
             if (songHasX && currentSongs.length > 0) {
                 const lastSong = currentSongs[currentSongs.length - 1];
                 const lastSongHasX = (songIcons[lastSong] || []).includes('X');
 
                 if (lastSongHasX) {
-                    // Check if this would be the second consecutive X
                     if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
                         const popupChoice = Math.random() < 0.5 ? 1 : 2;
                         let message;
@@ -659,7 +686,6 @@
                         }
                         if (!confirm(message)) return;
                     }
-                    // Check if this would be the third consecutive X
                     else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
                         const popupChoice = Math.random() < 0.5 ? 1 : 2;
                         let message;
@@ -673,36 +699,7 @@
                 }
             }
 
-            // Check for crossfade opportunities
-            const crossfadeOptions = songData[song]?.crossfadeInto || [];
-            if (crossfadeOptions.length > 0 && currentSongs.length > 0) {
-                const lastSong = currentSongs[currentSongs.length - 1];
-                const isCrossfadable = crossfadeOptions.includes(lastSong);
-                if (isCrossfadable) {
-                    const popupChoice = Math.random();
-                    let message;
-                    if (popupChoice < 0.33) {
-                        message = `👯 '${lastSong.split(' - ')[0]}' and '${song.split(' - ')[0]}' go together like tequila and poor choices. Adding them back-to-back is basically setting up a threesome for your ears.\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
-                    } else if (popupChoice < 0.66) {
-                        message = `🤷 *'${lastSong.split(' - ')[0]}' → '${song.split(' - ')[0]}' = instant crowd hype. Or you could, like, not do that. But why?\n\nOK = FINE, TWIST MY ARM\nCancel = I HATE DANCING CHICKS`;
-                    } else {
-                        message = `🚨 SETLIST CRIME ALERT 🚨\nYou're NOT crossfading '${lastSong.split(' - ')[0]}' into '${song.split(' - ')[0]}'? That's like choosing Natty Light over a Miller High Life\n\nOK = FINE, DAD\nCancel = I HATE FUN`;
-                    }
-                    if (confirm(message)) {
-                        // Add the song to the selected setlist
-                        setlists[setlistKey].push(song);
-                        updateSetlistDisplay(setlistKey);
-                        updateDuration(setlistKey);
-                        return;
-                    }
-                } else if (crossfadeOptions.length > 1) {
-                    const compatibleSong = crossfadeOptions[0];
-                    const message = `PSST, '${song.split(' - ')[0]}' AND '${compatibleSong.split(' - ')[0]}' AREN'T JUST 'COMPATIBLE'—THEY FUCK.\n✓ "F* YES, BLEND THAT SHT" (Crowd loses minds)\n✓ "NEITHER, I DO WHAT I WANT" (Chaotic evil)\n\nOK = F* YES, BLEND THAT SHT\nCancel = NEITHER, I DO WHAT I WANT`;
-                    confirm(message); // Informational only
-                }
-            }
-
-            // Add the song to the selected setlist
+            // 3. If no crossfade was added, just add the single song
             setlists[setlistKey].push(song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
