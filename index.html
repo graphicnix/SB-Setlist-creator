@@ -420,6 +420,7 @@
                     <td>${songInfo.riff}</td>
                     <td>${songInfo.bpm}</td>
                     <td>${songInfo.duration}</td>
+                    <td>${songInfo.tuning}</td>
                     <td>
                         <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
                         <div class="crossfade-popup" id="crossfade-${safeSongId}">
@@ -446,7 +447,7 @@
                                 </select>
                             `).join('')}
                         </div>
-                        <button class="add-btn" onclick="addToSetlist('${song}', 'alternative-grunge-rock')">Add</button>
+                        <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
                         <select class="color-picker" onchange="updateColor(this, '${song}')">
                             <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
                             <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
@@ -582,8 +583,8 @@
             printWindow.document.close();
         }
 
-        function addToSetlist(song, category) {
-            const setlistId = prompt("Enter Setlist Number (1, 2, or 3):");
+        function showSetlistSelection(song) {
+            const setlistId = prompt("Select Setlist (1, 2, or 3):", "1");
             if (!setlistId || !['1', '2', '3'].includes(setlistId)) return;
 
             const setlistKey = `setlist-${setlistId}`;
@@ -724,12 +725,20 @@
             }
         }
 
+        function deleteSavedSetlist(name) {
+            if (confirm(`Are you sure you want to delete the saved setlist "${name}"?`)) {
+                delete savedSetlists[name];
+                displaySavedSetlists();
+                saveData();
+            }
+        }
+
         function viewSavedSetlist(name) {
             const songs = savedSetlists[name];
             const songCount = songs.length;
             const baseFontSize = 40;
             const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
-            let setlistWindow = window.open('', '', 'width=816,height=1056');
+            let setlistWindow = window.open('', '_blank', 'width=816,height=1056');
             setlistWindow.document.write(`
                 <html><head><title>Saved Setlist - ${name}</title>
                 <style>
@@ -801,6 +810,13 @@
                 button.onclick = () => viewSavedSetlist(name);
                 savedSetlistsDiv.appendChild(button);
                 savedSetlistsDiv.appendChild(document.createElement('br'));
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'delete-btn';
+                deleteButton.onclick = () => deleteSavedSetlist(name);
+                savedSetlistsDiv.appendChild(deleteButton);
+                savedSetlistsDiv.appendChild(document.createElement('br'));
             }
         }
 
@@ -846,11 +862,12 @@
             const riff = prompt("Riff:", songInfo.riff);
             const bpm = prompt("BPM:", songInfo.bpm);
             const duration = prompt("Duration:", songInfo.duration);
+            const tuning = prompt("Tuning:", songInfo.tuning);
 
             if (title && artist) {
                 const newSongKey = `${title} - ${artist}`;
                 if (newSongKey !== song) {
-                    songData[newSongKey] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "" };
+                    songData[newSongKey] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "", tuning: tuning || "" };
                     delete songData[song];
                     Object.keys(setlists).forEach(key => {
                         setlists[key] = setlists[key].map(s => s === song ? newSongKey : s);
@@ -864,7 +881,7 @@
                         delete songColors[song];
                     }
                 } else {
-                    songData[song] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "" };
+                    songData[song] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "", tuning: tuning || "" };
                 }
                 populateSongTable();
                 updateAllSetlists();
@@ -879,9 +896,10 @@
             const riff = document.getElementById('new-song-riff').value;
             const bpm = document.getElementById('new-song-bpm').value;
             const duration = document.getElementById('new-song-duration').value;
+            const tuning = document.getElementById('new-song-tuning').value;
             if (title && artist) {
                 const song = `${title} - ${artist}`;
-                songData[song] = { key, riff, bpm, duration, crossfadeInto: [], lyrics: "" };
+                songData[song] = { key, riff, bpm, duration, tuning, crossfadeInto: [], lyrics: "" };
                 populateSongTable();
                 document.getElementById('new-song-title').value = '';
                 document.getElementById('new-song-artist').value = '';
@@ -889,6 +907,7 @@
                 document.getElementById('new-song-riff').value = '';
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
+                document.getElementById('new-song-tuning').value = '';
                 saveData();
             }
         }
@@ -902,9 +921,9 @@
 
             songBlocks.forEach(block => {
                 const lines = block.split('\n').map(line => line.trim());
-                let title, artist, key, riff, bpm, duration, icons = [];
+                let title, artist, key, riff, bpm, duration, icons = [], tuning;
 
-                if (lines.length >= 6) {
+                if (lines.length >= 7) {
                     const firstLineParts = lines[0].split(',').map(part => part.trim());
                     if (firstLineParts.length > 1 && firstLineParts.every(part => validIcons.includes(part) || !validIcons.includes(part.split(' ')[0]))) {
                         icons = firstLineParts.filter(part => validIcons.includes(part));
@@ -914,6 +933,7 @@
                         riff = lines[3].replace('Riff:', '').trim();
                         bpm = lines[4].replace('BPM:', '').trim();
                         duration = lines[5].replace('Duration:', '').trim();
+                        tuning = lines[6].replace('Tuning:', '').trim();
                     } else {
                         title = lines[0];
                         artist = lines[1].replace('Artist:', '').trim();
@@ -921,11 +941,12 @@
                         riff = lines[3].replace('Riff:', '').trim();
                         bpm = lines[4].replace('BPM:', '').trim();
                         duration = lines[5].replace('Duration:', '').trim();
+                        tuning = lines[6].replace('Tuning:', '').trim();
                     }
 
                     if (title && artist) {
                         const song = `${title} - ${artist}`;
-                        songData[song] = { key, riff, bpm, duration, crossfadeInto: [], lyrics: "" };
+                        songData[song] = { key, riff, bpm, duration, tuning, crossfadeInto: [], lyrics: "" };
                         if (icons.length) songIcons[song] = icons.concat(Array(4 - icons.length).fill(""));
                         addedCount++;
                     }
@@ -994,15 +1015,6 @@
                     <strong class="icon-→">→</strong> = Crossfade (Black)
                 </span>
             </div>
-            <div class="tooltip">Icon Legend
-                <span class="tooltiptext">
-                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                    <strong class="icon-→">→</strong> = Crossfade (Black)
-                </span>
-            </div>
         </div>
         <table id="alternative-grunge-rock">
             <thead>
@@ -1013,6 +1025,7 @@
                     <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
                     <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
                     <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
                     <th>Crossfade Options</th>
                     <th>Actions</th>
                 </tr>
@@ -1059,6 +1072,7 @@
         <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
         <input type="text" id="new-song-bpm" placeholder="BPM">
         <input type="text" id="new-song-duration" placeholder="Duration">
+        <input type="text" id="new-song-tuning" placeholder="Tuning">
         <button onclick="addNewSong()">Add Song</button>
         <h3>Paste Song Details</h3>
         <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
