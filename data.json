@@ -283,7 +283,8 @@
       "bpm": "140",
       "duration": "4:25",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "D"
     },
     "Superstition - Stevie Wonder": {
       "key": "Eb",
