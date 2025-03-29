@@ -513,6 +513,14 @@
         "Even Flow - Pearl Jam"
       ],
       "lyrics": ""
+    },
+    "Song for the Dead - Queens of the Stone Age": {
+      "key": "Dm",
+      "riff": "D",
+      "bpm": "120",
+      "duration": "5:52",
+      "crossfadeInto": [],
+      "lyrics": ""
     }
   },
   "setlists": {
