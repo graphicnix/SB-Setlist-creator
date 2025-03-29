@@ -567,22 +567,19 @@
       "duration": "3:45",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "Would? - Alice in chains": {
+      "key": "",
+      "riff": "",
+      "bpm": "",
+      "duration": "3:27",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": ""
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Breed - Nirvana",
-      "Interstate Love Song - STP",
-      "Like a Stone - Audioslave",
-      "Say it aint so - Weezer ",
-      "Bullet w Butterfly - TSP",
-      "Possum Kingdom - Toadies",
-      "Feeling Good - various",
-      "Inside Out - Eve 6",
-      "I Alone - Live",
-      "Even Flow - Pearl Jam",
-      "Lola Montez - Volbeat"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
