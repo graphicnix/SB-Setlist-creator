@@ -576,6 +576,15 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "Them Bones - Alice in chains": {
+      "key": "",
+      "riff": "",
+      "bpm": "",
+      "duration": "3:33",
+      "tuning": "Db",
+      "crossfadeInto": [],
+      "lyrics": ""
     }
   },
   "setlists": {
@@ -605,7 +614,16 @@
       "Come Together - The Beatles",
       "Everlong - Foo Fighters"
     ],
-    "setlist-3": []
+    "setlist-3": [
+      "Hash Pipe - Weezer",
+      "Cherub Rock - Smashing Pumpkins",
+      "Zero - Smashing Pumpkins",
+      "Sponge - Plowed",
+      "99 Quite Bitter Beings - CKY",
+      "Ruby Soho - Rancid",
+      "Santeria - Sublime",
+      "She Talks to Angels - The Black Crowes"
+    ]
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
