@@ -282,31 +282,13 @@
         /* New styles for search and setlist selection */
         .search-container {
             margin: 20px 0;
-            position: relative;
+            display: flex;
+            justify-content: center;
         }
         #song-search {
-            width: 100%;
             padding: 10px;
+            width: 300px;
             font-size: 16px;
-        }
-        .search-results {
-            position: absolute;
-            width: 100%;
-            max-height: 300px;
-            overflow-y: auto;
-            background: white;
-            border: 1px solid #ddd;
-            z-index: 100;
-            display: none;
-        }
-        .search-result-item {
-            padding: 8px;
-            cursor: pointer;
-            color: #000;
-            border-bottom: 1px solid #eee;
-        }
-        .search-result-item:hover {
-            background-color: #f0f0f0;
         }
         .setlist-selection {
             display: none;
@@ -314,32 +296,26 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: white;
+            background: #fff;
             padding: 20px;
             border-radius: 5px;
             z-index: 1000;
             color: #000;
             text-align: center;
         }
-        .setlist-option {
-            display: inline-block;
+        .setlist-selection button {
             margin: 10px;
             padding: 15px 25px;
-            background: #e31c1c;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
             font-size: 18px;
         }
-        .setlist-option:hover {
-            background: #c51717;
-        }
-        .close-setlist-selection {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            cursor: pointer;
-            font-size: 20px;
+        .setlist-selection-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
         }
     </style>
 </head>
@@ -366,7 +342,6 @@
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
-        let currentSongForSetlist = null;
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -389,48 +364,92 @@
 
         function initializeApp() {
             loadData();
-            setupSearch();
-        }
-
-        function setupSearch() {
-            const searchInput = document.getElementById('song-search');
-            const searchResults = document.getElementById('search-results');
-            
-            searchInput.addEventListener('input', function() {
-                const query = this.value.toLowerCase();
-                if (query.length < 2) {
-                    searchResults.style.display = 'none';
+            // Initialize search functionality
+            document.getElementById('song-search').addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                if (searchTerm.length < 2) {
+                    populateSongTable();
                     return;
                 }
                 
-                const results = Object.keys(songData).filter(song => {
-                    return song.toLowerCase().includes(query);
-                }).slice(0, 10); // Limit to 10 results
+                const filteredSongs = Object.keys(songData).filter(song => 
+                    song.toLowerCase().includes(searchTerm)
+                    .sort((a, b) => {
+                        // Sort by how early the match occurs in the string
+                        const aIndex = a.toLowerCase().indexOf(searchTerm);
+                        const bIndex = b.toLowerCase().indexOf(searchTerm);
+                        return aIndex - bIndex;
+                    });
                 
-                if (results.length > 0) {
-                    searchResults.innerHTML = results.map(song => {
-                        const [title, artist] = song.split(' - ');
-                        return `<div class="search-result-item" data-song="${song}">
-                            ${title} - ${artist}
-                            <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
-                            <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
-                        </div>`;
-                    }).join('');
-                    searchResults.style.display = 'block';
-                } else {
-                    searchResults.style.display = 'none';
-                }
-            });
-            
-            // Hide results when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!searchResults.contains(e.target) {
-                    searchResults.style.display = 'none';
-                }
+                const tbody = document.getElementById('song-table-body');
+                tbody.innerHTML = '';
+                
+                filteredSongs.forEach(song => {
+                    const songInfo = songData[song];
+                    const [title, artist] = song.split(' - ');
+                    const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon =>
+                        `<span class="icon-${icon}">${icon}</span>`).join(' ');
+                    const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-song', song);
+                    row.innerHTML = `
+                        <td class="song-cell">
+                            <div class="icons">${iconsHtml}</div>
+                            <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
+                            <div>
+                                <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
+                                <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
+                            </div>
+                        </td>
+                        <td>${artist}</td>
+                        <td>${songInfo.key}</td>
+                        <td>${songInfo.riff}</td>
+                        <td>${songInfo.bpm}</td>
+                        <td>${songInfo.duration}</td>
+                        <td>${songInfo.tuning}</td>
+                        <td>
+                            <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
+                            <div class="crossfade-popup" id="crossfade-${safeSongId}">
+                                ${Object.keys(songData)
+                                    .filter(s => s !== song)
+                                    .sort((a, b) => a.split(' - ')[0].localeCompare(b.split(' - ')[0]))
+                                    .map(s => `
+                                        <label><input type="checkbox" value="${s}"
+                                            ${songInfo.crossfadeInto && songInfo.crossfadeInto.includes(s) ? 'checked' : ''}
+                                            onchange="updateCrossfade('${song}', this)"> ${s}</label>
+                                    `).join('')}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="icon-container">
+                                ${[0,1,2,3].map(i => `
+                                    <select class="icon-dropdown" onchange="updateIcons(this, '${song}', ${i})">
+                                        <option value="">-</option>
+                                        <option value="O" ${songIcons[song]?.[i] === 'O' ? 'selected' : ''}>O</option>
+                                        <option value="X" ${songIcons[song]?.[i] === 'X' ? 'selected' : ''}>X</option>
+                                        <option value="G" ${songIcons[song]?.[i] === 'G' ? 'selected' : ''}>G</option>
+                                        <option value="M" ${songIcons[song]?.[i] === 'M' ? 'selected' : ''}>M</option>
+                                        <option value="→" ${songIcons[song]?.[i] === '→' ? 'selected' : ''}>→</option>
+                                    </select>
+                                `).join('')}
+                            </div>
+                            <select class="color-picker" onchange="updateColor(this, '${song}')">
+                                <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
+                                <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
+                                <option value="#90EE90" ${songColors[song] === '#90EE90' ? 'selected' : ''}>Bright Green</option>
+                                <option value="#FFFF00" ${songColors[song] === '#FFFF00' ? 'selected' : ''}>Yellow</option>
+                                <option value="#FFC1CC" ${songColors[song] === '#FFC1CC' ? 'selected' : ''}>Pink</option>
+                                <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
+                            </select>
+                            <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
+                        </td>
+                    `;
+                    tbody.appendChild(row);
+                });
             });
         }
 
-        async function loadData() {
+        function loadData() {
             try {
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -561,7 +580,7 @@
                         <div class="icons">${iconsHtml}</div>
                         <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
                         <div>
-                            <button class="add-btn" onclick="showSetlistSelectionButtons('${song}')">Add</button>
+                            <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
                             <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         </div>
                     </td>
@@ -734,17 +753,27 @@
             printWindow.document.close();
         }
 
-        function showSetlistSelectionButtons(song) {
-            currentSongForSetlist = song;
-            document.getElementById('setlist-selection').style.display = 'block';
+        function showSetlistSelection(song) {
+            // Create overlay and selection popup
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class="setlist-selection-overlay" onclick="closeSetlistSelection()"></div>
+                <div class="setlist-selection" id="setlist-selection-popup">
+                    <h3>Add to which setlist?</h3>
+                    <button onclick="addToSetlist('${song}', 'setlist-1')">Setlist 1</button>
+                    <button onclick="addToSetlist('${song}', 'setlist-2')">Setlist 2</button>
+                    <button onclick="addToSetlist('${song}', 'setlist-3')">Setlist 3</button>
+                    <button onclick="closeSetlistSelection()">Cancel</button>
+                </div>
+            `);
         }
 
-        function selectSetlist(setlistId) {
-            document.getElementById('setlist-selection').style.display = 'none';
-            if (!currentSongForSetlist) return;
-            
-            const song = currentSongForSetlist;
-            const setlistKey = `setlist-${setlistId}`;
+        function closeSetlistSelection() {
+            document.querySelector('.setlist-selection-overlay')?.remove();
+            document.getElementById('setlist-selection-popup')?.remove();
+        }
+
+        function addToSetlist(song, setlistKey) {
+            closeSetlistSelection();
             const currentSongs = setlists[setlistKey];
             const songHasX = (songIcons[song] || []).includes('X');
 
@@ -897,21 +926,75 @@
         }
 
         function editSavedSetlist(name) {
-            if (confirm(`Load the setlist "${name}" for editing? This will replace the current setlists.`)) {
-                // Clear current setlists
-                setlists = { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
-                
-                // Copy songs to setlist 1 for editing
-                setlists['setlist-1'] = [...savedSetlists[name]];
-                
-                // Update display
-                updateAllSetlists();
-                
-                // Set the setlist name
-                document.getElementById('setlist-1-name').value = name;
-                
-                alert(`Setlist "${name}" loaded into Setlist 1 for editing. Make changes and click "Save Setlist" to update.`);
-            }
+            const editWindow = window.open('', '_blank', 'width=600,height=800');
+            editWindow.document.write(`
+                <html><head><title>Edit Setlist: ${name}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; padding: 20px; }
+                    ul { list-style-type: none; padding: 0; }
+                    li { padding: 8px; margin: 5px 0; background: #f0f0f0; cursor: move; }
+                    button { margin: 5px; padding: 5px 10px; }
+                </style>
+                </head><body>
+                <h2>Edit Setlist: ${name}</h2>
+                <ul id="edit-setlist">${savedSetlists[name].map(song => 
+                    `<li draggable="true" data-song="${song}">${song}
+                        <button onclick="window.opener.removeSongFromSavedSetlist('${name}', '${song}'); this.parentElement.remove();">Remove</button>
+                    </li>`
+                ).join('')}</ul>
+                <div>
+                    <button onclick="window.opener.saveEditedSetlist('${name}', Array.from(document.getElementById('edit-setlist').children).map(li => li.dataset.song))">Save Changes</button>
+                    <button onclick="window.close()">Cancel</button>
+                </div>
+                <script>
+                    // Make the list sortable
+                    document.getElementById('edit-setlist').addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        const dragging = document.querySelector('.dragging');
+                        const afterElement = getDragAfterElement(e.clientY);
+                        if (afterElement) {
+                            afterElement.parentNode.insertBefore(dragging, afterElement.nextSibling);
+                        } else {
+                            document.getElementById('edit-setlist').prepend(dragging);
+                        }
+                    });
+                    
+                    function getDragAfterElement(y) {
+                        const elements = [...document.querySelectorAll('#edit-setlist li:not(.dragging)')];
+                        return elements.reduce((closest, child) => {
+                            const box = child.getBoundingClientRect();
+                            const offset = y - box.top - box.height / 2;
+                            if (offset < 0 && offset > closest.offset) {
+                                return { offset: offset, element: child };
+                            } else {
+                                return closest;
+                            }
+                        }, { offset: Number.NEGATIVE_INFINITY }).element;
+                    }
+                    
+                    document.querySelectorAll('#edit-setlist li').forEach(item => {
+                        item.addEventListener('dragstart', () => {
+                            item.classList.add('dragging');
+                        });
+                        item.addEventListener('dragend', () => {
+                            item.classList.remove('dragging');
+                        });
+                    });
+                </script>
+                </body></html>
+            `);
+            editWindow.document.close();
+        }
+
+        function removeSongFromSavedSetlist(setlistName, song) {
+            savedSetlists[setlistName] = savedSetlists[setlistName].filter(s => s !== song);
+        }
+
+        function saveEditedSetlist(setlistName, songs) {
+            savedSetlists[setlistName] = songs;
+            displaySavedSetlists();
+            saveData();
+            window.alert('Setlist updated successfully!');
         }
 
         function viewSavedSetlist(name) {
@@ -1205,8 +1288,7 @@
 
     <!-- Search Bar -->
     <div class="search-container">
-        <input type="text" id="song-search" placeholder="Search for songs...">
-        <div id="search-results" class="search-results"></div>
+        <input type="text" id="song-search" placeholder="Search for a song...">
     </div>
 
     <div class="category">
@@ -1283,15 +1365,6 @@
         <h3>Paste Song Details</h3>
         <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
         <button onclick="parseAndAddSongs()">Add from Paste</button>
-    </div>
-
-    <!-- Setlist Selection Popup -->
-    <div id="setlist-selection" class="setlist-selection">
-        <span class="close-setlist-selection" onclick="document.getElementById('setlist-selection').style.display = 'none'">×</span>
-        <h3>Select Setlist</h3>
-        <div class="setlist-option" onclick="selectSetlist(1)">1</div>
-        <div class="setlist-option" onclick="selectSetlist(2)">2</div>
-        <div class="setlist-option" onclick="selectSetlist(3)">3</div>
     </div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
