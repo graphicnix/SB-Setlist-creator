@@ -67,6 +67,25 @@
         .search-result-item .icons {
             margin-right: 5px;
         }
+        .setlist-selection-popup {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1000;
+            color: #000;
+            display: none;
+        }
+        .setlist-selection-popup button {
+            margin: 5px;
+            padding: 5px 10px;
+            background: #e31c1c;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
         h1 {
             text-align: center;
             margin-bottom: 40px;
@@ -75,7 +94,6 @@
         h2 {
             color: #fff;
         }
-        /* [Rest of your existing CSS remains exactly the same] */
         .icon-legend-container {
             display: flex;
             justify-content: space-between;
@@ -392,6 +410,13 @@
         <button class="sync-btn" onclick="saveData()">Save and Sync</button>
     </div>
 
+    <!-- Setlist Selection Popup -->
+    <div class="setlist-selection-popup" id="setlist-selection-popup">
+        <button onclick="addToSetlist(1)">Add to Setlist 1</button>
+        <button onclick="addToSetlist(2)">Add to Setlist 2</button>
+        <button onclick="addToSetlist(3)">Add to Setlist 3</button>
+    </div>
+
     <script>
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
@@ -403,6 +428,7 @@
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
+        let currentSelectedSong = null;
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -477,6 +503,104 @@
                     searchResults.style.display = 'none';
                 }
             });
+        }
+
+        function showSetlistSelection(song, button) {
+            currentSelectedSong = song;
+            const popup = document.getElementById('setlist-selection-popup');
+            popup.style.display = 'block';
+            popup.style.left = `${button.getBoundingClientRect().left}px`;
+            popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
+            
+            document.addEventListener('click', function closePopup(e) {
+                if (!popup.contains(e.target) && e.target !== button) {
+                    popup.style.display = 'none';
+                    document.removeEventListener('click', closePopup);
+                }
+            });
+        }
+
+        function addToSetlist(setlistNumber) {
+            if (!currentSelectedSong) return;
+            
+            const setlistKey = `setlist-${setlistNumber}`;
+            const currentSongs = setlists[setlistKey];
+            const song = currentSelectedSong;
+            const songHasX = (songIcons[song] || []).includes('X');
+
+            // Check for crossfade suggestions
+            const crossfadeOptions = songData[song]?.crossfadeInto || [];
+            if (crossfadeOptions.length > 0) {
+                const currentSongTitle = song.split(' - ')[0];
+                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
+                
+                const popupChoice = Math.random();
+                let message;
+                
+                if (popupChoice < 0.33) {
+                    message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
+                } else if (popupChoice < 0.66) {
+                    message = `🎸 CROSSFADE GOLD:\n${compatibleSongs}\nwould sound 🔥 after ${currentSongTitle}\n\nAdd a match?`;
+                } else {
+                    message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
+                }
+                
+                if (confirm(message)) {
+                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
+                        setlists[setlistKey].push(song);
+                        setlists[setlistKey].push(selectedSong);
+                        updateSetlistDisplay(setlistKey);
+                        updateDuration(setlistKey);
+                        document.getElementById('setlist-selection-popup').style.display = 'none';
+                        currentSelectedSong = null;
+                        return;
+                    }
+                }
+            }
+
+            // Check for vocal strain (X icon) warnings
+            if (songHasX && currentSongs.length > 0) {
+                const lastSong = currentSongs[currentSongs.length - 1];
+                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
+
+                if (lastSongHasX) {
+                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
+                        let message;
+                        if (popupChoice === 1) {
+                            message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
+                        } else {
+                            message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's in a row: Fun! Three X's: Vocal cords in shambles.\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
+                        }
+                        if (!confirm(message)) {
+                            document.getElementById('setlist-selection-popup').style.display = 'none';
+                            currentSelectedSong = null;
+                            return;
+                        }
+                    }
+                    else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
+                        let message;
+                        if (popupChoice === 1) {
+                            message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer's voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
+                        } else {
+                            message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer's gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
+                        }
+                        if (!confirm(message)) {
+                            document.getElementById('setlist-selection-popup').style.display = 'none';
+                            currentSelectedSong = null;
+                            return;
+                        }
+                    }
+                }
+            }
+
+            setlists[setlistKey].push(song);
+            updateSetlistDisplay(setlistKey);
+            updateDuration(setlistKey);
+            document.getElementById('setlist-selection-popup').style.display = 'none';
+            currentSelectedSong = null;
         }
 
         function addSongFromSearch(song, setlistNumber) {
@@ -627,7 +751,7 @@
                         <div class="icons">${iconsHtml}</div>
                         <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
                         <div>
-                            <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
+                            <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
                             <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         </div>
                     </td>
@@ -798,79 +922,6 @@
                 </html>
             `);
             printWindow.document.close();
-        }
-
-        function showSetlistSelection(song) {
-            const setlistId = prompt("Select Setlist (1, 2, or 3):", "1");
-            if (!setlistId || !['1', '2', '3'].includes(setlistId)) return;
-
-            const setlistKey = `setlist-${setlistId}`;
-            const currentSongs = setlists[setlistKey];
-            const songHasX = (songIcons[song] || []).includes('X');
-
-            // 1. FIRST check for crossfade suggestions (independent of current setlist)
-            const crossfadeOptions = songData[song]?.crossfadeInto || [];
-            if (crossfadeOptions.length > 0) {
-                const currentSongTitle = song.split(' - ')[0];
-                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-                
-                const popupChoice = Math.random();
-                let message;
-                
-                if (popupChoice < 0.33) {
-                    message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
-                } else if (popupChoice < 0.66) {
-                    message = `🎸 CROSSFADE GOLD:\n${compatibleSongs}\nwould sound 🔥 after ${currentSongTitle}\n\nAdd a match?`;
-                } else {
-                    message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
-                }
-                
-                if (confirm(message)) {
-                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
-                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
-                        // Add both the original and the compatible song
-                        setlists[setlistKey].push(song);
-                        setlists[setlistKey].push(selectedSong);
-                        updateSetlistDisplay(setlistKey);
-                        updateDuration(setlistKey);
-                        return;
-                    }
-                }
-            }
-
-            // 2. THEN check for vocal strain (X icon) warnings
-            if (songHasX && currentSongs.length > 0) {
-                const lastSong = currentSongs[currentSongs.length - 1];
-                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
-
-                if (lastSongHasX) {
-                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
-                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                        let message;
-                        if (popupChoice === 1) {
-                            message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
-                        } else {
-                            message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's in a row: Fun! Three X's: Vocal cords in shambles.\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
-                        }
-                        if (!confirm(message)) return;
-                    }
-                    else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
-                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                        let message;
-                        if (popupChoice === 1) {
-                            message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer's voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
-                        } else {
-                            message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer's gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
-                        }
-                        if (!confirm(message)) return;
-                    }
-                }
-            }
-
-            // 3. If no crossfade was added, just add the single song
-            setlists[setlistKey].push(song);
-            updateSetlistDisplay(setlistKey);
-            updateDuration(setlistKey);
         }
 
         function updateIcons(selectElement, song, iconIndex) {
