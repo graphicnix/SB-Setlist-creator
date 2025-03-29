@@ -171,9 +171,6 @@
         .add-btn, .edit-btn {
             background: #450202;
         }
-        .print-btn:hover, .delete-btn:hover, .save-btn:hover, .add-btn:hover, .edit-btn:hover {
-            background: #c51717;
-        }
         .sync-btn {
             background: #000;
             color: #fff;
@@ -260,10 +257,9 @@
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
         if (!userPassword || userPassword.toLowerCase() !== correctPassword) {
-            userPassword = prompt("Enter the password to access this site:");
+            userPassword = prompt("Enter the password to access this site:", "");
             if (!userPassword || userPassword.toLowerCase() !== correctPassword) {
-                document.body.innerHTML = "<h1>Access Denied</h1>";
-                throw new Error("Incorrect password");
+                window.close();
             } else {
                 localStorage.setItem('sitePassword', userPassword);
             }
@@ -641,6 +637,7 @@
                 }
             }
 
+            // Add the song to the selected setlist
             setlists[setlistKey].push(song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
@@ -762,14 +759,30 @@
         }
 
         function allowDrop(ev) { ev.preventDefault(); }
-        function drag(ev) { ev.dataTransfer.setData("text", ev.target.dataset.song); }
+        function drag(ev) {
+            const song = ev.target.closest('li').dataset.song;
+            ev.dataTransfer.setData("text", song);
+            ev.dataTransfer.effectAllowed = "move";
+        }
         function drop(ev) {
             ev.preventDefault();
             const song = ev.dataTransfer.getData("text");
             const setlistId = ev.target.closest('ul').id;
-            setlists[setlistId].push(song);
-            updateSetlistDisplay(setlistId);
-            updateDuration(setlistId);
+            const setlistKey = setlistId;
+            const targetIndex = Array.from(ev.target.closest('ul').children).indexOf(ev.target);
+
+            // Remove the song from its current setlist
+            for (const key in setlists) {
+                const index = setlists[key].indexOf(song);
+                if (index > -1) {
+                    setlists[key].splice(index, 1);
+                    break;
+                }
+            }
+
+            // Add the song to the new position in the target setlist
+            setlists[setlistKey].splice(targetIndex, 0, song);
+            updateAllSetlists();
         }
 
         function updateAllSetlists() {
@@ -787,8 +800,7 @@
                     `<span class="icon-${icon}">${icon}</span>`
                 ).join(' ');
                 return `
-                    <li draggable="true" data-song="${song}" ondragstart="drag(event)"
-                        style="background:${songColors[song] || '#f9f9f9'}">
+                    <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)">
                         ${icons} ${song}
                         <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
