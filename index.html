@@ -279,17 +279,7 @@
             margin: 0 5px;
             cursor: pointer;
         }
-        /* New styles for search and setlist selection */
-        .search-container {
-            margin: 20px 0;
-            display: flex;
-            justify-content: center;
-        }
-        #song-search {
-            padding: 10px;
-            width: 300px;
-            font-size: 16px;
-        }
+        /* New styles for setlist selection */
         .setlist-selection {
             display: none;
             position: fixed;
@@ -331,6 +321,91 @@
         </div>
     </div>
 
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
+
+    <h1>SpiralBound Setlist Creator</h1>
+
+    <div class="category">
+        <h2>Alternative/Grunge/Rock</h2>
+        <div class="icon-legend-container">
+            <div class="tooltip">Icon Legend
+                <span class="tooltiptext">
+                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
+                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
+                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
+                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
+                    <strong class="icon-→">→</strong> = Crossfade (Black)
+                </span>
+            </div>
+        </div>
+        <table id="alternative-grunge-rock">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
+                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
+                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
+                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
+                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
+                    <th>Crossfade Options</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="song-table-body"></tbody>
+        </table>
+    </div>
+
+    <div class="setlist">
+        <h3>Setlist 1
+            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <h3>Setlist 2
+            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <h3>Setlist 3
+            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+    </div>
+
+    <div id="saved-setlists" class="category"></div>
+
+    <div class="add-song">
+        <h3>Add New Song</h3>
+        <input type="text" id="new-song-title" placeholder="Song Title">
+        <input type="text" id="new-song-artist" placeholder="Artist">
+        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
+        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
+        <input type="text" id="new-song-bpm" placeholder="BPM">
+        <input type="text" id="new-song-duration" placeholder="Duration">
+        <input type="text" id="new-song-tuning" placeholder="Tuning">
+        <button onclick="addNewSong()">Add Song</button>
+        <h3>Paste Song Details</h3>
+        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
+        <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+
     <script>
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
@@ -364,92 +439,9 @@
 
         function initializeApp() {
             loadData();
-            // Initialize search functionality
-            document.getElementById('song-search').addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                if (searchTerm.length < 2) {
-                    populateSongTable();
-                    return;
-                }
-                
-                const filteredSongs = Object.keys(songData).filter(song => 
-                    song.toLowerCase().includes(searchTerm)
-                    .sort((a, b) => {
-                        // Sort by how early the match occurs in the string
-                        const aIndex = a.toLowerCase().indexOf(searchTerm);
-                        const bIndex = b.toLowerCase().indexOf(searchTerm);
-                        return aIndex - bIndex;
-                    });
-                
-                const tbody = document.getElementById('song-table-body');
-                tbody.innerHTML = '';
-                
-                filteredSongs.forEach(song => {
-                    const songInfo = songData[song];
-                    const [title, artist] = song.split(' - ');
-                    const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon =>
-                        `<span class="icon-${icon}">${icon}</span>`).join(' ');
-                    const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
-                    const row = document.createElement('tr');
-                    row.setAttribute('data-song', song);
-                    row.innerHTML = `
-                        <td class="song-cell">
-                            <div class="icons">${iconsHtml}</div>
-                            <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
-                            <div>
-                                <button class="add-btn" onclick="showSetlistSelection('${song}')">Add</button>
-                                <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
-                            </div>
-                        </td>
-                        <td>${artist}</td>
-                        <td>${songInfo.key}</td>
-                        <td>${songInfo.riff}</td>
-                        <td>${songInfo.bpm}</td>
-                        <td>${songInfo.duration}</td>
-                        <td>${songInfo.tuning}</td>
-                        <td>
-                            <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
-                            <div class="crossfade-popup" id="crossfade-${safeSongId}">
-                                ${Object.keys(songData)
-                                    .filter(s => s !== song)
-                                    .sort((a, b) => a.split(' - ')[0].localeCompare(b.split(' - ')[0]))
-                                    .map(s => `
-                                        <label><input type="checkbox" value="${s}"
-                                            ${songInfo.crossfadeInto && songInfo.crossfadeInto.includes(s) ? 'checked' : ''}
-                                            onchange="updateCrossfade('${song}', this)"> ${s}</label>
-                                    `).join('')}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="icon-container">
-                                ${[0,1,2,3].map(i => `
-                                    <select class="icon-dropdown" onchange="updateIcons(this, '${song}', ${i})">
-                                        <option value="">-</option>
-                                        <option value="O" ${songIcons[song]?.[i] === 'O' ? 'selected' : ''}>O</option>
-                                        <option value="X" ${songIcons[song]?.[i] === 'X' ? 'selected' : ''}>X</option>
-                                        <option value="G" ${songIcons[song]?.[i] === 'G' ? 'selected' : ''}>G</option>
-                                        <option value="M" ${songIcons[song]?.[i] === 'M' ? 'selected' : ''}>M</option>
-                                        <option value="→" ${songIcons[song]?.[i] === '→' ? 'selected' : ''}>→</option>
-                                    </select>
-                                `).join('')}
-                            </div>
-                            <select class="color-picker" onchange="updateColor(this, '${song}')">
-                                <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
-                                <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
-                                <option value="#90EE90" ${songColors[song] === '#90EE90' ? 'selected' : ''}>Bright Green</option>
-                                <option value="#FFFF00" ${songColors[song] === '#FFFF00' ? 'selected' : ''}>Yellow</option>
-                                <option value="#FFC1CC" ${songColors[song] === '#FFC1CC' ? 'selected' : ''}>Pink</option>
-                                <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
-                            </select>
-                            <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
-                        </td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            });
         }
 
-        function loadData() {
+        async function loadData() {
             try {
                 const response = await fetch('data.json');
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -1279,95 +1271,5 @@
             }
         }
     </script>
-
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
-
-    <h1>SpiralBound Setlist Creator</h1>
-
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" id="song-search" placeholder="Search for a song...">
-    </div>
-
-    <div class="category">
-        <h2>Alternative/Grunge/Rock</h2>
-        <div class="icon-legend-container">
-            <div class="tooltip">Icon Legend
-                <span class="tooltiptext">
-                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                    <strong class="icon-→">→</strong> = Crossfade (Black)
-                </span>
-            </div>
-        </div>
-        <table id="alternative-grunge-rock">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
-                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
-                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
-                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
-                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
-                    <th>Crossfade Options</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="song-table-body"></tbody>
-        </table>
-    </div>
-
-    <div class="setlist">
-        <h3>Setlist 1
-            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
-            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
-    </div>
-    <div class="setlist">
-        <h3>Setlist 2
-            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
-            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
-    </div>
-    <div class="setlist">
-        <h3>Setlist 3
-            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
-            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
-    </div>
-
-    <div id="saved-setlists" class="category"></div>
-
-    <div class="add-song">
-        <h3>Add New Song</h3>
-        <input type="text" id="new-song-title" placeholder="Song Title">
-        <input type="text" id="new-song-artist" placeholder="Artist">
-        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
-        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
-        <input type="text" id="new-song-bpm" placeholder="BPM">
-        <input type="text" id="new-song-duration" placeholder="Duration">
-        <input type="text" id="new-song-tuning" placeholder="Tuning">
-        <button onclick="addNewSong()">Add Song</button>
-        <h3>Paste Song Details</h3>
-        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
-        <button onclick="parseAndAddSongs()">Add from Paste</button>
-    </div>
-
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
 </body>
 </html>
