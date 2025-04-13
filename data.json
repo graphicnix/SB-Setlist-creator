@@ -397,7 +397,8 @@
       "bpm": "120",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "Good Times Bad - Led Zeppelin": {
       "key": "A",
