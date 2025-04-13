@@ -383,14 +383,6 @@
       ],
       "lyrics": ""
     },
-    "Bullet w Butterfly - TSP": {
-      "key": "F",
-      "riff": "F",
-      "bpm": "120",
-      "duration": "4:18",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Hemorrhage - Fuel": {
       "key": "Am",
       "riff": "Am",
@@ -611,6 +603,15 @@
       "crossfadeInto": [],
       "lyrics": "",
       "tuning": "Standard"
+    },
+    "Bullet w Butterfly - Smashing Pumpkins": {
+      "key": "F",
+      "riff": "F",
+      "bpm": "120",
+      "duration": "4:18",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "tuning": ""
     }
   },
   "setlists": {
@@ -619,7 +620,7 @@
       "Ruby Soho - Rancid",
       "Interstate Love Song - STP",
       "Possum Kingdom - Toadies",
-      "Bullet w Butterfly - TSP",
+      "Bullet w Butterfly - Smashing Pumpkins",
       "I Alone - Live",
       "Say it aint so - Weezer ",
       "Cowboys from Hell - Pantera",
