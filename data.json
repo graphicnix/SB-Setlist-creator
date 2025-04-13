@@ -248,14 +248,6 @@
       "lyrics": "",
       "tuning": "Standard"
     },
-    "Sod Off - Clutch": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "120",
-      "duration": "3:36",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Sweet Emotion - Aerosmith": {
       "key": "Em",
       "riff": "Em",
@@ -602,6 +594,15 @@
       "tuning": "Db",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "Sawed Off Shotgun - Glorious Sons": {
+      "key": "E",
+      "riff": "E",
+      "bpm": "120",
+      "duration": "3:36",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "tuning": "Standard"
     }
   },
   "setlists": {
