@@ -254,7 +254,8 @@
       "bpm": "92",
       "duration": "4:34",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Standard"
     },
     "Even Flow - Pearl Jam": {
       "key": "Em",
