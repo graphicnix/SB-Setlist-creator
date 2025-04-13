@@ -47,11 +47,12 @@
     },
     "No Excuses - Alice in Chains": {
       "key": "Am",
-      "riff": "Am",
-      "bpm": "104",
-      "duration": "4:16",
+      "riff": "",
+      "bpm": "",
+      "duration": "",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": ""
     },
     "Say It Ain't So - Weezer": {
       "key": "C",
