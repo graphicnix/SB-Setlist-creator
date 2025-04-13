@@ -80,15 +80,6 @@
       "lyrics": "",
       "tuning": "Eb"
     },
-    "Sponge - Plowed": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "92",
-      "duration": "4:32",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb"
-    },
     "Ruby Soho - Rancid": {
       "key": "G",
       "riff": "G",
@@ -331,7 +322,8 @@
       "bpm": "92",
       "duration": "4:32",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "She Talks to Angels - The Black Crowes": {
       "key": "Am",
@@ -629,7 +621,7 @@
       "Hash Pipe - Weezer",
       "Santeria - Sublime",
       "99 Quite Bitter Beings - CKY",
-      "Sponge - Plowed",
+      "Plowed - Sponge",
       "She Talks to Angels - The Black Crowes",
       "Them Bones - Alice in chains",
       "46 & 2 - Tool",
