@@ -149,7 +149,8 @@
       "bpm": "136",
       "duration": "3:50",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Standard"
     },
     "Shipping Up to Boston - Dropkick Murphys": {
       "key": "D",
