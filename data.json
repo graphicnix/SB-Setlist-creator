@@ -400,14 +400,6 @@
       "lyrics": "",
       "tuning": "Eb"
     },
-    "Good Times Bad - Led Zeppelin": {
-      "key": "A",
-      "riff": "A",
-      "bpm": "138",
-      "duration": "2:46",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Devils Bleedin - Volbeat": {
       "key": "",
       "riff": "",
@@ -610,6 +602,15 @@
       "crossfadeInto": [],
       "lyrics": "",
       "tuning": "Standard"
+    },
+    "Good Times Bad Times - Led Zeppelin": {
+      "key": "A",
+      "riff": "A",
+      "bpm": "138",
+      "duration": "2:46",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "tuning": "Standard"
     }
   },
   "setlists": {
@@ -629,7 +630,7 @@
     "setlist-2": [
       "Cherub Rock - Smashing Pumpkins",
       "Tripping on a Hole - STP",
-      "Good Times Bad - Led Zeppelin",
+      "Good Times Bad Times - Led Zeppelin",
       "Cult of Personality - Living Colour",
       "Feeling Good - various",
       "Sweet Emotion - Aerosmith",
