@@ -131,7 +131,8 @@
       "bpm": "120",
       "duration": "5:23",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Standard"
     },
     "Tennessee Whiskey - Chris Stapleton": {
       "key": "A",
