@@ -77,7 +77,8 @@
       "bpm": "153",
       "duration": "3:23",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "Sponge - Plowed": {
       "key": "Em",
