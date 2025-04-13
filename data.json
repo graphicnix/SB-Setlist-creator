@@ -308,7 +308,8 @@
       "bpm": "144",
       "duration": "3:03",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Standard"
     },
     "Cowboys from Hell - Pantera": {
       "key": "E",
