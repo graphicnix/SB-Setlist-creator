@@ -811,7 +811,9 @@
       ""
     ]
   },
-  "songColors": {},
+  "songColors": {
+    "Pride and Joy - Stevie Ray Vaughan": "#FFC1CC"
+  },
   "savedSetlists": {
     "Marc initial setlist 1": [
       "Breed - Nirvana",
