@@ -1,13 +1,12 @@
 {
   "songData": {
     "Pride and Joy - Stevie Ray Vaughan": {
-      "key": "Eb",
-      "riff": "Eb",
+      "key": "E",
+      "riff": "E",
       "bpm": "112",
       "duration": "3:39",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb "
+      "lyrics": ""
     },
     "Feeling Good - various": {
       "key": "Am",
