@@ -6,7 +6,8 @@
       "bpm": "112",
       "duration": "3:39",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb "
     },
     "Feeling Good - various": {
       "key": "Am",
@@ -811,9 +812,7 @@
       ""
     ]
   },
-  "songColors": {
-    "Pride and Joy - Stevie Ray Vaughan": "#FFC1CC"
-  },
+  "songColors": {},
   "savedSetlists": {
     "Marc initial setlist 1": [
       "Breed - Nirvana",
