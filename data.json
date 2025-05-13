@@ -590,8 +590,9 @@
   },
   "setlists": {
     "setlist-1": [
-      "Soul to Squeeze - R.H.C.P",
-      "Tripping on a Hole - STP"
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "No Excuses - Alice in Chains"
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -819,6 +820,11 @@
       "Cumbersome - Seven Mary Three",
       "What If - Creed",
       "War Pigs - Black Sabbath"
+    ],
+    "set1": [
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "No Excuses - Alice in Chains"
     ]
   }
 }
