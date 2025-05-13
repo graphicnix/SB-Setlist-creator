@@ -1067,17 +1067,20 @@
             songIcons[song][iconIndex] = selectElement.value;
             populateSongTable();
             updateAllSetlists();
+            saveData();
         }
 
         function updateColor(selectElement, song) {
             songColors[song] = selectElement.value;
             updateAllSetlists();
+            saveData();
         }
 
         function deleteFromSetlist(setlistKey, song) {
             setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
+            saveData();
         }
 
         function printSetlist(setlistId) {
@@ -1483,6 +1486,7 @@
             // Add the song to the new position in the target setlist
             setlists[setlistKey].splice(targetIndex, 0, song);
             updateAllSetlists();
+            saveData();
         }
 
         function updateAllSetlists() {
