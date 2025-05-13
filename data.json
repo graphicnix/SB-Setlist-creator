@@ -15,8 +15,7 @@
       "bpm": "92",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "E"
+      "lyrics": ""
     },
     "Creep - Radiohead": {
       "key": "G",
@@ -590,19 +589,7 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Breed - Nirvana",
-      "Ruby Soho - Rancid",
-      "Interstate Love Song - STP",
-      "Possum Kingdom - Toadies",
-      "Bullet w Butterfly - TSP",
-      "I Alone - Live",
-      "Say it aint so - Weezer ",
-      "Cowboys from Hell - Pantera",
-      "Inside Out - Eve 6",
-      "Lola Montez - Volbeat",
-      "Even Flow - Pearl Jam"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
