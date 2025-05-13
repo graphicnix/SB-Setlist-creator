@@ -137,8 +137,7 @@
       "bpm": "95",
       "duration": "4:53",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "E"
+      "lyrics": ""
     },
     "Drunken Lullabies - Flogging Molly": {
       "key": "G",
@@ -590,7 +589,13 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Them Bones - Alice in chains",
+      "Would? - Alice in chains",
+      "No Rest for the Wicked - Cage the Elephant",
+      "Loser - Beck",
+      "99 Quite Bitter Beings - CKY"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
