@@ -589,7 +589,10 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Good Times Bad - Led Zeppelin",
+      "Loser - Beck"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
@@ -816,6 +819,10 @@
       "Cumbersome - Seven Mary Three",
       "What If - Creed",
       "War Pigs - Black Sabbath"
+    ],
+    "test": [
+      "Good Times Bad - Led Zeppelin",
+      "Loser - Beck"
     ]
   }
 }
