@@ -589,11 +589,7 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "I Alone - Live",
-      "Santeria - Sublime",
-      "No Excuses - Alice in Chains"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
@@ -820,11 +816,6 @@
       "Cumbersome - Seven Mary Three",
       "What If - Creed",
       "War Pigs - Black Sabbath"
-    ],
-    "set1": [
-      "I Alone - Live",
-      "Santeria - Sublime",
-      "No Excuses - Alice in Chains"
     ]
   }
 }
