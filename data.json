@@ -15,7 +15,8 @@
       "bpm": "92",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "E "
     },
     "Creep - Radiohead": {
       "key": "G",
@@ -782,6 +783,12 @@
     ],
     "SOS - SAWD OFF SHOTTY": [
       "X",
+      "",
+      "",
+      ""
+    ],
+    "Feeling Good - various": [
+      "O",
       "",
       "",
       ""
