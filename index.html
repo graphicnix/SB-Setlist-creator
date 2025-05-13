@@ -530,13 +530,13 @@
             searchInput.addEventListener('input', function() {
                 const query = this.value.toLowerCase();
                 searchResults.innerHTML = '';
-
+                
                 if (query.length < 2) {
                     searchResults.style.display = 'none';
                     return;
                 }
 
-                const matches = Object.keys(songData).filter(song =>
+                const matches = Object.keys(songData).filter(song => 
                     song.toLowerCase().includes(query)
                 ).slice(0, 10); // Limit to 10 results
 
@@ -545,7 +545,7 @@
                         const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                             `<span class="icon-${icon}">${icon}</span>`
                         ).join(' ');
-
+                        
                         const item = document.createElement('div');
                         item.className = 'search-result-item';
                         item.innerHTML = `
@@ -580,7 +580,7 @@
             popup.style.display = 'block';
             popup.style.left = `${button.getBoundingClientRect().left}px`;
             popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
-
+            
             document.addEventListener('click', function closePopup(e) {
                 if (!popup.contains(e.target) && e.target !== button) {
                     popup.style.display = 'none';
@@ -591,7 +591,7 @@
 
         function addToSetlist(setlistNumber) {
             if (!currentSelectedSong) return;
-
+            
             const setlistKey = `setlist-${setlistNumber}`;
             const currentSongs = setlists[setlistKey];
             const song = currentSelectedSong;
@@ -602,10 +602,10 @@
             if (crossfadeOptions.length > 0) {
                 const currentSongTitle = song.split(' - ')[0];
                 const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-
+                
                 const popupChoice = Math.random();
                 let message;
-
+                
                 if (popupChoice < 0.33) {
                     message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
                 } else if (popupChoice < 0.66) {
@@ -613,7 +613,7 @@
                 } else {
                     message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
                 }
-
+                
                 if (confirm(message)) {
                     const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
                     if (selectedSong && crossfadeOptions.includes(selectedSong)) {
@@ -717,10 +717,10 @@
             if (crossfadeOptions.length > 0) {
                 const currentSongTitle = song.split(' - ')[0];
                 const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-
+                
                 const popupChoice = Math.random();
                 let message;
-
+                
                 if (popupChoice < 0.33) {
                     message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
                 } else if (popupChoice < 0.66) {
@@ -728,7 +728,7 @@
                 } else {
                     message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
                 }
-
+                
                 if (confirm(message)) {
                     const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
                     if (selectedSong && crossfadeOptions.includes(selectedSong)) {
@@ -1067,20 +1067,17 @@
             songIcons[song][iconIndex] = selectElement.value;
             populateSongTable();
             updateAllSetlists();
-            saveData();
         }
 
         function updateColor(selectElement, song) {
             songColors[song] = selectElement.value;
             updateAllSetlists();
-            saveData();
         }
 
         function deleteFromSetlist(setlistKey, song) {
             setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
-            saveData();
         }
 
         function printSetlist(setlistId) {
@@ -1121,9 +1118,9 @@
                         margin-bottom: 10px;
                     }
                     .setlist-title {
-                        font-size: ${setlistTitleFontSize}px;
-                        background-color: yellow;
-                        display: inline-block;
+                        font-size: ${setlistTitleFontSize}px; 
+                        background-color: yellow; 
+                        display: inline-block; 
                         padding: 5px 10px;
                     }
                     .tuning-legend {
@@ -1153,11 +1150,11 @@
                     .crossfade-color {
                         background-color: #90EE90;
                     }
-                    li {
-                        margin: 10px 0;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
+                    li { 
+                        margin: 10px 0; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
                         position: relative;
                     }
                     .song-title { font-size: ${baseTitleFontSize}px; }
@@ -1219,7 +1216,7 @@
                     const [title, artist] = song.split(' - ');
                     const tuning = songData[song]?.tuning || '';
                     let tuningClass = '';
-
+                    
                     if (tuning) {
                         const tuningLower = tuning.toLowerCase();
                         if (tuningLower.includes('d') && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
@@ -1230,10 +1227,10 @@
                             tuningClass = 'tuning-other';
                         }
                     }
-
+                    
                     const isCrossfadePair = crossfadePairs.includes(index);
                     const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
-
+                    
                     return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass} ${crossfadeClass}">
                         <span class="icons">${icons}</span>
                         <span class="song-title">${title}</span>
@@ -1271,7 +1268,7 @@
             const songCount = songs.length;
             const baseFontSize = 40;
             const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
-
+            
             // Check for crossfade pairs
             const crossfadePairs = [];
             for (let i = 0; i < songs.length - 1; i++) {
@@ -1300,9 +1297,9 @@
                         margin-bottom: 10px;
                     }
                     .setlist-title {
-                        font-size: ${fontSize + 10}px;
-                        background-color: yellow;
-                        display: inline-block;
+                        font-size: ${fontSize + 10}px; 
+                        background-color: yellow; 
+                        display: inline-block; 
                         padding: 5px 10px;
                     }
                     .tuning-legend {
@@ -1332,8 +1329,8 @@
                     .crossfade-color {
                         background-color: #90EE90;
                     }
-                    li {
-                        font-size: ${fontSize}px;
+                    li { 
+                        font-size: ${fontSize}px; 
                         margin: 10px 0;
                         position: relative;
                     }
@@ -1392,7 +1389,7 @@
                     ).join(' ');
                     const tuning = songData[song]?.tuning || '';
                     let tuningClass = '';
-
+                    
                     if (tuning) {
                         const tuningLower = tuning.toLowerCase();
                         if (tuningLower.includes('d') && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
@@ -1403,10 +1400,10 @@
                             tuningClass = 'tuning-other';
                         }
                     }
-
+                    
                     const isCrossfadePair = crossfadePairs.includes(index);
                     const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
-
+                    
                     return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass} ${crossfadeClass}">${icons} ${song}</li>`;
                 }).join('')}</ol>
                 <button onclick="window.print()">Print</button>
@@ -1486,7 +1483,6 @@
             // Add the song to the new position in the target setlist
             setlists[setlistKey].splice(targetIndex, 0, song);
             updateAllSetlists();
-            saveData();
         }
 
         function updateAllSetlists() {
