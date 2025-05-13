@@ -15,7 +15,8 @@
       "bpm": "92",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "E"
     },
     "Creep - Radiohead": {
       "key": "G",
@@ -812,7 +813,9 @@
       ""
     ]
   },
-  "songColors": {},
+  "songColors": {
+    "Pride and Joy - Stevie Ray Vaughan": "#FFA500"
+  },
   "savedSetlists": {
     "Marc initial setlist 1": [
       "Breed - Nirvana",
