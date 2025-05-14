@@ -15,8 +15,7 @@
       "bpm": "92",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb Std."
+      "lyrics": ""
     },
     "Creep - Radiohead": {
       "key": "G",
@@ -72,8 +71,7 @@
       "bpm": "153",
       "duration": "3:23",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb Std."
+      "lyrics": ""
     },
     "Sponge - Plowed": {
       "key": "Em",
@@ -258,7 +256,7 @@
       "duration": "4:53",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "Drop D"
+      "tuning": "D"
     },
     "Schism - Tool": {
       "key": "D",
@@ -267,7 +265,7 @@
       "duration": "6:47",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "Drop D"
+      "tuning": "D"
     },
     "Come Together - The Beatles": {
       "key": "D",
@@ -276,7 +274,7 @@
       "duration": "4:19",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "Drop D"
+      "tuning": "D"
     },
     "Lola Montez - Volbeat": {
       "key": "Am",
@@ -285,7 +283,7 @@
       "duration": "4:25",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "Drop D"
+      "tuning": "D"
     },
     "Superstition - Stevie Wonder": {
       "key": "Eb",
@@ -351,7 +349,7 @@
       "duration": "4:41",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "Drop D"
+      "tuning": "D"
     },
     "Like a Stone - Audioslave": {
       "key": "Am",
@@ -521,7 +519,7 @@
         "Even Flow - Pearl Jam"
       ],
       "lyrics": "",
-      "tuning": "Drop D"
+      "tuning": "D"
     },
     "Song for the Dead - Queens of the Stone Age": {
       "key": "Dm",
@@ -592,15 +590,14 @@
   },
   "setlists": {
     "setlist-1": [
-      "No Excuses - Alice in Chains",
+      "Song for the Dead - Queens of the Stone Age",
+      "Schism - Tool",
+      "Bullet w Butterfly - TSP",
+      "Lydia - Highly Suspect",
       "Good Times Bad - Led Zeppelin",
-      "Tripping on a Hole - STP",
+      "Sex on Fire - Kings of Leon",
       "Love Me Two Times - The Doors",
-      "Sweet Emotion - Aerosmith",
-      "War Pigs - Black Sabbath",
-      "Song 2 - Blur",
-      "Interstate Love Song - STP",
-      "Even Flow - Pearl Jam"
+      "Creep - Radiohead"
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -782,12 +779,6 @@
     ],
     "SOS - SAWD OFF SHOTTY": [
       "X",
-      "",
-      "",
-      ""
-    ],
-    "Everlong - Foo Fighters": [
-      "O",
       "",
       "",
       ""
