@@ -409,20 +409,42 @@
             gap: 5px;
             margin-top: 10px;
         }
-        .tuning-D {
-            background-color: #D3D3D3 !important; /* Light grey */
+        .tuning-Standard {
+            background-color: inherit !important;
         }
-        .tuning-Eb {
-            background-color: #87CEEB !important; /* Light blue */
+        .tuning-Drop-D {
+            background-color: #000 !important;
+            color: white !important;
         }
-        .tuning-E {
-            background-color: #87CEEB !important; /* Light blue */
+        .tuning-Eb-Std {
+            background-color: #ff0000 !important;
         }
-        .tuning-other {
-            background-color: #FFFF00 !important; /* Yellow */
+        .tuning-D-Std {
+            background-color: #D3D3D3 !important;
+        }
+        .tuning-Drop-C {
+            background-color: #FFFF00 !important;
+        }
+        .tuning-DADGAD {
+            background-color: #FFA500 !important;
+        }
+        .tuning-Open-G {
+            background-color: #90EE90 !important;
+        }
+        .tuning-Open-D {
+            background-color: #FFC1CC !important;
+        }
+        .tuning-Drop-Db {
+            background-color: #808080 !important;
+        }
+        .tuning-B-Std {
+            background-color: #800080 !important;
+        }
+        .tuning-Open-C {
+            background-color: #A52A2A !important;
         }
         .crossfade-pair {
-            background-color: #90EE90 !important; /* Light green */
+            background-color: #90EE90 !important;
             position: relative;
         }
         .crossfade-pair::before {
@@ -455,6 +477,34 @@
             width: 15px;
             height: 15px;
             border: 1px solid #000;
+        }
+        .randomize-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        @media screen and (orientation:portrait) {
+            body::before {
+                content: "Please rotate your device to landscape mode";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                background: #e31c1c;
+                color: white;
+                text-align: center;
+                padding: 20px;
+                z-index: 1000;
+            }
+            
+            body > *:not(body::before) {
+                opacity: 0.3;
+                pointer-events: none;
+            }
         }
     </style>
 </head>
@@ -495,9 +545,14 @@
         let songColors = {};
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
-        let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
         let currentSelectedSong = null;
+
+        // Tuning options and their display colors
+        const TUNING_OPTIONS = [
+            "Standard", "Drop D", "Eb Std.", "D Std.", "Drop C", 
+            "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C"
+        ];
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -509,13 +564,6 @@
                 alert('Incorrect password');
                 window.close();
             }
-        }
-
-        if (userPassword && userPassword.toLowerCase() === correctPassword) {
-            document.getElementById('password-protection').style.display = 'none';
-            initializeApp();
-        } else {
-            localStorage.removeItem('sitePassword');
         }
 
         function initializeApp() {
@@ -538,8 +586,8 @@
 
                 const matches = Object.keys(songData).filter(song => 
                     song.toLowerCase().includes(query)
-                ).slice(0, 10); // Limit to 10 results
-
+                ).slice(0, 10);
+                
                 if (matches.length > 0) {
                     matches.forEach(song => {
                         const icons = (songIcons[song] || []).filter(i => i).map(icon =>
@@ -565,8 +613,7 @@
                     searchResults.style.display = 'none';
                 }
             });
-
-            // Close search results when clicking outside
+            
             document.addEventListener('click', function(e) {
                 if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
                     searchResults.style.display = 'none';
@@ -593,34 +640,24 @@
             if (!currentSelectedSong) return;
             
             const setlistKey = `setlist-${setlistNumber}`;
-            const currentSongs = setlists[setlistKey];
             const song = currentSelectedSong;
             const songHasX = (songIcons[song] || []).includes('X');
 
-            // Check for crossfade suggestions
-            const crossfadeOptions = songData[song]?.crossfadeInto || [];
-            if (crossfadeOptions.length > 0) {
-                const currentSongTitle = song.split(' - ')[0];
-                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-                
-                const popupChoice = Math.random();
-                let message;
-                
-                if (popupChoice < 0.33) {
-                    message = `👯 '${currentSongTitle}' works perfectly with:\n${compatibleSongs}\n\nAdd one of these next?`;
-                } else if (popupChoice < 0.66) {
-                    message = `🎸 CROSSFADE GOLD:\n${compatibleSongs}\nwould sound 🔥 after ${currentSongTitle}\n\nAdd a match?`;
-                } else {
-                    message = `🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs.split(', ')[0]}\n= instant crowd hype\n\nDo it?`;
-                }
-                
-                if (confirm(message)) {
-                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
-                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
-                        setlists[setlistKey].push(song);
-                        setlists[setlistKey].push(selectedSong);
-                        updateSetlistDisplay(setlistKey);
-                        updateDuration(setlistKey);
+            // Vocal strain warning for X songs
+            if (songHasX && setlists[setlistKey].length > 0) {
+                const lastSong = setlists[setlistKey][setlists[setlistKey].length - 1];
+                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
+
+                if (lastSongHasX) {
+                    let message;
+                    if (setlists[setlistKey].length >= 2 && 
+                        (songIcons[setlists[setlistKey][setlists[setlistKey].length - 2]] || []).includes('X')) {
+                        message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row!";
+                    } else {
+                        message = "⚠️ Friendly Warning: Two X's in a row!";
+                    }
+                    
+                    if (!confirm(message)) {
                         document.getElementById('setlist-selection-popup').style.display = 'none';
                         currentSelectedSong = null;
                         return;
@@ -628,40 +665,22 @@
                 }
             }
 
-            // Check for vocal strain (X icon) warnings
-            if (songHasX && currentSongs.length > 0) {
-                const lastSong = currentSongs[currentSongs.length - 1];
-                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
-
-                if (lastSongHasX) {
-                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
-                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                        let message;
-                        if (popupChoice === 1) {
-                            message = "😬 XX Combo 😬\n\"This is fine! Totally fine! Unless...you're thinking about adding another? You're thinking about adding another, aren't you?\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
-                        } else {
-                            message = "⚠️ Friendly Neighborhood Warning ⚠️\n\"Two X's in a row: Fun! Three X's: Vocal cords in shambles.\"\n\nOK = Live Fast Die Raspy\nCancel = Fine, I'll Be Responsible";
-                        }
-                        if (!confirm(message)) {
-                            document.getElementById('setlist-selection-popup').style.display = 'none';
-                            currentSelectedSong = null;
-                            return;
-                        }
-                    }
-                    else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
-                        const popupChoice = Math.random() < 0.5 ? 1 : 2;
-                        let message;
-                        if (popupChoice === 1) {
-                            message = "🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\n\"BRO, YOU JUST PUT XXX IN A ROW?! Our singer's voice is gonna sound like a seagull in a blender by the third chorus. Proceed at your own risk.\"\n\nOK = I BELIEVE IN PAIN\nCancel = FINE, WHAT A PUSSY";
-                        } else {
-                            message = "🔥 XXX VOCAL APOCALYPSE DETECTED 🔥\n\"BRO, YOU JUST STACKED THREE XXX SONGS IN A ROW?! Our singer's gonna sound like a chainsawed Muppet by the end of this. RIP vocal cords.\"\n\nOK = I CAN KICK HIS TESTIES FOR HIM\nCancel = FINE, WONDERWALL IT IS";
-                        }
-                        if (!confirm(message)) {
-                            document.getElementById('setlist-selection-popup').style.display = 'none';
-                            currentSelectedSong = null;
-                            return;
-                        }
-                    }
+            // Crossfade suggestions
+            const crossfadeOptions = songData[song]?.crossfadeInto || [];
+            if (crossfadeOptions.length > 0 && Math.random() > 0.5) {
+                const currentSongTitle = song.split(' - ')[0];
+                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
+                
+                if (confirm(`Try crossfading ${currentSongTitle} with:\n${compatibleSongs}`)) {
+                    const selectedSong = crossfadeOptions[Math.floor(Math.random() * crossfadeOptions.length)];
+                    setlists[setlistKey].push(song);
+                    setlists[setlistKey].push(selectedSong);
+                    updateSetlistDisplay(setlistKey);
+                    updateDuration(setlistKey);
+                    document.getElementById('setlist-selection-popup').style.display = 'none';
+                    currentSelectedSong = null;
+                    saveData();
+                    return;
                 }
             }
 
@@ -670,6 +689,43 @@
             updateDuration(setlistKey);
             document.getElementById('setlist-selection-popup').style.display = 'none';
             currentSelectedSong = null;
+            saveData();
+        }
+
+        function randomizeSetlist(setlistId) {
+            const allSongs = Object.keys(songData);
+            let randomized = [];
+            let attempts = 0;
+            
+            while (randomized.length < 8 && attempts < 100) {
+                const candidate = allSongs[Math.floor(Math.random() * allSongs.length)];
+                
+                // Rule 1: No consecutive X songs
+                const lastSong = randomized[randomized.length - 1];
+                const lastHasX = lastSong && (songIcons[lastSong] || []).includes('X');
+                const currentHasX = (songIcons[candidate] || []).includes('X');
+                if (lastHasX && currentHasX) {
+                    attempts++;
+                    continue;
+                }
+                
+                // Rule 2: Prefer crossfade matches
+                if (lastSong && songData[lastSong]?.crossfadeInto?.includes(candidate)) {
+                    randomized.push(candidate);
+                    continue;
+                }
+                
+                // Rule 3: General addition
+                if (!randomized.includes(candidate)) {
+                    randomized.push(candidate);
+                }
+                
+                attempts++;
+            }
+            
+            setlists[setlistId] = randomized;
+            updateSetlistDisplay(setlistId);
+            saveData();
         }
 
         function addSongFromSearch(song, setlistNumber, button) {
@@ -829,43 +885,55 @@
         }
 
         async function syncToGitHub(data) {
-            if (!githubToken) {
-                githubToken = prompt('Enter your GitHub token (one-time setup):');
-                if (!githubToken) return;
-                localStorage.setItem('githubToken', githubToken);
-            }
-
-            const repoOwner = 'graphicnix';
-            const repoName = 'SB-Setlist-creator';
-            const filePath = 'data.json';
-            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-
             try {
-                const getResponse = await fetch(url, {
-                    headers: { 'Authorization': `token ${githubToken}` }
-                });
-                if (!getResponse.ok) throw new Error('Failed to fetch current file');
-                const fileData = await getResponse.json();
-                const sha = fileData.sha;
+                const repoOwner = 'graphicnix';
+                const repoName = 'SB-Setlist-creator';
+                const filePath = 'data.json';
+                const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
-                const content = btoa(JSON.stringify(data, null, 2));
+                // First get the current file to obtain SHA
+                const getResponse = await fetch(url, {
+                    headers: { 
+                        'Authorization': `token ${localStorage.getItem('githubToken') || ''}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    }
+                });
+
+                let sha = '';
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                } else if (getResponse.status !== 404) {
+                    throw new Error(`Failed to fetch current file: ${getResponse.status}`);
+                }
+
+                // Update the file
+                const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
                 const updateResponse = await fetch(url, {
                     method: 'PUT',
                     headers: {
-                        'Authorization': `token ${githubToken}`,
-                        'Content-Type': 'application/json'
+                        'Authorization': `token ${localStorage.getItem('githubToken') || ''}`,
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/vnd.github.v3+json'
                     },
                     body: JSON.stringify({
-                        message: 'Auto-save update ' + new Date().toISOString(),
+                        message: 'Auto-save ' + new Date().toISOString(),
                         content: content,
                         sha: sha
                     })
                 });
 
-                if (!updateResponse.ok) throw new Error('Sync failed');
+                if (!updateResponse.ok) {
+                    const error = await updateResponse.json();
+                    throw new Error(error.message || 'Failed to update file');
+                }
+                
                 lastSaveTime = Date.now();
+                return true;
             } catch (error) {
                 console.error('Sync error:', error);
+                alert(`Sync failed: ${error.message}`);
+                return false;
             }
         }
 
@@ -882,8 +950,12 @@
                 const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon =>
                     `<span class="icon-${icon}">${icon}</span>`).join(' ');
                 const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
+                const tuning = songInfo.tuning || 'Standard';
+                
                 const row = document.createElement('tr');
                 row.setAttribute('data-song', song);
+                row.className = `tuning-${tuning.replace(' ', '-')}`;
+                
                 row.innerHTML = `
                     <td class="song-cell">
                         <div class="icons">${iconsHtml}</div>
@@ -898,7 +970,13 @@
                     <td>${songInfo.riff}</td>
                     <td>${songInfo.bpm}</td>
                     <td>${songInfo.duration}</td>
-                    <td>${songInfo.tuning}</td>
+                    <td>
+                        <select class="tuning-dropdown" onchange="updateTuning(this, '${song}')">
+                            ${TUNING_OPTIONS.map(opt => 
+                                `<option value="${opt}" ${tuning === opt ? 'selected' : ''}>${opt}</option>`
+                            ).join('')}
+                        </select>
+                    </td>
                     <td>
                         <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
                         <div class="crossfade-popup" id="crossfade-${safeSongId}">
@@ -926,6 +1004,7 @@
                             `).join('')}
                         </div>
                         <select class="color-picker" onchange="updateColor(this, '${song}')">
+                            <option value="">Default</option>
                             <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
                             <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
                             <option value="#90EE90" ${songColors[song] === '#90EE90' ? 'selected' : ''}>Bright Green</option>
@@ -938,6 +1017,17 @@
                 `;
                 tbody.appendChild(row);
             }
+        }
+
+        function updateTuning(selectElement, song) {
+            songData[song].tuning = selectElement.value;
+            
+            // Update row appearance immediately
+            const row = document.querySelector(`tr[data-song="${song}"]`);
+            row.className = '';
+            row.classList.add(`tuning-${selectElement.value.replace(' ', '-')}`);
+            
+            saveData();
         }
 
         function showCrossfadePopup(song, button) {
@@ -965,6 +1055,7 @@
                 return;
             }
             songData[song].crossfadeInto = selected;
+            saveData();
         }
 
         function openLyrics(song) {
@@ -1067,17 +1158,23 @@
             songIcons[song][iconIndex] = selectElement.value;
             populateSongTable();
             updateAllSetlists();
+            saveData();
         }
 
         function updateColor(selectElement, song) {
             songColors[song] = selectElement.value;
-            updateAllSetlists();
+            // Force immediate update of all instances
+            document.querySelectorAll(`[data-song="${song}"]`).forEach(el => {
+                el.style.backgroundColor = selectElement.value;
+            });
+            saveData();
         }
 
         function deleteFromSetlist(setlistKey, song) {
             setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
+            saveData();
         }
 
         function printSetlist(setlistId) {
@@ -1138,18 +1235,6 @@
                         height: 15px;
                         border: 1px solid #000;
                     }
-                    .tuning-D-color {
-                        background-color: #D3D3D3;
-                    }
-                    .tuning-Eb-color {
-                        background-color: #87CEEB;
-                    }
-                    .tuning-other-color {
-                        background-color: #FFFF00;
-                    }
-                    .crossfade-color {
-                        background-color: #90EE90;
-                    }
                     li { 
                         margin: 10px 0; 
                         display: flex; 
@@ -1160,53 +1245,17 @@
                     .song-title { font-size: ${baseTitleFontSize}px; }
                     .artist { font-size: ${artistFontSize}px; margin-left: 10px; }
                     .icons { margin-right: 10px; }
-                    .tuning-D {
-                        background-color: #D3D3D3 !important; /* Light grey */
-                    }
-                    .tuning-Eb, .tuning-E {
-                        background-color: #87CEEB !important; /* Light blue */
-                    }
-                    .tuning-other {
-                        background-color: #FFFF00 !important; /* Yellow */
-                    }
-                    .crossfade-pair {
-                        background-color: #90EE90 !important; /* Light green */
-                    }
-                    .crossfade-pair::before {
-                        content: "⇄";
-                        position: absolute;
-                        left: -20px;
-                        font-size: 16px;
-                        color: #006400;
-                    }
-                    .crossfade-pair::after {
-                        content: "⇄";
-                        position: absolute;
-                        right: -20px;
-                        font-size: 16px;
-                        color: #006400;
-                    }
                 </style>
                 </head><body>
                 <div class="setlist-header">
                     <h2 class="setlist-title">${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
                     <div class="tuning-legend">
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color tuning-D-color"></div>
-                            <span>D</span>
-                        </div>
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color tuning-Eb-color"></div>
-                            <span>Eb/E</span>
-                        </div>
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color tuning-other-color"></div>
-                            <span>Other</span>
-                        </div>
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color crossfade-color"></div>
-                            <span>⇄ Crossfade</span>
-                        </div>
+                        ${TUNING_OPTIONS.map(tuning => `
+                            <div class="tuning-legend-item">
+                                <div class="tuning-legend-color tuning-${tuning.replace(' ', '-')}-color"></div>
+                                <span>${tuning}</span>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
                 <ol>${songs.map((song, index) => {
@@ -1214,19 +1263,8 @@
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
                     const [title, artist] = song.split(' - ');
-                    const tuning = songData[song]?.tuning || '';
-                    let tuningClass = '';
-                    
-                    if (tuning) {
-                        const tuningLower = tuning.toLowerCase();
-                        if (tuningLower.includes('d') && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
-                            tuningClass = 'tuning-D';
-                        } else if ((tuningLower.includes('eb') || tuningLower.includes('e')) && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
-                            tuningClass = 'tuning-Eb';
-                        } else if (!tuningLower.includes('standard') && tuningLower !== 'undefined') {
-                            tuningClass = 'tuning-other';
-                        }
-                    }
+                    const tuning = songData[song]?.tuning || 'Standard';
+                    const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                     
                     const isCrossfadePair = crossfadePairs.includes(index);
                     const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
@@ -1317,89 +1355,30 @@
                         height: 15px;
                         border: 1px solid #000;
                     }
-                    .tuning-D-color {
-                        background-color: #D3D3D3;
-                    }
-                    .tuning-Eb-color {
-                        background-color: #87CEEB;
-                    }
-                    .tuning-other-color {
-                        background-color: #FFFF00;
-                    }
-                    .crossfade-color {
-                        background-color: #90EE90;
-                    }
                     li { 
                         font-size: ${fontSize}px; 
                         margin: 10px 0;
                         position: relative;
-                    }
-                    .tuning-D {
-                        background-color: #D3D3D3 !important;
-                    }
-                    .tuning-Eb, .tuning-E {
-                        background-color: #87CEEB !important;
-                    }
-                    .tuning-other {
-                        background-color: #FFFF00 !important;
-                    }
-                    .crossfade-pair {
-                        background-color: #90EE90 !important;
-                    }
-                    .crossfade-pair::before {
-                        content: "⇄";
-                        position: absolute;
-                        left: -20px;
-                        font-size: 16px;
-                        color: #006400;
-                    }
-                    .crossfade-pair::after {
-                        content: "⇄";
-                        position: absolute;
-                        right: -20px;
-                        font-size: 16px;
-                        color: #006400;
                     }
                 </style>
                 </head><body>
                 <div class="setlist-header">
                     <h2 class="setlist-title">${name}</h2>
                     <div class="tuning-legend">
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color tuning-D-color"></div>
-                            <span>D</span>
-                        </div>
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color tuning-Eb-color"></div>
-                            <span>Eb/E</span>
-                        </div>
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color tuning-other-color"></div>
-                            <span>Other</span>
-                        </div>
-                        <div class="tuning-legend-item">
-                            <div class="tuning-legend-color crossfade-color"></div>
-                            <span>⇄ Crossfade</span>
-                        </div>
+                        ${TUNING_OPTIONS.map(tuning => `
+                            <div class="tuning-legend-item">
+                                <div class="tuning-legend-color tuning-${tuning.replace(' ', '-')}-color"></div>
+                                <span>${tuning}</span>
+                            </div>
+                        `).join('')}
                     </div>
                 </div>
                 <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
-                    const tuning = songData[song]?.tuning || '';
-                    let tuningClass = '';
-                    
-                    if (tuning) {
-                        const tuningLower = tuning.toLowerCase();
-                        if (tuningLower.includes('d') && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
-                            tuningClass = 'tuning-D';
-                        } else if ((tuningLower.includes('eb') || tuningLower.includes('e')) && !tuningLower.includes('standard') && tuningLower !== 'undefined') {
-                            tuningClass = 'tuning-Eb';
-                        } else if (!tuningLower.includes('standard') && tuningLower !== 'undefined') {
-                            tuningClass = 'tuning-other';
-                        }
-                    }
+                    const tuning = songData[song]?.tuning || 'Standard';
+                    const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                     
                     const isCrossfadePair = crossfadePairs.includes(index);
                     const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
@@ -1455,6 +1434,7 @@
                 updateDuration(setlistKey);
                 document.querySelector('.edit-setlist-popup').remove();
                 document.querySelector('.overlay').remove();
+                saveData();
             }
         }
 
@@ -1483,6 +1463,7 @@
             // Add the song to the new position in the target setlist
             setlists[setlistKey].splice(targetIndex, 0, song);
             updateAllSetlists();
+            saveData();
         }
 
         function updateAllSetlists() {
@@ -1738,6 +1719,7 @@
     </div>
 
     <div class="setlist">
+        <button class="randomize-btn" onclick="randomizeSetlist('setlist-1')">🎲 Randomize (8 Songs)</button>
         <h3>Setlist 1
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
@@ -1747,6 +1729,7 @@
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
     </div>
     <div class="setlist">
+        <button class="randomize-btn" onclick="randomizeSetlist('setlist-2')">🎲 Randomize (8 Songs)</button>
         <h3>Setlist 2
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
@@ -1756,6 +1739,7 @@
         <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
     </div>
     <div class="setlist">
+        <button class="randomize-btn" onclick="randomizeSetlist('setlist-3')">🎲 Randomize (8 Songs)</button>
         <h3>Setlist 3
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
