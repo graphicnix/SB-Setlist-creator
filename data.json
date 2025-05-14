@@ -589,7 +589,16 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "No Excuses - Alice in Chains",
+      "Good Times Bad - Led Zeppelin",
+      "Tripping on a Hole - STP",
+      "Love Me Two Times - The Doors",
+      "Sweet Emotion - Aerosmith",
+      "War Pigs - Black Sabbath",
+      "Song 2 - Blur",
+      "Interstate Love Song - STP"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
