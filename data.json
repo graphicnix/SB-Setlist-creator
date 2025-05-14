@@ -516,7 +516,7 @@
       "duration": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "C std"
+      "tuning": "Standard"
     },
     "Short SkirtLong Jacket - Cake": {
       "key": "Am",
@@ -817,7 +817,9 @@
       ""
     ]
   },
-  "songColors": {},
+  "songColors": {
+    "No One Knows - Queens Stone Age": "#87CEEB"
+  },
   "savedSetlists": {
     "wes 1": [
       "Breed - Nirvana",
