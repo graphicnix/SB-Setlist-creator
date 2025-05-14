@@ -7,7 +7,7 @@
       "duration": "3:39",
       "crossfadeInto": [],
       "lyrics": "Well, you've heard about lovin' givin' sight to the blind\nMy baby's lovin' cause the sun to shine\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nYeah, I love my baby, my heart and soul\nLove like ours won't ever grow old\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nYeah, I love my lady, she's long and lean\nYou mess with her, you'll see a man get mean\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nWell, I love my baby like the finest wine\nStick with her until the end of time\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nYeah, I love my baby, my heart and soul\nLove like ours won't ever grow old\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\n",
-      "tuning": "Standard"
+      "tuning": "Eb"
     },
     "Feeling Good - various": {
       "key": "Am",
@@ -72,7 +72,8 @@
       "bpm": "153",
       "duration": "3:23",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "Sponge - Plowed": {
       "key": "Em",
@@ -292,7 +293,8 @@
       "bpm": "100",
       "duration": "4:26",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "Breed - Nirvana": {
       "key": "F5",
@@ -349,8 +351,8 @@
       "bpm": "112",
       "duration": "4:41",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "D"
+      "lyrics": "I can't find the rhyme in all my reason\nI've lost sense of time and all seasons\nFeel I've been beaten down\nBy the words of men who have no grounds\nCan't sleep beneath the trees of wisdom\nWhen your ax has cut the roots that feed them\nForked tongues in bitter mouths\nCan drive a man to bleed from inside out\nWhat if you did?\nWhat if you lied?\n\nWhat if I avenge?\nWhat if eye for an eye?\n\nI've seen the wicked fruit of your vine\nDestroy the man who lacks a strong mind\nHuman pride sings a vengeful song\nInspired by the times you've been walked on\nMy stage is shared by many millions\nWho lift their hands up high because they feel this\nWe are one we are strong\nThe more you hold us down the more we press on\n\nWhat if you did?\nWhat if you lied?\nWhat if I avenge?\nWhat if eye for an eye?\n\nI know I can't hold the hate inside my mind\n'Cause what consumes your thoughts controls your life\nSo I'll just ask a question\nA lonely simple question\nI'll just ask one question\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\n\nWhat if you did?\nWhat if you lied?\nWhat if I avenge?\nWhat if eye for an eye?\nWhat if your words could be judged like a crime?\n\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I",
+      "tuning": "Drop D"
     },
     "Like a Stone - Audioslave": {
       "key": "Am",
@@ -358,7 +360,8 @@
       "bpm": "72",
       "duration": "4:54",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "Say it aint so - Weezer ": {
       "key": "",
@@ -458,7 +461,8 @@
       "bpm": "144",
       "duration": "2:40",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "My reflection, dirty mirror\nThere's no connection to myself\nI'm your lover, I'm your zero\nI'm the face in your dreams of glass\n\nSo save your prayers\nFor when we're really gonna need them\nThrow out your cares and fly\nWanna go for a ride?\n\nShe's the one for me\nShe's all I really need, oh yeah\nShe's the one for me\n\nEmptiness is loneliness, and loneliness is cleanliness\nAnd cleanliness is godliness, and God is empty\nJust like me\n\nIntoxicated with the madness\nI'm in love with my sadness\nBullshit fakers, enchanted kingdoms\nThe fashion victims chew their charcoal teeth\n\nI never let on\nThat I was on a sinking ship\nI never let on that I was down\n\nYou blame yourself\nFor what you can't ignore\nYou blame yourself for wanting more\nShe's the one for me\nShe's all I really need, oh yeah\nShe's the one for me\nShe's my one and only",
+      "tuning": "Eb"
     },
     "Stillborn - BLS": {
       "key": "Em",
@@ -466,7 +470,8 @@
       "bpm": "92",
       "duration": "3:16",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "tuning": "Eb"
     },
     "SOS - SAWD OFF SHOTTY": {
       "key": "Eb",
@@ -576,7 +581,7 @@
       "riff": "",
       "bpm": "",
       "duration": "3:33",
-      "tuning": "Db",
+      "tuning": "Drop Db",
       "crossfadeInto": [],
       "lyrics": ""
     },
@@ -593,7 +598,10 @@
   "setlists": {
     "setlist-1": [
       "Pride and Joy - Stevie Ray Vaughan",
-      "96 Quite Bitter Beings - CKY"
+      "96 Quite Bitter Beings - CKY",
+      "What If - Creed",
+      "Would? - Alice in chains",
+      "Zero - Smashing Pumpkins"
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -775,6 +783,12 @@
     ],
     "SOS - SAWD OFF SHOTTY": [
       "X",
+      "",
+      "",
+      ""
+    ],
+    "Superstition - Stevie Wonder": [
+      "O",
       "",
       "",
       ""
