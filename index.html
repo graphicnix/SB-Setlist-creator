@@ -14,6 +14,37 @@
             color: #333;
         }
         
+        /* Password protection styles */
+        .password-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+        .password-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            color: #000;
+        }
+        .password-box input {
+            margin: 10px 0;
+            padding: 8px;
+            width: 200px;
+        }
+        .password-box button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
         /* Setlist styles */
         .setlist ul {
             list-style-type: none;
@@ -115,7 +146,7 @@
             color: #fff;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
             margin: 10px 0;
             display: block;
@@ -188,7 +219,7 @@
             color: white;
             border: none;
             padding: 10px 20px;
-            border-radius: 5px;
+            border-radius: 3px;
             cursor: pointer;
             margin: 10px 0;
             display: block;
@@ -205,37 +236,6 @@
             margin: 20px auto;
             max-width: 500px;
             height: auto;
-        }
-        
-        /* Password protection */
-        .password-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-        .password-box {
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            text-align: center;
-            color: #000;
-        }
-        .password-box input {
-            margin: 10px 0;
-            padding: 8px;
-            width: 200px;
-        }
-        .password-box button {
-            padding: 8px 15px;
-            margin: 0 5px;
-            cursor: pointer;
         }
         
         /* Edit setlist popup */
@@ -502,6 +502,93 @@
         <button onclick="addToSetlist(3)">Add to Setlist 3</button>
     </div>
 
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
+
+    <h1>SpiralBound Setlist Creator</h1>
+
+    <div class="category">
+        <h2>Alternative/Grunge/Rock</h2>
+        <div class="icon-legend-container">
+            <div class="tooltip">Icon Legend
+                <span class="tooltiptext">
+                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
+                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
+                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
+                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
+                    <strong class="icon-→">→</strong> = Crossfade (Black)
+                </span>
+            </div>
+        </div>
+        <table id="alternative-grunge-rock">
+            <thead>
+                <tr>
+                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
+                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
+                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
+                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
+                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
+                    <th>Crossfade Options</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="song-table-body"></tbody>
+        </table>
+    </div>
+
+    <div class="setlist">
+        <button class="randomize-btn" onclick="randomizeSetlist('setlist-1')">🎲 Randomize (8 Songs)</button>
+        <h3>Setlist 1
+            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <button class="randomize-btn" onclick="randomizeSetlist('setlist-2')">🎲 Randomize (8 Songs)</button>
+        <h3>Setlist 2
+            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+    </div>
+    <div class="setlist">
+        <button class="randomize-btn" onclick="randomizeSetlist('setlist-3')">🎲 Randomize (8 Songs)</button>
+        <h3>Setlist 3
+            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
+        </h3>
+        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+    </div>
+
+    <div id="saved-setlists" class="category"></div>
+
+    <div class="add-song">
+        <h3>Add New Song</h3>
+        <input type="text" id="new-song-title" placeholder="Song Title">
+        <input type="text" id="new-song-artist" placeholder="Artist">
+        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
+        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
+        <input type="text" id="new-song-bpm" placeholder="BPM">
+        <input type="text" id="new-song-duration" placeholder="Duration">
+        <input type="text" id="new-song-tuning" placeholder="Tuning">
+        <button onclick="addNewSong()">Add Song</button>
+        <h3>Paste Song Details</h3>
+        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
+        <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+
     <script>
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
@@ -524,8 +611,15 @@
 
         // Initialize the app when window loads
         window.onload = function() {
-            if (localStorage.getItem('sitePassword') {
+            if (localStorage.getItem('sitePassword')) {
                 initializeApp();
+                document.getElementById('password-protection').style.display = 'none';
+            } else {
+                document.getElementById('password-protection').style.display = 'flex';
+                // Hide main content until password is entered
+                document.querySelectorAll('body > *:not(#password-protection)').forEach(el => {
+                    el.style.display = 'none';
+                });
             }
             
             // Set up auto-save reminder every 5 minutes
@@ -547,19 +641,28 @@
             });
         };
 
+        // Case-insensitive password check
         function checkPassword() {
             const input = document.getElementById('password-input').value;
-            if (input.toLowerCase() === correctPassword) {
+            if (input.toLowerCase() === correctPassword.toLowerCase()) {
                 localStorage.setItem('sitePassword', input);
                 document.getElementById('password-protection').style.display = 'none';
+                // Show all content
+                document.querySelectorAll('body > *:not(#password-protection)').forEach(el => {
+                    el.style.display = '';
+                });
                 initializeApp();
             } else {
                 alert('Incorrect password');
-                window.close();
             }
         }
 
         function initializeApp() {
+            // Show all content in case it was hidden
+            document.querySelectorAll('body > *:not(#password-protection)').forEach(el => {
+                el.style.display = '';
+            });
+            
             loadData();
             setupSearch();
         }
@@ -914,7 +1017,7 @@
                 }
 
                 // Update the file
-                const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2))));
+                const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2)));
                 const updateResponse = await fetch(url, {
                     method: 'PUT',
                     headers: {
@@ -950,7 +1053,8 @@
                 const songInfo = songData[song];
                 const [title, artist] = song.split(' - ');
                 const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon =>
-                    `<span class="icon-${icon}">${icon}</span>`).join(' ');
+                    `<span class="icon-${icon}">${icon}</span>`
+                ).join(' ');
                 const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
                 const tuning = songInfo.tuning || 'Standard';
                 
@@ -1935,92 +2039,5 @@
                 `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
     </script>
-
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
-
-    <h1>SpiralBound Setlist Creator</h1>
-
-    <div class="category">
-        <h2>Alternative/Grunge/Rock</h2>
-        <div class="icon-legend-container">
-            <div class="tooltip">Icon Legend
-                <span class="tooltiptext">
-                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                    <strong class="icon-→">→</strong> = Crossfade (Black)
-                </span>
-            </div>
-        </div>
-        <table id="alternative-grunge-rock">
-            <thead>
-                <tr>
-                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
-                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
-                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
-                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
-                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
-                    <th>Crossfade Options</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody id="song-table-body"></tbody>
-        </table>
-    </div>
-
-    <div class="setlist">
-        <button class="randomize-btn" onclick="randomizeSetlist('setlist-1')">🎲 Randomize (8 Songs)</button>
-        <h3>Setlist 1
-            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
-            <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
-    </div>
-    <div class="setlist">
-        <button class="randomize-btn" onclick="randomizeSetlist('setlist-2')">🎲 Randomize (8 Songs)</button>
-        <h3>Setlist 2
-            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
-            <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
-    </div>
-    <div class="setlist">
-        <button class="randomize-btn" onclick="randomizeSetlist('setlist-3')">🎲 Randomize (8 Songs)</button>
-        <h3>Setlist 3
-            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
-            <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
-        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
-    </div>
-
-    <div id="saved-setlists" class="category"></div>
-
-    <div class="add-song">
-        <h3>Add New Song</h3>
-        <input type="text" id="new-song-title" placeholder="Song Title">
-        <input type="text" id="new-song-artist" placeholder="Artist">
-        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
-        <input type="text" id="new-song-riff" placeholder="Riff" style="width: 50px;">
-        <input type="text" id="new-song-bpm" placeholder="BPM">
-        <input type="text" id="new-song-duration" placeholder="Duration">
-        <input type="text" id="new-song-tuning" placeholder="Tuning">
-        <button onclick="addNewSong()">Add Song</button>
-        <h3>Paste Song Details</h3>
-        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
-        <button onclick="parseAndAddSongs()">Add from Paste</button>
-    </div>
-
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
-    <button class="sync-btn" onclick="saveData()">Save and Sync</button>
 </body>
 </html>
