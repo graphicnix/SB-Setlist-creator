@@ -5,162 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpiralBound Setlist Creator</title>
     <style>
+        /* Base styles */
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
-            max-width: 100%;
-            overflow-x: hidden;
-            background-color: #565656;
-            color: #fff;
-            position: relative;
-            padding-top: 80px; /* Added for sticky header */
-        }
-        .sticky-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #333;
-            padding: 10px 20px;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        .search-container {
-            position: relative;
-            flex-grow: 1;
-            max-width: 600px;
-            margin-right: 20px;
-        }
-        #song-search {
-            width: 100%;
-            padding: 8px 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 20px;
-        }
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 0 0 5px 5px;
-            max-height: 300px;
-            overflow-y: auto;
-            display: none;
-            z-index: 101;
-        }
-        .search-result-item {
-            padding: 8px 15px;
-            cursor: pointer;
-            color: #333;
-            border-bottom: 1px solid #eee;
-        }
-        .search-result-item:hover {
+            margin: 0;
+            padding: 20px;
             background-color: #f0f0f0;
+            color: #333;
         }
-        .search-result-item .icons {
-            margin-right: 5px;
-        }
-        .setlist-selection-popup {
-            position: absolute;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            z-index: 1000;
-            color: #000;
-            display: none;
-        }
-        .setlist-selection-popup button {
-            margin: 5px;
-            padding: 5px 10px;
-            background: #e31c1c;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            cursor: pointer;
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 40px;
-            margin-top: 20px;
-        }
-        h2 {
-            color: #fff;
-        }
-        .icon-legend-container {
-            display: flex;
-            justify-content: center;
-            margin: 10px 0;
-            z-index: 10;
-        }
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-        .tooltip .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            border-radius: 6px;
-            padding: 5px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -100px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            font-size: 14px;
-        }
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
-        .category {
-            margin-bottom: 40px;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            min-width: 600px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f4f4f4;
-            cursor: pointer;
-            color: #000;
-        }
-        th:hover {
-            background-color: #ddd;
-        }
-        .setlist {
-            margin-top: 20px;
-            background: #565656;
-            padding: 15px;
-            border-radius: 5px;
-        }
-        .setlist h3 {
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        
+        /* Setlist styles */
         .setlist ul {
             list-style-type: none;
             padding: 0;
@@ -180,6 +34,8 @@
             align-items: center;
             color: #000;
         }
+        
+        /* Button styles */
         .crossfade-btn {
             padding: 5px 10px;
             background: #774a3b;
@@ -191,6 +47,8 @@
         .crossfade-btn:hover {
             background: #5f3a2e;
         }
+        
+        /* Popup styles */
         .crossfade-popup {
             display: none;
             position: absolute;
@@ -206,6 +64,8 @@
             display: block;
             margin: 5px 0;
         }
+        
+        /* Form styles */
         .add-song {
             margin-top: 20px;
             padding: 15px;
@@ -213,6 +73,8 @@
             border-radius: 5px;
             color: #000;
         }
+        
+        /* Icon styles */
         .icon-container {
             display: flex;
             gap: 5px;
@@ -227,11 +89,15 @@
         .icon-G { color: #8B4513; }
         .icon-M { color: orange; }
         .icon-→ { color: black; }
+        
+        /* Color picker */
         .color-picker {
             margin-left: 5px;
             width: 100px;
             padding: 3px;
         }
+        
+        /* Button styles */
         .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn {
             background: #e31c1c;
             color: white;
@@ -258,10 +124,14 @@
         .sync-btn:hover {
             background: #333;
         }
+        
+        /* Duration display */
         .duration-total {
             margin-top: 10px;
             font-weight: bold;
         }
+        
+        /* Song cell styling */
         .song-cell {
             display: flex;
             align-items: center;
@@ -270,17 +140,26 @@
         .song-title {
             flex: 1;
             text-align: center;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+        .song-title:hover {
+            color: #e31c1c;
         }
         .icons {
             margin-right: 5px;
         }
+        
+        /* Input styles */
         input, textarea {
             background-color: #d9d9d3;
             border: 1px solid #ccc;
             padding: 5px;
             color: #333;
         }
-        .welcome-popup, .instructions-popup {
+        
+        /* Popup styles */
+        .welcome-popup, .instructions-popup, .song-edit-popup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -302,6 +181,8 @@
             background: rgba(0,0,0,0.5);
             z-index: 999;
         }
+        
+        /* Button styles */
         .spiralbound-btn {
             background: #e31c1c;
             color: white;
@@ -317,12 +198,16 @@
         .spiralbound-btn:hover {
             background: #c51717;
         }
+        
+        /* Logo */
         .logo {
             display: block;
             margin: 20px auto;
             max-width: 500px;
             height: auto;
         }
+        
+        /* Password protection */
         .password-container {
             position: fixed;
             top: 0;
@@ -352,6 +237,8 @@
             margin: 0 5px;
             cursor: pointer;
         }
+        
+        /* Edit setlist popup */
         .edit-setlist-popup {
             position: fixed;
             top: 50%;
@@ -388,6 +275,8 @@
         .edit-setlist-popup button {
             margin-top: 10px;
         }
+        
+        /* Saved setlists */
         #saved-setlists {
             display: flex;
             flex-wrap: wrap;
@@ -409,6 +298,8 @@
             gap: 5px;
             margin-top: 10px;
         }
+        
+        /* Tuning styles */
         .tuning-Standard {
             background-color: inherit !important;
         }
@@ -416,8 +307,13 @@
             background-color: #000 !important;
             color: white !important;
         }
-        .tuning-Eb-Std {
+        .tuning-Eb {
             background-color: #ff0000 !important;
+            color: white !important;
+        }
+        .tuning-Eb-Standard {
+            background-color: #ff0000 !important;
+            color: white !important;
         }
         .tuning-D-Std {
             background-color: #D3D3D3 !important;
@@ -439,9 +335,11 @@
         }
         .tuning-B-Std {
             background-color: #800080 !important;
+            color: white !important;
         }
         .tuning-Open-C {
             background-color: #A52A2A !important;
+            color: white !important;
         }
         .crossfade-pair {
             background-color: #90EE90 !important;
@@ -461,12 +359,15 @@
             font-size: 16px;
             color: #006400;
         }
+        
+        /* Tuning legend */
         .tuning-legend {
             display: flex;
             gap: 10px;
             margin-left: 10px;
             font-size: 12px;
             align-items: center;
+            flex-wrap: wrap;
         }
         .tuning-legend-item {
             display: flex;
@@ -478,6 +379,8 @@
             height: 15px;
             border: 1px solid #000;
         }
+        
+        /* Randomize button */
         .randomize-btn {
             background: #4CAF50;
             color: white;
@@ -487,6 +390,8 @@
             cursor: pointer;
             margin-bottom: 10px;
         }
+        
+        /* Mobile orientation warning */
         @media screen and (orientation:portrait) {
             body::before {
                 content: "Please rotate your device to landscape mode";
@@ -505,6 +410,67 @@
                 opacity: 0.3;
                 pointer-events: none;
             }
+        }
+        
+        /* Print specific styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .print-container, .print-container * {
+                visibility: visible;
+            }
+            .print-container {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        /* Lyrics viewer styles */
+        .lyrics-viewer {
+            background-color: black;
+            color: white;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+        }
+        
+        /* Song edit popup */
+        .song-edit-popup {
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+        }
+        .song-edit-popup h3 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .song-edit-popup label {
+            display: block;
+            margin-top: 10px;
+        }
+        .song-edit-popup input, 
+        .song-edit-popup textarea,
+        .song-edit-popup select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        .song-edit-popup textarea {
+            height: 200px;
+            resize: vertical;
+        }
+        .song-edit-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -547,12 +513,39 @@
         const validIcons = ['O', 'X', 'G', 'M', '→'];
         let lastSaveTime = Date.now();
         let currentSelectedSong = null;
+        let unsavedChanges = false;
+        let saveInterval;
 
         // Tuning options and their display colors
         const TUNING_OPTIONS = [
-            "Standard", "Drop D", "Eb Std.", "D Std.", "Drop C", 
+            "Standard", "Drop D", "Eb", "Eb Standard", "D Std.", "Drop C", 
             "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C"
         ];
+
+        // Initialize the app when window loads
+        window.onload = function() {
+            if (localStorage.getItem('sitePassword') {
+                initializeApp();
+            }
+            
+            // Set up auto-save reminder every 5 minutes
+            saveInterval = setInterval(() => {
+                if (unsavedChanges) {
+                    if (confirm('You have unsaved changes. Would you like to save now?')) {
+                        saveData();
+                    }
+                }
+            }, 300000); // 5 minutes
+            
+            // Warn before closing if there are unsaved changes
+            window.addEventListener('beforeunload', function(e) {
+                if (unsavedChanges) {
+                    e.preventDefault();
+                    e.returnValue = 'You have unsaved changes. Are you sure you want to leave?';
+                    return e.returnValue;
+                }
+            });
+        };
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -679,7 +672,7 @@
                     updateDuration(setlistKey);
                     document.getElementById('setlist-selection-popup').style.display = 'none';
                     currentSelectedSong = null;
-                    saveData();
+                    unsavedChanges = true;
                     return;
                 }
             }
@@ -689,16 +682,18 @@
             updateDuration(setlistKey);
             document.getElementById('setlist-selection-popup').style.display = 'none';
             currentSelectedSong = null;
-            saveData();
+            unsavedChanges = true;
         }
 
         function randomizeSetlist(setlistId) {
             const allSongs = Object.keys(songData);
             let randomized = [];
             let attempts = 0;
+            let lastTuning = null;
             
             while (randomized.length < 8 && attempts < 100) {
                 const candidate = allSongs[Math.floor(Math.random() * allSongs.length)];
+                const candidateTuning = songData[candidate]?.tuning || 'Standard';
                 
                 // Rule 1: No consecutive X songs
                 const lastSong = randomized[randomized.length - 1];
@@ -709,15 +704,23 @@
                     continue;
                 }
                 
-                // Rule 2: Prefer crossfade matches
-                if (lastSong && songData[lastSong]?.crossfadeInto?.includes(candidate)) {
-                    randomized.push(candidate);
+                // Rule 2: Try to maintain same tuning as previous song
+                if (lastTuning && candidateTuning !== lastTuning && randomized.length > 0) {
+                    attempts++;
                     continue;
                 }
                 
-                // Rule 3: General addition
+                // Rule 3: Prefer crossfade matches
+                if (lastSong && songData[lastSong]?.crossfadeInto?.includes(candidate)) {
+                    randomized.push(candidate);
+                    lastTuning = candidateTuning;
+                    continue;
+                }
+                
+                // Rule 4: General addition
                 if (!randomized.includes(candidate)) {
                     randomized.push(candidate);
+                    lastTuning = candidateTuning;
                 }
                 
                 attempts++;
@@ -725,7 +728,7 @@
             
             setlists[setlistId] = randomized;
             updateSetlistDisplay(setlistId);
-            saveData();
+            unsavedChanges = true;
         }
 
         function addSongFromSearch(song, setlistNumber, button) {
@@ -794,6 +797,7 @@
                         updateDuration(setlistKey);
                         document.getElementById('song-search').value = '';
                         document.getElementById('search-results').style.display = 'none';
+                        unsavedChanges = true;
                         return;
                     }
                 }
@@ -804,6 +808,7 @@
             updateDuration(setlistKey);
             document.getElementById('song-search').value = '';
             document.getElementById('search-results').style.display = 'none';
+            unsavedChanges = true;
         }
 
         async function loadData() {
@@ -834,7 +839,6 @@
             populateSongTable();
             updateAllSetlists();
             displaySavedSetlists();
-            setInterval(checkAndSave, 60000);
 
             if (!localStorage.getItem('welcomeShown')) {
                 document.body.insertAdjacentHTML('beforeend', `
@@ -879,8 +883,10 @@
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
             syncToGitHub(data).then(() => {
                 alert('Save and sync completed!');
+                unsavedChanges = false;
             }).catch(err => {
                 alert('Save to local storage succeeded, but sync failed.');
+                unsavedChanges = false;
             });
         }
 
@@ -937,10 +943,6 @@
             }
         }
 
-        function checkAndSave() {
-            if (Date.now() - lastSaveTime >= 300000) saveData();
-        }
-
         function populateSongTable() {
             const tbody = document.getElementById('song-table-body');
             tbody.innerHTML = '';
@@ -959,10 +961,9 @@
                 row.innerHTML = `
                     <td class="song-cell">
                         <div class="icons">${iconsHtml}</div>
-                        <div class="song-title" style="cursor: pointer;" onclick="openLyrics('${song}')">${title}</div>
+                        <div class="song-title" onclick="editSong('${song}')">${title}</div>
                         <div>
                             <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
-                            <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         </div>
                     </td>
                     <td>${artist}</td>
@@ -1024,10 +1025,26 @@
             
             // Update row appearance immediately
             const row = document.querySelector(`tr[data-song="${song}"]`);
-            row.className = '';
-            row.classList.add(`tuning-${selectElement.value.replace(' ', '-')}`);
+            if (row) {
+                // Remove all tuning classes
+                TUNING_OPTIONS.forEach(tuning => {
+                    row.classList.remove(`tuning-${tuning.replace(' ', '-')}`);
+                });
+                // Add the new tuning class
+                row.classList.add(`tuning-${selectElement.value.replace(' ', '-')}`);
+            }
             
-            saveData();
+            // Update all instances of this song in setlists
+            document.querySelectorAll(`[data-song="${song}"]`).forEach(el => {
+                // Remove all tuning classes
+                TUNING_OPTIONS.forEach(tuning => {
+                    el.classList.remove(`tuning-${tuning.replace(' ', '-')}`);
+                });
+                // Add the new tuning class
+                el.classList.add(`tuning-${selectElement.value.replace(' ', '-')}`);
+            });
+            
+            unsavedChanges = true;
         }
 
         function showCrossfadePopup(song, button) {
@@ -1055,102 +1072,156 @@
                 return;
             }
             songData[song].crossfadeInto = selected;
-            saveData();
+            unsavedChanges = true;
         }
 
-        function openLyrics(song) {
-            const lyrics = songData[song].lyrics || '';
+        function editSong(song) {
+            const songInfo = songData[song] || {};
+            const [title, artist] = song.split(' - ');
+            
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class="overlay"></div>
+                <div class="song-edit-popup">
+                    <h3>Edit Song: ${title}</h3>
+                    <label>Title: <input type="text" id="edit-song-title" value="${title}"></label>
+                    <label>Artist: <input type="text" id="edit-song-artist" value="${artist}"></label>
+                    <label>Key: <input type="text" id="edit-song-key" value="${songInfo.key || ''}"></label>
+                    <label>Riff: <input type="text" id="edit-song-riff" value="${songInfo.riff || ''}"></label>
+                    <label>BPM: <input type="text" id="edit-song-bpm" value="${songInfo.bpm || ''}"></label>
+                    <label>Duration: <input type="text" id="edit-song-duration" value="${songInfo.duration || ''}"></label>
+                    <label>Tuning: 
+                        <select id="edit-song-tuning">
+                            ${TUNING_OPTIONS.map(opt => 
+                                `<option value="${opt}" ${songInfo.tuning === opt ? 'selected' : ''}>${opt}</option>`
+                            ).join('')}
+                        </select>
+                    </label>
+                    <label>Lyrics: <textarea id="edit-song-lyrics">${songInfo.lyrics || ''}</textarea></label>
+                    <div class="song-edit-buttons">
+                        <button class="save-btn" onclick="saveSongEdit('${song}')">Save</button>
+                        <button class="delete-btn" onclick="document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function saveSongEdit(oldSong) {
+            const title = document.getElementById('edit-song-title').value;
+            const artist = document.getElementById('edit-song-artist').value;
+            const key = document.getElementById('edit-song-key').value;
+            const riff = document.getElementById('edit-song-riff').value;
+            const bpm = document.getElementById('edit-song-bpm').value;
+            const duration = document.getElementById('edit-song-duration').value;
+            const tuning = document.getElementById('edit-song-tuning').value;
+            const lyrics = document.getElementById('edit-song-lyrics').value;
+
+            if (title && artist) {
+                const newSongKey = `${title} - ${artist}`;
+                
+                // If the song key changed, we need to update references
+                if (newSongKey !== oldSong) {
+                    songData[newSongKey] = { 
+                        key, 
+                        riff, 
+                        bpm, 
+                        duration, 
+                        tuning, 
+                        lyrics,
+                        crossfadeInto: songData[oldSong]?.crossfadeInto || [] 
+                    };
+                    delete songData[oldSong];
+                    
+                    // Update setlists
+                    Object.keys(setlists).forEach(key => {
+                        setlists[key] = setlists[key].map(s => s === oldSong ? newSongKey : s);
+                    });
+                    
+                    // Update saved setlists
+                    Object.keys(savedSetlists).forEach(name => {
+                        savedSetlists[name] = savedSetlists[name].map(s => s === oldSong ? newSongKey : s);
+                    });
+                    
+                    // Update icons and colors
+                    if (songIcons[oldSong]) {
+                        songIcons[newSongKey] = songIcons[oldSong];
+                        delete songIcons[oldSong];
+                    }
+                    if (songColors[oldSong]) {
+                        songColors[newSongKey] = songColors[oldSong];
+                        delete songColors[oldSong];
+                    }
+                } else {
+                    // Just update the existing song
+                    songData[oldSong] = { 
+                        ...songData[oldSong], 
+                        key, 
+                        riff, 
+                        bpm, 
+                        duration, 
+                        tuning, 
+                        lyrics 
+                    };
+                }
+                
+                populateSongTable();
+                updateAllSetlists();
+                document.querySelector('.song-edit-popup').remove();
+                document.querySelector('.overlay').remove();
+                unsavedChanges = true;
+            } else {
+                alert("Title and Artist are required fields.");
+            }
+        }
+
+        function showLyrics(song) {
+            const lyrics = songData[song]?.lyrics || '';
             const lines = lyrics.split('\n').filter(line => line.trim() !== '');
             const longestLine = lines.reduce((a, b) => a.length > b.length ? a : b, '');
-            const tabletWidth = 728;
-            const charWidthEstimate = 0.6;
-            const maxFontSize = Math.min(40, Math.floor(tabletWidth / (longestLine.length * charWidthEstimate)));
-            const windowHeight = Math.max(400, lines.length * (maxFontSize + 10));
-
-            let lyricsWindow = window.open('', '', `width=768,height=${windowHeight}`);
+            
+            // Calculate font size based on longest line
+            const maxWidth = 185.7; // 7.31 inches in mm
+            const approxCharWidth = 0.6; // Approximate width of a character in mm
+            const fontSize = Math.min(40, Math.floor(maxWidth / (longestLine.length * approxCharWidth)));
+            
+            const lyricsWindow = window.open('', '_blank', 'width=800,height=1000');
             lyricsWindow.document.write(`
+                <!DOCTYPE html>
                 <html>
                 <head>
                     <title>Lyrics - ${song.split(' - ')[0]}</title>
                     <style>
-                        body { margin: 20px; font-family: Arial, sans-serif; }
-                        textarea {
-                            width: 728px;
-                            height: ${windowHeight - 100}px;
-                            margin-bottom: 10px;
-                            font-size: ${maxFontSize}px;
-                            line-height: 1.2;
-                            resize: none;
-                            white-space: pre-wrap;
-                            overflow-x: hidden;
-                        }
-                        button {
-                            padding: 5px 10px;
-                            background: #e31c1c;
+                        body {
+                            background-color: black;
                             color: white;
-                            border: none;
-                            border-radius: 3px;
-                            cursor: pointer;
-                            margin-right: 10px;
+                            font-family: Arial, sans-serif;
+                            padding: 20px;
+                            margin: 0;
+                            height: 100vh;
+                            overflow-y: auto;
+                            text-align: center;
                         }
-                        button:hover { background: #c51717; }
+                        .lyrics-container {
+                            max-width: 100%;
+                            margin: 0 auto;
+                            padding: 20px;
+                            font-size: ${fontSize}px;
+                            line-height: 1.5;
+                            white-space: pre-wrap;
+                        }
+                        .song-title {
+                            font-size: ${fontSize + 10}px;
+                            margin-bottom: 20px;
+                            font-weight: bold;
+                        }
                     </style>
                 </head>
                 <body>
-                    <h2>${song.split(' - ')[0]}</h2>
-                    <textarea id="lyrics">${lyrics}</textarea><br>
-                    <button onclick="window.opener.printLyrics('${song}', document.getElementById('lyrics').value)">Print/Share</button>
-                    <button onclick="window.opener.saveLyrics('${song}', document.getElementById('lyrics').value); window.close();">Save</button>
+                    <div class="song-title">${song.split(' - ')[0]}</div>
+                    <div class="lyrics-container">${lyrics}</div>
                 </body>
                 </html>
             `);
             lyricsWindow.document.close();
-        }
-
-        function saveLyrics(song, lyrics) {
-            songData[song].lyrics = lyrics;
-            saveData();
-        }
-
-        function printLyrics(song, lyrics) {
-            const lines = lyrics.split('\n').filter(line => line.trim() !== '');
-            const lineCount = lines.length;
-            const baseFontSize = 40;
-            const fontSize = lineCount > 5 ? Math.max(12, baseFontSize - (lineCount * 2)) : baseFontSize;
-            let printWindow = window.open('', '', 'width=816,height=1056');
-            printWindow.document.write(`
-                <html>
-                <head>
-                    <title>Lyrics - ${song.split(' - ')[0]}</title>
-                    <style>
-                        body { margin: 20px; text-align: center; font-family: Arial, sans-serif; }
-                        h2 { font-size: ${fontSize + 10}px; }
-                        pre {
-                            font-size: ${fontSize}px;
-                            margin: 10px 0;
-                            white-space: pre-wrap;
-                            text-align: left;
-                            max-width: 776px;
-                            margin-left: auto;
-                            margin-right: auto;
-                        }
-                        button {
-                            padding: 5px 10px;
-                            background: #e31c1c;
-                            color: white;
-                            border: none;
-                            border-radius: 3px;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <h2>${song.split(' - ')[0]}</h2>
-                    <pre>${lyrics}</pre>
-                    <button onclick="window.print()">Print</button>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
         }
 
         function updateIcons(selectElement, song, iconIndex) {
@@ -1158,7 +1229,7 @@
             songIcons[song][iconIndex] = selectElement.value;
             populateSongTable();
             updateAllSetlists();
-            saveData();
+            unsavedChanges = true;
         }
 
         function updateColor(selectElement, song) {
@@ -1167,14 +1238,14 @@
             document.querySelectorAll(`[data-song="${song}"]`).forEach(el => {
                 el.style.backgroundColor = selectElement.value;
             });
-            saveData();
+            unsavedChanges = true;
         }
 
         function deleteFromSetlist(setlistKey, song) {
             setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
-            saveData();
+            unsavedChanges = true;
         }
 
         function printSetlist(setlistId) {
@@ -1198,16 +1269,36 @@
                 }
             }
 
-            let printWindow = window.open('', '', 'width=816,height=1056');
+            // Get unique tunings and icons used in this setlist
+            const tuningsInSetlist = new Set();
+            const iconsInSetlist = new Set();
+            
+            songs.forEach(song => {
+                const tuning = songData[song]?.tuning || 'Standard';
+                tuningsInSetlist.add(tuning);
+                
+                const icons = songIcons[song] || [];
+                icons.forEach(icon => {
+                    if (icon) iconsInSetlist.add(icon);
+                });
+            });
+
+            let printWindow = window.open('', '_blank', 'width=816,height=1056');
             printWindow.document.write(`
                 <html><head><title>Setlist</title>
                 <style>
-                    body { margin: 20px; text-align: center; font-family: Arial, sans-serif; }
-                    .icon-O { color: blue; font-size: ${iconFontSize}px; }
-                    .icon-X { color: red; font-size: ${iconFontSize}px; }
-                    .icon-G { color: #8B4513; font-size: ${iconFontSize}px; }
-                    .icon-M { color: orange; font-size: ${iconFontSize}px; }
-                    .icon-→ { color: black; font-size: ${iconFontSize}px; }
+                    body { 
+                        margin: 0;
+                        padding: 20px;
+                        text-align: center; 
+                        font-family: Arial, sans-serif; 
+                    }
+                    ${Array.from(iconsInSetlist).map(icon => `
+                        .icon-${icon} { 
+                            color: ${getIconColor(icon)}; 
+                            font-size: ${iconFontSize}px; 
+                        }
+                    `).join('')}
                     .setlist-header {
                         display: flex;
                         justify-content: space-between;
@@ -1224,6 +1315,8 @@
                         display: flex;
                         gap: 10px;
                         font-size: 12px;
+                        flex-wrap: wrap;
+                        justify-content: center;
                     }
                     .tuning-legend-item {
                         display: flex;
@@ -1235,28 +1328,91 @@
                         height: 15px;
                         border: 1px solid #000;
                     }
+                    ol {
+                        padding: 0;
+                        margin: 0;
+                        list-style-position: inside;
+                    }
                     li { 
                         margin: 10px 0; 
                         display: flex; 
                         align-items: center; 
                         justify-content: center; 
                         position: relative;
+                        padding: 10px;
+                        page-break-inside: avoid;
                     }
-                    .song-title { font-size: ${baseTitleFontSize}px; }
-                    .artist { font-size: ${artistFontSize}px; margin-left: 10px; }
-                    .icons { margin-right: 10px; }
+                    .song-title { 
+                        font-size: ${baseTitleFontSize}px;
+                        margin: 0 10px;
+                    }
+                    .artist { 
+                        font-size: ${artistFontSize}px; 
+                    }
+                    .icons { 
+                        margin-right: 10px;
+                    }
+                    
+                    /* Tuning classes for print view */
+                    ${Array.from(tuningsInSetlist).map(tuning => `
+                        .tuning-${tuning.replace(' ', '-')} {
+                            background-color: ${getTuningColor(tuning)} !important;
+                            ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' ? 'color: white !important;' : ''}
+                        }
+                    `).join('')}
+                    
+                    .crossfade-pair {
+                        background-color: #90EE90 !important;
+                        position: relative;
+                    }
+                    .crossfade-pair::before {
+                        content: "⇄";
+                        position: absolute;
+                        left: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
+                    .crossfade-pair::after {
+                        content: "⇄";
+                        position: absolute;
+                        right: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
+                    
+                    @media print {
+                        body {
+                            padding: 0;
+                            margin: 0;
+                        }
+                        .setlist-header {
+                            margin-bottom: 5px;
+                        }
+                        .setlist-title {
+                            font-size: 24px;
+                        }
+                        li {
+                            margin: 5px 0;
+                            padding: 5px;
+                        }
+                        .song-title {
+                            font-size: 36px;
+                        }
+                    }
                 </style>
                 </head><body>
                 <div class="setlist-header">
                     <h2 class="setlist-title">${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
+                    ${tuningsInSetlist.size > 0 ? `
                     <div class="tuning-legend">
-                        ${TUNING_OPTIONS.map(tuning => `
+                        ${Array.from(tuningsInSetlist).map(tuning => `
                             <div class="tuning-legend-item">
-                                <div class="tuning-legend-color tuning-${tuning.replace(' ', '-')}-color"></div>
+                                <div class="tuning-legend-color" style="background-color: ${getTuningColor(tuning)}"></div>
                                 <span>${tuning}</span>
                             </div>
                         `).join('')}
                     </div>
+                    ` : ''}
                 </div>
                 <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
@@ -1265,11 +1421,12 @@
                     const [title, artist] = song.split(' - ');
                     const tuning = songData[song]?.tuning || 'Standard';
                     const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
+                    const songColor = songColors[song] || '';
                     
                     const isCrossfadePair = crossfadePairs.includes(index);
                     const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
                     
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass} ${crossfadeClass}">
+                    return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}" onclick="window.opener.showLyrics('${song}')">
                         <span class="icons">${icons}</span>
                         <span class="song-title">${title}</span>
                         <span class="artist">${artist}</span>
@@ -1281,13 +1438,42 @@
             printWindow.document.close();
         }
 
+        function getTuningColor(tuning) {
+            const tuningMap = {
+                'Standard': 'inherit',
+                'Drop D': '#000',
+                'Eb': '#ff0000',
+                'Eb Standard': '#ff0000',
+                'D Std.': '#D3D3D3',
+                'Drop C': '#FFFF00',
+                'DADGAD': '#FFA500',
+                'Open G': '#90EE90',
+                'Open D': '#FFC1CC',
+                'Drop Db': '#808080',
+                'B Std.': '#800080',
+                'Open C': '#A52A2A'
+            };
+            return tuningMap[tuning] || 'inherit';
+        }
+
+        function getIconColor(icon) {
+            const iconMap = {
+                'O': 'blue',
+                'X': 'red',
+                'G': '#8B4513',
+                'M': 'orange',
+                '→': 'black'
+            };
+            return iconMap[icon] || 'inherit';
+        }
+
         function saveSetlist(setlistId) {
             const name = document.getElementById(`${setlistId}-name`).value;
             if (name) {
                 savedSetlists[name] = [...setlists[setlistId]];
                 alert(`Setlist saved as "${name}"`);
                 displaySavedSetlists();
-                saveData();
+                unsavedChanges = true;
             } else {
                 alert("Please enter a name for the setlist.");
             }
@@ -1297,16 +1483,20 @@
             if (confirm(`Are you sure you want to delete the saved setlist "${name}"?`)) {
                 delete savedSetlists[name];
                 displaySavedSetlists();
-                saveData();
+                unsavedChanges = true;
             }
         }
 
         function viewSavedSetlist(name) {
             const songs = savedSetlists[name];
             const songCount = songs.length;
-            const baseFontSize = 40;
-            const fontSize = songCount > 5 ? Math.max(12, baseFontSize - (songCount * 2)) : baseFontSize;
-            
+            const windowHeight = 1056;
+            const maxTitleFontSize = 60;
+            const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
+            const setlistTitleFontSize = baseTitleFontSize - 10;
+            const artistFontSize = 8;
+            const iconFontSize = 20;
+
             // Check for crossfade pairs
             const crossfadePairs = [];
             for (let i = 0; i < songs.length - 1; i++) {
@@ -1318,16 +1508,36 @@
                 }
             }
 
+            // Get unique tunings and icons used in this setlist
+            const tuningsInSetlist = new Set();
+            const iconsInSetlist = new Set();
+            
+            songs.forEach(song => {
+                const tuning = songData[song]?.tuning || 'Standard';
+                tuningsInSetlist.add(tuning);
+                
+                const icons = songIcons[song] || [];
+                icons.forEach(icon => {
+                    if (icon) iconsInSetlist.add(icon);
+                });
+            });
+
             let setlistWindow = window.open('', '_blank', 'width=816,height=1056');
             setlistWindow.document.write(`
                 <html><head><title>Saved Setlist - ${name}</title>
                 <style>
-                    body { margin: 20px; text-align: center; font-family: Arial, sans-serif; }
-                    .icon-O { color: blue; }
-                    .icon-X { color: red; }
-                    .icon-G { color: #8B4513; }
-                    .icon-M { color: orange; }
-                    .icon-→ { color: black; }
+                    body { 
+                        margin: 0;
+                        padding: 20px;
+                        text-align: center; 
+                        font-family: Arial, sans-serif; 
+                    }
+                    ${Array.from(iconsInSetlist).map(icon => `
+                        .icon-${icon} { 
+                            color: ${getIconColor(icon)}; 
+                            font-size: ${iconFontSize}px; 
+                        }
+                    `).join('')}
                     .setlist-header {
                         display: flex;
                         justify-content: space-between;
@@ -1335,7 +1545,7 @@
                         margin-bottom: 10px;
                     }
                     .setlist-title {
-                        font-size: ${fontSize + 10}px; 
+                        font-size: ${setlistTitleFontSize}px; 
                         background-color: yellow; 
                         display: inline-block; 
                         padding: 5px 10px;
@@ -1344,6 +1554,8 @@
                         display: flex;
                         gap: 10px;
                         font-size: 12px;
+                        flex-wrap: wrap;
+                        justify-content: center;
                     }
                     .tuning-legend-item {
                         display: flex;
@@ -1355,35 +1567,109 @@
                         height: 15px;
                         border: 1px solid #000;
                     }
+                    ol {
+                        padding: 0;
+                        margin: 0;
+                        list-style-position: inside;
+                    }
                     li { 
-                        font-size: ${fontSize}px; 
-                        margin: 10px 0;
+                        margin: 10px 0; 
+                        display: flex; 
+                        align-items: center; 
+                        justify-content: center; 
                         position: relative;
+                        padding: 10px;
+                        page-break-inside: avoid;
+                    }
+                    .song-title { 
+                        font-size: ${baseTitleFontSize}px;
+                        margin: 0 10px;
+                    }
+                    .artist { 
+                        font-size: ${artistFontSize}px; 
+                    }
+                    .icons { 
+                        margin-right: 10px;
+                    }
+                    
+                    /* Tuning classes for print view */
+                    ${Array.from(tuningsInSetlist).map(tuning => `
+                        .tuning-${tuning.replace(' ', '-')} {
+                            background-color: ${getTuningColor(tuning)} !important;
+                            ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' ? 'color: white !important;' : ''}
+                        }
+                    `).join('')}
+                    
+                    .crossfade-pair {
+                        background-color: #90EE90 !important;
+                        position: relative;
+                    }
+                    .crossfade-pair::before {
+                        content: "⇄";
+                        position: absolute;
+                        left: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
+                    .crossfade-pair::after {
+                        content: "⇄";
+                        position: absolute;
+                        right: -20px;
+                        font-size: 16px;
+                        color: #006400;
+                    }
+                    
+                    @media print {
+                        body {
+                            padding: 0;
+                            margin: 0;
+                        }
+                        .setlist-header {
+                            margin-bottom: 5px;
+                        }
+                        .setlist-title {
+                            font-size: 24px;
+                        }
+                        li {
+                            margin: 5px 0;
+                            padding: 5px;
+                        }
+                        .song-title {
+                            font-size: 36px;
+                        }
                     }
                 </style>
                 </head><body>
                 <div class="setlist-header">
                     <h2 class="setlist-title">${name}</h2>
+                    ${tuningsInSetlist.size > 0 ? `
                     <div class="tuning-legend">
-                        ${TUNING_OPTIONS.map(tuning => `
+                        ${Array.from(tuningsInSetlist).map(tuning => `
                             <div class="tuning-legend-item">
-                                <div class="tuning-legend-color tuning-${tuning.replace(' ', '-')}-color"></div>
+                                <div class="tuning-legend-color" style="background-color: ${getTuningColor(tuning)}"></div>
                                 <span>${tuning}</span>
                             </div>
                         `).join('')}
                     </div>
+                    ` : ''}
                 </div>
                 <ol>${songs.map((song, index) => {
                     const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                         `<span class="icon-${icon}">${icon}</span>`
                     ).join(' ');
+                    const [title, artist] = song.split(' - ');
                     const tuning = songData[song]?.tuning || 'Standard';
                     const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
+                    const songColor = songColors[song] || '';
                     
                     const isCrossfadePair = crossfadePairs.includes(index);
                     const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
                     
-                    return `<li style="background:${songColors[song] || '#f9f9f9'}" class="${tuningClass} ${crossfadeClass}">${icons} ${song}</li>`;
+                    return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}" onclick="window.opener.showLyrics('${song}')">
+                        <span class="icons">${icons}</span>
+                        <span class="song-title">${title}</span>
+                        <span class="artist">${artist}</span>
+                    </li>`;
                 }).join('')}</ol>
                 <button onclick="window.print()">Print</button>
                 </body></html>
@@ -1421,7 +1707,7 @@
                 document.querySelector('.edit-setlist-popup').remove();
                 document.querySelector('.overlay').remove();
                 editSavedSetlist(setlistName);
-                saveData();
+                unsavedChanges = true;
             }
         }
 
@@ -1434,7 +1720,7 @@
                 updateDuration(setlistKey);
                 document.querySelector('.edit-setlist-popup').remove();
                 document.querySelector('.overlay').remove();
-                saveData();
+                unsavedChanges = true;
             }
         }
 
@@ -1463,7 +1749,7 @@
             // Add the song to the new position in the target setlist
             setlists[setlistKey].splice(targetIndex, 0, song);
             updateAllSetlists();
-            saveData();
+            unsavedChanges = true;
         }
 
         function updateAllSetlists() {
@@ -1480,8 +1766,13 @@
                 const icons = (songIcons[song] || []).filter(i => i).map(icon =>
                     `<span class="icon-${icon}">${icon}</span>`
                 ).join(' ');
+                const tuning = songData[song]?.tuning || 'Standard';
+                const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
+                const songColor = songColors[song] || '';
+                
                 return `
-                    <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)">
+                    <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)" 
+                        style="background:${songColor}" class="${tuningClass}">
                         ${icons} ${song}
                         <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
@@ -1539,40 +1830,20 @@
             table.rows[0].cells[columnIndex].setAttribute('data-order', isAscending ? 'desc' : 'asc');
         }
 
-        function editSong(song) {
-            const songInfo = songData[song];
-            if (!songInfo) return;
-            const [oldTitle, oldArtist] = song.split(' - ');
-            const title = prompt("Song Title:", oldTitle);
-            const artist = prompt("Artist:", oldArtist);
-            const key = prompt("Key:", songInfo.key);
-            const riff = prompt("Riff:", songInfo.riff);
-            const bpm = prompt("BPM:", songInfo.bpm);
-            const duration = prompt("Duration:", songInfo.duration);
-            const tuning = prompt("Tuning:", songInfo.tuning);
-
-            if (title && artist) {
-                const newSongKey = `${title} - ${artist}`;
-                if (newSongKey !== song) {
-                    songData[newSongKey] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "", tuning: tuning || "" };
-                    delete songData[song];
-                    Object.keys(setlists).forEach(key => {
-                        setlists[key] = setlists[key].map(s => s === song ? newSongKey : s);
-                    });
-                    if (songIcons[song]) {
-                        songIcons[newSongKey] = songIcons[song];
-                        delete songIcons[song];
-                    }
-                    if (songColors[song]) {
-                        songColors[newSongKey] = songColors[song];
-                        delete songColors[song];
-                    }
-                } else {
-                    songData[song] = { ...songData[song], key: key || "", riff: riff || "", bpm: bpm || "", duration: duration || "", tuning: tuning || "" };
-                }
+        function deleteSong(song) {
+            if (confirm(`Are you sure you want to delete "${song}"?`)) {
+                delete songData[song];
+                delete songIcons[song];
+                delete songColors[song];
+                Object.keys(setlists).forEach(key => {
+                    setlists[key] = setlists[key].filter(s => s !== song);
+                });
+                Object.keys(savedSetlists).forEach(name => {
+                    savedSetlists[name] = savedSetlists[name].filter(s => s !== song);
+                });
                 populateSongTable();
                 updateAllSetlists();
-                saveData();
+                unsavedChanges = true;
             }
         }
 
@@ -1595,7 +1866,7 @@
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
                 document.getElementById('new-song-tuning').value = '';
-                saveData();
+                unsavedChanges = true;
             }
         }
 
@@ -1644,7 +1915,7 @@
                 populateSongTable();
                 document.getElementById('paste-song-details').value = '';
                 alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
-                saveData();
+                unsavedChanges = true;
             }
         }
 
@@ -1662,23 +1933,6 @@
             const remainingSeconds = totalSeconds % 60;
             document.getElementById(`duration-${setlistKey.split('-')[1]}`).innerText =
                 `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
-        function deleteSong(song) {
-            if (confirm(`Are you sure you want to delete "${song}"?`)) {
-                delete songData[song];
-                delete songIcons[song];
-                delete songColors[song];
-                Object.keys(setlists).forEach(key => {
-                    setlists[key] = setlists[key].filter(s => s !== song);
-                });
-                Object.keys(savedSetlists).forEach(name => {
-                    savedSetlists[name] = savedSetlists[name].filter(s => s !== song);
-                });
-                populateSongTable();
-                updateAllSetlists();
-                saveData();
-            }
         }
     </script>
 
