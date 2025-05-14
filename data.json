@@ -6,8 +6,8 @@
       "bpm": "112",
       "duration": "3:39",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb "
+      "lyrics": "Well, you've heard about lovin' givin' sight to the blind\nMy baby's lovin' cause the sun to shine\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nYeah, I love my baby, my heart and soul\nLove like ours won't ever grow old\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nYeah, I love my lady, she's long and lean\nYou mess with her, you'll see a man get mean\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nWell, I love my baby like the finest wine\nStick with her until the end of time\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\nYeah, I love my baby, my heart and soul\nLove like ours won't ever grow old\nShe's my sweet little thing\nShe's my pride and joy\nShe's my sweet little baby\nI'm her little lover boy\n",
+      "tuning": "Standard"
     },
     "Feeling Good - various": {
       "key": "Am",
@@ -546,14 +546,6 @@
       "crossfadeInto": [],
       "lyrics": ""
     },
-    "99 Quite Bitter Beings - CKY": {
-      "key": "Dm",
-      "riff": "D",
-      "bpm": "120",
-      "duration": "3:44",
-      "crossfadeInto": [],
-      "lyrics": ""
-    },
     "Loser - Beck": {
       "key": "E",
       "riff": "E",
@@ -587,15 +579,21 @@
       "tuning": "Db",
       "crossfadeInto": [],
       "lyrics": ""
+    },
+    "96 Quite Bitter Beings - CKY": {
+      "key": "Dm",
+      "riff": "D",
+      "bpm": "120",
+      "duration": "3:44",
+      "tuning": "Eb",
+      "lyrics": "With my perceptions in a mix\nDown twenty miles through the sticks\nTo the cloudy town of Hellview: Population 96\nExcessive vacancy, well maybe\nIn the shadow of an eye\nAll the strangers pass through\nWhere the rules just don't apply\n\nAt the fork turn left a store\nBut on the right stay free from sight\n'Cause 96 quite bitter beings\nLike to stack the bodies high\nThe only way to ever leave is\nOverflooded by the storm\nAnd entanglement in Hellview\nBrings you fear in fifty forms\n\n(They've deleted all the tourists)\n(At the bottom of the lake)\n\nAnd not one supports the cause\nTo leave the blood stay in the veins\n\n\nHere, three miles back is where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted was an answer\n\nFootprints giving clue to where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted (wanted, wanted, wanted)",
+      "crossfadeInto": []
     }
   },
   "setlists": {
     "setlist-1": [
-      "Good Times Bad - Led Zeppelin",
-      "Sex on Fire - Kings of Leon",
-      "Love Me Two Times - The Doors",
-      "Creep - Radiohead",
-      "Creep - Radiohead"
+      "Pride and Joy - Stevie Ray Vaughan",
+      "96 Quite Bitter Beings - CKY"
     ],
     "setlist-2": [],
     "setlist-3": []
@@ -815,7 +813,7 @@
       "Zero - Smashing Pumpkins",
       "Hash Pipe - Weezer",
       "Santeria - Sublime",
-      "99 Quite Bitter Beings - CKY",
+      "96 Quite Bitter Beings - CKY",
       "Sponge - Plowed",
       "She Talks to Angels - The Black Crowes",
       "Them Bones - Alice in chains",
