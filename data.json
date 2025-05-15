@@ -10,13 +10,14 @@
       "tuning": "Eb"
     },
     "Feeling Good - various": {
-      "key": "Am",
-      "riff": "Am",
+      "key": "Gm",
+      "riff": "Ebm",
       "bpm": "92",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": "\"Feeling Good\"\n\nBirds flying high\nYou know how I feel\nSun in the sky\nYou know how I feel\nBreeze driftin' on by\nYou know how I feel\n\nIt's a new dawn\nIt's a new day\nIt's a new life\nFor me\nAnd I'm feeling good\nI'm feeling good\n\nFish in the sea\nYou know how I feel\nRiver running free\nYou know how I feel\nBlossom on a tree\nYou know how I feel\n\nIt's a new dawn\nIt's a new day\nIt's a new life\nFor me\nAnd I'm feeling good\n\nDragonfly out in the sun\nYou know what I mean,\nDon't you know?\nButterflies all havin' fun\nYou know what I mean\nSleep in peace when day is done\nThat's what I mean\n\nAnd this old world\nIs a new world\nAnd a bold world\nFor me\nFor me\n\nStars when you shine\nYou know how I feel\nScent of the pine\nYou know how I feel\nOh freedom is mine\nAnd I know how I feel\n\nIt's a new dawn\nIt's a new day\nIt's a new life\n\nIt's a new dawn\nIt's a new day\nIt's a new life\n\nIt's a new dawn\nIt's a new day\nIt's a new life\nIt's a new life\nFor me\nAnd I'm feeling good\n\nI'm feeling good\nI feel so good\nI feel so good\n\n\n",
-      "tuning": "Eb"
+      "lyrics": "Ebm                        Ebm    \nBirds flying high, you know how I feel.    \nEbm                   Ebm    \nSun in the sky, you know how I feel.      \nEbm         Ebm/C#  G#/C               G#m/B      \nBreeze drifting on by, you know how I feel.      \nBbm                      G#m              Ebm/F#       Bb/F      \nIt's a new dawn, it's a new day, it's a new life   for me.      \n      \nAnd I'm feeling good\n      \nEbm  Ebm/C#  B  Bb       \n      \nEbm         Ebm/C#  B             Bb       \nFish in the sea, you know how I feel.      \nEbm           Ebm/C#     B             Bb       \nRiver running free, you know how I feel.      \nEbm                  Ebm/C#  G#/C            G#m/B      \nBlossom in the trees, you know how I feel.      \n      \n          Bbm                       G#m                    Ebm/F#    Bb/F      \nIt's a new dawn, it's a new day, it's a new life     for me      \n      \nAnd I'm feeling good.\n      \nEbm  Ebm/C#  B  Bb   (2x)    \n\nKey Change Fm  Fm/Eb  C#  C  (2x)    \n      \nEbm         Ebm/C#          B                Bb       \nDragonflies out in the sun, you know what I mean, don't you know?      \n      \nEbm         Ebm/C#       B              Bb       \nButterflies all having fun, you know what I mean.      \n      \nEbm                  Ebm/C#         G#/C         G#m/B      \nSleep in peace when day is done, that's what I mean.      \n      \n               Bbm                      G#m                      Ebm/F#         Bb/F      \nIt's and old world, it's a new world, it's a bold world     for me.      \n      \nEbm  Ebm/C#  B  Bb      \n      \nEbm             Ebm/C#   B             Bb       \nStars when you shine, you know how I feel.      \n      \nEbm          Ebm/C#    B            Bb       \nSaid I'll be fine, you know how I feel.      \n      \nEbm            Ebm/C#  G#/C           G#m/B      \nOh freedom is mine, and I know how I feel.      \n        \nBbm                      G#m                   Ebm/F#                Bb/F      \nIt's a new dawn, it's a new day, it's a new life   for me      \n      \nAnd I'm feeling good.\n      \nEbm  Ebm/C#  B  Bb       \nooooooh feeling good! ooh feeling good!",
+      "tuning": "Eb",
+      "timeSignature": "4/4"
     },
     "Creep - Radiohead": {
       "key": "G",
@@ -65,11 +66,12 @@
     "Fell on Black Days - Soundgarden": {
       "key": "Em",
       "riff": "Em",
-      "bpm": "108",
+      "bpm": "99",
       "duration": "4:42",
       "crossfadeInto": [],
       "lyrics": "\"Fell On Black Days\"\n\nWhatsoever I've feared has come to light\nAnd whatsoever I've fought off became my life\n\nJust when every day seemed to greet me with a smile\nSunspots have faded\nNow I'm doing time\nNow I'm doing time\n\n'Cause I fell on black days\nI fell on black days\n\nWhomsoever I've cured\nI've sickened now\nAnd whomsoever I've cradled\nI've put you down\n\nI'm a searchlight soul they say\nBut I can't see it in the night\nI'm only faking when I get it right\nWhen I get it right\n\n'Cause I fell on black days\nI fell on black days\n\nHow would I know\nThat this could be my fate?\nHow would I know\nThat this could be my fate?\n\nSo what you wanted to see good has made you blind\nAnd what you wanted to be yours has made it mine\n\nSo don't you lock up something\nThat you wanted to see fly\nHands are for shaking\nNo not tying\nNo not tying\n\nI sure don't mind a change\nSure don't mind a change\nYeah, sure don't mind, sure don't mind a change\nI sure don't mind a change\n\n'Cause I fell on black days\nI fell on black days\n\nHow would I know\nThat this could be my fate?\n\nHow would I know\nThat this could be my fate?\n\nHow would I know\nThat this could be my fate?\n\nHow would I know\nThat this could be my fate?\n\nI sure don't mind a change\n\n\n",
-      "tuning": "Eb"
+      "tuning": "Eb",
+      "timeSignature": "4/4"
     },
     "Sex on Fire - Kings of Leon": {
       "key": "B",
@@ -345,10 +347,12 @@
     "Hash Pipe - Weezer": {
       "key": "E",
       "riff": "E",
-      "bpm": "104",
+      "bpm": "160",
       "duration": "3:06",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "\"Hash Pipe\" lyrics\nWeezer Lyrics\n\"Hash Pipe\"\n\nI can't help my feelings, I'll go out of my mind\nThese players come to get me cause they'd like my behind\nI can't love my business if I can't get a trick\nDown on Santa Monica where tricks are for kids\n\nOh, come on and kick me\nOh, come on and kick me\n(Whoa) Come on and kick me\n(Whoa) You've got your problems\n(Whoa) I've got my asswipe\n\nI can't help my boogies, they get out of control\nI know that you don't care but I want you to know\nThe knee-stocking flavor is a favorite treat\nOf men that don't bother with the taste of a teat\n\nOh, come on and kick me\nOh, come on and kick me\n(Whoa) Come on and kick me\n(Whoa) You've got your problems\n(Oh) I've got my asswipe\n(Oh) You've got your big G's\nI've got my hash pipe\nI've got my hash pipe\n\nOh, come on and kick me\nOh, come on and kick me\n(Oh) Come on and kick me\n(Oh) You've got your problems\n(Oh) I've got my asswipe\n(Oh) You've got your big G's\nI've got my hash pipe\nI got my hash pipe\nI got my hash pipe\nI got my hash pipe\n\n\n",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Plowed - Sponge": {
       "key": "Em",
@@ -392,8 +396,9 @@
       "bpm": "72",
       "duration": "4:54",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb"
+      "lyrics": "[Verse]\n     Gm      F              Dm\nOn a cobweb, afternoon in a room\n        Eb\nfull of emptiness\n     Gm      F\nBy a freeway I confess\n  Dm              Eb\nI was lost in the pages\nGm         F\nOf a book, full of death\nDm                Eb\nReading how we'll die alone\n       Gm               F\nAnd if we're good we'll lay to rest\nDm          Eb\nAnywhere we want to go\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7\nAlone\n      Gm        F\nOn my deathbed, I will pray\n   Dm               Eb\nTo the gods and the angels\n       Gm       F\nLike a pagan to anyone\n    Dm              Eb\nWho will take me to heaven\nGm          F\nTo a place, I recall\nDm          Eb\nI was there so long ago\n    Gm\nThe sky was bruised\n    F\nThe wine was bled\n    Dm               Eb\nAnd there you led me on\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7\nAlone   Alone\n \n \n[Solo]\nGm Bb F Gm Gm Bb F Gm\nEb Gm\nF Gm\nEb Gm D7\n \n[Verse]\n    Eb   Bb\nAnd on I read\nD                 Eb\nUntil the day was gone\n      Ebm          C7\nAnd I sat in regret\n   D7                  Gm\nOf all the things I've done\n    Eb              Bb\nFor all that I've blessed\n    D              Eb\nAnd all that I've wronged\n    Ebm             C7\nIn dreams until my death\n       D7     D7\nI will wander on\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7      Eb\nAlone   Alone..",
+      "tuning": "Eb",
+      "timeSignature": "4/4"
     },
     "Say it aint so - Weezer ": {
       "key": "",
@@ -417,22 +422,24 @@
       "timeSignature": "4/4"
     },
     "Hemorrhage - Fuel": {
-      "key": "Am",
-      "riff": "Am",
-      "bpm": "120",
+      "key": "bm",
+      "riff": "bm",
+      "bpm": "96",
       "duration": "3:56",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb"
+      "lyrics": "[Intro: ]Bm A E\n\nBm        A          G             A\nmemories are just where you laid them\nBm        A          G                           A\ndrag the waters 'till the depths give up their dead\nBm             A\nwhat did you expect to find?\nG                         A     \nwas there something you left behind?\nBm           A         G                   A\ndon't you remember anything i said when i said\nE         D     A    \ndon't fa....ll away, and leave me to myself\nE         D     A        F#m                  \ndon't fa....ll away and leave love bleeding\nG           D               A       \nin my hands, in my hands again\nF#m\nleave love bleeding\nG           D \nin my hands, in my hands\nF#m                \nlove lies bleeding\n(Bm,A,G,A)\nBm          A                 G  A    \noh hold me now i feel contagious\nBm          A             G             A   \nam i the only place that you've left to go\nBm                      A\nshe cries her life is like\nG                       A\nsome movie black and white\nBm           A\ndead actors faking lines\nG                   A\nover and over and over again she cries\nRefrão:\n          \nG       A    Bm\nand i wanted\n     C#m D E  F#m\nyou turned away\nF#m   Bm   C#m D  E    F#m   \nyou don't remember, but i do\n     F#m         Bm   A G A\nyou never even tried\nSolo:(Bm,A,G,A)\nRefrão:\n",
+      "tuning": "Eb",
+      "timeSignature": "4/4"
     },
     "Good Times Bad - Led Zeppelin": {
       "key": "A",
       "riff": "A",
-      "bpm": "138",
+      "bpm": "144",
       "duration": "2:46",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Eb"
+      "lyrics": "\"Good Times Bad Times\"\n\nIn the days of my youth, I was told what it means to be a man\nAnd now I've reached that age, I've tried to do all those things the best I can\nNo matter how I try, I find my way into the same old jam\n\nGood times, bad times, you know I've had my share\nWhen my woman left home with a brown eyed man\nBut I still don't seem to care\n\nSixteen, I fell in love with a girl as sweet as could be\nIt only took a couple of days 'til she was rid of me\nShe swore that she would be all mine and love me 'til the end\nBut when I whispered in her ear, I lost another friend, oh\n\nGood times, bad times, you know I've had my share\nWhen my woman left home for a brown eyed man\nBut I still don't seem to care\n\nGood times, bad times, you know I've had my share\nWhen my woman left home for a brown eyed man\nBut I still don't seem to care\n\nI know what it means to be alone\nI sure do wish I was at home\nI don't care what the neighbours say\nI'm gonna love you each and every day\nYou can feel the beat within my heart\nRealize, sweet babe, we ain't ever gonna part\n",
+      "tuning": "Eb",
+      "timeSignature": "4/4"
     },
     "Tripping on a Hole - STP": {
       "key": "E",
@@ -481,10 +488,12 @@
     "Interstate Love Song - STP": {
       "key": "E",
       "riff": "E",
-      "bpm": "104",
+      "bpm": "107",
       "duration": "3:15",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "C#m, E, A9, G#, A9, E\n\n\nC#m          Cm#5  \nWaiting on a Sunday   \n              C#m7/B  \nafternoon for what I read   \n            A#Â°          A9   E, F#m4/7, E  \nbetween the lines Your lies  \n  \nC#m            C(#5)  \nFeeling like a hand in rusted shame  \n   E6/B                    A#m7(b5)  \nSo do you laugh or does it cry?  \nA9   E, F#m4/7, E  \nReply?  \n  \nC#m           E  \nLeavin' on a southern train  \n      A9            G#  \nOnly yesterday you lied  \nA9                 E  \nPromises of what I seemed   \n           A9  \nto be only watched the time  \nG#  \ngo by   \nA9                      E             \nAll of these things you said to me  \n  \nINTRO 2x\n  \nC#m              C(#5)  \nBreathing is the hardest thing to do.  \n      E6/B                        A#m5-  \nWith all I've said and all that's dead for you  \n    A9 E  A9      E, F#m4/7, E  \nYou lied-Goodbye.  \n  \nC#m           E  \nLeavin' on a southern train  \n      A              G#  \nonly yesterday, you lied  \nA                   E  \nPromises of what I seemed  \n            A  \nto be only watched the time   \nG#  \ngo by   \nA                     E  \nall of these things I said  \n        E  \nto you  \n  \nINTRO",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Zero - Smashing Pumpkins": {
       "key": "E",
