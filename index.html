@@ -492,6 +492,23 @@
             justify-content: space-between;
             margin-top: 20px;
         }
+        /* New styles for the play button */
+        .play-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .play-btn:hover {
+            background: #45a049;
+        }
+        .play-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -521,6 +538,9 @@
     </div>
 
     <script>
+        // Initialize AudioContext for metronome
+        let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
         let songData = {};
@@ -1641,10 +1661,44 @@
                     <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)" 
                         style="background:${songColor}" class="${tuningClass}">
                         ${icons} ${song}
+                        <button class="play-btn" onclick="playMetronome('${song}', this)">Play Metronome</button>
                         <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
                 `;
             }).join('');
+        }
+
+        // New metronome function
+        function playMetronome(song, button) {
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+            const bpm = parseInt(songData[song].bpm);
+            if (isNaN(bpm) || bpm <= 0) {
+                alert('Invalid or missing BPM for this song.');
+                return;
+            }
+            button.disabled = true;
+            button.innerText = 'Playing...';
+            const beatInterval = 60 / bpm; // Seconds per beat
+            const numBeats = 8; // 2 measures of 4 beats
+            let currentTime = audioContext.currentTime;
+
+            for (let i = 0; i < numBeats; i++) {
+                const oscillator = audioContext.createOscillator();
+                oscillator.type = 'square';
+                oscillator.frequency.setValueAtTime(1000, currentTime); // 1000 Hz click
+                oscillator.connect(audioContext.destination);
+                oscillator.start(currentTime);
+                oscillator.stop(currentTime + 0.05); // 50ms duration
+                currentTime += beatInterval;
+            }
+
+            // Re-enable button after metronome finishes
+            setTimeout(() => {
+                button.disabled = false;
+                button.innerText = 'Play Metronome';
+            }, (numBeats * beatInterval) * 1000);
         }
 
         function displaySavedSetlists() {
