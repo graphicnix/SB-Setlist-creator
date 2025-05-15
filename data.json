@@ -178,12 +178,14 @@
     "Cumbersome - Seven Mary Three": {
       "key": "A",
       "riff": "A",
-      "bpm": "112",
+      "bpm": "98",
       "duration": "4:10",
       "crossfadeInto": [
         "Breed - Nirvana"
       ],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "La Grange - ZZ Top": {
       "key": "E",
@@ -206,12 +208,14 @@
     "Cult of Personality - Living Colour": {
       "key": "Em",
       "riff": "Em",
-      "bpm": "110",
+      "bpm": "115",
       "duration": "4:54",
       "crossfadeInto": [
         "Zero - Smashing Pumpkins"
       ],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Beautiful Disaster - 311": {
       "key": "Em",
@@ -322,10 +326,12 @@
     "Cowboys from Hell - Pantera": {
       "key": "E",
       "riff": "E",
-      "bpm": "138",
+      "bpm": "190",
       "duration": "4:03",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Hash Pipe - Weezer": {
       "key": "E",
@@ -617,16 +623,23 @@
     "Devils Bleedin Crown - Volbeat": {
       "key": "",
       "riff": "",
-      "bpm": "",
+      "bpm": "160",
       "duration": "3:58",
       "tuning": "Standard",
       "lyrics": "Volbeat Lyrics\n\"The Devil's Bleeding Crown\"\n\nFalling from the sky, they're cast out from the heaven's light\nDrenching the soil with blood, baptized in the fire hole\n\nThe Devil's spawn no longer breathes\nDescending angels and fallen kings\nRaise your hands, what do you hold?\nThe Devil's bleeding crown!\n\nCall upon it's Father, bless the goat, the womanizer\nTake him to Astaroth, Inanna's temple of Uruk\n\nThe Devil's spawn no longer breathes\nDescending angels and fallen kings\nRaise your hands, what do you hold?\nThe Devil's bleeding crown!\n\nThey gathered all the children outside the church\nAnd never would they know what went on in there\nClose the door and hear all the angels scream\n\"Oh mercy, mercy, mercy, oh mercy, please!\"\nDown, down, down\nDown below you can hear his hoof digging through the ground\nOh Lord, Lord, Lord\nThe horned one is back and he wants his crown\n\nThe Devil's spawn no longer breathes\nDescending angels and fallen kings\nRaise your hands, what do you hold?\nThe Devil's bleeding crown!\n\n",
-      "crossfadeInto": []
+      "crossfadeInto": [],
+      "timeSignature": "4/4"
     }
   },
   "setlists": {
     "setlist-1": [
-      "96 Quite Bitter Beings - CKY"
+      "96 Quite Bitter Beings - CKY",
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Feeling Good - various",
+      "Creep - Radiohead",
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "Cumbersome - Seven Mary Three"
     ],
     "setlist-2": [],
     "setlist-3": []
