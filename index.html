@@ -235,7 +235,7 @@
             width: 100px;
             padding: 3px;
         }
-        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn {
+        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .bpm-btn {
             background: #e31c1c;
             color: white;
             border: none;
@@ -757,7 +757,7 @@
 
         async function loadData() {
             try {
-                const response = await fetch('data.json');
+                const response = await fetch(`data.json?t=${Date.now()}`);
                 if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                 const data = await response.json();
                 songData = data.songData || {};
@@ -1801,6 +1801,84 @@
             document.getElementById(`duration-${setlistKey.split('-')[1]}`).innerText =
                 `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
+
+        function showBPMSetlist(setlistId) {
+            const songs = setlists[setlistId];
+            if (!songs || songs.length === 0) {
+                alert('Setlist is empty.');
+                return;
+            }
+            const bpmWindow = window.open('', '_blank', 'width=600,height=800');
+            bpmWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <title>BPM Setlist - ${setlistId}</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
+                        h1 { text-align: center; color: #333; }
+                        ul { list-style: none; padding: 0; }
+                        li { margin: 10px 0; padding: 10px; background-color: #fff; border: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center; }
+                        button { padding: 5px 10px; background-color: #e31c1c; color: white; border: none; border-radius: 3px; cursor: pointer; }
+                        button:disabled { background-color: #ccc; cursor: not-allowed; }
+                    </style>
+                    <script>
+                        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                        let metronomeInterval;
+                        let currentButton = null;
+
+                        function playClick() {
+                            const oscillator = audioContext.createOscillator();
+                            oscillator.type = 'square';
+                            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
+                            oscillator.connect(audioContext.destination);
+                            oscillator.start();
+                            oscillator.stop(audioContext.currentTime + 0.05);
+                        }
+
+                        function startMetronome(bpm, button) {
+                            if (audioContext.state === 'suspended') audioContext.resume();
+                            if (currentButton && currentButton !== button) stopMetronome(currentButton);
+                            const interval = 60000 / bpm;
+                            let count = 0;
+                            metronomeInterval = setInterval(() => {
+                                playClick();
+                                count++;
+                                if (count >= 8) stopMetronome(button);
+                            }, interval);
+                            currentButton = button;
+                            button.innerText = 'Stop';
+                            button.onclick = () => stopMetronome(button);
+                        }
+
+                        function stopMetronome(button) {
+                            clearInterval(metronomeInterval);
+                            metronomeInterval = null;
+                            if (button) {
+                                button.innerText = 'Play';
+                                button.onclick = () => startMetronome(parseFloat(button.dataset.bpm), button);
+                            }
+                            currentButton = null;
+                        }
+                    </script>
+                </head>
+                <body>
+                    <h1>BPM Setlist - ${setlistId}</h1>
+                    <ul>
+                        ${songs.map(song => {
+                            const bpm = parseFloat(songData[song]?.bpm);
+                            if (!isNaN(bpm) && bpm > 0) {
+                                return `<li>${song} - BPM: ${bpm} <button data-bpm="${bpm}" onclick="startMetronome(${bpm}, this)">Play</button></li>`;
+                            } else {
+                                return `<li>${song} - BPM: N/A <button disabled>Play</button></li>`;
+                            }
+                        }).join('')}
+                    </ul>
+                </body>
+                </html>
+            `);
+            bpmWindow.document.close();
+        }
     </script>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
@@ -1843,6 +1921,7 @@
         <h3>Setlist 1
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <button class="bpm-btn" onclick="showBPMSetlist('setlist-1')">BPM Setlist</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </h3>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
@@ -1853,6 +1932,7 @@
         <h3>Setlist 2
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <button class="bpm-btn" onclick="showBPMSetlist('setlist-2')">BPM Setlist</button>
             <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </h3>
         <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
@@ -1863,6 +1943,7 @@
         <h3>Setlist 3
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <button class="bpm-btn" onclick="showBPMSetlist('setlist-3')">BPM Setlist</button>
             <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </h3>
         <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
