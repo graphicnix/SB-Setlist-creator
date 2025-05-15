@@ -134,10 +134,12 @@
     "Come Down - Bush": {
       "key": "Em",
       "riff": "Em",
-      "bpm": "120",
+      "bpm": "102",
       "duration": "5:23",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Tennessee Whiskey - Chris Stapleton": {
       "key": "A",
@@ -194,10 +196,12 @@
     "Blister in the Sun - Violent Femmes": {
       "key": "D",
       "riff": "D",
-      "bpm": "152",
+      "bpm": "148",
       "duration": "2:25",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Cult of Personality - Living Colour": {
       "key": "Em",
@@ -212,10 +216,12 @@
     "Beautiful Disaster - 311": {
       "key": "Em",
       "riff": "Em",
-      "bpm": "92",
+      "bpm": "82",
       "duration": "4:02",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Inside Out - Eve 6": {
       "key": "E",
@@ -278,11 +284,12 @@
     "Come Together - The Beatles": {
       "key": "D",
       "riff": "D",
-      "bpm": "118",
+      "bpm": "83",
       "duration": "4:19",
       "crossfadeInto": [],
-      "lyrics": "",
-      "tuning": "Drop D"
+      "lyrics": "\"Come Together\"\n(originally by The Beatles)\n\nHere come old flat top\nHe come groovin' up slowly\nHe got joo joo eyeballs\nHe one holy rollers\nHe got hair down to his knees\nGot to be a joker\nHe just do what he please\n\nCome together, right now\nOver me\n\nHe bad production\nHe got walrus gumboot\nHe got Ono sideboard\nHe one spinal cracker\nHe got feet down below his knees\nHold you in his armchair\nYou can feel his disease\n\nCome together, right now\nOver me\n\nHe roller coaster\nHe got early warning\nHe got muddy water\nHe one mojo filter\nHe say one and one and one is three\nGot to be good looking\n'Cause he's so hard to see\n\nCome together right now\nOver me\n\nCome together\nCome together, ah\nCome together, na na na na na na yeah\nCome together\nCome together right now\nOver me",
+      "tuning": "Drop D",
+      "timeSignature": "4/4"
     },
     "Lola Montez - Volbeat": {
       "key": "Am",
@@ -305,10 +312,12 @@
     "Breed - Nirvana": {
       "key": "F5",
       "riff": "F5",
-      "bpm": "144",
+      "bpm": "172",
       "duration": "3:03",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Cowboys from Hell - Pantera": {
       "key": "E",
@@ -346,10 +355,12 @@
     "46 & 2 - Tool": {
       "key": "D",
       "riff": "D",
-      "bpm": "85",
+      "bpm": "96",
       "duration": "6:04",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "7/8",
+      "tuning": "Standard"
     },
     "What If - Creed": {
       "key": "Em",
@@ -383,11 +394,12 @@
     "Bullet w Butterfly - TSP": {
       "key": "F",
       "riff": "F",
-      "bpm": "120",
+      "bpm": "148",
       "duration": "4:18",
       "crossfadeInto": [],
       "lyrics": "",
-      "tuning": "Eb"
+      "tuning": "Eb",
+      "timeSignature": "4/4"
     },
     "Hemorrhage - Fuel": {
       "key": "Am",
@@ -426,10 +438,12 @@
     "Blue on Black - Kenny Wayne": {
       "key": "Em",
       "riff": "Em",
-      "bpm": "94",
+      "bpm": "108",
       "duration": "4:00",
       "crossfadeInto": [],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "Lump - The Presidents USA": {
       "key": "E",
@@ -494,12 +508,14 @@
     "Cherub Rock - Smashing Pumpkins": {
       "key": "G",
       "riff": "G",
-      "bpm": "116",
+      "bpm": "140",
       "duration": "4:58",
       "crossfadeInto": [
         "Tripping on a Hole - STP"
       ],
-      "lyrics": ""
+      "lyrics": "",
+      "timeSignature": "4/4",
+      "tuning": "Standard"
     },
     "No One Knows - Queens Stone Age": {
       "key": "",
@@ -591,11 +607,12 @@
     "96 Quite Bitter Beings - CKY": {
       "key": "Dm",
       "riff": "D",
-      "bpm": "120",
+      "bpm": "96",
       "duration": "3:44",
       "tuning": "Eb",
       "lyrics": "With my perceptions in a mix\nDown twenty miles through the sticks\nTo the cloudy town of Hellview: Population 96\nExcessive vacancy, well maybe\nIn the shadow of an eye\nAll the strangers pass through\nWhere the rules just don't apply\n\nAt the fork turn left a store\nBut on the right stay free from sight\n'Cause 96 quite bitter beings\nLike to stack the bodies high\nThe only way to ever leave is\nOverflooded by the storm\nAnd entanglement in Hellview\nBrings you fear in fifty forms\n\n(They've deleted all the tourists)\n(At the bottom of the lake)\n\nAnd not one supports the cause\nTo leave the blood stay in the veins\n\n\nHere, three miles back is where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted was an answer\n\nFootprints giving clue to where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted (wanted, wanted, wanted)",
-      "crossfadeInto": []
+      "crossfadeInto": [],
+      "timeSignature": "4/4"
     },
     "Devils Bleedin Crown - Volbeat": {
       "key": "",
