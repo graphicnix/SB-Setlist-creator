@@ -301,6 +301,8 @@
             max-width: 600px;
             width: 90%;
             text-align: left;
+            overflow-y: auto; /* Added for scrollability */
+            max-height: 80vh; /* Limit height for scrolling */
         }
         .overlay {
             position: fixed;
@@ -492,9 +494,9 @@
             justify-content: space-between;
             margin-top: 20px;
         }
-        /* New styles for the play button */
+        /* Updated play button color to dark red */
         .play-btn {
-            background: #4CAF50;
+            background: #8B0000;
             color: white;
             border: none;
             padding: 5px 10px;
@@ -503,7 +505,7 @@
             margin-left: 5px;
         }
         .play-btn:hover {
-            background: #45a049;
+            background: #a52a2a;
         }
         .play-btn:disabled {
             background: #ccc;
@@ -557,6 +559,10 @@
         const TUNING_OPTIONS = [
             "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std.", "Drop C", 
             "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C", "Open E", "C std"
+        ];
+
+        const TIME_SIGNATURE_OPTIONS = [
+            "4/4", "3/4", "6/8", "5/4", "7/8"
         ];
 
         function checkPassword() {
@@ -1016,6 +1022,7 @@
         function editSong(song) {
             const songInfo = songData[song] || {};
             const [title, artist] = song.split(' - ');
+            const timeSignature = songInfo.timeSignature || '4/4';
             
             document.body.insertAdjacentHTML('beforeend', `
                 <div class="overlay"></div>
@@ -1026,6 +1033,13 @@
                     <label>Key: <input type="text" id="edit-song-key" value="${songInfo.key || ''}"></label>
                     <label>Riff: <input type="text" id="edit-song-riff" value="${songInfo.riff || ''}"></label>
                     <label>BPM: <input type="text" id="edit-song-bpm" value="${songInfo.bpm || ''}"></label>
+                    <label>Time Signature:
+                        <select id="edit-song-time-signature">
+                            ${TIME_SIGNATURE_OPTIONS.map(ts => 
+                                `<option value="${ts}" ${timeSignature === ts ? 'selected' : ''}>${ts}</option>`
+                            ).join('')}
+                        </select>
+                    </label>
                     <label>Duration: <input type="text" id="edit-song-duration" value="${songInfo.duration || ''}"></label>
                     <label>Tuning: 
                         <select id="edit-song-tuning">
@@ -1049,6 +1063,7 @@
             const key = document.getElementById('edit-song-key').value;
             const riff = document.getElementById('edit-song-riff').value;
             const bpm = document.getElementById('edit-song-bpm').value;
+            const timeSignature = document.getElementById('edit-song-time-signature').value;
             const duration = document.getElementById('edit-song-duration').value;
             const tuning = document.getElementById('edit-song-tuning').value;
             const lyrics = document.getElementById('edit-song-lyrics').value;
@@ -1061,6 +1076,7 @@
                         key, 
                         riff, 
                         bpm, 
+                        timeSignature,
                         duration, 
                         tuning, 
                         lyrics,
@@ -1090,6 +1106,7 @@
                         key, 
                         riff, 
                         bpm, 
+                        timeSignature,
                         duration, 
                         tuning, 
                         lyrics 
@@ -1104,6 +1121,38 @@
             } else {
                 alert("Title and Artist are required fields.");
             }
+        }
+
+        function generateRandomSetlist() {
+            const allSongs = Object.keys(songData);
+            const shuffled = allSongs.sort(() => 0.5 - Math.random());
+            let selectedSongs = [];
+            let totalDuration = 0;
+            let xCount = 0;
+            const maxX = 4;
+            const maxDuration = 40 * 60; // 40 minutes in seconds
+
+            for (let song of shuffled) {
+                if (totalDuration >= maxDuration) break;
+                const songInfo = songData[song];
+                const duration = parseDuration(songInfo.duration);
+                if (totalDuration + duration > maxDuration) continue;
+                const hasX = (songIcons[song] || []).includes('X');
+                if (hasX && (xCount >= maxX || (selectedSongs.length > 0 && (songIcons[selectedSongs[selectedSongs.length - 1]] || []).includes('X')))) continue;
+                selectedSongs.push(song);
+                totalDuration += duration;
+                if (hasX) xCount++;
+            }
+
+            setlists['setlist-1'] = selectedSongs;
+            updateSetlistDisplay('setlist-1');
+            updateDuration('setlist-1');
+            unsavedChanges = true;
+        }
+
+        function parseDuration(duration) {
+            const [minutes, seconds] = duration.split(':').map(Number);
+            return (minutes * 60) + seconds;
         }
 
         function showLyrics(setlistId) {
@@ -1668,7 +1717,6 @@
             }).join('');
         }
 
-        // New metronome function
         function playMetronome(song, button) {
             if (audioContext.state === 'suspended') {
                 audioContext.resume();
@@ -1694,7 +1742,6 @@
                 currentTime += beatInterval;
             }
 
-            // Re-enable button after metronome finishes
             setTimeout(() => {
                 button.disabled = false;
                 button.innerText = 'Play Metronome';
@@ -1898,6 +1945,7 @@
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
+            <button onclick="generateRandomSetlist()">Generate Random Setlist</button>
         </h3>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
