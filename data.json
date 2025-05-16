@@ -736,20 +736,7 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "No Excuses - Alice in Chains",
-      "Blue on Black - Kenny Wayne",
-      "Drunken Lullabies - Flogging Molly",
-      "Lump - The Presidents USA",
-      "Everlong - Foo Fighters",
-      "Hash Pipe - Weezer",
-      "Sex on Fire - Kings of Leon",
-      "Superstition - Stevie Wonder",
-      "Stillborn - BLS",
-      "Santeria - Sublime",
-      "Say it aint so - Weezer ",
-      "Pride and Joy - Stevie Ray Vaughan"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
