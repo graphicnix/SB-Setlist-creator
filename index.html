@@ -554,8 +554,8 @@
             background: #450202; /* Dark red */
         }
         .youtube-link img {
-            width: 350px;
-            height: 177px;
+            width: 403px;
+            height: 272px;
             transition: filter 0.3s;
         }
         .youtube-link img:hover {
@@ -1129,7 +1129,7 @@
                     <label>Lyrics: <textarea id="edit-song-lyrics">${songInfo.lyrics || ''}</textarea></label>
                     <div class="song-edit-buttons">
                         <button class="save-btn" onclick="saveSongEdit('${song}')">Save</button>
-                        <button class="mothballs-btn" onclick="moveSongToMothballs('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Mothballs</button>
+                        <button class="delete-btn" onclick="deleteSong('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Delete</button>
                         <button class="delete-btn" onclick="document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Cancel</button>
                     </div>
                 </div>
@@ -2106,8 +2106,7 @@
                     <td>
                         <div>${artist}</div>
                         <div>
-                            <button onclick="moveSongToMain('${song}')">Move to Song List</button>
-                            <button onclick="moveSongToMothballs('${song}')">Move to Mothballs</button>
+                            <button onclick="moveSongToMain('${song}')">Add Song</button>
                         </div>
                     </td>
                 `;
@@ -2130,11 +2129,13 @@
                 const [title, artist] = song.split(' - ');
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${title}</td>
-                    <td>${artist}</td>
                     <td>
-                        <button onclick="editSong('${song}')">Edit</button>
+                        <div>${title}</div>
+                        <div>
+                            <button onclick="editSong('${song}')">Edit</button>
+                        </div>
                     </td>
+                    <td>${artist}</td>
                 `;
                 tbody.appendChild(row);
             }
@@ -2168,7 +2169,7 @@
         }
     </script>
 
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
     <img src="500x300.spiralbound.logo.png" alt="Spiralbound Logo" class="logo">
 
     <h1>SpiralBound Setlist Creator</h1>
@@ -2260,7 +2261,6 @@
                 <tr>
                     <th>Song Title</th>
                     <th>Artist</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="mothballs-table-body"></tbody>
@@ -2284,7 +2284,7 @@
         <button onclick="parseAndAddSongs()">Add from Paste</button>
     </div>
 
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
     <button class="sync-btn" onclick="saveData()">Save and Sync</button>
 </body>
 </html>
