@@ -176,7 +176,7 @@
             border: 1px solid #ddd;
             cursor: move;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             color: #000;
             text-align: center;
@@ -513,11 +513,11 @@
             padding: 15px;
             background: #450202;
             border-radius: 5px;
-            color: #fff;
+            color: #D2B48C; /* Light brown */
         }
         .council th {
             background-color: #333;
-            color: #fff;
+            color: #D2B48C; /* Light brown */
         }
         .council button {
             background: #e31c1c;
@@ -551,6 +551,7 @@
             display: block;
             margin: 20px auto;
             text-align: center;
+            background: #450202; /* Dark red */
         }
         .youtube-link img {
             width: 350px;
@@ -1490,7 +1491,6 @@
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${emojiStart}${title}${emojiEnd}</span>
-                            <span class="artist">${artist}</span>
                         </li>`;
                     }).join('')}</ol>
                     <button onclick="window.print()">Print</button>
@@ -1720,7 +1720,6 @@
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${emojiStart}${title}${emojiEnd}</span>
-                            <span class="artist">${artist}</span>
                         </li>`;
                     }).join('')}</ol>
                     <button onclick="window.print()">Print</button>
@@ -2095,17 +2094,21 @@
                 const row = document.createElement('tr');
                 row.className = rowClass;
                 row.innerHTML = `
-                    <td>${title}</td>
-                    <td>${artist}</td>
                     <td>
-                        <button onclick="voteSong('${song}', 'Y')">Y</button>
-                        <button onclick="voteSong('${song}', 'N')">N</button>
-                        <button onclick="voteSong('${song}', 'IDC')">IDC</button>
-                        (Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})
+                        <div>${title}</div>
+                        <div>
+                            <button onclick="voteSong('${song}', 'Y')">Y</button>
+                            <button onclick="voteSong('${song}', 'N')">N</button>
+                            <button onclick="voteSong('${song}', 'IDC')">IDC</button>
+                            (Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})
+                        </div>
                     </td>
                     <td>
-                        <button onclick="moveSongToMain('${song}')">Move to Song List</button>
-                        <button onclick="moveSongToMothballs('${song}')">Move to Mothballs</button>
+                        <div>${artist}</div>
+                        <div>
+                            <button onclick="moveSongToMain('${song}')">Move to Song List</button>
+                            <button onclick="moveSongToMothballs('${song}')">Move to Mothballs</button>
+                        </div>
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -2130,8 +2133,7 @@
                     <td>${title}</td>
                     <td>${artist}</td>
                     <td>
-                        <button onclick="moveSongToMain('${song}')">Move to Song List</button>
-                        <button onclick="moveSongToCouncil('${song}')">Move to Council</button>
+                        <button onclick="editSong('${song}')">Edit</button>
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -2232,23 +2234,6 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
     </div>
 
-    <div id="saved-setlists" class="category"></div>
-
-    <div class="add-song">
-        <h3>Add New Song</h3>
-        <input type="text" id="new-song-title" placeholder="Song Title">
-        <input type="text" id="new-song-artist" placeholder="Artist">
-        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
-        <input type="text" id="new-song-sn" placeholder="SN" style="width: 50px;">
-        <input type="text" id="new-song-bpm" placeholder="BPM">
-        <input type="text" id="new-song-duration" placeholder="Duration">
-        <input type="text" id="new-song-tuning" placeholder="Tuning">
-        <button onclick="addNewSong()">Add Song</button>
-        <h3>Paste Song Details</h3>
-        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
-        <button onclick="parseAndAddSongs()">Add from Paste</button>
-    </div>
-
     <div class="council">
         <h2>The Council of Yeas and Nays</h2>
         <table id="council-table">
@@ -2256,12 +2241,16 @@
                 <tr>
                     <th>Song Title</th>
                     <th>Artist</th>
-                    <th>Votes</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="council-table-body"></tbody>
         </table>
+        <div class="youtube-link">
+            <a href="https://www.youtube.com/watch?v=EAXgz4Pv3M4&list=PL62pB41K3vx8lqweu38sUu4XPmahYKh8T" target="_blank">
+                <img src="350x177sb-setlist.jpg" alt="YouTube Playlist">
+                <span class="youtube-tooltip">YouTube Playlist</span>
+            </a>
+        </div>
     </div>
 
     <div class="mothballs">
@@ -2278,11 +2267,21 @@
         </table>
     </div>
 
-    <div class="youtube-link">
-        <a href="https://www.youtube.com/watch?v=EAXgz4Pv3M4&list=PL62pB41K3vx8lqweu38sUu4XPmahYKh8T" target="_blank">
-            <img src="350x177sb-setlist.jpg" alt="YouTube Playlist">
-            <span class="youtube-tooltip">YouTube Playlist</span>
-        </a>
+    <div id="saved-setlists" class="category"></div>
+
+    <div class="add-song">
+        <h3>Add New Song</h3>
+        <input type="text" id="new-song-title" placeholder="Song Title">
+        <input type="text" id="new-song-artist" placeholder="Artist">
+        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
+        <input type="text" id="new-song-sn" placeholder="SN" style="width: 50px;">
+        <input type="text" id="new-song-bpm" placeholder="BPM">
+        <input type="text" id="new-song-duration" placeholder="Duration">
+        <input type="text" id="new-song-tuning" placeholder="Tuning">
+        <button onclick="addNewSong()">Add Song</button>
+        <h3>Paste Song Details</h3>
+        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
+        <button onclick="parseAndAddSongs()">Add from Paste</button>
     </div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
