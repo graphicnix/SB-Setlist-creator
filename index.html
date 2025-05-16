@@ -92,7 +92,7 @@
             margin-top: 20px;
         }
         h2 {
-            color: #555;
+            color: #fff;
         }
         .icon-legend-container {
             display: flex;
@@ -144,7 +144,7 @@
         th {
             background-color: #f4f4f4;
             cursor: pointer;
-            color: #555;
+            color: #000;
         }
         th:hover {
             background-color: #ddd;
@@ -160,7 +160,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 24px;
         }
         .setlist ul {
             list-style-type: none;
@@ -406,7 +405,6 @@
             flex-wrap: wrap;
             gap: 10px;
             font-size: 11px;
-            justify-content: center;
         }
         .saved-setlist-item {
             background: white;
@@ -513,11 +511,13 @@
         .council {
             margin-top: 20px;
             padding: 15px;
+            background: #450202;
             border-radius: 5px;
+            color: #D2B48C; /* Light brown */
         }
         .council th {
             background-color: #333;
-            color: #555;
+            color: #D2B48C; /* Light brown */
         }
         .council button {
             background: #e31c1c;
@@ -531,10 +531,12 @@
         .mothballs {
             margin-top: 20px;
             padding: 15px;
+            background: #000;
             border-radius: 5px;
+            color: #888;
         }
         .mothballs table, .mothballs th, .mothballs td {
-            color: #555;
+            color: #888;
         }
         .highlight-gold {
             background-color: gold;
@@ -549,6 +551,7 @@
             display: block;
             margin: 20px auto;
             text-align: center;
+            background: #450202; /* Dark red */
         }
         .youtube-link img {
             width: 403px;
@@ -579,22 +582,22 @@
             visibility: visible;
             opacity: 1;
         }
-        .generate-random-setlist-btn {
-            background: #e31c1c;
-            color: white;
-            border: none;
+        .setlist-title-container {
+            background-color: #333;
             padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            margin: 10px auto;
-            display: block;
-            width: 50px;
-            height: 50px;
-            text-align: center;
-            line-height: 50px;
+            border-radius: 5px;
+            margin-bottom: 10px;
         }
-        .generate-random-setlist-btn:hover {
-            background: #c51717;
+        .setlist-title {
+            font-size: 30pt;
+            margin: 0;
+            text-align: center;
+        }
+        .setlist-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -2114,8 +2117,8 @@
                             <button onclick="voteSong('${song}', 'Y')">Y</button>
                             <button onclick="voteSong('${song}', 'N')">N</button>
                             <button onclick="voteSong('${song}', 'IDC')">IDC</button>
+                            (Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})
                         </div>
-                        <div>(Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})</div>
                     </td>
                     <td>
                         <div>${artist}</div>
@@ -2189,7 +2192,7 @@
     <h1>SpiralBound Setlist Creator</h1>
 
     <div class="category">
-        <h2>Song List</h2>
+        <h2>Alternative/Grunge/Rock</h2>
         <div class="icon-legend-container">
             <div class="tooltip">Icon Legend
                 <span class="tooltiptext">
@@ -2217,34 +2220,42 @@
         </table>
     </div>
 
-    <button class="generate-random-setlist-btn" onclick="generateRandomSetlist()">+</button>
-
     <div class="setlist">
-        <h3>Setlist 1
+        <div class="setlist-title-container">
+            <h3 class="setlist-title">Setlist 1</h3>
+        </div>
+        <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
+            <button onclick="generateRandomSetlist()">RANDOM</button>
+        </div>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
         <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
     </div>
     <div class="setlist">
-        <h3>Setlist 2
+        <div class="setlist-title-container">
+            <h3 class="setlist-title">Setlist 2</h3>
+        </div>
+        <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
             <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
+        </div>
         <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
         <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
     </div>
     <div class="setlist">
-        <h3>Setlist 3
+        <div class="setlist-title-container">
+            <h3 class="setlist-title">Setlist 3</h3>
+        </div>
+        <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
             <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
-        </h3>
+        </div>
         <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
         <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
@@ -2282,6 +2293,8 @@
         </table>
     </div>
 
+    <div id="saved-setlists" class="category"></div>
+
     <div class="add-song">
         <h3>Add New Song</h3>
         <input type="text" id="new-song-title" placeholder="Song Title">
@@ -2297,9 +2310,7 @@
         <button onclick="parseAndAddSongs()">Add from Paste</button>
     </div>
 
-    <div id="saved-setlists" class="category"></div>
-
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
     <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
 </body>
 </html>
