@@ -512,16 +512,14 @@
             margin-top: 20px;
             padding: 15px;
             border-radius: 5px;
+            color: #D2B48C; /* Light brown */
         }
         .council h2 {
-            background-color: #450202;
-            padding: 10px;
-            border-radius: 5px;
-            color: #D2B48C;
+            color: #e31c1c;
         }
         .council th {
             background-color: #333;
-            color: #D2B48C;
+            color: #D2B48C; /* Light brown */
         }
         .council button {
             background: #e31c1c;
@@ -535,7 +533,6 @@
         .mothballs {
             margin-top: 20px;
             padding: 15px;
-            background: #000;
             border-radius: 5px;
             color: #888;
         }
@@ -555,7 +552,7 @@
             display: block;
             margin: 20px auto;
             text-align: center;
-            background: #450202;
+            background: #450202; /* Dark red */
         }
         .youtube-link img {
             width: 403px;
@@ -624,11 +621,7 @@
         .vote-counter {
             display: flex;
             justify-content: flex-start;
-            margin: 10px 0;
-        }
-        .random-btn-container {
-            text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
     </style>
 </head>
@@ -787,7 +780,7 @@
             popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
 
             document.addEventListener('click', function closePopup(e) {
-                if (!popup.contains(e.target) {
+                if (!popup.contains(e.target) && e.target !== button) {
                     popup.style.display = 'none';
                     document.removeEventListener('click', closePopup);
                 }
@@ -1133,7 +1126,7 @@
             popup.style.left = `${button.getBoundingClientRect().left}px`;
             popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
             document.addEventListener('click', function closePopup(e) {
-                if (!popup.contains(e.target) {
+                if (!popup.contains(e.target) && e.target !== button) {
                     popup.style.display = 'none';
                     document.removeEventListener('click', closePopup);
                 }
@@ -2018,10 +2011,10 @@
             const tuning = document.getElementById('new-song-tuning').value;
             if (title && artist) {
                 const song = `${title} - ${artist}`;
-                const status = prompt("Where to add the song? Enter '1' (main), '2' (council), or '3' (mothballs)", "1");
+                const status = prompt("Where to add the song? Enter 1 for 'The Council of Yeas and Nays', 2 for 'Song List', or 3 for 'Mothballs'", "2");
                 const statusMap = {
-                    '1': 'main',
-                    '2': 'council',
+                    '1': 'council',
+                    '2': 'main',
                     '3': 'mothballs'
                 };
                 const mappedStatus = statusMap[status] || 'main';
@@ -2047,10 +2040,10 @@
             const text = document.getElementById('paste-song-details').value.trim();
             if (!text) return;
 
-            const status = prompt("Where to add the songs? Enter '1' (main), '2' (council), or '3' (mothballs)", "1");
+            const status = prompt("Where to add the songs? Enter 1 for 'The Council of Yeas and Nays', 2 for 'Song List', or 3 for 'Mothballs'", "2");
             const statusMap = {
-                '1': 'main',
-                '2': 'council',
+                '1': 'council',
+                '2': 'main',
                 '3': 'mothballs'
             };
             const mappedStatus = statusMap[status] || 'main';
@@ -2143,13 +2136,13 @@
                 row.className = rowClass;
                 row.innerHTML = `
                     <td>
-                        <div>${title}</div>
                         <div class="vote-counter">
                             <button onclick="voteSong('${song}', 'Y')">Y</button>
                             <button onclick="voteSong('${song}', 'N')">N</button>
                             <button onclick="voteSong('${song}', 'IDC')">IDC</button>
-                            (Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})
                         </div>
+                        <div>${title}</div>
+                        <div>(Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})</div>
                     </td>
                     <td>
                         <div>${artist}</div>
@@ -2215,6 +2208,13 @@
             populateMothballsTable();
             unsavedChanges = true;
         }
+
+        document.getElementById('random-button').addEventListener('click', function() {
+            this.src = '200x200-button2.png';
+            setTimeout(() => {
+                this.src = '200x200-button.png';
+            }, 5000);
+        });
     </script>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
@@ -2251,11 +2251,8 @@
         </table>
     </div>
 
-    <div class="random-btn-container">
-        <button onclick="generateRandomSetlist()">RANDOM SETLIST GENERATOR</button>
-    </div>
-
     <div class="setlist">
+        <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
