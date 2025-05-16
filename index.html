@@ -511,13 +511,17 @@
         .council {
             margin-top: 20px;
             padding: 15px;
-            background: #450202;
             border-radius: 5px;
-            color: #D2B48C; /* Light brown */
+        }
+        .council h2 {
+            background-color: #450202;
+            padding: 10px;
+            border-radius: 5px;
+            color: #D2B48C;
         }
         .council th {
             background-color: #333;
-            color: #D2B48C; /* Light brown */
+            color: #D2B48C;
         }
         .council button {
             background: #e31c1c;
@@ -551,7 +555,7 @@
             display: block;
             margin: 20px auto;
             text-align: center;
-            background: #450202; /* Dark red */
+            background: #450202;
         }
         .youtube-link img {
             width: 403px;
@@ -619,8 +623,12 @@
         }
         .vote-counter {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start;
             margin: 10px 0;
+        }
+        .random-btn-container {
+            text-align: center;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -779,7 +787,7 @@
             popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
 
             document.addEventListener('click', function closePopup(e) {
-                if (!popup.contains(e.target) && e.target !== button) {
+                if (!popup.contains(e.target) {
                     popup.style.display = 'none';
                     document.removeEventListener('click', closePopup);
                 }
@@ -1125,7 +1133,7 @@
             popup.style.left = `${button.getBoundingClientRect().left}px`;
             popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
             document.addEventListener('click', function closePopup(e) {
-                if (!popup.contains(e.target) && e.target !== button) {
+                if (!popup.contains(e.target) {
                     popup.style.display = 'none';
                     document.removeEventListener('click', closePopup);
                 }
@@ -2010,13 +2018,13 @@
             const tuning = document.getElementById('new-song-tuning').value;
             if (title && artist) {
                 const song = `${title} - ${artist}`;
-                const status = prompt("Where to add the song? Enter 'song list', 'The Council of Yeas and Nays', or 'mothballs'", "song list");
+                const status = prompt("Where to add the song? Enter '1' (main), '2' (council), or '3' (mothballs)", "1");
                 const statusMap = {
-                    'song list': 'main',
-                    'the council of yeas and nays': 'council',
-                    'mothballs': 'mothballs'
+                    '1': 'main',
+                    '2': 'council',
+                    '3': 'mothballs'
                 };
-                const mappedStatus = statusMap[status.toLowerCase()] || 'main';
+                const mappedStatus = statusMap[status] || 'main';
                 songData[song] = { key, sn, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
                 if (mappedStatus === 'council') {
                     songData[song].votes = { Y: 0, N: 0, IDC: 0 };
@@ -2039,13 +2047,13 @@
             const text = document.getElementById('paste-song-details').value.trim();
             if (!text) return;
 
-            const status = prompt("Where to add the songs? Enter 'song list', 'The Council of Yeas and Nays', or 'mothballs'", "song list");
+            const status = prompt("Where to add the songs? Enter '1' (main), '2' (council), or '3' (mothballs)", "1");
             const statusMap = {
-                'song list': 'main',
-                'the council of yeas and nays': 'council',
-                'mothballs': 'mothballs'
+                '1': 'main',
+                '2': 'council',
+                '3': 'mothballs'
             };
-            const mappedStatus = statusMap[status.toLowerCase()] || 'main';
+            const mappedStatus = statusMap[status] || 'main';
 
             const songBlocks = text.split(/\n\s*\n/).filter(block => block.trim());
             let addedCount = 0;
@@ -2243,6 +2251,10 @@
         </table>
     </div>
 
+    <div class="random-btn-container">
+        <button onclick="generateRandomSetlist()">RANDOM SETLIST GENERATOR</button>
+    </div>
+
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
@@ -2251,7 +2263,6 @@
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
-            <button onclick="generateRandomSetlist()">RANDOM</button>
         </div>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
