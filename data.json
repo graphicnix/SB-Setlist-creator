@@ -729,7 +729,7 @@
       "lyrics": "",
       "status": "council",
       "votes": {
-        "Y": 0,
+        "Y": 1,
         "N": 0,
         "IDC": 0
       }
@@ -744,14 +744,24 @@
       "lyrics": "",
       "status": "council",
       "votes": {
-        "Y": 0,
+        "Y": 1,
         "N": 0,
         "IDC": 0
       }
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Plush - STP",
+      "Possum Kingdom - Toadies",
+      "Come Down - Bush",
+      "Cumbersome - Seven Mary Three",
+      "Even Flow - Pearl Jam",
+      "Everlong - Foo Fighters",
+      "Hash Pipe - Weezer",
+      "Sex on Fire - Kings of Leon",
+      "Devil's Bleeding Crown - Volbeat"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
