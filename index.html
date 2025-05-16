@@ -196,6 +196,7 @@
         .setlist li .song-title {
             text-align: center;
             flex: 1;
+            white-space: nowrap;
         }
         .crossfade-btn {
             padding: 5px 10px;
@@ -261,6 +262,7 @@
             border-radius: 3px;
             cursor: pointer;
             margin-left: 5px;
+            font-size: 12px;
         }
         .add-btn, .edit-btn {
             background: #450202;
@@ -287,14 +289,15 @@
         .song-cell {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
         }
         .song-title {
             flex: 1;
-            text-align: center;
+            text-align: left;
             cursor: pointer;
             text-decoration: underline;
             color: #d9d9d9;
+            white-space: nowrap;
         }
         .song-title:hover {
             color: #e31c1c;
@@ -347,7 +350,7 @@
         }
         .logo {
             display: block;
-            margin: 20px auto;
+            margin: 0 auto;
             max-width: 500px;
             height: auto;
         }
@@ -455,23 +458,19 @@
         .tuning-Open-C { background-color: #A52A2A !important; color: white !important; }
         .tuning-Open-E { background-color: #87CEEB !important; }
         .tuning-C-std { background-color: #A52A2A !important; color: white !important; }
-        .crossfade-pair {
-            background-color: #90EE90 !important;
-            position: relative;
-        }
-        .crossfade-pair::before {
-            content: "⇄";
+        .crossfade-pair-start::before {
+            content: "┌";
+            color: yellow;
+            font-size: 16px;
             position: absolute;
             left: -20px;
-            font-size: 16px;
-            color: #006400;
         }
-        .crossfade-pair::after {
-            content: "⇄";
+        .crossfade-pair-end::after {
+            content: "┘";
+            color: yellow;
+            font-size: 16px;
             position: absolute;
             right: -20px;
-            font-size: 16px;
-            color: #006400;
         }
         .tuning-legend {
             display: flex;
@@ -519,12 +518,13 @@
         }
         .play-btn {
             background: #252620;
-            color: #d9d9d9;
+            color: #00FF00; /* Green for metronome */
             border: none;
-            padding: 5px 10px;
+            padding: 3px 6px; /* Smaller size */
             border-radius: 3px;
             cursor: pointer;
             margin-left: 5px;
+            font-size: 10px;
         }
         .play-btn:hover {
             background: #a52a2a;
@@ -533,10 +533,14 @@
             background: #ccc;
             cursor: not-allowed;
         }
+        .delete-btn {
+            padding: 3px 6px; /* Smaller size */
+            font-size: 10px;
+        }
         .council {
             margin-top: 20px;
             padding: 15px;
-            background: #8C4637;
+            background: #450202; /* Matching Add/Edit buttons */
             border-radius: 5px;
             color: #F2EEB6;
             font-family: 'Palatino', serif;
@@ -556,6 +560,7 @@
             background: #000;
             border-radius: 5px;
             color: #888;
+            font-family: 'Comic Sans MS', sans-serif;
         }
         .mothballs table, .mothballs th, .mothballs td {
             color: #888;
@@ -565,6 +570,70 @@
         }
         .strikethrough-red {
             text-decoration: line-through red;
+        }
+        /* Mobile Styles */
+        @media (orientation: portrait) {
+            table {
+                min-width: 100%;
+            }
+            th, td {
+                display: none;
+            }
+            th:first-child, td:first-child {
+                display: table-cell;
+                width: 100%;
+            }
+            .song-cell {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .song-title {
+                flex: 1;
+                text-align: left;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .add-btn, .edit-btn {
+                font-size: 14px;
+                padding: 5px;
+            }
+            .add-btn {
+                background: #450202;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                margin-left: 5px;
+            }
+            .edit-btn {
+                background: #450202;
+                color: white;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                margin-left: 5px;
+            }
+            .delete-btn {
+                display: none;
+            }
+            .setlist li {
+                font-size: 14px;
+            }
+            .setlist li .song-title {
+                font-size: 14px;
+            }
+            .setlist li .icons {
+                font-size: 12px;
+            }
+            .logo {
+                margin: 0 auto;
+            }
+            .council, .mothballs, .setlist {
+                margin-left: 0;
+                margin-right: 0;
+            }
         }
     </style>
 </head>
@@ -991,10 +1060,9 @@
                 row.className = `tuning-${tuning.replace(' ', '-')}`;
                 row.innerHTML = `
                     <td class="song-cell">
-                        <div class="icons">${iconsDisplay}</div>
                         <div class="song-title" onclick="editSong('${song}')">${title}</div>
                         <div>
-                            <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
+                            <button class="add-btn" onclick="showSetlistSelection('${song}', this)">+</button>
                             <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         </div>
                     </td>
@@ -1185,7 +1253,7 @@
                     const lastBPM = getBPM(lastSong);
                     const len = selectedSongs.length;
 
-                    if (len % 3 === 0 || len % 3 === 1) {
+                    if (len % 3 === 0 || len % 3 publishedAt=== 1) {
                         candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) <= 10);
                     } else {
                         candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) > 20);
@@ -1323,7 +1391,6 @@
                 const nextSong = songs[i + 1];
                 if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
                     crossfadePairs.push(i);
-                    crossfadePairs.push(i + 1);
                 }
             }
 
@@ -1413,23 +1480,19 @@
                                 ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
                             }
                         `).join('')}
-                        .crossfade-pair {
-                            background-color: #90EE90 !important;
-                            position: relative;
-                        }
-                        .crossfade-pair::before {
-                            content: "⇄";
+                        .crossfade-pair-start::before {
+                            content: "┌";
+                            color: yellow;
+                            font-size: 16px;
                             position: absolute;
                             left: -20px;
-                            font-size: 16px;
-                            color: #006400;
                         }
-                        .crossfade-pair::after {
-                            content: "⇄";
+                        .crossfade-pair-end::after {
+                            content: "┘";
+                            color: yellow;
+                            font-size: 16px;
                             position: absolute;
                             right: -20px;
-                            font-size: 16px;
-                            color: #006400;
                         }
                         @media print {
                             body { padding: 0; margin: 0; }
@@ -1458,8 +1521,9 @@
                         const tuning = songData[song]?.tuning || 'Standard';
                         const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                         const songColor = songColors[song] || '';
-                        const isCrossfadePair = crossfadePairs.includes(index);
-                        const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
+                        const isCrossfadeStart = crossfadePairs.includes(index);
+                        const isCrossfadeEnd = crossfadePairs.includes(index - 1);
+                        const crossfadeClass = isCrossfadeStart ? 'crossfade-pair-start' : (isCrossfadeEnd ? 'crossfade-pair-end' : '');
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${title}</span>
@@ -1539,7 +1603,6 @@
                 const nextSong = songs[i + 1];
                 if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
                     crossfadePairs.push(i);
-                    crossfadePairs.push(i + 1);
                 }
             }
 
@@ -1629,23 +1692,19 @@
                                 ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
                             }
                         `).join('')}
-                        .crossfade-pair {
-                            background-color: #90EE90 !important;
-                            position: relative;
-                        }
-                        .crossfade-pair::before {
-                            content: "⇄";
+                        .crossfade-pair-start::before {
+                            content: "┌";
+                            color: yellow;
+                            font-size: 16px;
                             position: absolute;
                             left: -20px;
-                            font-size: 16px;
-                            color: #006400;
                         }
-                        .crossfade-pair::after {
-                            content: "⇄";
+                        .crossfade-pair-end::after {
+                            content: "┘";
+                            color: yellow;
+                            font-size: 16px;
                             position: absolute;
                             right: -20px;
-                            font-size: 16px;
-                            color: #006400;
                         }
                         @media print {
                             body { padding: 0; margin: 0; }
@@ -1674,8 +1733,9 @@
                         const tuning = songData[song]?.tuning || 'Standard';
                         const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                         const songColor = songColors[song] || '';
-                        const isCrossfadePair = crossfadePairs.includes(index);
-                        const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
+                        const isCrossfadeStart = crossfadePairs.includes(index);
+                        const isCrossfadeEnd = crossfadePairs.includes(index - 1);
+                        const crossfadeClass = isCrossfadeStart ? 'crossfade-pair-start' : (isCrossfadeEnd ? 'crossfade-pair-end' : '');
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${title}</span>
@@ -1770,18 +1830,29 @@
         function updateSetlistDisplay(setlistKey) {
             const setlistElement = document.getElementById(setlistKey);
             const songs = setlists[setlistKey];
-            setlistElement.innerHTML = songs.map((song) => {
+            const crossfadePairs = [];
+            for (let i = 0; i < songs.length - 1; i++) {
+                const currentSong = songs[i];
+                const nextSong = songs[i + 1];
+                if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
+                    crossfadePairs.push(i);
+                }
+            }
+            setlistElement.innerHTML = songs.map((song, index) => {
                 const iconsDisplay = getIconsDisplay(song);
                 const tuning = songData[song]?.tuning || 'Standard';
                 const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                 const songColor = songColors[song] || '';
+                const isCrossfadeStart = crossfadePairs.includes(index);
+                const isCrossfadeEnd = crossfadePairs.includes(index - 1);
+                const crossfadeClass = isCrossfadeStart ? 'crossfade-pair-start' : (isCrossfadeEnd ? 'crossfade-pair-end' : '');
                 return `
                     <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)" 
-                        style="background:${songColor}" class="${tuningClass}">
+                        style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                         <span class="icons">${iconsDisplay}</span>
                         <span class="song-title">${song.split(' - ')[0]}</span>
-                        <button class="play-btn" onclick="playMetronome('${song}', this)">Play Metronome</button>
-                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
+                        <button class="play-btn" onclick="playMetronome('${song}', this)">►</button>
+                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">⨂</button>
                     </li>
                 `;
             }).join('');
@@ -1814,7 +1885,7 @@
 
             setTimeout(() => {
                 button.disabled = false;
-                button.innerText = 'Play Metronome';
+                button.innerText = '►';
             }, (numBeats * beatInterval) * 1000);
         }
 
@@ -2098,7 +2169,6 @@
     <h1>SpiralBound Setlist Creator</h1>
 
     <div class="category">
-        <h2>Alternative/Grunge/Rock</h2>
         <div class="icon-legend-container">
             <div class="tooltip">Icon Legend
                 <span class="tooltiptext">
@@ -2110,16 +2180,16 @@
                 </span>
             </div>
         </div>
-        <table id="alternative-grunge-rock">
+        <table id="song-table">
             <thead>
                 <tr>
-                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
-                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
-                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
-                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
-                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
+                    <th onclick="sortTable(0, 'song-table')">Song Title</th>
+                    <th onclick="sortTable(1, 'song-table')">Artist</th>
+                    <th onclick="sortTable(2, 'song-table')">Key</th>
+                    <th onclick="sortTable(3, 'song-table')">Riff</th>
+                    <th onclick="sortTable(4, 'song-table')">BPM</th>
+                    <th onclick="sortTable(5, 'song-table')">Duration</th>
+                    <th onclick="sortTable(6, 'song-table')">Tuning</th>
                     <th>Crossfade Options</th>
                     <th>Actions</th>
                 </tr>
