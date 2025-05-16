@@ -67,9 +67,6 @@
         .search-result-item:hover {
             background-color: #f0f0f0;
         }
-        .search-result-item .icons {
-            margin-right: 5px;
-        }
         .setlist-selection-popup {
             position: absolute;
             background: white;
@@ -279,9 +276,6 @@
         .song-title:hover {
             color: #e31c1c;
         }
-        .icons {
-            margin-right: 5px;
-        }
         input, textarea {
             background-color: #d9d9d3;
             border: 1px solid #ccc;
@@ -301,8 +295,8 @@
             max-width: 600px;
             width: 90%;
             text-align: left;
-            overflow-y: auto; /* Added for scrollability */
-            max-height: 80vh; /* Limit height for scrolling */
+            overflow-y: auto;
+            max-height: 80vh;
         }
         .overlay {
             position: fixed;
@@ -388,7 +382,8 @@
             padding: 10px;
         }
         .edit-setlist-popup li {
-            margin-bottom:',['padding: 5px;
+            margin-bottom: 5px;
+            padding: 5px;
             background-color: #f9f9f9;
             border: 1px solid #ddd;
             display: flex;
@@ -493,7 +488,6 @@
             justify-content: space-between;
             margin-top: 20px;
         }
-        /* Updated play button color to dark red */
         .play-btn {
             background: #8B0000;
             color: white;
@@ -509,6 +503,29 @@
         .play-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
+        }
+        .council {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f4f4f4;
+            border-radius: 5px;
+            color: #000;
+        }
+        .mothballs {
+            margin-top: 20px;
+            padding: 15px;
+            background: #000;
+            border-radius: 5px;
+            color: #888;
+        }
+        .mothballs table, .mothballs th, .mothballs td {
+            color: #888;
+        }
+        .highlight-gold {
+            background-color: gold;
+        }
+        .strikethrough-red {
+            text-decoration: line-through red;
         }
     </style>
 </head>
@@ -539,7 +556,6 @@
     </div>
 
     <script>
-        // Initialize AudioContext for metronome
         let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
         const correctPassword = "haircut";
@@ -558,10 +574,6 @@
         const TUNING_OPTIONS = [
             "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std.", "Drop C", 
             "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C", "Open E", "C std"
-        ];
-
-        const TIME_SIGNATURE_OPTIONS = [
-            "4/4", "3/4", "6/8", "5/4", "7/8"
         ];
 
         function checkPassword() {
@@ -606,6 +618,16 @@
             setupSearch();
         }
 
+        function getIconsDisplay(song) {
+            const icons = songIcons[song] || [];
+            const iconCount = icons.length;
+            let display = icons.map(icon => `<span class="icon-${icon}">${icon}</span>`).join(' ');
+            if (iconCount === 0) display += '---';
+            else if (iconCount === 1) display += '--';
+            else if (iconCount === 2) display += '-';
+            return display;
+        }
+
         function setupSearch() {
             const searchInput = document.getElementById('song-search');
             const searchResults = document.getElementById('search-results');
@@ -620,25 +642,23 @@
                 }
 
                 const matches = Object.keys(songData).filter(song => 
-                    song.toLowerCase().includes(query)
+                    song.toLowerCase().includes(query) && songData[song].status === 'main'
                 ).slice(0, 10);
 
                 if (matches.length > 0) {
                     matches.forEach(song => {
-                        const icons = (songIcons[song] || []).filter(i => i).map(icon =>
-                            `<span class="icon-${icon}">${icon}</span>`
-                        ).join(' ');
-                        
+                        const iconsDisplay = getIconsDisplay(song);
                         const item = document.createElement('div');
                         item.className = 'search-result-item';
                         item.innerHTML = `
                             <div>
-                                ${icons} ${song}
+                                ${iconsDisplay} ${song}
                             </div>
                             <div>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 1, this)">1</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 2, this)">2</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 3, this)">3</button>
+                                <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                             </div>
                         `;
                         searchResults.appendChild(item);
@@ -682,7 +702,6 @@
             if (songHasX && currentSongs.length > 0) {
                 const lastSong = currentSongs[currentSongs.length - 1];
                 const lastSongHasX = (songIcons[lastSong] || []).includes('X');
-
                 if (lastSongHasX) {
                     if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
                         if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) {
@@ -704,9 +723,13 @@
             if (crossfadeOptions.length > 0) {
                 const currentSongTitle = song.split(' - ')[0];
                 const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-                
-                if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match?`)) {
-                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match? (OK = Yes, Cancel = nah IDC)`)) {
+                    let selectedSong;
+                    if (crossfadeOptions.length === 1) {
+                        selectedSong = crossfadeOptions[0];
+                    } else {
+                        selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                    }
                     if (selectedSong && crossfadeOptions.includes(selectedSong)) {
                         setlists[setlistKey].push(song);
                         setlists[setlistKey].push(selectedSong);
@@ -736,7 +759,6 @@
             if (songHasX && currentSongs.length > 0) {
                 const lastSong = currentSongs[currentSongs.length - 1];
                 const lastSongHasX = (songIcons[lastSong] || []).includes('X');
-
                 if (lastSongHasX) {
                     if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
                         if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) {
@@ -756,9 +778,13 @@
             if (crossfadeOptions.length > 0) {
                 const currentSongTitle = song.split(' - ')[0];
                 const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-                
-                if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match?`)) {
-                    const selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match? (OK = Yes, Cancel = nah IDC)`)) {
+                    let selectedSong;
+                    if (crossfadeOptions.length === 1) {
+                        selectedSong = crossfadeOptions[0];
+                    } else {
+                        selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                    }
                     if (selectedSong && crossfadeOptions.includes(selectedSong)) {
                         setlists[setlistKey].push(song);
                         setlists[setlistKey].push(selectedSong);
@@ -790,6 +816,12 @@
                 songIcons = data.songIcons || {};
                 songColors = data.songColors || {};
                 savedSetlists = data.savedSetlists || {};
+                for (const song in songData) {
+                    if (!songData[song].status) songData[song].status = 'main';
+                    if (songData[song].status === 'council' && !songData[song].votes) {
+                        songData[song].votes = { Y: 0, N: 0, IDC: 0 };
+                    }
+                }
             } catch (error) {
                 console.error('Error loading data.json:', error);
                 const storedSongs = localStorage.getItem('songData');
@@ -804,6 +836,8 @@
                 if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
             }
             populateSongTable();
+            populateCouncilTable();
+            populateMothballsTable();
             updateAllSetlists();
             displaySavedSetlists();
 
@@ -912,10 +946,10 @@
             const tbody = document.getElementById('song-table-body');
             tbody.innerHTML = '';
             for (const song in songData) {
+                if (songData[song].status !== 'main') continue;
                 const songInfo = songData[song];
                 const [title, artist] = song.split(' - ');
-                const iconsHtml = (songIcons[song] || []).filter(i => i).map(icon =>
-                    `<span class="icon-${icon}">${icon}</span>`).join(' ');
+                const iconsDisplay = getIconsDisplay(song);
                 const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
                 const tuning = songInfo.tuning || 'Standard';
                 const row = document.createElement('tr');
@@ -923,7 +957,7 @@
                 row.className = `tuning-${tuning.replace(' ', '-')}`;
                 row.innerHTML = `
                     <td class="song-cell">
-                        <div class="icons">${iconsHtml}</div>
+                        <div class="icons">${iconsDisplay}</div>
                         <div class="song-title" onclick="editSong('${song}')">${title}</div>
                         <div>
                             <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
@@ -1026,8 +1060,6 @@
         function editSong(song) {
             const songInfo = songData[song] || {};
             const [title, artist] = song.split(' - ');
-            const timeSignature = songInfo.timeSignature || '4/4';
-            
             document.body.insertAdjacentHTML('beforeend', `
                 <div class="overlay"></div>
                 <div class="song-edit-popup">
@@ -1037,13 +1069,6 @@
                     <label>Key: <input type="text" id="edit-song-key" value="${songInfo.key || ''}"></label>
                     <label>Riff: <input type="text" id="edit-song-riff" value="${songInfo.riff || ''}"></label>
                     <label>BPM: <input type="text" id="edit-song-bpm" value="${songInfo.bpm || ''}"></label>
-                    <label>Time Signature:
-                        <select id="edit-song-time-signature">
-                            ${TIME_SIGNATURE_OPTIONS.map(ts => 
-                                `<option value="${ts}" ${timeSignature === ts ? 'selected' : ''}>${ts}</option>`
-                            ).join('')}
-                        </select>
-                    </label>
                     <label>Duration: <input type="text" id="edit-song-duration" value="${songInfo.duration || ''}"></label>
                     <label>Tuning: 
                         <select id="edit-song-tuning">
@@ -1055,6 +1080,7 @@
                     <label>Lyrics: <textarea id="edit-song-lyrics">${songInfo.lyrics || ''}</textarea></label>
                     <div class="song-edit-buttons">
                         <button class="save-btn" onclick="saveSongEdit('${song}')">Save</button>
+                        <button class="mothballs-btn" onclick="moveSongToMothballs('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Mothballs</button>
                         <button class="delete-btn" onclick="document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Cancel</button>
                     </div>
                 </div>
@@ -1067,35 +1093,26 @@
             const key = document.getElementById('edit-song-key').value;
             const riff = document.getElementById('edit-song-riff').value;
             const bpm = document.getElementById('edit-song-bpm').value;
-            const timeSignature = document.getElementById('edit-song-time-signature').value;
             const duration = document.getElementById('edit-song-duration').value;
             const tuning = document.getElementById('edit-song-tuning').value;
             const lyrics = document.getElementById('edit-song-lyrics').value;
 
             if (title && artist) {
                 const newSongKey = `${title} - ${artist}`;
-                
                 if (newSongKey !== oldSong) {
                     songData[newSongKey] = { 
-                        key, 
-                        riff, 
-                        bpm, 
-                        timeSignature,
-                        duration, 
-                        tuning, 
-                        lyrics,
-                        crossfadeInto: songData[oldSong]?.crossfadeInto || [] 
+                        key, riff, bpm, duration, tuning, 
+                        crossfadeInto: songData[oldSong]?.crossfadeInto || [], 
+                        lyrics, status: songData[oldSong].status,
+                        votes: songData[oldSong].votes
                     };
                     delete songData[oldSong];
-                    
                     Object.keys(setlists).forEach(key => {
                         setlists[key] = setlists[key].map(s => s === oldSong ? newSongKey : s);
                     });
-                    
                     Object.keys(savedSetlists).forEach(name => {
                         savedSetlists[name] = savedSetlists[name].map(s => s === oldSong ? newSongKey : s);
                     });
-                    
                     if (songIcons[oldSong]) {
                         songIcons[newSongKey] = songIcons[oldSong];
                         delete songIcons[oldSong];
@@ -1105,19 +1122,11 @@
                         delete songColors[oldSong];
                     }
                 } else {
-                    songData[oldSong] = { 
-                        ...songData[oldSong], 
-                        key, 
-                        riff, 
-                        bpm, 
-                        timeSignature,
-                        duration, 
-                        tuning, 
-                        lyrics 
-                    };
+                    songData[oldSong] = { ...songData[oldSong], key, riff, bpm, duration, tuning, lyrics };
                 }
-                
                 populateSongTable();
+                populateCouncilTable();
+                populateMothballsTable();
                 updateAllSetlists();
                 document.querySelector('.song-edit-popup').remove();
                 document.querySelector('.overlay').remove();
@@ -1128,24 +1137,52 @@
         }
 
         function generateRandomSetlist() {
-            const allSongs = Object.keys(songData);
-            const shuffled = allSongs.sort(() => 0.5 - Math.random());
+            const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
             let totalDuration = 0;
+            const maxDuration = 40 * 60;
+            let oCount = 0;
             let xCount = 0;
-            const maxX = 4;
-            const maxDuration = 40 * 60; // 40 minutes in seconds
 
-            for (let song of shuffled) {
-                if (totalDuration >= maxDuration) break;
-                const songInfo = songData[song];
-                const duration = parseDuration(songInfo.duration);
-                if (totalDuration + duration > maxDuration) continue;
-                const hasX = (songIcons[song] || []).includes('X');
-                if (hasX && (xCount >= maxX || (selectedSongs.length > 0 && (songIcons[selectedSongs[selectedSongs.length - 1]] || []).includes('X')))) continue;
-                selectedSongs.push(song);
-                totalDuration += duration;
-                if (hasX) xCount++;
+            while (totalDuration < maxDuration) {
+                let candidates = allSongs.filter(song => !selectedSongs.includes(song));
+                if (selectedSongs.length > 0) {
+                    const lastSong = selectedSongs[selectedSongs.length - 1];
+                    const lastBPM = getBPM(lastSong);
+                    const len = selectedSongs.length;
+
+                    if (len % 3 === 0 || len % 3 === 1) {
+                        candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) <= 10);
+                    } else {
+                        candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) > 20);
+                    }
+
+                    if ((songIcons[lastSong] || []).includes('O')) {
+                        candidates = candidates.filter(song => !(songIcons[song] || []).includes('O'));
+                    }
+                    if ((songIcons[lastSong] || []).includes('X')) {
+                        candidates = candidates.filter(song => !(songIcons[song] || []).includes('X'));
+                    }
+
+                    if (xCount >= 3 && oCount < Math.floor(xCount / 3)) {
+                        candidates = candidates.filter(song => (songIcons[song] || []).includes('O'));
+                    }
+                }
+
+                const suitableSongs = candidates.filter(song => {
+                    const duration = parseDuration(songData[song].duration);
+                    return totalDuration + duration <= maxDuration;
+                });
+
+                if (suitableSongs.length > 0) {
+                    const nextSong = suitableSongs[Math.floor(Math.random() * suitableSongs.length)];
+                    selectedSongs.push(nextSong);
+                    totalDuration += parseDuration(songData[nextSong].duration);
+                    if ((songIcons[nextSong] || []).includes('O')) oCount++;
+                    if ((songIcons[nextSong] || []).includes('X')) xCount++;
+                } else {
+                    break;
+                }
             }
 
             setlists['setlist-1'] = selectedSongs;
@@ -1157,6 +1194,10 @@
         function parseDuration(duration) {
             const [minutes, seconds] = duration.split(':').map(Number);
             return (minutes * 60) + seconds;
+        }
+
+        function getBPM(song) {
+            return parseInt(songData[song].bpm) || 0;
         }
 
         function showLyrics(setlistId) {
@@ -1212,8 +1253,9 @@
         }
 
         function updateIcons(selectElement, song, iconIndex) {
-            if (!songIcons[song]) songIcons[song] = ["", "", "", ""];
+            if (!songIcons[song]) songIcons[song] = [];
             songIcons[song][iconIndex] = selectElement.value;
+            if (!selectElement.value) songIcons[song].splice(iconIndex, 1);
             populateSongTable();
             updateAllSetlists();
             unsavedChanges = true;
@@ -1254,11 +1296,9 @@
 
             const tuningsInSetlist = new Set();
             const iconsInSetlist = new Set();
-            
             songs.forEach(song => {
                 const tuning = songData[song]?.tuning || 'Standard';
                 tuningsInSetlist.add(tuning);
-                
                 const icons = songIcons[song] || [];
                 icons.forEach(icon => {
                     if (icon) iconsInSetlist.add(icon);
@@ -1383,9 +1423,7 @@
                         </div>
                     </div>
                     <ol>${songs.map((song, index) => {
-                        const icons = (songIcons[song] || []).filter(i => i).map(icon =>
-                            `<span class="icon-${icon}">${icon}</span>`
-                        ).join(' ');
+                        const iconsDisplay = getIconsDisplay(song);
                         const [title, artist] = song.split(' - ');
                         const tuning = songData[song]?.tuning || 'Standard';
                         const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
@@ -1393,7 +1431,7 @@
                         const isCrossfadePair = crossfadePairs.includes(index);
                         const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
-                            <span class="icons">${icons}</span>
+                            <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${title}</span>
                             <span class="artist">${artist}</span>
                         </li>`;
@@ -1479,11 +1517,9 @@
 
             const tuningsInSetlist = new Set();
             const iconsInSetlist = new Set();
-            
             songs.forEach(song => {
                 const tuning = songData[song]?.tuning || 'Standard';
                 tuningsInSetlist.add(tuning);
-                
                 const icons = songIcons[song] || [];
                 icons.forEach(icon => {
                     if (icon) iconsInSetlist.add(icon);
@@ -1608,9 +1644,7 @@
                         </div>
                     </div>
                     <ol>${songs.map((song, index) => {
-                        const icons = (songIcons[song] || []).filter(i => i).map(icon =>
-                            `<span class="icon-${icon}">${icon}</span>`
-                        ).join(' ');
+                        const iconsDisplay = getIconsDisplay(song);
                         const [title, artist] = song.split(' - ');
                         const tuning = songData[song]?.tuning || 'Standard';
                         const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
@@ -1618,7 +1652,7 @@
                         const isCrossfadePair = crossfadePairs.includes(index);
                         const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
-                            <span class="icons">${icons}</span>
+                            <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${title}</span>
                             <span class="artist">${artist}</span>
                         </li>`;
@@ -1633,7 +1667,6 @@
         function editSavedSetlist(name) {
             const songs = savedSetlists[name];
             if (!songs) return;
-
             document.body.insertAdjacentHTML('beforeend', `
                 <div class="overlay"></div>
                 <div class="edit-setlist-popup">
@@ -1714,17 +1747,14 @@
             const setlistElement = document.getElementById(setlistKey);
             const songs = setlists[setlistKey];
             setlistElement.innerHTML = songs.map((song) => {
-                const icons = (songIcons[song] || []).filter(i => i).map(icon =>
-                    `<span class="icon-${icon}">${icon}</span>`
-                ).join(' ');
+                const iconsDisplay = getIconsDisplay(song);
                 const tuning = songData[song]?.tuning || 'Standard';
                 const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                 const songColor = songColors[song] || '';
-                
                 return `
                     <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)" 
                         style="background:${songColor}" class="${tuningClass}">
-                        ${icons} ${song}
+                        ${iconsDisplay} ${song}
                         <button class="play-btn" onclick="playMetronome('${song}', this)">Play Metronome</button>
                         <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
@@ -1743,17 +1773,17 @@
             }
             button.disabled = true;
             button.innerText = 'Playing...';
-            const beatInterval = 60 / bpm; // Seconds per beat
-            const numBeats = 8; // 2 measures of 4 beats
+            const beatInterval = 60 / bpm;
+            const numBeats = 8;
             let currentTime = audioContext.currentTime;
 
             for (let i = 0; i < numBeats; i++) {
                 const oscillator = audioContext.createOscillator();
                 oscillator.type = 'square';
-                oscillator.frequency.setValueAtTime(1000, currentTime); // 1000 Hz click
+                oscillator.frequency.setValueAtTime(1000, currentTime);
                 oscillator.connect(audioContext.destination);
                 oscillator.start(currentTime);
-                oscillator.stop(currentTime + 0.05); // 50ms duration
+                oscillator.stop(currentTime + 0.05);
                 currentTime += beatInterval;
             }
 
@@ -1825,6 +1855,8 @@
                     savedSetlists[name] = savedSetlists[name].filter(s => s !== song);
                 });
                 populateSongTable();
+                populateCouncilTable();
+                populateMothballsTable();
                 updateAllSetlists();
                 unsavedChanges = true;
             }
@@ -1840,8 +1872,20 @@
             const tuning = document.getElementById('new-song-tuning').value;
             if (title && artist) {
                 const song = `${title} - ${artist}`;
-                songData[song] = { key, riff, bpm, duration, tuning, crossfadeInto: [], lyrics: "" };
+                const status = prompt("Where to add the song? Enter 'song list', 'The Council of Yeas and Nays', or 'mothballs'", "song list");
+                const statusMap = {
+                    'song list': 'main',
+                    'the council of yeas and nays': 'council',
+                    'mothballs': 'mothballs'
+                };
+                const mappedStatus = statusMap[status.toLowerCase()] || 'main';
+                songData[song] = { key, riff, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                if (mappedStatus === 'council') {
+                    songData[song].votes = { Y: 0, N: 0, IDC: 0 };
+                }
                 populateSongTable();
+                populateCouncilTable();
+                populateMothballsTable();
                 document.getElementById('new-song-title').value = '';
                 document.getElementById('new-song-artist').value = '';
                 document.getElementById('new-song-key').value = '';
@@ -1856,6 +1900,14 @@
         function parseAndAddSongs() {
             const text = document.getElementById('paste-song-details').value.trim();
             if (!text) return;
+
+            const status = prompt("Where to add the songs? Enter 'song list', 'The Council of Yeas and Nays', or 'mothballs'", "song list");
+            const statusMap = {
+                'song list': 'main',
+                'the council of yeas and nays': 'council',
+                'mothballs': 'mothballs'
+            };
+            const mappedStatus = statusMap[status.toLowerCase()] || 'main';
 
             const songBlocks = text.split(/\n\s*\n/).filter(block => block.trim());
             let addedCount = 0;
@@ -1887,8 +1939,11 @@
 
                     if (title && artist) {
                         const song = `${title} - ${artist}`;
-                        songData[song] = { key, riff, bpm, duration, tuning, crossfadeInto: [], lyrics: "" };
-                        if (icons.length) songIcons[song] = icons.concat(Array(4 - icons.length).fill(""));
+                        songData[song] = { key, riff, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                        if (mappedStatus === 'council') {
+                            songData[song].votes = { Y: 0, N: 0, IDC: 0 };
+                        }
+                        if (icons.length) songIcons[song] = icons;
                         addedCount++;
                     }
                 }
@@ -1896,6 +1951,8 @@
 
             if (addedCount > 0) {
                 populateSongTable();
+                populateCouncilTable();
+                populateMothballsTable();
                 document.getElementById('paste-song-details').value = '';
                 alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
                 unsavedChanges = true;
@@ -1917,6 +1974,97 @@
             document.getElementById(`duration-${setlistKey.split('-')[1]}`).innerText =
                 `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
         }
+
+        function populateCouncilTable() {
+            const tbody = document.getElementById('council-table-body');
+            tbody.innerHTML = '';
+            for (const song in songData) {
+                if (songData[song].status !== 'council') continue;
+                const songInfo = songData[song];
+                const [title, artist] = song.split(' - ');
+                const votes = songInfo.votes || { Y: 0, N: 0, IDC: 0 };
+                const yCount = votes.Y || 0;
+                const nCount = votes.N || 0;
+                const idcCount = votes.IDC || 0;
+                let rowClass = '';
+                if (yCount >= 3 || (yCount >= 2 && idcCount >= 1)) {
+                    rowClass = 'highlight-gold';
+                }
+                if (nCount >= 3) {
+                    rowClass += ' strikethrough-red';
+                }
+                const row = document.createElement('tr');
+                row.className = rowClass;
+                row.innerHTML = `
+                    <td>${title}</td>
+                    <td>${artist}</td>
+                    <td>
+                        <button onclick="voteSong('${song}', 'Y')">Y</button>
+                        <button onclick="voteSong('${song}', 'N')">N</button>
+                        <button onclick="voteSong('${song}', 'IDC')">IDC</button>
+                        (Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})
+                    </td>
+                    <td>
+                        <button onclick="moveSongToMain('${song}')">Move to Song List</button>
+                        <button onclick="moveSongToMothballs('${song}')">Move to Mothballs</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        function voteSong(song, voteType) {
+            if (!songData[song].votes) songData[song].votes = { Y: 0, N: 0, IDC: 0 };
+            songData[song].votes[voteType]++;
+            populateCouncilTable();
+            unsavedChanges = true;
+        }
+
+        function populateMothballsTable() {
+            const tbody = document.getElementById('mothballs-table-body');
+            tbody.innerHTML = '';
+            for (const song in songData) {
+                if (songData[song].status !== 'mothballs') continue;
+                const [title, artist] = song.split(' - ');
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${title}</td>
+                    <td>${artist}</td>
+                    <td>
+                        <button onclick="moveSongToMain('${song}')">Move to Song List</button>
+                        <button onclick="moveSongToCouncil('${song}')">Move to Council</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            }
+        }
+
+        function moveSongToMain(song) {
+            songData[song].status = 'main';
+            if (songData[song].votes) delete songData[song].votes;
+            populateSongTable();
+            populateCouncilTable();
+            populateMothballsTable();
+            unsavedChanges = true;
+        }
+
+        function moveSongToCouncil(song) {
+            songData[song].status = 'council';
+            if (!songData[song].votes) songData[song].votes = { Y: 0, N: 0, IDC: 0 };
+            populateSongTable();
+            populateCouncilTable();
+            populateMothballsTable();
+            unsavedChanges = true;
+        }
+
+        function moveSongToMothballs(song) {
+            songData[song].status = 'mothballs';
+            if (songData[song].votes) delete songData[song].votes;
+            populateSongTable();
+            populateCouncilTable();
+            populateMothballsTable();
+            unsavedChanges = true;
+        }
     </script>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
@@ -1929,11 +2077,11 @@
         <div class="icon-legend-container">
             <div class="tooltip">Icon Legend
                 <span class="tooltiptext">
-                    <strong class="icon-O">O</strong> = Easy Vocals (Blue)<br>
-                    <strong class="icon-X">X</strong> = Hard Vocals (Red)<br>
-                    <strong class="icon-G">G</strong> = Guitar Change (Brown)<br>
-                    <strong class="icon-M">M</strong> = Backup Vocals (Orange)<br>
-                    <strong class="icon-→">→</strong> = Crossfade (Black)
+                    "O" = Ez Vocs<br>
+                    "X" = Stressed Vocs<br>
+                    "M" = Matt Vocs<br>
+                    "G" = Guitar change<br>
+                    "→" = Crossfade
                 </span>
             </div>
         </div>
@@ -2002,6 +2150,35 @@
         <h3>Paste Song Details</h3>
         <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
         <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
+    <div class="council">
+        <h2>The Council of Yeas and Nays</h2>
+        <table id="council-table">
+            <thead>
+                <tr>
+                    <th>Song Title</th>
+                    <th>Artist</th>
+                    <th>Votes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="council-table-body"></tbody>
+        </table>
+    </div>
+
+    <div class="mothballs">
+        <h2>Mothballs</h2>
+        <table id="mothballs-table">
+            <thead>
+                <tr>
+                    <th>Song Title</th>
+                    <th>Artist</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="mothballs-table-body"></tbody>
+        </table>
     </div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
