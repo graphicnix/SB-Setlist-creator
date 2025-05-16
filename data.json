@@ -733,21 +733,6 @@
         "N": 0,
         "IDC": 0
       }
-    },
-    "Santa monica - Everclear": {
-      "key": "",
-      "sn": "",
-      "bpm": "",
-      "duration": "",
-      "tuning": "",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 0,
-        "N": 0,
-        "IDC": 0
-      }
     }
   },
   "setlists": {
@@ -761,7 +746,9 @@
       "Sex on Fire - Kings of Leon",
       "Superstition - Stevie Wonder",
       "Stillborn - BLS",
-      "Santeria - Sublime"
+      "Santeria - Sublime",
+      "Say it aint so - Weezer ",
+      "Pride and Joy - Stevie Ray Vaughan"
     ],
     "setlist-2": [],
     "setlist-3": []
