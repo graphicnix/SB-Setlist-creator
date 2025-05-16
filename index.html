@@ -599,6 +599,29 @@
             gap: 10px;
             margin-bottom: 10px;
         }
+        .council-table, .mothballs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .council-table th, .mothballs-table th, .council-table td, .mothballs-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .council-table th, .mothballs-table th {
+            background-color: #f4f4f4;
+            cursor: pointer;
+            color: #000;
+        }
+        .council-table th:hover, .mothballs-table th:hover {
+            background-color: #ddd;
+        }
+        .vote-counter {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
     </style>
 </head>
 <body>
@@ -2113,7 +2136,7 @@
                 row.innerHTML = `
                     <td>
                         <div>${title}</div>
-                        <div>
+                        <div class="vote-counter">
                             <button onclick="voteSong('${song}', 'Y')">Y</button>
                             <button onclick="voteSong('${song}', 'N')">N</button>
                             <button onclick="voteSong('${song}', 'IDC')">IDC</button>
@@ -2261,6 +2284,21 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
     </div>
 
+    <div class="add-song">
+        <h3>Add New Song</h3>
+        <input type="text" id="new-song-title" placeholder="Song Title">
+        <input type="text" id="new-song-artist" placeholder="Artist">
+        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
+        <input type="text" id="new-song-sn" placeholder="SN" style="width: 50px;">
+        <input type="text" id="new-song-bpm" placeholder="BPM">
+        <input type="text" id="new-song-duration" placeholder="Duration">
+        <input type="text" id="new-song-tuning" placeholder="Tuning">
+        <button onclick="addNewSong()">Add Song</button>
+        <h3>Paste Song Details</h3>
+        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
+        <button onclick="parseAndAddSongs()">Add from Paste</button>
+    </div>
+
     <div class="council">
         <h2>The Council of Yeas and Nays</h2>
         <table id="council-table">
@@ -2295,22 +2333,6 @@
 
     <div id="saved-setlists" class="category"></div>
 
-    <div class="add-song">
-        <h3>Add New Song</h3>
-        <input type="text" id="new-song-title" placeholder="Song Title">
-        <input type="text" id="new-song-artist" placeholder="Artist">
-        <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
-        <input type="text" id="new-song-sn" placeholder="SN" style="width: 50px;">
-        <input type="text" id="new-song-bpm" placeholder="BPM">
-        <input type="text" id="new-song-duration" placeholder="Duration">
-        <input type="text" id="new-song-tuning" placeholder="Tuning">
-        <button onclick="addNewSong()">Add Song</button>
-        <h3>Paste Song Details</h3>
-        <textarea id="paste-song-details" rows="6" placeholder="Paste multiple songs..."></textarea>
-        <button onclick="parseAndAddSongs()">Add from Paste</button>
-    </div>
-
     <button class="sync-btn" onclick="saveData()">Save and Sync</button>
-    <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
 </body>
 </html>
