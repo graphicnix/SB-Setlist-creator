@@ -651,15 +651,7 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "96 Quite Bitter Beings - CKY",
-      "Pride and Joy - Stevie Ray Vaughan",
-      "Feeling Good - various",
-      "Creep - Radiohead",
-      "I Alone - Live",
-      "Santeria - Sublime",
-      "Cumbersome - Seven Mary Three"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
@@ -867,7 +859,7 @@
     "No One Knows - Queens Stone Age": "#87CEEB"
   },
   "savedSetlists": {
-    "wes 1": [
+    "SPRING 2025 SET1": [
       "Breed - Nirvana",
       "Ruby Soho - Rancid",
       "Interstate Love Song - STP",
@@ -880,7 +872,7 @@
       "Lola Montez - Volbeat",
       "Even Flow - Pearl Jam"
     ],
-    "wes 2": [
+    "SPRING 25 SET 2": [
       "Cherub Rock - Smashing Pumpkins",
       "Tripping on a Hole - STP",
       "Good Times Bad - Led Zeppelin",
@@ -893,7 +885,7 @@
       "Come Together - The Beatles",
       "Everlong - Foo Fighters"
     ],
-    "Wes 3": [
+    "SPRING 25 SET 3": [
       "Would? - Alice in chains",
       "Zero - Smashing Pumpkins",
       "Hash Pipe - Weezer",
