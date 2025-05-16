@@ -11,8 +11,8 @@
             line-height: 1.6;
             max-width: 100%;
             overflow-x: hidden;
-            background-color: #252620;
-            color: #d9d9d9;
+            background-color: #565656;
+            color: #fff;
             position: relative;
             padding-top: 80px;
         }
@@ -41,22 +41,19 @@
             font-size: 16px;
             border: none;
             border-radius: 20px;
-            background-color: #d9d9d9;
-            color: #333;
         }
         .search-results {
             position: absolute;
             top: 100%;
             left: 0;
             right: 0;
-            background: #d9d9d9;
-            border: 1px solid #d9d9d9;
+            background: white;
+            border: 1px solid #ddd;
             border-radius: 0 0 5px 5px;
             max-height: 300px;
             overflow-y: auto;
             display: none;
             z-index: 101;
-            color: #333;
         }
         .search-result-item {
             padding: 8px 15px;
@@ -72,12 +69,12 @@
         }
         .setlist-selection-popup {
             position: absolute;
-            background: #d9d9d9;
-            border: 1px solid #d9d9d9;
+            background: white;
+            border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px;
             z-index: 1000;
-            color: #333;
+            color: #000;
             display: none;
         }
         .setlist-selection-popup button {
@@ -93,10 +90,9 @@
             text-align: center;
             margin-bottom: 40px;
             margin-top: 20px;
-            color: #d9d9d9;
         }
         h2 {
-            color: #d9d9d9;
+            color: #fff;
         }
         .icon-legend-container {
             display: flex;
@@ -108,7 +104,6 @@
             position: relative;
             display: inline-block;
             cursor: help;
-            color: #d9d9d9;
         }
         .tooltip .tooltiptext {
             visibility: hidden;
@@ -140,25 +135,23 @@
             border-collapse: collapse;
             margin-bottom: 20px;
             min-width: 600px;
-            color: #d9d9d9;
-            border-color: #d9d9d9;
         }
         th, td {
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             padding: 8px;
             text-align: left;
         }
         th {
             background-color: #f4f4f4;
             cursor: pointer;
-            color: #333;
+            color: #000;
         }
         th:hover {
             background-color: #ddd;
         }
         .setlist {
             margin-top: 20px;
-            background: #252620;
+            background: #565656;
             padding: 15px;
             border-radius: 5px;
         }
@@ -167,35 +160,25 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #d9d9d9;
         }
         .setlist ul {
             list-style-type: none;
             padding: 0;
             min-height: 50px;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             padding: 10px;
-            background: #252620;
+            background: white;
         }
         .setlist li {
             margin-bottom: 5px;
             padding: 8px;
             background-color: #f9f9f9;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             cursor: move;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            position: relative;
-            color: #333;
-        }
-        .setlist li .icons {
-            position: absolute;
-            left: 10px;
-        }
-        .setlist li .song-title {
-            text-align: center;
-            flex: 1;
+            color: #000;
         }
         .crossfade-btn {
             padding: 5px 10px;
@@ -211,13 +194,13 @@
         .crossfade-popup {
             display: none;
             position: absolute;
-            background: #d9d9d9;
-            border: 1px solid #d9d9d9;
+            background: #fff;
+            border: 1px solid #ddd;
             padding: 10px;
             max-height: 300px;
             overflow-y: auto;
             z-index: 1000;
-            color: #333;
+            color: #000;
         }
         .crossfade-popup label {
             display: block;
@@ -228,7 +211,7 @@
             padding: 15px;
             background: #f4f4f4;
             border-radius: 5px;
-            color: #333;
+            color: #000;
         }
         .icon-container {
             display: flex;
@@ -238,8 +221,6 @@
             padding: 3px;
             width: 50px;
             text-align: center;
-            background-color: #d9d9d9;
-            color: #333;
         }
         .icon-O { color: blue; }
         .icon-X { color: red; }
@@ -250,8 +231,6 @@
             margin-left: 5px;
             width: 100px;
             padding: 3px;
-            background-color: #d9d9d9;
-            color: #333;
         }
         .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn {
             background: #e31c1c;
@@ -267,7 +246,7 @@
         }
         .sync-btn {
             background: #000;
-            color: #d9d9d9;
+            color: #fff;
             border: none;
             padding: 10px 20px;
             border-radius: 5px;
@@ -282,26 +261,29 @@
         .duration-total {
             margin-top: 10px;
             font-weight: bold;
-            color: #d9d9d9;
         }
         .song-cell {
             display: flex;
             align-items: center;
-            justify-content: space-between;
+        }
+        .song-title-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
         }
         .song-title {
-            flex: 1;
-            text-align: left;
+            text-align: center;
             cursor: pointer;
             text-decoration: underline;
-            color: #d9d9d9;
-            white-space: nowrap;
         }
         .song-title:hover {
             color: #e31c1c;
         }
-        input, textarea, select {
-            background-color: #d9d9d9;
+        .song-actions {
+            margin-left: 10px;
+        }
+        input, textarea {
+            background-color: #d9d9d3;
             border: 1px solid #ccc;
             padding: 5px;
             color: #333;
@@ -311,11 +293,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #d9d9d9;
+            background: #fff;
             padding: 20px;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             z-index: 1000;
-            color: #333;
+            color: #000;
             max-width: 600px;
             width: 90%;
             text-align: left;
@@ -348,7 +330,7 @@
         }
         .logo {
             display: block;
-            margin: 0 auto;
+            margin: 20px auto;
             max-width: 500px;
             height: auto;
         }
@@ -365,18 +347,16 @@
             z-index: 9999;
         }
         .password-box {
-            background: #d9d9d9;
+            background: #fff;
             padding: 20px;
             border-radius: 5px;
             text-align: center;
-            color: #333;
+            color: #000;
         }
         .password-box input {
             margin: 10px 0;
             padding: 8px;
             width: 200px;
-            background-color: #d9d9d9;
-            color: #333;
         }
         .password-box button {
             padding: 8px 15px;
@@ -388,11 +368,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: #d9d9d9;
+            background: #fff;
             padding: 20px;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             z-index: 1000;
-            color: #333;
+            color: #000;
             max-width: 400px;
             width: 90%;
         }
@@ -404,14 +384,14 @@
             padding: 0;
             max-height: 300px;
             overflow-y: auto;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             padding: 10px;
         }
         .edit-setlist-popup li {
             margin-bottom: 5px;
             padding: 5px;
             background-color: #f9f9f9;
-            border: 1px solid #d9d9d9;
+            border: 1px solid #ddd;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -423,18 +403,17 @@
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            font-size: 14px;
         }
         .saved-setlist-item {
-            background: #d9d9d9;
-            color: #333;
+            background: white;
+            color: black;
             padding: 10px;
             border-radius: 5px;
             min-width: 200px;
         }
         .saved-setlist-item h3 {
             margin-top: 0;
-            color: #333;
+            color: black;
         }
         .saved-setlist-buttons {
             display: flex;
@@ -443,8 +422,8 @@
         }
         .tuning-Standard { background-color: inherit !important; }
         .tuning-Drop-D { background-color: #000 !important; color: white !important; }
-        .tuning-Eb { background-color: #A60512 !important; color: white !important; }
-        .tuning-Eb-Standard { background-color: #A60512 !important; color: white !important; }
+        .tuning-Eb { background-color: #ff0000 !important; color: white !important; }
+        .tuning-Eb-Standard { background-color: #ff0000 !important; color: white !important; }
         .tuning-D { background-color: #D3D3D3 !important; }
         .tuning-D-Std { background-color: #D3D3D3 !important; }
         .tuning-Drop-C { background-color: #FFFF00 !important; }
@@ -456,10 +435,6 @@
         .tuning-Open-C { background-color: #A52A2A !important; color: white !important; }
         .tuning-Open-E { background-color: #87CEEB !important; }
         .tuning-C-std { background-color: #A52A2A !important; color: white !important; }
-        .crossfade-pair {
-            background-color: #90EE90 !important;
-            position: relative;
-        }
         .crossfade-pair::before {
             content: "⇄";
             position: absolute;
@@ -481,7 +456,6 @@
             font-size: 12px;
             align-items: center;
             flex-wrap: wrap;
-            color: #d9d9d9;
         }
         .tuning-legend-item {
             display: flex;
@@ -506,8 +480,6 @@
             width: 100%;
             padding: 8px;
             margin-top: 5px;
-            background-color: #d9d9d9;
-            color: #333;
         }
         .song-edit-popup textarea {
             height: 200px;
@@ -519,42 +491,40 @@
             margin-top: 20px;
         }
         .play-btn {
-            background: #252620;
-            color: #00FF00; /* Green for metronome */
+            background: #808080;
+            color: white;
             border: none;
-            padding: 3px 6px; /* Smaller size */
+            padding: 5px 10px;
             border-radius: 3px;
             cursor: pointer;
             margin-left: 5px;
-            font-size: 10px;
         }
         .play-btn:hover {
-            background: #a52a2a;
+            background: #666;
         }
         .play-btn:disabled {
             background: #ccc;
             cursor: not-allowed;
         }
-        .delete-btn {
-            padding: 3px 6px; /* Smaller size */
-            font-size: 10px;
-        }
         .council {
             margin-top: 20px;
             padding: 15px;
-            background: #450202; /* Matching Add/Edit buttons */
+            background: #450202;
             border-radius: 5px;
-            color: #F2EEB6;
-            font-family: 'Palatino', serif;
+            color: #fff;
         }
-        .council h2 {
-            font-family: 'Palatino', serif;
-            text-transform: uppercase;
-            color: #F2A172;
+        .council th {
+            background-color: #333;
+            color: #fff;
         }
-        .council table, .council th, .council td {
-            color: #F2EEB6;
-            border-color: #d9d9d9;
+        .council button {
+            background: #e31c1c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin: 0 5px;
         }
         .mothballs {
             margin-top: 20px;
@@ -562,80 +532,18 @@
             background: #000;
             border-radius: 5px;
             color: #888;
-            font-family: 'Comic Sans MS', sans-serif;
         }
         .mothballs table, .mothballs th, .mothballs td {
             color: #888;
         }
         .highlight-gold {
-            background-color: #F2A172;
+            background-color: gold;
         }
         .strikethrough-red {
             text-decoration: line-through red;
         }
-        /* Mobile Styles */
-        @media (orientation: portrait) {
-            table {
-                min-width: 100%;
-            }
-            th, td {
-                display: none;
-            }
-            th:first-child, td:first-child {
-                display: table-cell;
-                width: 100%;
-            }
-            .song-cell {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .song-title {
-                flex: 1;
-                text-align: left;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .add-btn, .edit-btn {
-                font-size: 14px;
-                padding: 5px;
-            }
-            .add-btn {
-                background: #450202;
-                color: white;
-                border: none;
-                border-radius: 3px;
-                cursor: pointer;
-                margin-left: 5px;
-            }
-            .edit-btn {
-                background: #450202;
-                color: white;
-                border: none;
-                border-radius: 3px;
-                cursor: pointer;
-                margin-left: 5px;
-            }
-            .delete-btn {
-                display: none;
-            }
-            .setlist li {
-                font-size: 14px;
-            }
-            .setlist li .song-title {
-                font-size: 14px;
-            }
-            .setlist li .icons {
-                font-size: 12px;
-            }
-            .logo {
-                margin: 0 auto;
-            }
-            .council, .mothballs, .setlist {
-                margin-left: 0;
-                margin-right: 0;
-            }
+        .emoji-thumbs-down, .emoji-thumbs-up {
+            color: black;
         }
     </style>
 </head>
@@ -1067,10 +975,13 @@
                 row.className = `tuning-${tuning.replace(' ', '-')}`;
                 row.innerHTML = `
                     <td class="song-cell">
-                        <div class="song-title" onclick="editSong('${song}')">${title}</div>
-                        <div>
-                            <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
-                            <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
+                        <div class="icons">${iconsDisplay}</div>
+                        <div class="song-title-container">
+                            <div class="song-title" onclick="editSong('${song}')">${title}</div>
+                            <div class="song-actions">
+                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
+                                <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
+                            </div>
                         </div>
                     </td>
                     <td>${artist}</td>
@@ -1390,6 +1301,7 @@
             const maxTitleFontSize = 60;
             const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
             const setlistTitleFontSize = baseTitleFontSize - 10;
+            const artistFontSize = 8;
             const iconFontSize = 20;
 
             const crossfadePairs = [];
@@ -1480,7 +1392,7 @@
                             margin: 0 10px;
                         }
                         .artist { 
-                            font-size: 8px; 
+                            font-size: ${artistFontSize}px; 
                         }
                         .icons { 
                             margin-right: 10px;
@@ -1491,10 +1403,6 @@
                                 ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
                             }
                         `).join('')}
-                        .crossfade-pair {
-                            background-color: #90EE90 !important;
-                            position: relative;
-                        }
                         .crossfade-pair::before {
                             content: "⇄";
                             position: absolute;
@@ -1506,8 +1414,13 @@
                             content: "⇄";
                             position: absolute;
                             right: -20px;
-                            font-size: 16px;
+                            font
+
+-size: 16px;
                             color: #006400;
+                        }
+                        .emoji-thumbs-down, .emoji-thumbs-up {
+                            color: black;
                         }
                         @media print {
                             body { padding: 0; margin: 0; }
@@ -1538,9 +1451,19 @@
                         const songColor = songColors[song] || '';
                         const isCrossfadePair = crossfadePairs.includes(index);
                         const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
+                        let emojiStart = '';
+                        let emojiEnd = '';
+                        if (index < songs.length - 1 && songData[song]?.crossfadeInto?.includes(songs[index + 1])) {
+                            emojiStart = '<span class="emoji-thumbs-down">👎</span> ';
+                            emojiEnd = ' <span class="emoji-thumbs-down">👎</span>';
+                        }
+                        if (index > 0 && songData[songs[index - 1]]?.crossfadeInto?.includes(song)) {
+                            emojiStart = '<span class="emoji-thumbs-up">👍</span> ';
+                            emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
+                        }
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
-                            <span class="song-title">${title}</span>
+                            <span class="song-title">${emojiStart}${title}${emojiEnd}</span>
                             <span class="artist">${artist}</span>
                         </li>`;
                     }).join('')}</ol>
@@ -1712,10 +1635,6 @@
                                 ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
                             }
                         `).join('')}
-                        .crossfade-pair {
-                            background-color: #90EE90 !important;
-                            position: relative;
-                        }
                         .crossfade-pair::before {
                             content: "⇄";
                             position: absolute;
@@ -1729,6 +1648,9 @@
                             right: -20px;
                             font-size: 16px;
                             color: #006400;
+                        }
+                        .emoji-thumbs-down, .emoji-thumbs-up {
+                            color: black;
                         }
                         @media print {
                             body { padding: 0; margin: 0; }
@@ -1759,9 +1681,19 @@
                         const songColor = songColors[song] || '';
                         const isCrossfadePair = crossfadePairs.includes(index);
                         const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
+                        let emojiStart = '';
+                        let emojiEnd = '';
+                        if (index < songs.length - 1 && songData[song]?.crossfadeInto?.includes(songs[index + 1])) {
+                            emojiStart = '<span class="emoji-thumbs-down">👎</span> ';
+                            emojiEnd = ' <span class="emoji-thumbs-down">👎</span>';
+                        }
+                        if (index > 0 && songData[songs[index - 1]]?.crossfadeInto?.includes(song)) {
+                            emojiStart = '<span class="emoji-thumbs-up">👍</span> ';
+                            emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
+                        }
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
-                            <span class="song-title">${title}</span>
+                            <span class="song-title">${emojiStart}${title}${emojiEnd}</span>
                             <span class="artist">${artist}</span>
                         </li>`;
                     }).join('')}</ol>
@@ -1831,17 +1763,40 @@
             const setlistKey = setlistId;
             const targetIndex = Array.from(ev.target.closest('ul').children).indexOf(ev.target);
 
+            let originalKey;
+            let originalIndex;
             for (const key in setlists) {
                 const index = setlists[key].indexOf(song);
                 if (index > -1) {
-                    setlists[key].splice(index, 1);
+                    originalKey = key;
+                    originalIndex = index;
                     break;
                 }
             }
 
-            setlists[setlistKey].splice(targetIndex, 0, song);
-            updateAllSetlists();
-            unsavedChanges = true;
+            if (originalKey) {
+                const originalSetlist = setlists[originalKey];
+                let isPartOfCrossfade = false;
+                let pairedSong = '';
+                if (originalIndex > 0 && songData[originalSetlist[originalIndex - 1]]?.crossfadeInto?.includes(song)) {
+                    isPartOfCrossfade = true;
+                    pairedSong = originalSetlist[originalIndex - 1];
+                } else if (originalIndex < originalSetlist.length - 1 && songData[song]?.crossfadeInto?.includes(originalSetlist[originalIndex + 1])) {
+                    isPartOfCrossfade = true;
+                    pairedSong = originalSetlist[originalIndex + 1];
+                }
+
+                if (isPartOfCrossfade) {
+                    if (!confirm(`This song fucks with "${pairedSong}". Do you really want to separate them?`)) {
+                        return;
+                    }
+                }
+
+                setlists[originalKey].splice(originalIndex, 1);
+                setlists[setlistKey].splice(targetIndex, 0, song);
+                updateAllSetlists();
+                unsavedChanges = true;
+            }
         }
 
         function updateAllSetlists() {
@@ -1854,17 +1809,26 @@
         function updateSetlistDisplay(setlistKey) {
             const setlistElement = document.getElementById(setlistKey);
             const songs = setlists[setlistKey];
-            setlistElement.innerHTML = songs.map((song) => {
+            setlistElement.innerHTML = songs.map((song, index) => {
                 const iconsDisplay = getIconsDisplay(song);
                 const tuning = songData[song]?.tuning || 'Standard';
                 const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                 const songColor = songColors[song] || '';
+                let emojiStart = '';
+                let emojiEnd = '';
+                if (index < songs.length - 1 && songData[song]?.crossfadeInto?.includes(songs[index + 1])) {
+                    emojiStart = '<span class="emoji-thumbs-down">👎</span> ';
+                    emojiEnd = ' <span class="emoji-thumbs-down">👎</span>';
+                }
+                if (index > 0 && songData[songs[index - 1]]?.crossfadeInto?.includes(song)) {
+                    emojiStart = '<span class="emoji-thumbs-up">👍</span> ';
+                    emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
+                }
                 return `
                     <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)" 
                         style="background:${songColor}" class="${tuningClass}">
-                        <span class="icons">${iconsDisplay}</span>
-                        <span class="song-title">${song.split(' - ')[0]}</span>
-                        <button class="play-btn" onclick="playMetronome('${song}', this)">Play Metronome</button>
+                        ${emojiStart}${iconsDisplay} ${song}${emojiEnd}
+                        <button class="play-btn" onclick="playMetronome('${song}', this)">BPM-></button>
                         <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
                 `;
@@ -1898,7 +1862,7 @@
 
             setTimeout(() => {
                 button.disabled = false;
-                button.innerText = 'Play Metronome';
+                button.innerText = 'BPM->';
             }, (numBeats * beatInterval) * 1000);
         }
 
@@ -1944,7 +1908,7 @@
                 } else {
                     return isAscending ?
                         cellA.localeCompare(cellB) :
-                        cellB.localeCompare(cellA);
+                        cellB.localeCompare(cellB);
                 }
             });
 
@@ -2182,6 +2146,7 @@
     <h1>SpiralBound Setlist Creator</h1>
 
     <div class="category">
+        <h2>Alternative/Grunge/Rock</h2>
         <div class="icon-legend-container">
             <div class="tooltip">Icon Legend
                 <span class="tooltiptext">
@@ -2193,16 +2158,16 @@
                 </span>
             </div>
         </div>
-        <table id="song-table">
+        <table id="alternative-grunge-rock">
             <thead>
                 <tr>
-                    <th onclick="sortTable(0, 'song-table')">Song Title</th>
-                    <th onclick="sortTable(1, 'song-table')">Artist</th>
-                    <th onclick="sortTable(2, 'song-table')">Key</th>
-                    <th onclick="sortTable(3, 'song-table')">Riff</th>
-                    <th onclick="sortTable(4, 'song-table')">BPM</th>
-                    <th onclick="sortTable(5, 'song-table')">Duration</th>
-                    <th onclick="sortTable(6, 'song-table')">Tuning</th>
+                    <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
+                    <th onclick="sortTable(1, 'alternative-grunge-rock')">Artist</th>
+                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Key</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Riff</th>
+                    <th onclick="sortTable(4, 'alternative-grunge-rock')">BPM</th>
+                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th onclick="sortTable(6, 'alternative-grunge-rock')">Tuning</th>
                     <th>Crossfade Options</th>
                     <th>Actions</th>
                 </tr>
@@ -2243,6 +2208,8 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
     </div>
 
+    <div id="saved-setlists" class="category"></div>
+
     <div class="add-song">
         <h3>Add New Song</h3>
         <input type="text" id="new-song-title" placeholder="Song Title">
@@ -2259,7 +2226,7 @@
     </div>
 
     <div class="council">
-        <h2>THE COUNCIL OF YEAS AND NAYS</h2>
+        <h2>The Council of Yeas and Nays</h2>
         <table id="council-table">
             <thead>
                 <tr>
@@ -2286,8 +2253,6 @@
             <tbody id="mothballs-table-body"></tbody>
         </table>
     </div>
-
-    <div id="saved-setlists" class="category"></div>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit Spiralbound</a>
     <button class="sync-btn" onclick="saveData()">Save and Sync</button>
