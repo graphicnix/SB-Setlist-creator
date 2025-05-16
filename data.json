@@ -651,7 +651,20 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Breed - Nirvana",
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Feeling Good - various",
+      "Creep - Radiohead",
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "No Excuses - Alice in Chains",
+      "Fell on Black Days - Soundgarden",
+      "Sex on Fire - Kings of Leon",
+      "Sponge - Plowed",
+      "Ruby Soho - Rancid",
+      "Love Me Two Times - The Doors"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
