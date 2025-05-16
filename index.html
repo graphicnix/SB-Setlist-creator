@@ -196,7 +196,6 @@
         .setlist li .song-title {
             text-align: center;
             flex: 1;
-            white-space: nowrap;
         }
         .crossfade-btn {
             padding: 5px 10px;
@@ -262,7 +261,6 @@
             border-radius: 3px;
             cursor: pointer;
             margin-left: 5px;
-            font-size: 12px;
         }
         .add-btn, .edit-btn {
             background: #450202;
@@ -458,19 +456,23 @@
         .tuning-Open-C { background-color: #A52A2A !important; color: white !important; }
         .tuning-Open-E { background-color: #87CEEB !important; }
         .tuning-C-std { background-color: #A52A2A !important; color: white !important; }
-        .crossfade-pair-start::before {
-            content: "┌";
-            color: yellow;
-            font-size: 16px;
+        .crossfade-pair {
+            background-color: #90EE90 !important;
+            position: relative;
+        }
+        .crossfade-pair::before {
+            content: "⇄";
             position: absolute;
             left: -20px;
-        }
-        .crossfade-pair-end::after {
-            content: "┘";
-            color: yellow;
             font-size: 16px;
+            color: #006400;
+        }
+        .crossfade-pair::after {
+            content: "⇄";
             position: absolute;
             right: -20px;
+            font-size: 16px;
+            color: #006400;
         }
         .tuning-legend {
             display: flex;
@@ -728,7 +730,12 @@
 
         function getIconsDisplay(song) {
             const icons = songIcons[song] || [];
-            return icons.map(icon => `<span class="icon-${icon}">${icon}</span>`).join(' ');
+            const iconCount = icons.length;
+            let display = icons.map(icon => `<span class="icon-${icon}">${icon}</span>`).join(' ');
+            if (iconCount === 0) display += '---';
+            else if (iconCount === 1) display += '--';
+            else if (iconCount === 2) display += '-';
+            return display;
         }
 
         function setupSearch() {
@@ -1062,7 +1069,7 @@
                     <td class="song-cell">
                         <div class="song-title" onclick="editSong('${song}')">${title}</div>
                         <div>
-                            <button class="add-btn" onclick="showSetlistSelection('${song}', this)">+</button>
+                            <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
                             <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         </div>
                     </td>
@@ -1253,7 +1260,7 @@
                     const lastBPM = getBPM(lastSong);
                     const len = selectedSongs.length;
 
-                    if (len % 3 === 0 || len % 3 publishedAt=== 1) {
+                    if (len % 3 === 0 || len % 3 === 1) {
                         candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) <= 10);
                     } else {
                         candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) > 20);
@@ -1391,6 +1398,7 @@
                 const nextSong = songs[i + 1];
                 if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
                     crossfadePairs.push(i);
+                    crossfadePairs.push(i + 1);
                 }
             }
 
@@ -1471,6 +1479,9 @@
                             font-size: ${baseTitleFontSize}px;
                             margin: 0 10px;
                         }
+                        .artist { 
+                            font-size: 8px; 
+                        }
                         .icons { 
                             margin-right: 10px;
                         }
@@ -1480,19 +1491,23 @@
                                 ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
                             }
                         `).join('')}
-                        .crossfade-pair-start::before {
-                            content: "┌";
-                            color: yellow;
-                            font-size: 16px;
+                        .crossfade-pair {
+                            background-color: #90EE90 !important;
+                            position: relative;
+                        }
+                        .crossfade-pair::before {
+                            content: "⇄";
                             position: absolute;
                             left: -20px;
-                        }
-                        .crossfade-pair-end::after {
-                            content: "┘";
-                            color: yellow;
                             font-size: 16px;
+                            color: #006400;
+                        }
+                        .crossfade-pair::after {
+                            content: "⇄";
                             position: absolute;
                             right: -20px;
+                            font-size: 16px;
+                            color: #006400;
                         }
                         @media print {
                             body { padding: 0; margin: 0; }
@@ -1517,16 +1532,16 @@
                     </div>
                     <ol>${songs.map((song, index) => {
                         const iconsDisplay = getIconsDisplay(song);
-                        const [title] = song.split(' - ');
+                        const [title, artist] = song.split(' - ');
                         const tuning = songData[song]?.tuning || 'Standard';
                         const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                         const songColor = songColors[song] || '';
-                        const isCrossfadeStart = crossfadePairs.includes(index);
-                        const isCrossfadeEnd = crossfadePairs.includes(index - 1);
-                        const crossfadeClass = isCrossfadeStart ? 'crossfade-pair-start' : (isCrossfadeEnd ? 'crossfade-pair-end' : '');
+                        const isCrossfadePair = crossfadePairs.includes(index);
+                        const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${title}</span>
+                            <span class="artist">${artist}</span>
                         </li>`;
                     }).join('')}</ol>
                     <button onclick="window.print()">Print</button>
@@ -1540,8 +1555,8 @@
             const tuningMap = {
                 'Standard': 'inherit',
                 'Drop D': '#000',
-                'Eb': '#A60512',
-                'Eb Standard': '#A60512',
+                'Eb': '#ff0000',
+                'Eb Standard': '#ff0000',
                 'D': '#D3D3D3',
                 'D Std.': '#D3D3D3',
                 'Drop C': '#FFFF00',
@@ -1595,6 +1610,7 @@
             const maxTitleFontSize = 60;
             const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
             const setlistTitleFontSize = baseTitleFontSize - 10;
+            const artistFontSize = 8;
             const iconFontSize = 20;
 
             const crossfadePairs = [];
@@ -1603,6 +1619,7 @@
                 const nextSong = songs[i + 1];
                 if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
                     crossfadePairs.push(i);
+                    crossfadePairs.push(i + 1);
                 }
             }
 
@@ -1683,6 +1700,9 @@
                             font-size: ${baseTitleFontSize}px;
                             margin: 0 10px;
                         }
+                        .artist { 
+                            font-size: ${artistFontSize}px; 
+                        }
                         .icons { 
                             margin-right: 10px;
                         }
@@ -1692,19 +1712,23 @@
                                 ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
                             }
                         `).join('')}
-                        .crossfade-pair-start::before {
-                            content: "┌";
-                            color: yellow;
-                            font-size: 16px;
+                        .crossfade-pair {
+                            background-color: #90EE90 !important;
+                            position: relative;
+                        }
+                        .crossfade-pair::before {
+                            content: "⇄";
                             position: absolute;
                             left: -20px;
-                        }
-                        .crossfade-pair-end::after {
-                            content: "┘";
-                            color: yellow;
                             font-size: 16px;
+                            color: #006400;
+                        }
+                        .crossfade-pair::after {
+                            content: "⇄";
                             position: absolute;
                             right: -20px;
+                            font-size: 16px;
+                            color: #006400;
                         }
                         @media print {
                             body { padding: 0; margin: 0; }
@@ -1729,16 +1753,16 @@
                     </div>
                     <ol>${songs.map((song, index) => {
                         const iconsDisplay = getIconsDisplay(song);
-                        const [title] = song.split(' - ');
+                        const [title, artist] = song.split(' - ');
                         const tuning = songData[song]?.tuning || 'Standard';
                         const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                         const songColor = songColors[song] || '';
-                        const isCrossfadeStart = crossfadePairs.includes(index);
-                        const isCrossfadeEnd = crossfadePairs.includes(index - 1);
-                        const crossfadeClass = isCrossfadeStart ? 'crossfade-pair-start' : (isCrossfadeEnd ? 'crossfade-pair-end' : '');
+                        const isCrossfadePair = crossfadePairs.includes(index);
+                        const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
                         return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
                             <span class="icons">${iconsDisplay}</span>
                             <span class="song-title">${title}</span>
+                            <span class="artist">${artist}</span>
                         </li>`;
                     }).join('')}</ol>
                     <button onclick="window.print()">Print</button>
@@ -1830,29 +1854,18 @@
         function updateSetlistDisplay(setlistKey) {
             const setlistElement = document.getElementById(setlistKey);
             const songs = setlists[setlistKey];
-            const crossfadePairs = [];
-            for (let i = 0; i < songs.length - 1; i++) {
-                const currentSong = songs[i];
-                const nextSong = songs[i + 1];
-                if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
-                    crossfadePairs.push(i);
-                }
-            }
-            setlistElement.innerHTML = songs.map((song, index) => {
+            setlistElement.innerHTML = songs.map((song) => {
                 const iconsDisplay = getIconsDisplay(song);
                 const tuning = songData[song]?.tuning || 'Standard';
                 const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
                 const songColor = songColors[song] || '';
-                const isCrossfadeStart = crossfadePairs.includes(index);
-                const isCrossfadeEnd = crossfadePairs.includes(index - 1);
-                const crossfadeClass = isCrossfadeStart ? 'crossfade-pair-start' : (isCrossfadeEnd ? 'crossfade-pair-end' : '');
                 return `
                     <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)" 
-                        style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
+                        style="background:${songColor}" class="${tuningClass}">
                         <span class="icons">${iconsDisplay}</span>
                         <span class="song-title">${song.split(' - ')[0]}</span>
-                        <button class="play-btn" onclick="playMetronome('${song}', this)">►</button>
-                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">⨂</button>
+                        <button class="play-btn" onclick="playMetronome('${song}', this)">Play Metronome</button>
+                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
                     </li>
                 `;
             }).join('');
@@ -1885,7 +1898,7 @@
 
             setTimeout(() => {
                 button.disabled = false;
-                button.innerText = '►';
+                button.innerText = 'Play Metronome';
             }, (numBeats * beatInterval) * 1000);
         }
 
