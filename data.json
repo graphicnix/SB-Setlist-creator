@@ -762,7 +762,7 @@
       "lyrics": "",
       "status": "council",
       "votes": {
-        "Y": 0,
+        "Y": 1,
         "N": 0,
         "IDC": 0
       }
@@ -788,6 +788,66 @@
       "status": "mothballs"
     },
     "Paranoid - Black Sabbath ": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "mothballs"
+    },
+    "Fire - Hendricks ": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "mothballs"
+    },
+    "pardon me - incubus ": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "mothballs"
+    },
+    "Little One  - Highly ?": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "main"
+    },
+    "Little One - Highly Suspect": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "mothballs"
+    },
+    "Beggin - måneskin": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "mothballs"
+    },
+    "Muddshovel - Stained": {
       "key": "",
       "sn": "",
       "bpm": "",
