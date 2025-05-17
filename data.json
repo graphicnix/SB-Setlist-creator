@@ -748,19 +748,26 @@
         "N": 0,
         "IDC": 0
       }
+    },
+    "Test - Tickles ": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "council",
+      "votes": {
+        "Y": 0,
+        "N": 0,
+        "IDC": 0
+      }
     }
   },
   "setlists": {
     "setlist-1": [
-      "Soul to Squeeze - R.H.C.P",
-      "Like a Stone - Audioslave",
-      "Cherub Rock - Smashing Pumpkins",
-      "Bullet w Butterfly - TSP",
-      "Blister in the Sun - Violent Femmes",
-      "Feeling Good - various",
-      "Santeria - Sublime",
-      "Schism - Tool",
-      "What If - Creed"
+      "Like a Stone - Audioslave"
     ],
     "setlist-2": [],
     "setlist-3": []
