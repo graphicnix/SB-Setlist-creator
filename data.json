@@ -289,15 +289,6 @@
       "lyrics": "",
       "status": "main"
     },
-    "Sod Off - Clutch": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "120",
-      "duration": "3:36",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
-    },
     "Sweet Emotion - Aerosmith": {
       "key": "Em",
       "riff": "Em",
@@ -767,7 +758,16 @@
   },
   "setlists": {
     "setlist-1": [
-      "Like a Stone - Audioslave"
+      "Even Flow - Pearl Jam",
+      "Stillborn - BLS",
+      "Short SkirtLong Jacket - Cake",
+      "Plush - STP",
+      "SOS - SAWD OFF SHOTTY",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Hemorrhage - Fuel",
+      "Sweet Emotion - Aerosmith",
+      "Lump - The Presidents USA",
+      "Zero - Smashing Pumpkins"
     ],
     "setlist-2": [],
     "setlist-3": []
