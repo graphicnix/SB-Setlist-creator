@@ -295,8 +295,10 @@
       "bpm": "92",
       "duration": "4:34",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "keyboard 467 A  F# E\n\nAerosmith Lyrics\n\"Sweet Emotion\"\n\nSweet emotion\nSweet emotion\nSweet, it's broken\nSweet\nEmotion (Emotion)\n\nSweet emotion\nSweet emotion\n\nTalk about things that nobody cares\nWearing other things that nobody wears\nYou're calling my name but I got to make clear\nI can't say baby where I'll be in a year\n\nSome sweat hog mama with a face like a gent\nSaid my get up and go, musta got up and went\nWell I got good news, she's a real good liar\n'Cause the backstage boogie set your pants on fire\n\nSweet emotion\nSweet emotion\n\nI pulled into town in a police car\nYour daddy said I took it just a little too far\nYou're telling me things but your girlfriend lied\nYou can't catch me because the rabbit done died, yes it did\n\nYou stand in the front just a shaking your ass\nI'll take you backstage you can drink from my glass\nI'll talk about something you can sure understand\n'Cause a month on the road and I'll be eating from your hand",
+      "status": "main",
+      "sn": "",
+      "tuning": "Standard"
     },
     "Even Flow - Pearl Jam": {
       "key": "Em",
@@ -398,9 +400,10 @@
       "bpm": "69",
       "duration": "6:16",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "Keyboard 83 \n\nE B A, B A\n\n\n[Intro]\nE\n \n[Verse 1]\n                              E\nShe never mentions the word \"addiction\"\n \nIn certain company\n                              E\nYes, she'll tell you she's an orphan\n \nAfter you meet her family\n \n[Interlude]\n| B   | A   | E   | E   | x2\n \n[Verse 2]\n                                 E\nShe paints her eyes as black as night now\n \nPulls those shades down tight\n                                   E\nYeah, she gives a smile when the pain come\n \nThe pain gonna make everything alright\n \n[Chorus]\n                  B       A\nSays she talks to angels\n                  E\nThey call her out by her name\n                      B        A\nOh yeah, she talks to angels\n                       E\nSays they call her out by her name\n \n[Verse 3]\n                                 E\nShe keeps a lock of hair in her pocket\n \nShe wears a cross around her neck\n                         E\nYes, the hair is from a little boy\n \nAnd the cross is someone she has not met\n \nNot yet\n \n[Chorus]\n                  B       A\nSays she talks to angels\n                  E\nThey call her out by her name\n                      B        A\nOh yeah, she talks to angels\n                       E\nSays they call her out by her name\n \n[Bridge]\nA                  E\nShe don't know no lover\nA                 E\nNone that I ever seen\nA                        E\nYeah, to her that ain't nothin'\n        A\nBut to me, it means\n         E\nMeans everything\n \n[Verse 2]\n                                 E\nShe paints her eyes as black as night now\n \nPulls those shades down tight\n                                   E\nYeah, she gives a smile when the pain come\n \nThe pain gonna make everything alright\n \n[Chorus]\n                  B       A\nSays she talks to angels\n                  E\nThey call her out by her name\n                      B        A\nOh yeah, she talks to angels\n                       E\nSays they call her out by her name\n \n[Outro]\n                   B     A\nOh, ooh, oh, oh, angels\n                   E\nThey call her out by her name\n                          B      A\nOh, oh, oh, she talks to angels\n \nThey call her out\nB          A\nYeah, ee, eah, eah, eah\n \nCall her out\nB                    A\nDon't you know that they\n              E\nCall her out by her name?",
       "tuning": "Open E",
-      "status": "main"
+      "status": "main",
+      "sn": ""
     },
     "46 & 2 - Tool": {
       "key": "D",
@@ -694,10 +697,11 @@
       "bpm": "96",
       "duration": "3:44",
       "tuning": "Eb",
-      "lyrics": "Eb\n\nWith my perceptions in a mix\nDown twenty miles through the sticks\nTo the cloudy town of Hellview: Population 96\nExcessive vacancy, well maybe\nIn the shadow of an eye\nAll the strangers pass through\nWhere the rules just don't apply\n\nAt the fork turn left a store\nBut on the right stay free from sight\n'Cause 96 quite bitter beings\nLike to stack the bodies high\nThe only way to ever leave is\nOverflooded by the storm\nAnd entanglement in Hellview\nBrings you fear in fifty forms\n\n(They've deleted all the tourists)\n(At the bottom of the lake)\n\nAnd not one supports the cause\nTo leave the blood stay in the veins\n\n\nHere, three miles back is where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted was an answer\n\nFootprints giving clue to where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted (wanted, wanted, wanted)",
+      "lyrics": "Keyboard: 594\n\nlow Eb\n\nWith my perceptions in a mix\nDown twenty miles through the sticks\nTo the cloudy town of Hellview: Population 96\nExcessive vacancy, well maybe\nIn the shadow of an eye\nAll the strangers pass through\nWhere the rules just don't apply\n\nAt the fork turn left a store\nBut on the right stay free from sight\n'Cause 96 quite bitter beings\nLike to stack the bodies high\nThe only way to ever leave is\nOverflooded by the storm\nAnd entanglement in Hellview\nBrings you fear in fifty forms\n\n(They've deleted all the tourists)\n(At the bottom of the lake)\n\nAnd not one supports the cause\nTo leave the blood stay in the veins\n\n\nHere, three miles back is where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted was an answer\n\nFootprints giving clue to where we are\nAll we ever wanted was an answer\nCivilized are close but way too far\nAll we ever wanted (wanted, wanted, wanted)",
       "crossfadeInto": [],
       "timeSignature": "4/4",
-      "status": "main"
+      "status": "main",
+      "sn": ""
     },
     "Devils Bleedin Crown - Volbeat": {
       "key": "",
