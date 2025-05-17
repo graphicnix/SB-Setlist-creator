@@ -762,7 +762,7 @@
       "lyrics": "",
       "status": "council",
       "votes": {
-        "Y": 2,
+        "Y": 1,
         "N": 0,
         "IDC": 0
       }
@@ -856,20 +856,29 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs"
+    },
+    "closing time - semisonics": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "mothballs"
     }
   },
   "setlists": {
     "setlist-1": [
-      "Even Flow - Pearl Jam",
-      "Stillborn - BLS",
-      "Short SkirtLong Jacket - Cake",
-      "Plush - STP",
-      "SOS - SAWD OFF SHOTTY",
-      "Tennessee Whiskey - Chris Stapleton",
-      "Hemorrhage - Fuel",
-      "Sweet Emotion - Aerosmith",
+      "Holiday - Green Day",
       "Lump - The Presidents USA",
-      "Zero - Smashing Pumpkins"
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Say It Ain't So - Weezer",
+      "What If - Creed",
+      "Schism - Tool",
+      "Fell on Black Days - Soundgarden",
+      "96 Quite Bitter Beings - CKY",
+      "Inside Out - Eve 6"
     ],
     "setlist-2": [],
     "setlist-3": []
