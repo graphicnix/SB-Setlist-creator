@@ -598,14 +598,15 @@
       "status": "main"
     },
     "No One Knows - Queens Stone Age": {
-      "key": "",
+      "key": "Cm",
       "riff": "",
-      "bpm": "",
+      "bpm": "170",
       "duration": "",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "Queens Of The Stone Age Lyrics\n\"No One Knows\"\n\nWe get some rules to follow\nThat and this, these and those\nNo one knows\nWe get these pills to swallow\nHow they stick in your throat\nTastes like gold\nOh, what you do to me\nNo one knows\n\nAnd I realize you're mine\nIndeed a fool am I\nAnd I realize you're mine\nIndeed a fool am I\n\nI journey through the desert\nOf the mind with no hope\nI follow\nI drift along the ocean\nDead lifeboat in the sun\nEnd come undone\nPleasantly caving in\nI come undone\n\nAnd I realize you're mine\nIndeed a fool am I\nAnd I realize you're mine\nIndeed a fool am I\n\nHeaven smiles above me\nWhat a gift here below\nBut no one knows\nA gift that you give to me\nNo one knows",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "Cm"
     },
     "Short SkirtLong Jacket - Cake": {
       "key": "Am",
