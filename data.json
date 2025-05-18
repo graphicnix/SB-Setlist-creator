@@ -261,7 +261,11 @@
       "riff": "Em",
       "bpm": "82",
       "duration": "4:02",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Come Down - Bush",
+        "Fell on Black Days - Soundgarden",
+        "Like a Stone - Audioslave"
+      ],
       "lyrics": "311 Lyrics\n\"Beautiful Disaster\"\n\nToday seems like a good day to burn a bridge or two\nThe one with old wood creaking that would burn right away on cue\nI try to be not like that, but some people really suck\nPeople need to get the axing, chalk it up to bad luck\n\nI know a drugstore cowgirl so afraid of getting bored\nShe's always running from something, so many things ignored\nI might do that stuff if it didn't make me feel like shit\nI'm on some old reality tip, so many trips in it\n\nBeautiful disaster\nFlyin' down the street again\nI tried to keep up\nYou wore me out and left me ate up\nNow I wish you all the luck\nYou're a butterfly in the wind without a care\nA pretty train crash to me and I can't care\nI do, I don't, whatever\n\nI know a drugstore cowgirl so afraid of getting bored\nShe's always running from something, so many things ignored\nI try to be not like this, but I thought it'd make a good song\nThere's nothing to see, shows over, people just move along\n\nBeautiful disaster\nFlyin' down the street again\nI tried to keep up\nYou wore me out and left me ate up\nNow I wish you all the luck\nYou're a butterfly in the wind without a care\nA pretty train crash to me and I can't care\nI do, I don't, whatever\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
@@ -440,7 +444,10 @@
       "riff": "Am",
       "bpm": "72",
       "duration": "4:54",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Song 2 - Blur",
+        "Song for the Dead - Queens of the Stone Age"
+      ],
       "lyrics": "[Verse]\n     Gm      F              Dm\nOn a cobweb, afternoon in a room\n        Eb\nfull of emptiness\n     Gm      F\nBy a freeway I confess\n  Dm              Eb\nI was lost in the pages\nGm         F\nOf a book, full of death\nDm                Eb\nReading how we'll die alone\n       Gm               F\nAnd if we're good we'll lay to rest\nDm          Eb\nAnywhere we want to go\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7\nAlone\n      Gm        F\nOn my deathbed, I will pray\n   Dm               Eb\nTo the gods and the angels\n       Gm       F\nLike a pagan to anyone\n    Dm              Eb\nWho will take me to heaven\nGm          F\nTo a place, I recall\nDm          Eb\nI was there so long ago\n    Gm\nThe sky was bruised\n    F\nThe wine was bled\n    Dm               Eb\nAnd there you led me on\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7\nAlone   Alone\n \n \n[Solo]\nGm Bb F Gm Gm Bb F Gm\nEb Gm\nF Gm\nEb Gm D7\n \n[Verse]\n    Eb   Bb\nAnd on I read\nD                 Eb\nUntil the day was gone\n      Ebm          C7\nAnd I sat in regret\n   D7                  Gm\nOf all the things I've done\n    Eb              Bb\nFor all that I've blessed\n    D              Eb\nAnd all that I've wronged\n    Ebm             C7\nIn dreams until my death\n       D7     D7\nI will wander on\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7      Eb\nAlone   Alone..",
       "tuning": "Eb",
       "timeSignature": "4/4",
@@ -527,7 +534,9 @@
       "riff": "E",
       "bpm": "140",
       "duration": "2:14",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Beautiful Disaster - 311"
+      ],
       "lyrics": "",
       "status": "main"
     },
