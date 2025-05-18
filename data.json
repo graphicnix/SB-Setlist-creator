@@ -700,7 +700,10 @@
       "bpm": "",
       "duration": "3:27",
       "tuning": "Eb",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "96 Quite Bitter Beings - CKY",
+        "I Alone - Live"
+      ],
       "lyrics": "",
       "status": "main"
     },
