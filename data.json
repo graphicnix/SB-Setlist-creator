@@ -319,7 +319,8 @@
       "lyrics": "[Intro: ]Dm / C  C / Dm / C  C  \n\n           Dm  \nYou get a shiver in the dark  \n         C           Bb         A  \nIt's raining in the park but meantime  \nDm                      C           Bb          A  \nSouth of the river you stop and you hold everything  \nF                               C  \nA band is blowing Dixie double four time  \n        Bb                                 Dm   Bb  C  \nYou feel alright when you hear that music ring  \n\n           Dm              C        Bb          A  \n You step inside but you don't see too many faces  \n Dm              C                        Bb      A  \nComing in out of the rain to (you) hear the jazz go down  \nF                       C  \nToo much competition in other places  \nBb                                    Dm  \nBut not too many horns can make that sound  \n(But not too many horns are blowing that sound)\nBb  C  \n        Way on downsouth  \nBb  C  \n        Way on downsouth  \nDm              Dm C Bb C       Dm C Bb C  \nLondon town  \n\n                Dm          C       Bb          A  \nYou check out Guitar George he knows all the chords  \nDm                    C              Bb               \nMind he's (his) strictly rhythm he doesn't want to   \n       A  \nMake it cry or sing  \nF                       C  \nAnd an old guitar is all he can afford  \nBb                                         Dm   Bb C  \nWhen he gets up under the lights to play his thing  \nDm                      C     Bb         A  \n  (And) harry doesnb't mind if he doesn't make the scene  \nDm             C        Bb                  A  \n  He('s) got a daytime job he's doing al(l)right  \nF                               C  \n  He can play honky tone just like anything  \n(He can play the honky tonk like anything)\n\nBb                      Dm      Bb C  \n  Saving it up for friday night  \n                  Bb C  \nWith the sultans  \n                     Dm     Dm C Bb C  \nWith the sultans of swing  \n                             Dm C Bb C  \n\nDm                     C           Bb           \nAnd a crowd of young boys they're fooling around\nA\nin the corner\nDm                 C                Bb             \nDrunk and dressed in their best brown baggies and   \n     A  \nTheir platform soles  \nF                                       C  \nThey don't give a damn about ('bout) any trumpet playing band  \n   Bb                           Dm      Bb C  \nIt ain't what they call rock and roll  \n                Bb C  \nAnd the sultans  \n                        Dm     Dm C Bb C  \nAnd the sultans played creole  \n(Yeah the Sultans they played Creole)\n\n                                Dm C Bb C  \n\nDm                    C         Bb         A  \nAnd then the man he steps right up to the microphone  \nDm          C                Bb         A    (A7)  \nAnd says at last just as the time bell rings  \nF                           C  \nThank you goodnight now it's time to go home  \n        Bb                  Dm          Bb C  \nAnd he makes it fast with one more thing  \n                  Bb C  \nWe are the sultans  \n                      Dm        Dm C Bb C  \nWe are the sultans of swing  ",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "7B"
     },
     "Possum Kingdom - Toadies": {
       "key": "A maj",
@@ -344,25 +345,27 @@
       "tuning": "Standard"
     },
     "Even Flow - Pearl Jam": {
-      "key": "Em",
+      "key": "B♭ Minor",
       "riff": "Em",
-      "bpm": "\t92",
+      "bpm": "105",
       "duration": "4:53",
       "crossfadeInto": [],
       "lyrics": "Intro: D C (4x)  \n\nD   C      D                    C            D      C       (D  C)   \nFre--ezin', rests his head on a pillow made of concrete, again   \n    D   C    D              C                     D  C   D      C       \nOh, Fee--lin' maybe he'll see a little better set a days,   ooh yeah   \n    D   C    D               C                         D    C  D      C   \nOh, hand out, faces that he sees time again ain't that familiar,  ooh yeah   \n    D   C     D                  C                  D  C  D     C     \nOh, dark grin, he can't help, when he's happy looks insane,  oh yeah   \n\n(D C)   \n\nD    Bb                         D     C   \nEven flow, thoughts arrive like butterflies   \n    D        Bb                      D     C   \nOh, he don't know, so he chases them away, yeah...  \n     D       Bb                   D   C        D        C      D        C   \nOh, someday yet, he'll begin his life again    life a--gain   life a--gain...   \n\nD    C     D                                C                  D   C   D      C   \nKne--elin', looking through the paper through he doesn't know to read,   ooh yeah   \n    D   C     D                    C                    D      C   \nOh, pra--yin', now to something that has never showed him anything   \n    D   C     D                         C                  D  C  D C   \nOh, fee--lin', understands the weather of the winters on its  way   \n    D   C      D                      C                  D  C  D   C   \nOh, cei--lings, few and far between all the legal halls of shame,  yeah...   \n\nD    Bb                         D     C   \nEven flow, thoughts arrive like butterflies   \n    D        Bb                      D     C   \nOh, he don't know, so he chases them away, yeah...  \nD       Bb                       D    C          \nOh, someday yet, he'll begin his life again   \n     D          Bb                              D  C   D   Am C    D  \nOh, whispering hands, gently lead, lead him away...    him a--way, him\nAm C     (D Am G)\na--way...        Yeah!\n\nSolo: D C  \n\nD    Bb                         D     C   \nEven flow, thoughts arrive like butterflies   \n    D        Bb                      D     C   \nOh, he don't know, so he chases them away, yeah...  \nD       Bb                       D    C          \nOh, someday yet, he'll begin his life again   \n     D          Bb                              D  C   D   Am C    D  \nOh, whispering hands, gently lead, lead him away...    him a--way, him\nAm C     (D Am G)\na--way...        Yeah!",
       "tuning": "Drop D",
       "timeSignature": "4/4",
-      "status": "main"
+      "status": "main",
+      "sn": "3A"
     },
     "Schism - Tool": {
-      "key": "D",
+      "key": "A Minor",
       "riff": "D",
       "bpm": "90",
       "duration": "6:47",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "\"Schism\"\n\nI know the pieces fit 'cause I watched them fall away\nMildewed and smoldering. Fundamental differing\nPure intention juxtaposed will set two lovers souls in motion\nDisintegrating as it goes testing our communication\nThe light that fueled our fire then has burned a hole between us so\nWe cannot seem to reach an end crippling our communication\n\nI know the pieces fit 'cause I watched them tumble down\nNo fault, none to blame, it doesn't mean I don't desire to\nPoint the finger, blame the other, watch the temple topple over\nTo bring the pieces back together, rediscover communication\n\nThe poetry that comes from the squaring off between\nAnd the circling is worth it\nFinding beauty in the dissonance\n\nThere was a time that the pieces fit, but I watched them fall away\nMildewed and smoldering, strangled by our coveting\nI've done the math enough to know the dangers of our second guessing\nDoomed to crumble unless we grow, and strengthen our communication\n\n(Cold, cold, cold)\nCold silence has a tendency to atrophy any sense of compassion between supposed lovers\nBetween supposed brothers\n\nI know the pieces fit [8x]",
       "tuning": "D",
-      "status": "main"
+      "status": "main",
+      "sn": "8A"
     },
     "Come Together - The Beatles": {
       "key": "D",
@@ -376,14 +379,15 @@
       "status": "main"
     },
     "Lola Montez - Volbeat": {
-      "key": "Am",
+      "key": "D Major",
       "riff": "Am",
       "bpm": "140",
       "duration": "4:25",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "\"Lola Montez\"\n\nFeel the fire where she walks\nLola Montez so beautiful\nShady and a tempered dame\nBlinding your eyes with her spider dance\n\nHer performance utterly erotic subversive to all ideas\nAnd for public morality\nAnd cool as she was she didn't care\nSee the miner throw his gold\nLifting her skirt howling loud like a wolf\nHell raising and full of sin\nWhen Lola was dancing and showing her skin\n\nWherever she walks\nShe'll be captivating all the men\nDon't look in her eyes\nYou might fall and find the love of your life heavenly\nBut she'll catch you in her web\nThe love of your life, yeah.\n\nFeel the fire where she walks\nLola Montez so beautiful\nShady and a tempered dame\nBlinding your eyes with her spider dance\n\nWell notorious I have been\nBut never for fame that's what she said\nDear Henry taste my whip\nNever to see any words you print\n\nWherever she walks\nShe'll be captivating all the men\nDon't look in her eyes\nYou might fall and find the love of your life heavenly\nBut she'll catch you in her web\nThe love of your life, yeah.\n\nOh Lola I'm sure that the love would have been\nThe key to all your pain\nThe key to all your pain\nNo words will later come\nDid the spider bite your tongue\nWe will surely not forget\nWe will surely not forget\nThe Lola spider dance\n\nWhoa!\n\nDon't look in her eyes\nYou might fall and find the love of your life heavenly\nBut she'll catch you in her web\nThe love of your life, yeah\n",
       "tuning": "Drop D",
-      "status": "main"
+      "status": "main",
+      "sn": "10B"
     },
     "Superstition - Stevie Wonder": {
       "key": "G",
@@ -397,7 +401,7 @@
       "sn": "4B"
     },
     "Breed - Nirvana": {
-      "key": "F5",
+      "key": "E Major",
       "riff": "F5",
       "bpm": "172",
       "duration": "3:03",
@@ -405,29 +409,32 @@
       "lyrics": "Nirvana Lyrics\n\"Breed\"\n\nI don't care, I don't care, I don't care\nI don't care, I don't care, care if it's old\nI don't mind, I don't mind, I don't mind\nI don't mind, mind, don't have a mind\nGet away, get away, get away\nGet away, away, away from your home\nI'm afraid, I'm afraid, I'm afraid\nI'm afraid, afraid, ghost\n\nEven if you have, even if you need\nI don't mean to stare, we don't have to breed\nWe could plant a house, we could build a tree\nI don't even care, we could have all three\nShe said, she said\nShe said, she said\nShe said, she said\nShe said, she said\n\nI don't care, I don't care, I don't care\nI don't care, I don't care, care if it's old\nI don't mind, I don't mind, I don't mind\nI don't mind, mind, don't have a mind\nGet away, get away, get away\nGet away, away, away from your home\nI'm afraid, I'm afraid, I'm afraid\nI'm afraid, afraid, ghost\n\nEven if you have, even if you need\nI don't mean to stare, we don't have to breed\nWe could plant a house, we could build a tree\nI don't even care, we could have all three\nShe said, she said\nShe said, she said\nShe said, she said\nShe said, she said\n\nEven if you have, even if you need\nI don't mean to stare, we don't have to breed\nWe could plant a house, we could build a tree\nI don't even care, we could have all three\nShe said, she said\nShe said, she said\nShe said, she said\nShe said, she said\nShe said\n\nSaid... good\n\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "12B"
     },
     "Cowboys from Hell - Pantera": {
-      "key": "E",
+      "key": "D Major",
       "riff": "E",
-      "bpm": "190",
+      "bpm": "115",
       "duration": "4:03",
       "crossfadeInto": [],
-      "lyrics": "Pantera Lyrics\n\"Cowboys From Hell\"\n\nOh, come on\n\nUnder the lights where we stand tall\nNobody touches us at all\nShowdown, shootout\nSpread fear within, without\n\nI say we're gonna take what's ours to have\nSpread the word throughout the land\nThey say the bad guys wear black\nWe're tagged and can't turn back\n\nYou see us coming and you all together run for cover\nWe're taking over this town\n\nHere we come, reach for your gun\nAnd you better listen well, my friend\nYou see, it's been slow down below\nAimed at you, we're the Cowboys from Hell\n\nDeed is done, again we've won\nAin't talking no tall tales, friend\n'Cause high noon, your doom\nComing for you, we're the Cowboys from Hell\n\nOh, pillage the village, trash the scene\nBut better not take it out on me\n'Cause a ghost town is found\nWhere your city used to be\n\nSo out of the darkness and into the light\nSparks fly everywhere in sight\nFrom our double barrel, 12 gauge\nCan't lock me in your cage\n\nYou see us coming and you all together run for cover\nWe're taking over this town\n\nHere we come, reach for your gun\nAnd you better listen well, my friend\nYou see, it's been slow down below\nAimed at you, we're the Cowboys from Hell\n\nDeed is done, again we've won\nAin't talking no tall tales, friend\n'Cause high noon, your doom\nWe're coming for you, we're the Cowboys from Hell\n\nHere we come, reach for your gun\nAnd you better listen well, my friend\nYou see, it's been slow down below\nAimed at you, we're the Cowboys from Hell\n\nDeed is done, again we've won\nAin't talking no tall tales, friend\n'Cause high noon, your doom\nComing for you, we're the Cowboys from Hell\n\nOw\nStep aside for the Cowboys from Hell\n\n\n",
+      "lyrics": "ROCK X8\nOh, come on!\nROCK\nUnder the lights where we stand tall\nNobody touches us at all\nShowdown, shootout, spread fear within, without\nWe  gonna take what's ours tohave\nSpread theword throughout the landThey say, \nbad guys wear black\nWe take and can't turn back\nYou see us comin'!\nall togethe\n run for cova\nWe're taking over this town\n\n\nHere we come reach for your gun\nAnd you better listen well, my friend, YOU SEE\na been slowed Down below, \nAimed at you, WERE THEcowboys from hell\nDeed is done, AGAIN we've won\n IM talking no TALL talks MY friend' BECause \nhigh noon, your doom \nComin' fo yow   we're the cowboys from hell\nOOH\n\n\n\n\nPillage-the-village, trash the scene\nBut, better not take it out on me\n'THIS town is found\nWhere your city used to be\nSo out of the darkness and into the light,\nSparks fly everywhere in sight From my \ndouble barrel, 12-gauge\nCan't lock me in your cage\nYou see us comin'\nall together run for cover\nWe're taking over this towN \n\n\nHere we come \nreach for your gun\nAnd you better listen well, my friend you see\nbeen slowed down below\nAimed at you, cowboys from hell, Deed is done again, we've won Ain't talking no, \ntall, tales, friend\nhigh noon, your doom\nComin' for yow, were thecowboys, from, hell\nSOLO\n \nOOOOOHHH\nHere we come reach for your gun\nyou better listen well, my friend\nbeen slowed down belowF\nAimed at you, cowboys from hell Deed is done GO, we've won\ntalking no tall, tales, friend\nhigh noon, your doom\nComin' for yow cowboys from hell, ahhh\nStep aside, we're the cowboys from hellLLLL\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "10B"
     },
     "Hash Pipe - Weezer": {
-      "key": "E",
+      "key": "G Major",
       "riff": "E",
-      "bpm": "160",
+      "bpm": "126",
       "duration": "3:06",
       "crossfadeInto": [],
       "lyrics": "\"Hash Pipe\" lyrics\nWeezer Lyrics\n\"Hash Pipe\"\n\nI can't help my feelings, I'll go out of my mind\nThese players come to get me cause they'd like my behind\nI can't love my business if I can't get a trick\nDown on Santa Monica where tricks are for kids\n\nOh, come on and kick me\nOh, come on and kick me\n(Whoa) Come on and kick me\n(Whoa) You've got your problems\n(Whoa) I've got my asswipe\n\nI can't help my boogies, they get out of control\nI know that you don't care but I want you to know\nThe knee-stocking flavor is a favorite treat\nOf men that don't bother with the taste of a teat\n\nOh, come on and kick me\nOh, come on and kick me\n(Whoa) Come on and kick me\n(Whoa) You've got your problems\n(Oh) I've got my asswipe\n(Oh) You've got your big G's\nI've got my hash pipe\nI've got my hash pipe\n\nOh, come on and kick me\nOh, come on and kick me\n(Oh) Come on and kick me\n(Oh) You've got your problems\n(Oh) I've got my asswipe\n(Oh) You've got your big G's\nI've got my hash pipe\nI got my hash pipe\nI got my hash pipe\nI got my hash pipe\n\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "9B"
     },
     "Plowed - Sponge": {
       "key": "Em",
