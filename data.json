@@ -589,18 +589,10 @@
       "bpm": "92",
       "duration": "3:16",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "Blind me\nErase what was\nStillborn I have become\n\nThe feelings I once felt\n are now dead and gone\nI've waited here for you\n for so very long\n\nSo empty\nJust a shell of a man\nStillborn, this I understand\n\nThe feelings I once felt \nare now dead and gone\nI've waited here for you \nfor so very long\nI've been waiting here for you,\n for so long\n\nI've waited here for you, \nfor you\nThe feelings I once felt \nare now dead and gone\nI've waited here for you\nfor so very long\nI've been waiting here \nfor you, for so long\nI've been waiting here \nfor you, for so long",
       "tuning": "Eb",
-      "status": "main"
-    },
-    "SOS - SAWD OFF SHOTTY": {
-      "key": "Eb",
-      "riff": "Eb",
-      "bpm": "136",
-      "duration": "3:00",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "status": "main",
+      "sn": "4A"
     },
     "Plush - STP": {
       "key": "Em",
@@ -638,13 +630,15 @@
       "sn": "Cm"
     },
     "Short SkirtLong Jacket - Cake": {
-      "key": "Am",
+      "key": "D Major",
       "riff": "Am",
-      "bpm": "128",
+      "bpm": "120",
       "duration": "3:24",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Cake Lyrics\n\"Short Skirt / Long Jacket\"\n\nI want a girl with a mind like a diamond\nI want a girl who knows what's best\nI want a girl with shoes that cut\nAnd eyes that burn like cigarettes\n\nI want a girl with the right allocations\nWho's fast and thorough\nAnd sharp as a tack\nShe's playing with her jewelry\nShe's putting up her hair\nShe's touring the facility\nAnd picking up slack\n\nI want a girl with a short skirt and a lonnnng jacket......\n\nI want a girl who gets up early\nI want a girl who stays up late\nI want a girl with uninterrupted prosperity\nWho uses a machete to cut through red tape\nWith fingernails that shine like justice\nAnd a voice that is dark like tinted glass\n\nShe is fast and thorough\nAnd sharp as a tack\nShe's touring the facility\nAnd picking up slack\n\nI want a girl with a short skirt and a lonnnnng.... lonnng jacket\n\nI want a girl with a smooth liquidation\nI want a girl with good dividends\nAt Citibank we will meet accidentally\nWe'll start to talk when she borrows my pen\n\nShe wants a car with a cupholder arm rest\nShe wants a car that will get her there\nShe's changing her name from Kitty to Karen\nShe's trading her MG for a white Chrysler LeBaron\n\nI want a girl with a short skirt and a lonnnnggggggggg jacket",
+      "status": "main",
+      "sn": "10b",
+      "tuning": "Standard"
     },
     "Everlong - Foo Fighters": {
       "key": "Bm",
@@ -897,6 +891,16 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs"
+    },
+    "S.O.S. - Glorious Sons": {
+      "key": "A Major",
+      "sn": "11B",
+      "bpm": "136",
+      "duration": "3:20",
+      "tuning": "Standard",
+      "crossfadeInto": [],
+      "lyrics": "The Glorious Sons Lyrics\n\"Sawed Off Shotgun\"\n\nMother I don't wanna take my medicine\n24 years in the gutter again, I'm losing it\nI'm losing it\n\nEverybody's acting like they're all alright\nI can barely get myself to sleep at night, I'm sick of it\nYeah, I'm sick of it\n\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\n\nI'd rather be crazy than to take these pills\nI'm sick of being okay against my will\nI'm losing it, I'm losing it\n\nAin't a thing in this world that I'm gonna miss\nIt's all fake smiles and leather jackets\nWe're full of it, yeah we're full of shit\n\nI don't know who to trust\n\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\n\nI'm losing it\nI bought a sawed-off shotgun\nI'm losing it\nI bought a sawed-off shotgun\n\nI don't know who to trust\nThey need people like us\n\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\n",
+      "status": "main"
     }
   },
   "setlists": {
@@ -1078,12 +1082,6 @@
       "",
       ""
     ],
-    "SOS - SAWD OFF SHOTTY": [
-      "X",
-      "",
-      "",
-      ""
-    ],
     "Superstition - Stevie Wonder": [
       "O",
       "",
@@ -1110,6 +1108,12 @@
     ],
     "Song for the Dead - Queens of the Stone Age": [
       "O",
+      "",
+      "",
+      ""
+    ],
+    "S.O.S. - Glorious Sons": [
+      "X",
       "",
       "",
       ""
