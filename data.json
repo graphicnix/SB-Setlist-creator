@@ -204,15 +204,17 @@
       "status": "main"
     },
     "War Pigs - Black Sabbath": {
-      "key": "Em",
+      "key": "A maj",
       "riff": "Em",
-      "bpm": "136",
+      "bpm": "91",
       "duration": "7:58",
       "crossfadeInto": [
         "Sod Off - Clutch"
       ],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Black Sabbath Lyrics\n\"War Pigs\"\n\nGenerals gathered in their masses\nJust like witches at black masses\nEvil minds that plot destruction\nSorcerer of death's construction\nIn the fields the bodies burning\nAs the war machine keeps turning\nDeath and hatred to Mankind\nPoisoning their brainwashed minds...\nOh Lord yeah!\n\nPoliticians hide themselves away\nThey only started the war\nWhy should they go out to fight?\nThey leave that role to the poor\n\nTime will tell on their power minds\nMaking war just for fun\nTreating people just like pawns in chess\nWait 'till their judgment day comes, yeah!\n\nNow in darkness, world stops turning\nAshes where the bodies burning\nNo more war pigs have the power\nHand of God has struck the hour\nDay of Judgment, God is calling\nOn their knees the war pigs crawling\nBegging mercy for their sins\nSatan, laughing, spreads his wings...\nOh Lord, yeah!",
+      "status": "main",
+      "sn": "11b",
+      "tuning": "Standard"
     },
     "Cumbersome - Seven Mary Three": {
       "key": "A",
@@ -300,13 +302,15 @@
       "status": "main"
     },
     "Possum Kingdom - Toadies": {
-      "key": "Em",
+      "key": "A maj",
       "riff": "Em",
-      "bpm": "132",
+      "bpm": "101",
       "duration": "5:17",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Toadies Lyrics\n\"Possum Kingdom\"\n\nMake up your mind\nDecide to walk with me\nAround the lake tonight\nAround the lake tonight\nBy my side\nBy my side\nI'm not gonna lie\nI'll not be a gentleman\nBehind the boathouse\nI'll show you my dark secret\n\nI'm not gonna lie\nI want you for mine\nMy blushing bride\nMy lover, be my lover, yeah...\n\nDon't be afraid\nI didn't mean to scare you\nSo help me, Jesus\n\nI can promise you\nYou'll stay as beautiful\nWith dark hair\nAnd soft skin...forever\nForever\n\nMake up your mind\nMake up your mind\nAnd I'll promise you\nI will treat you well\nMy sweet angel\nSo help me, Jesus\n\n(hey, hey, hey)\n\nGive it up to me\nGive it up to me\nDo you wanna be\nMy angel?\nSo help me!\n\nBe my angel\nBe my angel\nDo you wanna die?\nI promise you\nI will treat you well\nMy sweet angel\nSo help me, Jesus\n\nJesus\nJesus\nJesus...",
+      "status": "main",
+      "sn": "11B",
+      "tuning": "Standard"
     },
     "Sweet Emotion - Aerosmith": {
       "key": "Em",
@@ -362,14 +366,15 @@
       "status": "main"
     },
     "Superstition - Stevie Wonder": {
-      "key": "Eb",
+      "key": "G",
       "riff": "Eb",
       "bpm": "100",
       "duration": "4:26",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "Stevie Wonder Lyrics\n\"Superstition\"\n\nVery superstitious\nWriting's on the wall\nVery superstitious\nLadder's 'bout to fall\nThirteen month old baby\nBroke the looking glass\nSeven years of bad luck\nThe good things in your past\n\nWhen you believe in things\nThat you don't understand\nThen you suffer\nSuperstition ain't the way, yeah\n\nOoh, very superstitious\nWash your face and hands\nRid me of the problem\nDo all that you can\nKeep me in a daydream\nKeep me going strong\nYou don't want to save me\nSad is my song\n\nWhen you believe in things\nThat you don't understand\nThen you suffer\nSuperstition ain't the way, yeah\n\nVery superstitious\nNothing more to say\nVery superstitious\nThe devil's on his way\nThirteen month old baby\nBroke the looking glass\nSeven years of bad luck\nGood things in your past\n\nWhen you believe in things\nThat you don't understand\nThen you suffer\nSuperstition ain't the way\nNo, no, no",
       "tuning": "Eb",
-      "status": "main"
+      "status": "main",
+      "sn": "4B"
     },
     "Breed - Nirvana": {
       "key": "F5",
@@ -737,7 +742,7 @@
       "sn": ""
     },
     "Devils Bleedin Crown - Volbeat": {
-      "key": "",
+      "key": "Gmaj",
       "riff": "",
       "bpm": "110",
       "duration": "3:58",
@@ -746,7 +751,7 @@
       "crossfadeInto": [],
       "timeSignature": "4/4",
       "status": "main",
-      "sn": ""
+      "sn": "9B"
     },
     "Stone cold Crazy - Metallica/queen": {
       "key": "",
