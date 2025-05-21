@@ -54,24 +54,26 @@
       "sn": "2B"
     },
     "Santeria - Sublime": {
-      "key": "Dm",
+      "key": "Db minor",
       "riff": "Dm",
       "bpm": "98",
       "duration": "3:03",
       "crossfadeInto": [],
       "lyrics": "Intro: E G# C#m B\n\n\n[Verse 1]\n\n             E                        G#                   \nI don't practice santeria I ain't got no crystal ball   \n     C#m                            B   \nI had a million dollars but I'd, I'd spend it all   \n     E                                 G#   \nIf I could find that Heina and that Sancho she's found   \n            C#m                      B    \nWell I'd pop a cap in Sancho and I'd   slap her down   \n\n\n[Chorus]\n  \nA        B             E   C#m   \nBut I really wanna know my baby   \nA        B            E   C#m      A   \nWhat I really wanna say I can't define   \n       B            E    C#m   \nWell It's love that I need    \nA          B   \nBut my soul will have to   \n\n\n[Verse 2]\n   \n    E                           G#   \nWait 'till I get back, find a Heina of my own   \n   C#m                      B   \nDaddy's gonna love one and all   \nE                                 G#   \nI feel the break, feel the break, feel the break   \n                  C#m                    B    \nAnd I gotta live it up Oh yeah, uh huh, well I swear that I   \n\n\n[Chorus]\n  \nA        B           E    C#m   \nBut I really wanna know my baby   \nA        B            E   C#m      A   \nWhat I really wanna say I can't define   \n      B            E    C#m   \nThat love will make it go   \nA         B   \nMy soul will have to...   \n  \n\n Guitar Solo  \n   \n\n[Chorus]\n  \nA        B           E    C#m   \nBut I really wanna say my baby   \nA        B            E   C#m      A   \nWhat I really wanna say is I've got mine   \n     B            E     C#m   \nAnd I'll make it yes I'm comin' up   \nA         B   \nTell Sanchito that if   \n\n\n[Verse 3]\n   \nE                         G#   \nHe knows what is good for him he best go run and hide   \n C#m              B   \nDaddy's got a new 45   \nE                                         G#   \nAnd I won't think twice to stick that barrel straight down Sancho's throat   \n         C#m                           B    \nBelieve me when I say that I've got something for his punk ass   \n\n\n[Chorus]\n   \nA        B           E    C#m   \nWhat I really wanna know my baby   \nA        B            E   C#m      A   \nWhat I really wanna say is there's just one way back   \n  B           E     C#m   \nAnd I'll make it   \nA           B   \nyeah my soul will have to wait   ",
       "tuning": "Eb",
-      "status": "main"
+      "status": "main",
+      "sn": "12A"
     },
     "No Excuses - Alice in Chains": {
-      "key": "Am",
+      "key": "Eb Major",
       "riff": "Am",
       "bpm": "104",
       "duration": "4:16",
       "crossfadeInto": [],
       "lyrics": "\"No Excuses\"\n\nIt's alright\nThere comes a time\nGot no patience to search\nFor peace of mind\nLayin' low\nWant to take it slow\nNo more hiding or\nDisguising truths I've sold\n\nEveryday it's something\nHits me all so cold\nFind me sittin' by myself\nNo excuses, then I know\n\nIt's okay\nHad a bad day\nHands are bruised from\nBreaking rocks all day\nDrained and blue\nI bleed for you\nYou think it's funny, well\nYou're drowning in it too\n\nEveryday it's something\nHits me all so cold\nFind me sittin' by myself\nNo excuses, then I know\n\nYeah, it's fine\nWe'll walk down the line\nLeave our rain, a cold\nTrade for warm sunshine\nYou my friend\nI will defend\nAnd if we change, well I\nLove you anyway\n\nEveryday it's something\nHits me all so cold\nFind me sittin' by myself\nNo excuses, then I know\n",
       "tuning": "Eb",
-      "status": "main"
+      "status": "main",
+      "sn": "5B"
     },
     "Say It Ain't So - Weezer": {
       "key": "C",
@@ -91,7 +93,8 @@
       "lyrics": "\"Fell On Black Days\"\n\nWhatsoever I've feared has come to light\nAnd whatsoever I've fought off became my life\n\nJust when every day seemed to greet me with a smile\nSunspots have faded\nNow I'm doing time\nNow I'm doing time\n\n'Cause I fell on black days\nI fell on black days\n\nWhomsoever I've cured\nI've sickened now\nAnd whomsoever I've cradled\nI've put you down\n\nI'm a searchlight soul they say\nBut I can't see it in the night\nI'm only faking when I get it right\nWhen I get it right\n\n'Cause I fell on black days\nI fell on black days\n\nHow would I know\nThat this could be my fate?\nHow would I know\nThat this could be my fate?\n\nSo what you wanted to see good has made you blind\nAnd what you wanted to be yours has made it mine\n\nSo don't you lock up something\nThat you wanted to see fly\nHands are for shaking\nNo not tying\nNo not tying\n\nI sure don't mind a change\nSure don't mind a change\nYeah, sure don't mind, sure don't mind a change\nI sure don't mind a change\n\n'Cause I fell on black days\nI fell on black days\n\nHow would I know\nThat this could be my fate?\n\nHow would I know\nThat this could be my fate?\n\nHow would I know\nThat this could be my fate?\n\nHow would I know\nThat this could be my fate?\n\nI sure don't mind a change\n\n\n",
       "tuning": "Eb",
       "timeSignature": "4/4",
-      "status": "main"
+      "status": "main",
+      "sn": "9A"
     },
     "Sex on Fire - Kings of Leon": {
       "key": "B",
@@ -102,10 +105,10 @@
       "lyrics": "Kings Of Leon Lyrics\n\"Sex On Fire\"\n\nLay where you're laying\nDon't make a sound\nI know they're watching\nThey're watching\n\nAll the commotion\nThe kiddie-like play\nIt has people talking\nTalking\n\nYou\nYour sex is on fire\n\nThe dark of the alley\nThe breaking of day\nHead while I'm driving\nI'm driving\n\nSoft lips are open\nThem knuckles are pale\nFeels like you're dying\nYou're dying\n\nYou\nYour sex is on fire\nConsumed\nWith what's just transpired\n\nHot as a fever\nRattle of bones\nI could just taste it\nTaste it\n\nIf this not forever\nIf this just tonight\nOh we're still the greatest\nThe greatest\nThe greatest\n\nYou\nYour sex is on fire\n\nYou\nYour sex is on fire\nConsumed\nWith what's just transpired\n\nAnd you\nYour sex is on fire\nConsumed\nWith what's just transpired",
       "tuning": "Eb",
       "status": "main",
-      "sn": ""
+      "sn": "11B"
     },
     "Sponge - Plowed": {
-      "key": "Em",
+      "key": "Db Major",
       "riff": "Em",
       "bpm": "92",
       "duration": "4:32",
@@ -113,17 +116,17 @@
       "lyrics": "Sponge Lyrics\n\"Plowed\"\n\nWill I wake up? Some dream I made up\nNo, I guess it's reality\nWhat will change us? Or will we mess up\nOur only chance to connect with a dream\n\nSay a prayer for me\n(Say a prayer for me)\nSay a prayer for me\n\nSay a prayer for me\n(Say a prayer for me)\nI'm buried by the sound\n\nOf a world of human wreckage\nIn a world of human wreckage\nIn a world of human wreckage\nWhere I'm lost and I'm found and I can't touch the ground\nI'm plowed into the sound\n\nTo see wide open with a head that's broken\nHang a life on some tragedy\nPlow me under the ground that covers\nThe message that is the seed\n\nSay a prayer for me\n(Say a prayer for me)\nSay a prayer for me\n\nSay a prayer for me\n(Say a prayer for me)\nI'm buried by the sound\n\nOf a world of human wreckage\nIn a world of human wreckage\nIn a world of human wreckage\nWhere I'm lost and I'm found and I can't touch the ground\nI'm plowed into the sound\n\nWill I wake up? Some dream I made up\nNo, I guess it's reality",
       "tuning": "Eb",
       "status": "main",
-      "sn": ""
+      "sn": "3B"
     },
     "Ruby Soho - Rancid": {
-      "key": "G",
+      "key": "G Major",
       "riff": "G",
       "bpm": "168",
       "duration": "2:37",
       "crossfadeInto": [],
       "lyrics": "Rancid Lyrics\n\"Ruby Soho\"\n\nEchoes of reggae comin' through my bedroom wall\nhavin' a party up next door but i'm sittin here all alone\ntwo lovers in the bedroom and the other starts to shout\nall i got is this blank stare and that don't carry no clout at all\n\n[Chorus]\nDestination unknown\nRuby ruby ruby ruby soho\n[x2]\n\nHe's singin and she's there to lend a hand\nhe's seen his name on the marquee but she will never understand\nonce again he's leavin' and she's there with a tear in her eye\nembraces with a warm gesture it's time, time to say goodbye\n\n[Chorus]\n\nRuby's heart ain't beatin cause she knows the feelin' is gone\nshe's not the only one who knew there's somethin' wrong\nher lover's in the distance as she wipes a tear from her eye\nruby's fading out, she disappears, it's time, time to say goodbye\n\n[Chorus]\n\nRuby ruby ruby ruby soho\nRuby ruby ruby ruby soho\nRuby ruby ruby ruby soho\nRuby ruby ruby ruby soho\n\nDestination unknown (Ruby ruby ruby ruby soho)\nRuby ruby ruby ruby soho\n[x2]\n",
       "status": "main",
-      "sn": "",
+      "sn": "9B",
       "tuning": "Standard"
     },
     "Love Me Two Times - The Doors": {
@@ -140,14 +143,14 @@
       "tuning": "Standard"
     },
     "Lydia - Highly Suspect": {
-      "key": "Am",
+      "key": "Gb Minor",
       "riff": "Am",
       "bpm": "120",
       "duration": "4:03",
       "crossfadeInto": [],
       "lyrics": "Highly Suspect Lyrics\n\"Lydia\"\n(\"Mister Asylum\" Version)\n\nBlack ocean, cold and dark\nI am the hungry shark, fast and merciless\nBut the only girl that could talk to him just couldn't swim\nTell me what's worse than this\nAnd it echoes in the halls\nThey danced along the walls\nThe memories of your ghost\nYou are the one that I used to love\nAnd I'm still in love, but I've never loved you the most\n\nI've seen better days\nSo unafraid in my youth\nI can't breathe, much less believe\n\nYou gave everything you had\nEvery little thing you had\nA pure love unrehearsed\nI've seen your best and worst\nAnd at your worst, you're still the best\nBut at my best, I am the worst\nIt's a curse\nYour eyes are lined in pain\nBlack tears don't hide in rain\nAnd I tied you to the tracks\nWhen I turned around, I heard the sound\nI hit the ground, I know there's no turning back\n\nI've seen better days\nSo unafraid in my youth\nI can't breathe, much less believe the truth\nBetter days, so unafraid in my youth\nI can't breathe, much less believe the truth\n\nBlack ocean, cold and dark\nI am the hungry shark, fast and merciless\nBut the only girl that could talk to him, she couldn't swim\nTell me what's worse than this\nWhat's worse is all the coke\nThe ice that numbs my throat if only for the night\nMy muscles will contract, your bones will crack\nIt's just a fact cause I am here to win this fight\n\nI can't fucking breathe, much less believe the truth\nI pick up a mag, aim for his head, and shoot\nBetter days, so unafraid in my youth\nI can't breathe or believe the truth\n\nYour eyes are lined in pain\nBlack tears don't hide in rain\nAnd I tied you to the tracks\nWhen I turned around, I heard that sound\n",
       "status": "main",
-      "sn": "",
+      "sn": "11A",
       "tuning": "Standard"
     },
     "Thunder Kiss '65 - White Zombie": {
@@ -169,7 +172,7 @@
       "status": "main"
     },
     "Come Down - Bush": {
-      "key": "Em",
+      "key": "B minor",
       "riff": "Em",
       "bpm": "102",
       "duration": "5:23",
@@ -177,7 +180,8 @@
       "lyrics": "Bush Lyrics\n\"Comedown\"\n\nLove and hate, get it wrong\nShe cut me right back down to size\nSleep the day, let it fade\nWho was there to take your place?\nNo one knows, never will\nMostly me, but mostly you\nWhat do you say, do you do\nWhen it all comes down\n\n'Cause I don't want to come back down from this cloud\nIt's taken me all this time to find out what I need again\nI don't want to come back down from this cloud\nIt's taken me all this, all this time\n\nThere is no blame, only shame\nWhen you beg, you just complain\nThe more I come, the more I try\nAll police are paranoid\nSo am I, so's the future\nSo are you, be a creature\nWhat do you say, do you do\nWhen it all comes down\n\n'Cause I don't want to come back down from this cloud\nIt's taken me all this time to find out what I need again\nI don't want to come back down from this cloud\nIt's taken me all this, all this time\n\nShoot up\nShoot up\nShoot up\nYou're high\n\nLove and hate, get it wrong\nShe cut me right back down to size\nSleep the day, let it fade\nWho was there to take your place?\nNo one knows, never will\nMostly me, but mostly you\nWhat do you say, do you do\nWhen it all comes down?\n\n'Cause I don't want to come back down from this cloud\nIt's taken me all this time to find out what I need again\nI don't want to come back down from this cloud\nIt's taken me all this, all this time\n\nWhy did you? Why did you?\nWhy did you? Why did you?\nWhy did you? Why did you?\nWhy did you? Why did you?\n\nCome down\nI don't want to come back down from this cloud\nThis cloud, this cloud\nThis cloud, this cloud\nThis cloud, this cloud\nThis cloud, this cloud\n\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "10A"
     },
     "Tennessee Whiskey - Chris Stapleton": {
       "key": "A Major",
@@ -191,15 +195,16 @@
       "tuning": "Standard"
     },
     "Drunken Lullabies - Flogging Molly": {
-      "key": "G",
+      "key": "G Major",
       "riff": "G",
-      "bpm": "132",
+      "bpm": "156",
       "duration": "3:50",
       "crossfadeInto": [],
       "lyrics": "Verse\n \nG \nMust it take a life for hateful eyes \n \nEm   \nTo glisten once again \n \nC \nFive hundred years like Gelignite \n \nEm                   D \nHave blown us all to hell \n \nG \nWhat savior rests while on his cross we die \n \nEm   \nForgotten freedom burns \n \nC \nHas the Shepard led his lambs astray \n \nEm                   D \nTo the bigot and the gun \n \n \nChorus\n \n        C               G \nMust it take a life for hateful eyes \n \n   C            D \nTo glisten once again \n \n         G       C             Em   \nCause we find ourselves in the same old mess \n \n       G       D    G \nSingin drunken lullabies \n \n \nBridge\n \n        C              D         G \nAh, but maybe it's the way we're taught \n \n   C              D      G \nOr maybe it's the way we fought \n \n      C           D             G        C \nBut a smile never grins without tears to begin \n \n                   D          G \nFor each kiss is a cry we all lost \n \n       C                  G \nThough nothing is left to gain \n \n            C                      D \nBut for the banshee that stole the grave \n \n         G       C             Em   \nCause we find ourselves in the same old mess \n \n       G       D    G \nSingin drunken lullabies",
       "timeSignature": "6/8",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "9B"
     },
     "Shipping Up to Boston - Dropkick Murphys": {
       "key": "C Major",
@@ -226,9 +231,9 @@
       "tuning": "Standard"
     },
     "Cumbersome - Seven Mary Three": {
-      "key": "A",
+      "key": "B Major",
       "riff": "A",
-      "bpm": "98",
+      "bpm": "81",
       "duration": "4:10",
       "crossfadeInto": [
         "Breed - Nirvana"
@@ -236,21 +241,23 @@
       "lyrics": "\"Cumbersome\"\n(from \"Churn\" album)\n\nShe calls me Goliath and I wear the David mask\nI guess the stones are coming too fast for her now\nYou know I'd like to believe this nervousness will pass\nAll the stones that are thrown are building up the wall\nI have become cumbersome to this world\nI have become cumbersome to my girl\n\nI'd like to believe we could reconcile the past\nResurrect those bridges with an ancient glance\nBut my old stone face can't seem to break her down\nShe remembers bridges, burns them to the ground.\nI have become cumbersome to this world\nI have become cumbersome to my girl\n\nToo heavy, too light\nToo black or too white\nToo wrong or too right\nToday or tonight\nCumbersome\nToo rich or too poor\nShe's wanting me less and I'm wanting her more\nA bitter taste is cumbersome\n\nThere is a balance between two worlds\nOne with an arrow and a cross\nRegardless of the balance\nLife has become cumbersome\n\nToo heavy, too light\nToo black or too white\nToo wrong or too right\nToday or tonight\nCumbersome\nToo rich or too poor\nShe's wanting me less and I'm wanting her more\nA bitter taste is cumbersome\n\nYour life has become cumbersome\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "1B"
     },
     "La Grange - ZZ Top": {
-      "key": "E",
+      "key": "E Minor",
       "riff": "E",
-      "bpm": "144",
+      "bpm": "162",
       "duration": "3:52",
       "crossfadeInto": [],
       "lyrics": "\"La Grange\"\n(originally by ZZ Top)\n\nRumour spreadin' 'round\nIn that Texas town\n'Bout that shack outside La Grange\nAnd you know what I'm talkin' about\nJust let me know\nIf you wanna go\nTo that home out on the range\nThey gotta lotta nice girls\n\nHave mercy\nA haw, haw, haw, haw\nA haw, haw, haw, haw\n\nWell, I hear it's fine\nIf you got the time\nAnd the ten to get yourself in\nAnd I hear it's tight\nMost every night\nBut now I might be mistaken",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "9A"
     },
     "Blister in the Sun - Violent Femmes": {
-      "key": "D",
+      "key": "C Major",
       "riff": "D",
       "bpm": "148",
       "duration": "2:25",
@@ -258,12 +265,13 @@
       "lyrics": "Violent Femmes Lyrics\n\"Blister In The Sun\"\n\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\n\nLet me go on...\nLike I blister in the sun\nLet me go on...\nBig hands, I know you're the one\n\nBody and beats, I stain my sheets\nI don't even know why\nMy girlfriend, she's at the end\nShe is starting to cry\n\nLet me go on...\nLike I blister in the sun\nLet me go on...\nBig hands, I know you're the one\n\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\n\nBody and beats, I stain my sheets\nI don't even know why\nMy girlfriend, she's at the end\nShe is starting to cry\n\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\n\nLet me go on...\nLike I blister in the sun\nLet me go on...\nBig hands, I know you're the one\n\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "8B"
     },
     "Cult of Personality - Living Colour": {
-      "key": "Em",
+      "key": "C Major",
       "riff": "Em",
-      "bpm": "115",
+      "bpm": "92",
       "duration": "4:54",
       "crossfadeInto": [
         "Zero - Smashing Pumpkins"
@@ -271,10 +279,11 @@
       "lyrics": "Living Colour Lyrics\n\"Cult Of Personality\"\n\nAnd during the few moments that we have left we wanna talk right down to earth in a language, that everybody here can easily understand\n\nLook in my eyes, what do you see?\nThe cult of personality\nI know your anger, I know your dreams\nI've been everything you wanna be\n\nI'm the cult of personality\nLike Mussolini and Kennedy\nI'm the cult of personality\nThe cult of personality\nThe cult of personality\n\nNeon lights, Nobel Prize\nWhen a mirror speaks, the reflection lies\nYou won't have to follow me\nOnly you can set me free\n\nI sell the things you need to be\nI'm the smiling face on your TV\nI'm the cult of personality\nI exploit you, still you love me\nI tell you one and one makes three\n\nI'm the cult of personality\nLike Joseph Stalin and Gandhi\nI'm the cult of personality\nThe cult of personality\nThe cult of personality\n\nNeon lights, Nobel Prize\nWhen a leader speaks, that leader dies\nYou won't have to follow me\nOnly you can set you free\n\nYou gave me fortune\nYou gave me fame\nYou gave me power in your God's name\nI'm every person you need to be\nI'm the cult of personality\nI'm the cult of\nI'm the cult of\nI'm the cult of\nI'm the cult of\nI'm the cult of\nI'm the cult of\nI'm the cult of\nI'm the cult of personality",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "8B"
     },
     "Beautiful Disaster - 311": {
-      "key": "Em",
+      "key": "B Major",
       "riff": "Em",
       "bpm": "82",
       "duration": "4:02",
@@ -286,10 +295,11 @@
       "lyrics": "311 Lyrics\n\"Beautiful Disaster\"\n\nToday seems like a good day to burn a bridge or two\nThe one with old wood creaking that would burn right away on cue\nI try to be not like that, but some people really suck\nPeople need to get the axing, chalk it up to bad luck\n\nI know a drugstore cowgirl so afraid of getting bored\nShe's always running from something, so many things ignored\nI might do that stuff if it didn't make me feel like shit\nI'm on some old reality tip, so many trips in it\n\nBeautiful disaster\nFlyin' down the street again\nI tried to keep up\nYou wore me out and left me ate up\nNow I wish you all the luck\nYou're a butterfly in the wind without a care\nA pretty train crash to me and I can't care\nI do, I don't, whatever\n\nI know a drugstore cowgirl so afraid of getting bored\nShe's always running from something, so many things ignored\nI try to be not like this, but I thought it'd make a good song\nThere's nothing to see, shows over, people just move along\n\nBeautiful disaster\nFlyin' down the street again\nI tried to keep up\nYou wore me out and left me ate up\nNow I wish you all the luck\nYou're a butterfly in the wind without a care\nA pretty train crash to me and I can't care\nI do, I don't, whatever\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "1B"
     },
     "Inside Out - Eve 6": {
-      "key": "E",
+      "key": "B Major",
       "riff": "E",
       "bpm": "132",
       "duration": "3:39",
@@ -297,7 +307,8 @@
       "lyrics": "\"Inside Out\" lyrics\nEve 6 Lyrics\n\"Inside Out\"\n\nI would swallow my pride, I would choke on the rinds\nBut the lack thereof would leave me empty inside\nSwallow my doubt turn it inside out\nFind nothin' but faith in nothin'\nWant to put my tender, heart in a blender\nWatch it spin around to a beautiful oblivion\nRendezvous then I'm through with you\n\nI burn, burn like a wicker cabinet, chalk white and oh so frail\nI see our time has gotten stale\nThe tick tock of the clock is painful\nAll sane and logical, I want to tear it off the wall\nI hear words and clips and phrases\nI think sick like ginger ale\nMy stomach turns and I exhale\n\nI would swallow my pride, I would choke on the rinds\nBut the lack thereof would leave me empty inside\nI would swallow my doubt turn it inside out\nFind nothin' but faith in nothin'\nWant to put my tender, heart in a blender\nWatch it spin around to a beautiful oblivion\nRendezvous then I'm through with you\n\nSo Cal is where my mind states\nBut it's not my state of mind\nI'm not as ugly, sad as you\nOr am I origami, folded up and just pretend\nDemented as the motives in your head\n\nI would swallow my pride, I would choke on the rinds\nBut the lack thereof would leave me empty inside\nI would swallow my doubt turn it inside out\nFind nothin' but faith in nothin'\nWant to put my tender, heart in a blender\nWatch it spin around to a beautiful oblivion\nRendezvous then I'm through with you\n(Rendezvous)\n\nI alone am the one you don't know\nYou need take heed, feed your ego\nMake me blind when your eyes close\nSink when you get close, tie me to the bedpost\nI alone am the one you don't know\nYou need, you don't know you need me\nMake me blind when your eyes close\nTie me to the bed post\n\nI would swallow my pride, I would choke on the rinds\nBut the lack thereof would leave me empty inside\nSwallow my doubt turn it inside out\nFind nothin' but faith in nothin'\nWant to put my tender, heart in a blender\nWatch it spin around to a beautiful oblivion\nRendezvous then I'm through, now I'm through with you\n\nThrough with you\n\nRendezvous then I'm through with you\n\n\n\n\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "1B"
     },
     "Sultans of Swing - Dire Straits": {
       "key": "Dm",
