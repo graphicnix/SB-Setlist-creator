@@ -437,16 +437,18 @@
       "sn": "9B"
     },
     "Plowed - Sponge": {
-      "key": "Em",
+      "key": "Db Major",
       "riff": "Em",
       "bpm": "92",
       "duration": "4:32",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Sponge Lyrics\n\"Plowed\"\n\nWill I wake up? Some dream I made up\nNo, I guess it's reality\nWhat will change us? Or will we mess up\nOur only chance to connect with a dream\n\nSay a prayer for me\n(Say a prayer for me)\nSay a prayer for me\n\nSay a prayer for me\n(Say a prayer for me)\nI'm buried by the sound\n\nOf a world of human wreckage\nIn a world of human wreckage\nIn a world of human wreckage\nWhere I'm lost and I'm found and I can't touch the ground\nI'm plowed into the sound\n\nTo see wide open with a head that's broken\nHang a life on some tragedy\nPlow me under the ground that covers\nThe message that is the seed\n\nSay a prayer for me\n(Say a prayer for me)\nSay a prayer for me\n\nSay a prayer for me\n(Say a prayer for me)\nI'm buried by the sound\n\nOf a world of human wreckage\nIn a world of human wreckage\nIn a world of human wreckage\nWhere I'm lost and I'm found and I can't touch the ground\nI'm plowed into the sound\n\nWill I wake up? Some dream I made up\nNo, I guess it's reality\n\n\n",
+      "status": "main",
+      "sn": "3B",
+      "tuning": "Standard"
     },
     "She Talks to Angels - The Black Crowes": {
-      "key": "Am",
+      "key": "E Major",
       "riff": "Am",
       "bpm": "69",
       "duration": "6:16",
@@ -454,10 +456,10 @@
       "lyrics": "Keyboard 83 \n\nE B A, B A\n\n\n[Intro]\nE\n \n[Verse 1]\n                              E\nShe never mentions the word \"addiction\"\n \nIn certain company\n                              E\nYes, she'll tell you she's an orphan\n \nAfter you meet her family\n \n[Interlude]\n| B   | A   | E   | E   | x2\n \n[Verse 2]\n                                 E\nShe paints her eyes as black as night now\n \nPulls those shades down tight\n                                   E\nYeah, she gives a smile when the pain come\n \nThe pain gonna make everything alright\n \n[Chorus]\n                  B       A\nSays she talks to angels\n                  E\nThey call her out by her name\n                      B        A\nOh yeah, she talks to angels\n                       E\nSays they call her out by her name\n \n[Verse 3]\n                                 E\nShe keeps a lock of hair in her pocket\n \nShe wears a cross around her neck\n                         E\nYes, the hair is from a little boy\n \nAnd the cross is someone she has not met\n \nNot yet\n \n[Chorus]\n                  B       A\nSays she talks to angels\n                  E\nThey call her out by her name\n                      B        A\nOh yeah, she talks to angels\n                       E\nSays they call her out by her name\n \n[Bridge]\nA                  E\nShe don't know no lover\nA                 E\nNone that I ever seen\nA                        E\nYeah, to her that ain't nothin'\n        A\nBut to me, it means\n         E\nMeans everything\n \n[Verse 2]\n                                 E\nShe paints her eyes as black as night now\n \nPulls those shades down tight\n                                   E\nYeah, she gives a smile when the pain come\n \nThe pain gonna make everything alright\n \n[Chorus]\n                  B       A\nSays she talks to angels\n                  E\nThey call her out by her name\n                      B        A\nOh yeah, she talks to angels\n                       E\nSays they call her out by her name\n \n[Outro]\n                   B     A\nOh, ooh, oh, oh, angels\n                   E\nThey call her out by her name\n                          B      A\nOh, oh, oh, she talks to angels\n \nThey call her out\nB          A\nYeah, ee, eah, eah, eah\n \nCall her out\nB                    A\nDon't you know that they\n              E\nCall her out by her name?",
       "tuning": "Open E",
       "status": "main",
-      "sn": ""
+      "sn": "12B"
     },
     "46 & 2 - Tool": {
-      "key": "D",
+      "key": "C Minor",
       "riff": "D",
       "bpm": "96",
       "duration": "6:04",
@@ -465,20 +467,22 @@
       "lyrics": "\"Forty-Six & 2\"\n\nJoin in my, join in my child,\nAnd listen, I've been digging through my old numb shadow...\n\nMy shadow's\nShedding skin\nI've been picking\nScabs again.\nI'm down\nDigging through\nMy old muscles\nLooking for a clue.\n\nI've been crawling on my belly\nClearing out what could've been.\nI've been wallowing in my own confused and insecure delusions\nFor a piece to cross me over\nOr a word to guide me in.\nI wanna feel the changes coming down.\nI wanna know what I've been hiding in\nMy shadow.\nMy shadow.\n\nChange is coming through my shadow.\nMy shadow's shedding skin\nI've been picking\nMy scabs again.\n\nJoin in my\nJoin in my child\nMy shadow moves\nCloser to meaning\n\nI've been crawling on my belly\nClearing out what could've been.\nI've been wallowing in my own chaotic, insecure delusions.\n\nI wanna feel the change consume me,\nFeel the outside turning in.\nI wanna feel the metamorphosis and\nCleansing I've endured in\nMy shadow\nMy shadow\n\nChange is coming.\nNow is my time.\nListen to my muscle memory.\nContemplate what I've been clinging to.\nForty-six & 2 ahead of me.\n\nI choose to live and to grow,\nTake and give and to move,\nLearn and love and to cry,\nKill and die and to be paranoid and to lie,\nHate and fear and to do\nWhat it takes to move through.\n\nI choose to live and to lie,\nKill and give and to die,\nLearn and love and to do\nWhat it takes to step through.\n\nSee my shadow changing,\nStretching up and over me.\nSoften this old armor.\nHoping I can clear the way\nBy stepping through my shadow,\nComing out the other side.\nStep into the shadow.\nForty-six & 2 are just ahead of me.",
       "timeSignature": "7/8",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "5A"
     },
     "What If - Creed": {
-      "key": "Em",
+      "key": "D Minor",
       "riff": "Em",
       "bpm": "112",
       "duration": "4:41",
       "crossfadeInto": [],
       "lyrics": "I can't find the rhyme in all my reason\nI've lost sense of time and all seasons\nFeel I've been beaten down\nBy the words of men who have no grounds\nCan't sleep beneath the trees of wisdom\nWhen your ax has cut the roots that feed them\nForked tongues in bitter mouths\nCan drive a man to bleed from inside out\nWhat if you did?\nWhat if you lied?\n\nWhat if I avenge?\nWhat if eye for an eye?\n\nI've seen the wicked fruit of your vine\nDestroy the man who lacks a strong mind\nHuman pride sings a vengeful song\nInspired by the times you've been walked on\nMy stage is shared by many millions\nWho lift their hands up high because they feel this\nWe are one we are strong\nThe more you hold us down the more we press on\n\nWhat if you did?\nWhat if you lied?\nWhat if I avenge?\nWhat if eye for an eye?\n\nI know I can't hold the hate inside my mind\n'Cause what consumes your thoughts controls your life\nSo I'll just ask a question\nA lonely simple question\nI'll just ask one question\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\n\nWhat if you did?\nWhat if you lied?\nWhat if I avenge?\nWhat if eye for an eye?\nWhat if your words could be judged like a crime?\n\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I\nWhat if\nWhat if\nWhat if\nWhat if\nWhat if I",
       "tuning": "Drop D",
-      "status": "main"
+      "status": "main",
+      "sn": "7A"
     },
     "Like a Stone - Audioslave": {
-      "key": "Am",
+      "key": "G Minor",
       "riff": "Am",
       "bpm": "72",
       "duration": "4:54",
@@ -489,10 +493,11 @@
       "lyrics": "[Verse]\n     Gm      F              Dm\nOn a cobweb, afternoon in a room\n        Eb\nfull of emptiness\n     Gm      F\nBy a freeway I confess\n  Dm              Eb\nI was lost in the pages\nGm         F\nOf a book, full of death\nDm                Eb\nReading how we'll die alone\n       Gm               F\nAnd if we're good we'll lay to rest\nDm          Eb\nAnywhere we want to go\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7\nAlone\n      Gm        F\nOn my deathbed, I will pray\n   Dm               Eb\nTo the gods and the angels\n       Gm       F\nLike a pagan to anyone\n    Dm              Eb\nWho will take me to heaven\nGm          F\nTo a place, I recall\nDm          Eb\nI was there so long ago\n    Gm\nThe sky was bruised\n    F\nThe wine was bled\n    Dm               Eb\nAnd there you led me on\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7\nAlone   Alone\n \n \n[Solo]\nGm Bb F Gm Gm Bb F Gm\nEb Gm\nF Gm\nEb Gm D7\n \n[Verse]\n    Eb   Bb\nAnd on I read\nD                 Eb\nUntil the day was gone\n      Ebm          C7\nAnd I sat in regret\n   D7                  Gm\nOf all the things I've done\n    Eb              Bb\nFor all that I've blessed\n    D              Eb\nAnd all that I've wronged\n    Ebm             C7\nIn dreams until my death\n       D7     D7\nI will wander on\nGm      Bb      F       Gm\nIn your house I long to be\nGm      Bb   F       Gm\nRoom by room patiently\n     Eb           Gm\nI'll wait for you there\nF        Gm\nLike a stone\n     Eb           Gm\nI'll wait for you there\nD       D7      Eb\nAlone   Alone..",
       "tuning": "Eb",
       "timeSignature": "4/4",
-      "status": "main"
+      "status": "main",
+      "sn": "6A"
     },
     "Say it aint so - Weezer ": {
-      "key": "",
+      "key": "Eb Major",
       "riff": "",
       "bpm": "112",
       "duration": "4:18",
@@ -502,10 +507,10 @@
       "lyrics": "-1 key on keyboard\n \nIntro:\nC#m G# A E\nC#m G# A E\n \nOh Yeah.\nAll Right.\n \nVerse:\nC#m                 G#               A                   E\nSomebody's Heine' is crowning my icebox.\nC#m                G#                 A              E\nSomebody's cold one is giving me chills.\nC#m                  G#               A      E\nGuess I'll just close my eyes.\n \nPlay Intro twice while singing:\n \nOh yeah.\nAll right.\nFeels good.\nInside.\n \nSecond Verse:\nFlip on the telly... wrestle with Jimmy.\nSomethin' is bubblin' behind my back.\nThe bottle is ready to blow.\n \nChorus:\nC#m      G#        A            E\n                     Say it ain't so a-woah-a-woah.\nC#m    G#             A     E\nYour drug is a heartbreaker.\nC#m      G#        A            E\n                     Say it ain't so a-woah-a-woah.\nC#m     G#            A     E\n    My love is a life-taker\n \nVerse 3:\nI can't confront you, I never could do...\nThat which might hurt you,\nSo try and be cool, when I say:\nThis way is-a-waterslide-away-from-me-that-takes-you-further-everyday! Hey!\nSo be cool.\n \nChorus:\nC#m      G#       A             E\n                     Say it ain't so a-woah-a-woah.\nC#m    G#             A     E\nYour drug is a heartbreaker.\nC#m      G#       A             E\n                     Say it ain't so a-woah-a-woah.\nC#m     G#            A     E\n    My love is a life-taker.\n \nBridge:\nB                    A#       E                         G\nDear daddy, I write you in spite of years of silence.\nB                    A#       E                           G\nYou cleaned up, found Jesus, things are good, or so I hear.\nB                    A#         E                         G\nThis bottle of Stephen's awakens ancient feelings...\nB                   A#\nLike father, stepfather...\n   E        G               C#m     G#           A        E\nThe son is drowning in the blood! Yeah Yeah-Yeah Yeah-Yeah!\n \nChorus:\nC#m      G#         A             E\n                     Say it ain't so a-woah-a-woah.\nC#m    G#             A     E\nYour drug is a heartbreaker.\nC#m      G#       A             E\n                     Say it ain't so a-woah-a-woah.\nC#m     G#            A     E\n    My love is a life-taker.",
       "tuning": "Eb",
       "status": "main",
-      "sn": ""
+      "sn": "5B"
     },
     "Bullet w Butterfly - TSP": {
-      "key": "F",
+      "key": "Bb Minor",
       "riff": "F",
       "bpm": "170",
       "duration": "4:18",
@@ -514,7 +519,7 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": ""
+      "sn": "3A"
     },
     "Hemorrhage - Fuel": {
       "key": "bm",
@@ -525,7 +530,8 @@
       "lyrics": "[Intro: ]Bm A E\n\nBm        A          G             A\nmemories are just where you laid them\nBm        A          G                           A\ndrag the waters 'till the depths give up their dead\nBm             A\nwhat did you expect to find?\nG                         A     \nwas there something you left behind?\nBm           A         G                   A\ndon't you remember anything i said when i said\nE         D     A    \ndon't fa....ll away, and leave me to myself\nE         D     A        F#m                  \ndon't fa....ll away and leave love bleeding\nG           D               A       \nin my hands, in my hands again\nF#m\nleave love bleeding\nG           D \nin my hands, in my hands\nF#m                \nlove lies bleeding\n(Bm,A,G,A)\nBm          A                 G  A    \noh hold me now i feel contagious\nBm          A             G             A   \nam i the only place that you've left to go\nBm                      A\nshe cries her life is like\nG                       A\nsome movie black and white\nBm           A\ndead actors faking lines\nG                   A\nover and over and over again she cries\nRefr�o:\n          \nG       A    Bm\nand i wanted\n     C#m D E  F#m\nyou turned away\nF#m   Bm   C#m D  E    F#m   \nyou don't remember, but i do\n     F#m         Bm   A G A\nyou never even tried\nSolo:(Bm,A,G,A)\nRefr�o:\n",
       "tuning": "Eb",
       "timeSignature": "4/4",
-      "status": "main"
+      "status": "main",
+      "sn": "3B"
     },
     "Good Times Bad - Led Zeppelin": {
       "key": "A",
@@ -536,7 +542,8 @@
       "lyrics": "\"Good Times Bad Times\"\n\nIn the days of my youth, I was told what it means to be a man\nAnd now I've reached that age, I've tried to do all those things the best I can\nNo matter how I try, I find my way into the same old jam\n\nGood times, bad times, you know I've had my share\nWhen my woman left home with a brown eyed man\nBut I still don't seem to care\n\nSixteen, I fell in love with a girl as sweet as could be\nIt only took a couple of days 'til she was rid of me\nShe swore that she would be all mine and love me 'til the end\nBut when I whispered in her ear, I lost another friend, oh\n\nGood times, bad times, you know I've had my share\nWhen my woman left home for a brown eyed man\nBut I still don't seem to care\n\nGood times, bad times, you know I've had my share\nWhen my woman left home for a brown eyed man\nBut I still don't seem to care\n\nI know what it means to be alone\nI sure do wish I was at home\nI don't care what the neighbours say\nI'm gonna love you each and every day\nYou can feel the beat within my heart\nRealize, sweet babe, we ain't ever gonna part\n",
       "tuning": "Eb",
       "timeSignature": "4/4",
-      "status": "main"
+      "status": "main",
+      "sn": "11B"
     },
     "Tripping on a Hole - STP": {
       "key": "G Major",
@@ -550,24 +557,27 @@
       "tuning": "Standard"
     },
     "Soul to Squeeze - R.H.C.P": {
-      "key": "G",
+      "key": "F Major",
       "riff": "G",
-      "bpm": "80",
+      "bpm": "88",
       "duration": "4:50",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "[Verse 1]\n \nF             C      Dm  Bb \n  I've got a bad desease \nDm             F        C       Gm \n  Oh, from my brain is where I bleed \nF        C     Dm   Bb \n  Insanity it seems \nDm           F     C         Gm \n  Has got me by my soul to squeeze \n\nF               C         Dm  Bb \n  Well all the love from thee \nDm              F      C        Gm \n  With all the dying trees I scream \nF            C       Dm   Bb \n  The angels in my dreams \nDm              F          C          Gm \n  Have turned to demons of greed that's mean \n\n\n[Chorus]\n\n  F           C \nWhere I go I just don't know \nDm                         Bb \n  I got to, got to, gotta take it slow \n  F             C \nWhen I find my piece of mind \nDm                            Am      Bb \n  I'm gonna give you some of my good time \n\n\n[Verse 2]\n\nF              C        Dm  Bb \n  Today love smiled on me \nDm          F      C         Gm \n  It took away my pain say please \nF              C        Dm  Bb \n  I'll let your ride it free \nDm               F      C      Gm \n  You've got to let it be, oh yeah \n\n\n[Chorus]\n\n  F           C \nWhere I go I just don't know \nDm                         Bb \n  I got to, got to, gotta take it slow \n  F             C \nWhen I find my piece of mind \nDm                            Am      Bb \n  I'm gonna give you some of my good time \n   \n   \nSOLO\nSOLO\nSOLO\n\n   \n\nF           C      Dm  Bb \n  Oh, so polite indeed \nDm           F      C      Gm \n  Well I got everything I need \nF              C       Dm  Bb \n  Oh, make my days a breeze \nDm           F      C        Gm \n  And take away my self destruction \n\n\n[Bridge]\n\nF                            C \n  It's bitter baby and it's very sweet  \n\n    Dm                          Bb \nI'm on a roller coaster but I'm on my feet \n F                          C \nTake me to the river let me on your shore \n     Dm \nI'll be coming back baby \n      Bb \nI'll be coming back for more \n F                      C \nDoo doo doo doo dingle zing a dong bone \n    Dm                 Bb \nBa-di ba-da ba-zumba crunga cone gone bad \nF \nI could not forget but \nC \nI will not endeavor \n     Dm \nSimple pleasures aren't as special \n       Bb \nBut I won't regret it never \n\n\n[Chorus]\n\n  F           C \nWhere I go I just don't know \nDm                         Bb \n  I got to, got to, gotta take it slow \n  F             C \nWhen I find my piece of mind \nDm                            Am      Bb \n  I'm gonna give you some of my good time \n\n  F           C \nWhere I go I just don't know \nDm                             Bb \n  I might end up somewhere in Mexico \n  F              C \nWhen I found my piece of mind \nDm                          Am      Bb  F \n  I'm gonna keep it for the end of time ",
+      "status": "main",
+      "sn": "7B",
+      "tuning": "Standard"
     },
     "Blue on Black - Kenny Wayne": {
-      "key": "Em",
+      "key": "G Major",
       "riff": "Em",
-      "bpm": "108",
-      "duration": "4:00",
+      "bpm": "155",
+      "duration": "5:34",
       "crossfadeInto": [],
-      "lyrics": "Violent Femmes Lyrics\n\"Blister In The Sun\"\n\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\n\nLet me go on...\nLike I blister in the sun\nLet me go on...\nBig hands, I know you're the one\n\nBody and beats, I stain my sheets\nI don't even know why\nMy girlfriend, she's at the end\nShe is starting to cry\n\nLet me go on...\nLike I blister in the sun\nLet me go on...\nBig hands, I know you're the one\n\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\n\nBody and beats, I stain my sheets\nI don't even know why\nMy girlfriend, she's at the end\nShe is starting to cry\n\nWhen I'm out walkin', I strut my stuff\nYeah, and I'm so strung out\nI'm high as a kite, I just might\nStop to check you out\n\nLet me go on...\nLike I blister in the sun\nLet me go on...\nBig hands, I know you're the one",
+      "lyrics": "Intro: [D][Cadd9-G] x2\n\n\nVerse #1:\nD     Cadd9 - G -       D    Cadd9 - G -\nNight falls,   and I'm alone\n D         Cadd9 - G -       D    Cadd9 - G - \nSkin, yeah chilled me to the bone\nD   Cadd9 - G -    D       Cadd9 - G - \nYou turned and you ran, oh yeah\n    D       Cadd9 - G -   D     Cadd9 - G - \nOh, slipped right from my hands\n\n\nChorus:\n     D        \nHey, blue on black, tears on a river\nC    -             G    -\nPush on a shove it don't mean much\nD \nJoker on jack, match on a fire\nC   -          G    -\nCold on ice, a dead man's touch\nD \nWhisper on a scream\nC   -            G    -\nDoesn't change a thing\n                A    C-  C- >let ring\nDon't bring you back\n        (D)\nBlue on black\n\n\n[D][Cadd9-G] x2\n\n\nVerse #2:\nD      Cadd9 - G -        D    Cadd9 - G -\nBlind, oh...    now now I see\nD     Cadd9 - G -     D    Cadd9 - G -\nTruth lies  and in between\nD     Cadd9 - G - D    Cadd9 - G -\nWrong can't  be undone\n    D      Cadd9 - G -          D      Cadd9 - G -\nOh slipped from the tip of your tongue\n\n\n\nChorus:\n     D        \nHey, blue on black, tears on a river\nC    -             G    -\nPush on a shove it don't mean much\nD \nJoker on jack, match on a fire\nC   -          G    -\nCold on ice, a dead man's touch\nD \nWhisper on a scream\nC   -            G    -\nDoesn't change a thing\n                A       C-  C- >let ring\nDon't bring you back yeah___\n        (D)\nBlue on black\n\n\nSolo:\n[D][Cadd9-G] x6\n[F][G][F][G-]\n[G-]>let ring\n\n\nChorus:\nD        \nBlue on black, tears on a river\nC    -             G    -\nPush on a shove it don't mean much\nD \nJoker on jack, match on a fire\nC   -          G    -\nCold on ice, a dead man's touch\nD \nWhisper on a scream\nC   -            G    -\nDoesn't change a thing\n                A       C- C- >let ring\nDon't bring you back____\n        D      Cadd9 - G -  \nBlue on black, oh_________\nD         Cadd9 - G - \nyeah____  oh_________\nD         Cadd9 - G>let ring\nyeah____  \nStruggling with \"Blue On Black\"? Learn songs step-by-step in 15 minutes!\n",
       "timeSignature": "4/4",
       "tuning": "Standard",
-      "status": "main"
+      "status": "main",
+      "sn": "9B"
     },
     "Lump - The Presidents USA": {
       "key": "Gb Major",
