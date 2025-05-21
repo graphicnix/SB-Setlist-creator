@@ -588,11 +588,11 @@
             padding: 10px;
             border-radius: 5px;
             margin-bottom: 10px;
+            text-align: center;
         }
         .setlist-title {
             font-size: 30pt;
             margin: 0;
-            text-align: center;
         }
         .setlist-buttons {
             display: flex;
@@ -622,6 +622,10 @@
             display: flex;
             justify-content: flex-start;
             margin-bottom: 5px;
+        }
+        .randomizer-container {
+            text-align: center;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -747,14 +751,11 @@
                         const item = document.createElement('div');
                         item.className = 'search-result-item';
                         item.innerHTML = `
-                            <div>
-                                ${iconsDisplay} ${song}
-                            </div>
+                            <div class="song-title" onclick="editSong('${song}')">${iconsDisplay} ${song}</div>
                             <div>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 1, this)">1</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 2, this)">2</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 3, this)">3</button>
-                                <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                             </div>
                         `;
                         searchResults.appendChild(item);
@@ -1054,17 +1055,15 @@
                 row.innerHTML = `
                     <td class="song-cell">
                         <div class="icons">${iconsDisplay}</div>
-                        <div class="song-title-container">
-                            <div class="song-title" onclick="editSong('${song}')">${title}</div>
-                            <div class="song-actions">
-                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
-                                <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
-                            </div>
-                        </div>
+                        <div class="song-title" onclick="editSong('${song}')">${title}</div>
+                    </td>
+                    <td class="actions">
+                        <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
+                        <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                     </td>
                     <td>${songInfo.bpm}</td>
                     <td>${artist}</td>
-                    <td>${songInfo.sn}</td>
+                    <td>${songInfo.fifth}</td>
                     <td>${songInfo.duration}</td>
                     <td>
                         <button class="crossfade-btn" onclick="showCrossfadePopup('${song}', this)">Select Crossfades</button>
@@ -1079,7 +1078,7 @@
                                 `).join('')}
                         </div>
                     </td>
-                    <td>
+                    <td class="settings">
                         <div class="icon-container">
                             ${[0,1,2,3].map(i => `
                                 <select class="icon-dropdown" onchange="updateIcons(this, '${song}', ${i})">
@@ -1101,7 +1100,6 @@
                             <option value="#FFC1CC" ${songColors[song] === '#FFC1CC' ? 'selected' : ''}>Pink</option>
                             <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
                         </select>
-                        <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -1157,7 +1155,7 @@
                     <label>Title: <input type="text" id="edit-song-title" value="${title}"></label>
                     <label>Artist: <input type="text" id="edit-song-artist" value="${artist}"></label>
                     <label>Key: <input type="text" id="edit-song-key" value="${songInfo.key || ''}"></label>
-                    <label>SN: <input type="text" id="edit-song-sn" value="${songInfo.sn || ''}"></label>
+                    <label>5th: <input type="text" id="edit-song-fifth" value="${songInfo.fifth || ''}"></label>
                     <label>BPM: <input type="text" id="edit-song-bpm" value="${songInfo.bpm || ''}"></label>
                     <label>Duration: <input type="text" id="edit-song-duration" value="${songInfo.duration || ''}"></label>
                     <label>Tuning:
@@ -1171,6 +1169,7 @@
                     <div class="song-edit-buttons">
                         <button class="save-btn" onclick="saveSongEdit('${song}')">Save</button>
                         <button class="delete-btn" onclick="deleteSong('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Delete</button>
+                        <button class="edit-btn" onclick="moveSongToMothballs('${song}')">Move to Mothballs</button>
                         <button class="delete-btn" onclick="document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Cancel</button>
                     </div>
                 </div>
@@ -1181,7 +1180,7 @@
             const title = document.getElementById('edit-song-title').value;
             const artist = document.getElementById('edit-song-artist').value;
             const key = document.getElementById('edit-song-key').value;
-            const sn = document.getElementById('edit-song-sn').value;
+            const fifth = document.getElementById('edit-song-fifth').value;
             const bpm = document.getElementById('edit-song-bpm').value;
             const duration = document.getElementById('edit-song-duration').value;
             const tuning = document.getElementById('edit-song-tuning').value;
@@ -1191,7 +1190,7 @@
                 const newSongKey = `${title} - ${artist}`;
                 if (newSongKey !== oldSong) {
                     songData[newSongKey] = {
-                        key, sn, bpm, duration, tuning,
+                        key, fifth, bpm, duration, tuning,
                         crossfadeInto: songData[oldSong]?.crossfadeInto || [],
                         lyrics, status: songData[oldSong].status,
                         votes: songData[oldSong].votes
@@ -1212,7 +1211,7 @@
                         delete songColors[oldSong];
                     }
                 } else {
-                    songData[oldSong] = { ...songData[oldSong], key, sn, bpm, duration, tuning, lyrics };
+                    songData[oldSong] = { ...songData[oldSong], key, fifth, bpm, duration, tuning, lyrics };
                 }
                 populateSongTable();
                 populateCouncilTable();
@@ -1226,6 +1225,23 @@
             }
         }
 
+        function parseCamelot(fifth) {
+            const match = fifth.match(/(\d+)([AB])/);
+            if (match) {
+                const number = parseInt(match[1]);
+                const mode = match[2];
+                return { number, mode };
+            }
+            return null;
+        }
+
+        function camelotDistance(key1, key2) {
+            const num1 = key1.number;
+            const num2 = key2.number;
+            const diff = Math.abs(num1 - num2);
+            return Math.min(diff, 12 - diff);
+        }
+
         function generateRandomSetlist() {
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
@@ -1234,19 +1250,36 @@
             let oCount = 0;
             let xCount = 0;
 
-            while (totalDuration < maxDuration) {
+            // Start with a strong song (high BPM or 'X' icon)
+            let openerCandidates = allSongs.filter(song => {
+                const bpm = parseInt(songData[song].bpm) || 0;
+                const hasX = (songIcons[song] || []).includes('X');
+                return bpm > 120 || hasX;
+            });
+            if (openerCandidates.length > 0) {
+                const opener = openerCandidates[Math.floor(Math.random() * openerCandidates.length)];
+                selectedSongs.push(opener);
+                totalDuration += parseDuration(songData[opener].duration);
+                if ((songIcons[opener] || []).includes('O')) oCount++;
+                if ((songIcons[opener] || []).includes('X')) xCount++;
+            }
+
+            while (totalDuration < maxDuration - 180) { // Leave room for a closer (approx 3 minutes)
                 let candidates = allSongs.filter(song => !selectedSongs.includes(song));
                 if (selectedSongs.length > 0) {
                     const lastSong = selectedSongs[selectedSongs.length - 1];
                     const lastBPM = getBPM(lastSong);
+                    const lastCamelot = parseCamelot(songData[lastSong].fifth);
                     const len = selectedSongs.length;
 
+                    // BPM alternation
                     if (len % 3 === 0 || len % 3 === 1) {
                         candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) <= 10);
                     } else {
                         candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) > 20);
                     }
 
+                    // Avoid consecutive 'O' or 'X'
                     if ((songIcons[lastSong] || []).includes('O')) {
                         candidates = candidates.filter(song => !(songIcons[song] || []).includes('O'));
                     }
@@ -1254,14 +1287,32 @@
                         candidates = candidates.filter(song => !(songIcons[song] || []).includes('X'));
                     }
 
+                    // Balance 'O' and 'X'
                     if (xCount >= 3 && oCount < Math.floor(xCount / 3)) {
                         candidates = candidates.filter(song => (songIcons[song] || []).includes('O'));
+                    }
+
+                    // Prefer close keys using Camelot
+                    if (lastCamelot) {
+                        candidates = candidates.map(song => {
+                            const camelot = parseCamelot(songData[song].fifth);
+                            if (camelot) {
+                                const distance = camelotDistance(lastCamelot, camelot);
+                                return { song, distance };
+                            } else {
+                                return { song, distance: Infinity };
+                            }
+                        }).sort((a, b) => a.distance - b.distance).map(item => item.song);
+                        const preferredCandidates = candidates.filter((_, index) => index < 5 || candidates[index].distance <= 1);
+                        if (preferredCandidates.length > 0) {
+                            candidates = preferredCandidates;
+                        }
                     }
                 }
 
                 const suitableSongs = candidates.filter(song => {
                     const duration = parseDuration(songData[song].duration);
-                    return totalDuration + duration <= maxDuration;
+                    return totalDuration + duration <= maxDuration - 180;
                 });
 
                 if (suitableSongs.length > 0) {
@@ -1273,6 +1324,20 @@
                 } else {
                     break;
                 }
+            }
+
+            // End with a strong song
+            let closerCandidates = allSongs.filter(song => !selectedSongs.includes(song) && (
+                (parseInt(songData[song].bpm) || 0) > 120 || (songIcons[song] || []).includes('X')
+            ));
+            const suitableClosers = closerCandidates.filter(song => {
+                const duration = parseDuration(songData[song].duration);
+                return totalDuration + duration <= maxDuration;
+            });
+            if (suitableClosers.length > 0) {
+                const closer = suitableClosers[Math.floor(Math.random() * suitableClosers.length)];
+                selectedSongs.push(closer);
+                totalDuration += parseDuration(songData[closer].duration);
             }
 
             setlists['setlist-1'] = selectedSongs;
@@ -1956,16 +2021,16 @@
             const isAscending = table.rows[0].cells[columnIndex].getAttribute('data-order') !== 'desc';
 
             rows.sort((a, b) => {
-                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText : a.cells[columnIndex].innerText;
-                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText : b.cells[columnIndex].innerText;
-                cellA = cellA?.trim() || '';
-                cellB = cellB?.trim() || '';
+                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText.trim() : a.cells[columnIndex].innerText.trim();
+                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText.trim() : b.cells[columnIndex].innerText.trim();
+                cellA = cellA || '';
+                cellB = cellB || '';
 
-                if (columnIndex === 1) {
+                if (columnIndex === 2) { // BPM
                     return isAscending ?
                         (parseInt(cellA) || 0) - (parseInt(cellB) || 0) :
                         (parseInt(cellB) || 0) - (parseInt(cellA) || 0);
-                } else if (columnIndex === 4) {
+                } else if (columnIndex === 5) { // Duration
                     const timeA = cellA.split(':').map(Number);
                     const timeB = cellB.split(':').map(Number);
                     const secA = (timeA[0] || 0) * 60 + (timeA[1] || 0);
@@ -1974,7 +2039,7 @@
                 } else {
                     return isAscending ?
                         cellA.localeCompare(cellB) :
-                        cellB.localeCompare(cellB);
+                        cellB.localeCompare(cellA);
                 }
             });
 
@@ -2005,11 +2070,14 @@
             const title = document.getElementById('new-song-title').value;
             const artist = document.getElementById('new-song-artist').value;
             const key = document.getElementById('new-song-key').value;
-            const sn = document.getElementById('new-song-sn').value;
+            const fifth = document.getElementById('new-song-fifth').value;
             const bpm = document.getElementById('new-song-bpm').value;
             const duration = document.getElementById('new-song-duration').value;
             const tuning = document.getElementById('new-song-tuning').value;
             if (title && artist) {
+                if (confirm("Do you want to check https://tunebat.com/Info for the song's info?")) {
+                    window.open(`https://tunebat.com/Search?q=${encodeURIComponent(title + ' ' + artist)}`, '_blank');
+                }
                 const song = `${title} - ${artist}`;
                 const status = prompt("Where to add the song? Enter 1 for 'The Council of Yeas and Nays', 2 for 'Song List', or 3 for 'Mothballs'", "2");
                 const statusMap = {
@@ -2018,7 +2086,7 @@
                     '3': 'mothballs'
                 };
                 const mappedStatus = statusMap[status] || 'main';
-                songData[song] = { key, sn, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                songData[song] = { key, fifth, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
                 if (mappedStatus === 'council') {
                     songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                 }
@@ -2028,7 +2096,7 @@
                 document.getElementById('new-song-title').value = '';
                 document.getElementById('new-song-artist').value = '';
                 document.getElementById('new-song-key').value = '';
-                document.getElementById('new-song-sn').value = '';
+                document.getElementById('new-song-fifth').value = '';
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
                 document.getElementById('new-song-tuning').value = '';
@@ -2053,7 +2121,7 @@
 
             songBlocks.forEach(block => {
                 const lines = block.split('\n').map(line => line.trim());
-                let title, artist, key, sn, bpm, duration, icons = [], tuning;
+                let title, artist, key, fifth, bpm, duration, icons = [], tuning;
 
                 if (lines.length >= 7) {
                     const firstLineParts = lines[0].split(',').map(part => part.trim());
@@ -2062,7 +2130,7 @@
                         title = firstLineParts.filter(part => !validIcons.includes(part)).join(' ').trim();
                         artist = lines[1].replace('Artist:', '').trim();
                         key = lines[2].replace('Key:', '').trim();
-                        sn = lines[3].replace('SN:', '').trim();
+                        fifth = lines[3].replace('5th:', '').trim();
                         bpm = lines[4].replace('BPM:', '').trim();
                         duration = lines[5].replace('Duration:', '').trim();
                         tuning = lines[6].replace('Tuning:', '').trim();
@@ -2070,7 +2138,7 @@
                         title = lines[0];
                         artist = lines[1].replace('Artist:', '').trim();
                         key = lines[2].replace('Key:', '').trim();
-                        sn = lines[3].replace('SN:', '').trim();
+                        fifth = lines[3].replace('5th:', '').trim();
                         bpm = lines[4].replace('BPM:', '').trim();
                         duration = lines[5].replace('Duration:', '').trim();
                         tuning = lines[6].replace('Tuning:', '').trim();
@@ -2078,7 +2146,10 @@
 
                     if (title && artist) {
                         const song = `${title} - ${artist}`;
-                        songData[song] = { key, sn, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                        if (confirm(`Do you want to check https://tunebat.com/Info for "${song}" info?`)) {
+                            window.open(`https://tunebat.com/Search?q=${encodeURIComponent(song)}`, '_blank');
+                        }
+                        songData[song] = { key, fifth, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
                         if (mappedStatus === 'council') {
                             songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                         }
@@ -2170,13 +2241,12 @@
                 const [title, artist] = song.split(' - ');
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>
-                        <div>${title}</div>
-                        <div>
-                            <button onclick="editSong('${song}')">Edit</button>
-                        </div>
-                    </td>
+                    <td>${title}</td>
                     <td>${artist}</td>
+                    <td class="actions">
+                        <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
+                        <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
+                    </td>
                 `;
                 tbody.appendChild(row);
             }
@@ -2201,12 +2271,16 @@
         }
 
         function moveSongToMothballs(song) {
-            songData[song].status = 'mothballs';
-            if (songData[song].votes) delete songData[song].votes;
-            populateSongTable();
-            populateCouncilTable();
-            populateMothballsTable();
-            unsavedChanges = true;
+            if (confirm(`Move "${song}" to Mothballs?`)) {
+                songData[song].status = 'mothballs';
+                if (songData[song].votes) delete songData[song].votes;
+                populateSongTable();
+                populateCouncilTable();
+                populateMothballsTable();
+                document.querySelector('.song-edit-popup').remove();
+                document.querySelector('.overlay').remove();
+                unsavedChanges = true;
+            }
         }
 
         document.getElementById('random-button').addEventListener('click', function() {
@@ -2239,12 +2313,13 @@
             <thead>
                 <tr>
                     <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
-                    <th onclick="sortTable(1, 'alternative-grunge-rock')">BPM</th>
-                    <th onclick="sortTable(2, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">SN</th>
-                    <th onclick="sortTable(4, 'alternative-grunge-rock')">Duration</th>
-                    <th>Crossfade Options</th>
                     <th>Actions</th>
+                    <th onclick="sortTable(2, 'alternative-grunge-rock')">BPM</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')">Artist</th>
+                    <th onclick="sortTable(4, 'alternative-grunge-rock')">5th</th>
+                    <th onclick="sortTable(5, 'alternative-grunge-rock')">Duration</th>
+                    <th>Crossfade Options</th>
+                    <th>Settings</th>
                 </tr>
             </thead>
             <tbody id="song-table-body"></tbody>
@@ -2252,9 +2327,11 @@
     </div>
 
     <div class="setlist">
-        <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
+        <div class="randomizer-container">
+            <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
+        </div>
         <div class="setlist-title-container">
-            <h3 class="setlist-title">Setlist 1</h3>
+            <h3 class="setlist-title">SETLIST 1</h3>
         </div>
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
@@ -2267,7 +2344,7 @@
     </div>
     <div class="setlist">
         <div class="setlist-title-container">
-            <h3 class="setlist-title">Setlist 2</h3>
+            <h3 class="setlist-title">SETLIST 2</h3>
         </div>
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
@@ -2280,7 +2357,7 @@
     </div>
     <div class="setlist">
         <div class="setlist-title-container">
-            <h3 class="setlist-title">Setlist 3</h3>
+            <h3 class="setlist-title">SETLIST 3</h3>
         </div>
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
@@ -2297,7 +2374,7 @@
         <input type="text" id="new-song-title" placeholder="Song Title">
         <input type="text" id="new-song-artist" placeholder="Artist">
         <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
-        <input type="text" id="new-song-sn" placeholder="SN" style="width: 50px;">
+        <input type="text" id="new-song-fifth" placeholder="5th" style="width: 50px;">
         <input type="text" id="new-song-bpm" placeholder="BPM">
         <input type="text" id="new-song-duration" placeholder="Duration">
         <input type="text" id="new-song-tuning" placeholder="Tuning">
@@ -2333,6 +2410,7 @@
                 <tr>
                     <th>Song Title</th>
                     <th>Artist</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="mothballs-table-body"></tbody>
