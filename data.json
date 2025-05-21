@@ -124,15 +124,17 @@
       "tuning": "Standard"
     },
     "Love Me Two Times - The Doors": {
-      "key": "Am",
+      "key": "A Major",
       "riff": "Am",
-      "bpm": "116",
+      "bpm": "133",
       "duration": "3:16",
       "crossfadeInto": [
         "Cherub Rock - Smashing Pumpkins"
       ],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "[Verse 1]\nE7\nLove me two times baby\nLove me twice today\n                   A7\nLove me two times girl       \n           E7\nI'm goin' away\n                    D7\nLove me two times girl\n                                 C7\nOne for tomorrow, one just for today\n \n \n[Chorus]\nG                D7\nLove me two times\nC7   B7        E7#9\n I'm goin' away\n \n \n[Verse 2]\nE7\nLove me one time                \nCould not speak\n                A7\nLove me one time\n                   E7\nYeah, my knees got weak\n                     D7\nLove me two times girl\n                            C7\nLast me all through the week\n \n \n[Chorus]\nG                D7\nLove me two times\nC7   B7        E7#9\n I'm goin' away",
+      "status": "main",
+      "sn": "11B",
+      "tuning": "Standard"
     },
     "Lydia - Highly Suspect": {
       "key": "Am",
@@ -175,13 +177,15 @@
       "status": "main"
     },
     "Tennessee Whiskey - Chris Stapleton": {
-      "key": "A",
+      "key": "A Major",
       "riff": "A",
-      "bpm": "95",
+      "bpm": "49",
       "duration": "4:53",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "[Verse 1]\nG\n \nG                            Am\nUsed to spend my nights at a barroom\n                              G    C/G   G\nLiquor was the only love I've known\nG                                        Am\nBut you rescued me from reaching for the bottom\n                                       G    C/G   G\nAnd brought me back from being too far gone\n \n \n[Chorus]\nG                                  Am\nYou're as smooooooth, as Tennessee whiskey\n                                   G    C/G   G\nYou're as sweeeeeeet as strawberry wine\nG                                  Am\nYou're as waaaarrrrm as a glass of brandy\n                                             G    C/G   G\nAnd honey I stay stoned on your love all the time\n \n \n[Verse 2]\nG                                        Am\nI’ve looked for love in all the same old places\n                                        G    C/G   G\nFound the bottom of the bottle's always drrryyy\nG                                           Am\nBut when you poured out your heart I didn't waste it\n                                             G\nCause there nothing like your love to get me hiiiiigggh. You're as\n \n \n[Chorus]\nG                        Am\nSmooooooth, as Tennessee whiskey\n                                   G    C/G   G\nYou're as sweeeeeeet as strawberry wine\nG                                  Am\nYou're as waaaarrrrm as a glass of brandy\n                                             G    C/G   G\nAnd honey I stay stoned on your love all the time\n \n \n[Instrumental]\nG  Am\nAm  G  C/G  G\nG  Am\nAm G   C/G  G\n \n \n[Chorus]\nG                                  Am\nYou're as smooooooth, as Tennessee whiskey\n                                   G    C/G   G\nYou're as sweeeeeeet as strawberry wine\nG                                  Am\nYou're as waaaarrrrm as a glass of brandy\n                                             G    C/G   G\nAnd honey I stay stoned on your love all the time\n \n \n[Outro]\nG                                  Am\nYou're as smooooooth, as Tennessee whiskey\n                                 G    C/G   G\nTennessee whiskey, Tennessee whiskey\nG                                  Am\nYou're as smooooooth, as Tennessee whiskey\n \nTennessee whiskey\n               G\nTennessee whiskey\n \n \n************************************\n \n| /  Slide up\n| ~  Vibrato\n| h  Hammer-on\n \n************************************",
+      "status": "main",
+      "sn": "11B",
+      "tuning": "Standard"
     },
     "Drunken Lullabies - Flogging Molly": {
       "key": "G",
@@ -195,13 +199,15 @@
       "status": "main"
     },
     "Shipping Up to Boston - Dropkick Murphys": {
-      "key": "D",
+      "key": "C Major",
       "riff": "D",
-      "bpm": "132",
+      "bpm": "99",
       "duration": "2:34",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Em (x3), D, A  (all x2) \nEm, D, Em, D, A (x2)\n \n \n[Verse]\n \nEm\nI'm a sailor peg, and I lost my leg\nEm                           D        A\nI climbed up the topsails, I lost my leg\n \n \n[Interlude]\n \nEm (x3), D, A\nEm, D, Em, D, A (x2)\n \n \n[Chorus]\n \nD                          C        G\nI'm shipping up to Boston,(whoa oh oh) (x3)\nD\nI'm shipping off\n   C       G      Em\nTo find my wooden leg\n \nEm (x3), D, A\n \n \n[Verse]\n \nEm\nI'm a sailor peg, and I lost my leg\nEm                           D        A\nI climbed up the topsails, I lost my leg\n \nEm, D, Em, D, A (x2)\n \n \n[Chorus]\n \nD                          C        G\nI'm shipping up to Boston,(whoa oh oh) (x3)\nD\nI'm shipping off\n   C       G      Em\nTo find my wooden leg\n \nEm (x3), D*, A, Em\n \n*(Start slowing down here)",
+      "status": "main",
+      "sn": "8B",
+      "tuning": "Standard"
     },
     "War Pigs - Black Sabbath": {
       "key": "A maj",
@@ -512,13 +518,15 @@
       "status": "main"
     },
     "Tripping on a Hole - STP": {
-      "key": "E",
+      "key": "G Major",
       "riff": "E",
       "bpm": "108",
       "duration": "2:55",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Stone Temple Pilots Lyrics\n\"Trippin' On A Hole In A Paper Heart\"\n\nDon't cut out my paper heart\nI ain't dyin' anyway\nTake a look at eye full towers\nNever trust them dirty liars\n\nSippin' lemon yellow booze\nOld lead-belly sings the blues\nAll dressed up on wedding day\nKeep on trippin' anyway\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nSo keep your bankroll lottery\nEat your salad day\nDeathbed motorcade\n\nFake the heat and scratch the itch\nSkinned up knees and salty lips\nI'll breathe your life Vicks vapor life\nAnd when you binge I purge alike\nLet go it's harder holding on\nOne more trip and I'll be gone\nSo keep your head up, keep it on\nJust a whisper I'll be gone\nTake a breath and make it big\nIt's the last you'll ever get\nBreak your neck with diamond noose\nIt's the last you'll ever choose\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nHold me closer, closer let me go\nLet me be just let me be\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nSo keep your bankroll lottery\nEat your salad day\nDeathbed motorcade\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nHold me closer, closer let me go\nLet me be just let me be\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nSo keep your bankroll lottery\nEat your salad day\nDeathbed motorcade\n\n\n",
+      "status": "main",
+      "sn": "9B",
+      "tuning": "Standard"
     },
     "Soul to Squeeze - R.H.C.P": {
       "key": "G",
@@ -541,26 +549,30 @@
       "status": "main"
     },
     "Lump - The Presidents USA": {
-      "key": "E",
+      "key": "Gb Major",
       "riff": "E",
-      "bpm": "140",
+      "bpm": "142",
       "duration": "2:14",
       "crossfadeInto": [
         "Beautiful Disaster - 311"
       ],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "The Presidents Of The United States Of America Lyrics\n\"Lump\"\n\nLump sat alone in a boggy marsh\nTotally emotionless except for her heart\nMud flowed up into lump's pajamas\nShe totally confused all the passing piranhas\n\nShe's lump, she's lump\nShe's in my head\nShe's lump, she's lump, she's lump\nShe might be dead\n\nLump lingered last in line for brains\nAnd the one she got was sorta rotten and insane\nSmall things so sad that birds could land\nIs lump fast asleep or rockin' out with the band?\n\nShe's lump, she's lump\nShe's in my head\nShe's lump, she's lump, she's lump\nShe might be dead\n\nLump was limp and lonely and needed a shove\nLump slipped on a kiss and tumbled into love\nShe spent her twenties between the sheets\nLife limped along at sub-sonic speeds\n\nShe's lump, she's lump\nShe's in my head\nShe's lump, she's lump, she's lump\nShe might be dead\n\nIs this lump outta my head?\nI think so\nIs this lump outta my head?\nI think so\nIs this lump outta my head?\nI think so\nIs this lump outta my head?\n\n\n",
+      "status": "main",
+      "sn": "2B",
+      "tuning": "Standard"
     },
     "Under the Bridge - RHCP": {
-      "key": "E",
+      "key": "E Major",
       "riff": "E",
       "bpm": "85",
       "duration": "4:24",
       "crossfadeInto": [
         "Sweet Emotion - Aerosmith"
       ],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "[Intro]\nD   Gb   D   Gb\nD   F#   D   F#\n \n[Verse 1]\nE          B             Dbm          Abm A\n Sometimes I feel like I don't have a partner\nE          B           C#m     A\n Sometimes I feel like my only friend\n       E      B            C#m     G#m A\nIs the city I live in, the city of an-gels\nE         B       C#m       A     Emaj7\nLonely as I am, together we cry\n \n[Verse 2]\n  E            B              C#m         G#m A\nI drive on her streets 'cause she's my companion\n  E                B                C#m         A\nI walk through her hills 'cause she knows who I am\n    E            B             C#m       G#m A\nShe sees my good deeds and she kisses me win-dy\nE       B          C#m       A     Emaj7\nI never worry, now that is a lie\n \n[Chorus]\n      F#m                  E    B*     F#m\nWell, I don't ever want to feel like I did that day\nF#m                    E     B*      F#m\nTake me to the place I love, take me all the way\nF#m                  E    B*     F#m\nI don't ever want to feel like I did that day\nF#m                    E     B*      F#m       E  B    C#m    G#m A  E  B   C#m  A\nTake me to the place I love, take me all the way, yeah, yeah, yeah\n \n[Verse 3]\n     E         B                  C#m    G#m A\nIt's hard to believe that there's nobody out there\n     E         B          C#m      A\nIt's hard to believe that I'm all alone\n   E            B             C#m      G#m   A\nAt least I have her love, the city she loves me\nE         B       C#m       A     Emaj7\nLonely as I am, together we cry\n \n[Chorus]\n      F#m                  E    B*     F#m\nWell, I don't ever want to feel like I did that day\nF#m                    E     B*      F#m\nTake me to the place I love, take me all the way\n      F#m                  E    B*     F#m\nWell, I don't ever want to feel like I did that day\nF#m                    E     B*      F#m       A  Am    G     Fmaj7\nTake me to the place I love, take me all the way, yeah, yeah, yeah\n \n[Interlude]\nA   Am         G    Fmaj7\nOhh no, no no, yeah yeah\nA    Am        G    Fmaj7\nLove me, I say yeah yeah\n \nFmaj7*    E7  Gmaj7\n \n[Bridge]\nA                Am\nUnder the bridge downtown\nG           Fmaj7\n...is where I drew some blood\nA                Am\nUnder the bridge downtown\nG          Fmaj7\n...I could not get enough\nA                Am\nUnder the bridge downtown\nG         Fmaj7\n...forgot about my love\nA                Am\nUnder the bridge downtown\nG         Fmaj7\n...I gave my life away\n \n[Outro]\nA     Am    G    Fmaj7\n(way) yeah, yeah yeah\nA   Am            G    Fmaj7\nOhh no, no no no, yeah yeah\nA   Am             G    Fmaj7\nOhh no, I said, oh yeah yeah\nA  Am             G  Fmaj7\n      Here I stay\n \nA  Am   G  Fmaj7\nA  Am   G  Fmaj7\nA  Am   G  Fmaj7\nA  Am   G  Fmaj7\n",
+      "status": "main",
+      "sn": "12B",
+      "tuning": "Standard"
     },
     "Interstate Love Song - STP": {
       "key": "E",
@@ -654,13 +666,15 @@
       "status": "main"
     },
     "Song for the Dead - Queens of the Stone Age": {
-      "key": "Dm",
+      "key": "F Major",
       "riff": "D",
       "bpm": "120",
       "duration": "5:52",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "[Instrumental Intro]\nbank4/1\n\nSound 455 or 644 high G,Bb,G\nAh, ah, ah\nAh, ah, ah\nAh, ah, ah\nAh, ah, ah\n\n\nIt's late enough to go drivin'\nAnd see what's miiine\nLife's the study of dyin'\nHow to do it right\nYou're a holy roller\nIf you're bettin' lose\nIf you're hangin' ar^oooound(retard)\nIm holdin' the noose\nAh, ah, ah, ah\nAh, ah, ah, ah\nAh, ah, ah, ah\nAh, ah, ah, ah\n(riff 1 time)\n\n\nCome a little bit closer\nAnd get untied\nIn a hearse rollin' over\nJust a track in the line\n f*ckit \n\nSound 455 or 644 high G,Bb,G\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\n\n\n[Guitar Solo]\n(organ sound 86 middle C\nOh, oh, oh\nOh, oh, oh\nOh, oh, oh\nOh, oh, oh\n\n\n(short Drum breakdown )\n(no lead in)\nCome on, let's go drivin'\nCome on, let's take a little ride\nThat's the study of dyin'\nHow to do it righhhhhhhhhht\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\n",
+      "status": "main",
+      "sn": "7B",
+      "tuning": "Standard"
     },
     "Holiday - Green Day": {
       "key": "Em",
@@ -668,8 +682,10 @@
       "bpm": "144",
       "duration": "3:53",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "\"Holiday\"\n\nSay hey!\nCha!\n\nHear the sound of the falling rain\nComing down like an Armageddon flame (Hey!)\nThe shame, the ones who died without a name\nHear the dogs howling out of key\nTo a hymn called \"Faith and Misery\" (Hey!)\nAnd bleed, the company lost the war today\n\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nOn holiday!\n\nHear the drum pounding out of time\nAnother protester has crossed the line (Hey!)\nTo find the money's on the other side\nCan I get another Amen? (Amen!)\nThere's a flag wrapped around a score of men (Hey!)\nA gag, a plastic bag on a monument\n\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nOn holiday! (Hey!)\n\nThree, four!\n\"The representative from California has the floor.\"\n\n\"Sieg Heil\" to the president Gasman\nBombs away is your punishment\nPulverize the Eiffel towers\nWho criticize your government\nBang bang goes the broken glass, and\nKill all the fags that don't agree\nTrials by fire, setting fire\nIs not a way that's meant for me\nJust 'cause (Hey! Hey! Hey! Hey!)\nJust 'cause (Hey! Hey! Hey! Hey!)\nBecause we're outlaws, yeah!\n\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nThis is our lives on holiday!",
+      "status": "main",
+      "sn": "",
+      "tuning": "Standard"
     },
     "Song 2 - Blur": {
       "key": "E",
@@ -677,9 +693,10 @@
       "bpm": "144",
       "duration": "2:02",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "\"Song 2\"\n\nWoo-hoo [4x]\n\nI got my head checked\nBy a jumbo jet\nIt wasn't easy\nBut nothing i-is\nNo\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nI got my head done\nWhen I was young\nIt's not my problem\nIt's not my problem\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nYeah yeah\nYeah yeah\nYeah yeah\nOh yeah\n",
       "tuning": "Eb",
-      "status": "main"
+      "status": "main",
+      "sn": ""
     },
     "Loser - Beck": {
       "key": "E",
@@ -700,17 +717,18 @@
       "status": "main"
     },
     "Would? - Alice in chains": {
-      "key": "",
+      "key": "Gb Major",
       "riff": "",
-      "bpm": "",
+      "bpm": "100",
       "duration": "3:27",
       "tuning": "Eb",
       "crossfadeInto": [
         "96 Quite Bitter Beings - CKY",
         "I Alone - Live"
       ],
-      "lyrics": "",
-      "status": "main"
+      "lyrics": "Alice In Chains Lyrics\n\"Would?\"\n\nKnow me broken by my master\nTeach thee on child of love hereafter\n\nInto the flood again\nSame old trip it was back then\nSo I made a big mistake\nTry to see it once my way\n\nDrifting body it's sole desertion\nFlying not yet quite the notion\n\nInto the flood again\nSame old trip it was back then\nSo I made a big mistake\nTry to see it once my way\n\nInto the flood again\nSame old trip it was back then\nSo I made a big mistake\nTry to see it once my way\n\nAm I wrong?\nHave I run too far to get home?\nHave I gone?\nAnd left you here alone?\n\nAm I wrong?\nHave I run too far to get home?\nHave I gone?\nAnd left you here alone?\n\nIf I would, could you?\n\n\n",
+      "status": "main",
+      "sn": "2B"
     },
     "Them Bones - Alice in chains": {
       "key": "",
