@@ -67,6 +67,25 @@
         .search-result-item:hover {
             background-color: #f0f0f0;
         }
+        .setlist-selection-popup {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 1000;
+            color: #000;
+            display: none;
+        }
+        .setlist-selection-popup button {
+            margin: 5px;
+            padding: 5px 10px;
+            background: #e31c1c;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
         h1 {
             text-align: center;
             margin-bottom: 40px;
@@ -493,14 +512,14 @@
             margin-top: 20px;
             padding: 15px;
             border-radius: 5px;
-            color: #D2B48C;
+            color: #D2B48C; /* Light brown */
         }
         .council h2 {
             color: #e31c1c;
         }
         .council th {
             background-color: #333;
-            color: #D2B48C;
+            color: #D2B48C; /* Light brown */
         }
         .council button {
             background: #e31c1c;
@@ -533,7 +552,7 @@
             display: block;
             margin: 20px auto;
             text-align: center;
-            background: #450202;
+            background: #450202; /* Dark red */
         }
         .youtube-link img {
             width: 403px;
@@ -606,7 +625,6 @@
         }
         .randomizer-container {
             text-align: center;
-            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -628,6 +646,12 @@
             <div class="search-results" id="search-results"></div>
         </div>
         <button class="sync-btn" onclick="saveData()">Save and Sync</button>
+    </div>
+
+    <div class="setlist-selection-popup" id="setlist-selection-popup">
+        <button onclick="addToSetlist(1)">Add to Setlist 1</button>
+        <button onclick="addToSetlist(2)">Add to Setlist 2</button>
+        <button onclick="addToSetlist(3)">Add to Setlist 3</button>
     </div>
 
     <script>
@@ -749,6 +773,81 @@
                     searchResults.style.display = 'none';
                 }
             });
+        }
+
+        function showSetlistSelection(song, button) {
+            currentSelectedSong = song;
+            const popup = document.getElementById('setlist-selection-popup');
+            popup.style.display = 'block';
+            popup.style.left = `${button.getBoundingClientRect().left}px`;
+            popup.style.top = `${button.getBoundingClientRect().bottom + window.scrollY}px`;
+
+            document.addEventListener('click', function closePopup(e) {
+                if (!popup.contains(e.target) && e.target !== button) {
+                    popup.style.display = 'none';
+                    document.removeEventListener('click', closePopup);
+                }
+            });
+        }
+
+        function addToSetlist(setlistNumber) {
+            if (!currentSelectedSong) return;
+
+            const setlistKey = `setlist-${setlistNumber}`;
+            const currentSongs = setlists[setlistKey];
+            const song = currentSelectedSong;
+            const songHasX = (songIcons[song] || []).includes('X');
+
+            if (songHasX && currentSongs.length > 0) {
+                const lastSong = currentSongs[currentSongs.length - 1];
+                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
+                if (lastSongHasX) {
+                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) {
+                            document.getElementById('setlist-selection-popup').style.display = 'none';
+                            currentSelectedSong = null;
+                            return;
+                        }
+                    } else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        if (!confirm("🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row!")) {
+                            document.getElementById('setlist-selection-popup').style.display = 'none';
+                            currentSelectedSong = null;
+                            return;
+                        }
+                    }
+                }
+            }
+
+            const crossfadeOptions = songData[song]?.crossfadeInto || [];
+            if (crossfadeOptions.length > 0) {
+                const currentSongTitle = song.split(' - ')[0];
+                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
+                if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match? (OK = Yes, Cancel = nah IDC)`)) {
+                    let selectedSong;
+                    if (crossfadeOptions.length === 1) {
+                        selectedSong = crossfadeOptions[0];
+                    } else {
+                        selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                    }
+                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
+                        setlists[setlistKey].push(song);
+                        setlists[setlistKey].push(selectedSong);
+                        updateSetlistDisplay(setlistKey);
+                        updateDuration(setlistKey);
+                        document.getElementById('setlist-selection-popup').style.display = 'none';
+                        currentSelectedSong = null;
+                        unsavedChanges = true;
+                        return;
+                    }
+                }
+            }
+
+            setlists[setlistKey].push(song);
+            updateSetlistDisplay(setlistKey);
+            updateDuration(setlistKey);
+            document.getElementById('setlist-selection-popup').style.display = 'none';
+            currentSelectedSong = null;
+            unsavedChanges = true;
         }
 
         function addSongFromSearch(song, setlistNumber, button) {
@@ -963,7 +1062,7 @@
                         <div class="song-title-container">
                             <div class="song-title" onclick="editSong('${song}')">${title}</div>
                             <div class="song-actions">
-                                <button class="add-btn" onclick="addSongFromSearch('${song}', 1, this)">Add to 1</button>
+                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
                                 <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                             </div>
                         </div>
@@ -1142,41 +1241,30 @@
             unsavedChanges = true;
         }
 
-        function generateRandomSetlistFor(setlistNumber) {
-            const setlistKey = `setlist-${setlistNumber}`;
-            const otherSetlists = [1,2,3].filter(num => num !== setlistNumber).map(num => `setlist-${num}`);
-            const usedSongs = new Set(otherSetlists.flatMap(key => setlists[key] || []));
-            const availableSongs = Object.keys(songData).filter(song => songData[song].status === 'main' && !usedSongs.has(song));
-            generateRandomSetlist(setlistKey, availableSongs);
-        }
-
-        function generateRandomSetlist(setlistKey, availableSongs) {
+        function generateRandomSetlist() {
+            const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
             let totalDuration = 0;
             const maxDuration = 40 * 60; // 40 minutes in seconds
 
-            if (availableSongs.length === 0) {
-                alert("No available songs to generate setlist.");
-                return;
-            }
-
-            const strongSongs = availableSongs.filter(song => parseInt(songData[song].bpm) > 120);
+            // Select first song: high BPM
+            const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120);
             if (strongSongs.length > 0) {
                 const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             } else {
-                const firstSong = availableSongs[Math.floor(Math.random() * availableSongs.length)];
+                // Fallback to any song
+                const firstSong = allSongs[Math.floor(Math.random() * allSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             }
 
             while (totalDuration < maxDuration) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
-                let candidates = availableSongs.filter(song => !selectedSongs.includes(song));
+                let candidates = allSongs.filter(song => !selectedSongs.includes(song));
 
-                if (candidates.length === 0) break;
-
+                // Prefer crossfade if possible
                 const crossfadeOptions = songData[lastSong]?.crossfadeInto || [];
                 if (crossfadeOptions.length > 0 && Math.random() < 0.3) {
                     const availableCrossfade = crossfadeOptions.filter(song => candidates.includes(song));
@@ -1188,6 +1276,7 @@
                     }
                 }
 
+                // Prefer same SN
                 const sameSNSongs = candidates.filter(song => songData[song].sn === songData[lastSong].sn);
                 if (sameSNSongs.length > 0) {
                     const nextSong = sameSNSongs[Math.floor(Math.random() * sameSNSongs.length)];
@@ -1196,9 +1285,10 @@
                     continue;
                 }
 
+                // Otherwise, select based on BPM
                 const lastBPM = parseInt(songData[lastSong].bpm) || 0;
                 const position = selectedSongs.length;
-                const totalSongsEstimate = Math.ceil(maxDuration / (totalDuration / position));
+                const totalSongsEstimate = Math.ceil(maxDuration / (totalDuration / position)); // rough estimate
                 if (position >= Math.floor(totalSongsEstimate / 3) && position <= Math.floor(2 * totalSongsEstimate / 3)) {
                     candidates = candidates.filter(song => parseInt(songData[song].bpm) < 100);
                 } else {
@@ -1214,16 +1304,18 @@
                 }
             }
 
+            // Ensure last song is strong
             if (selectedSongs.length > 1) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
                 if (parseInt(songData[lastSong].bpm) <= 120) {
-                    const strongCandidates = availableSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
+                    const strongCandidates = allSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
                     if (strongCandidates.length > 0) {
                         selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
                     }
                 }
             }
 
+            // Check for crossfade pairs
             let crossfadeCount = 0;
             for (let i = 0; i < selectedSongs.length - 1; i++) {
                 if (songData[selectedSongs[i]]?.crossfadeInto?.includes(selectedSongs[i + 1])) {
@@ -1234,15 +1326,19 @@
                 console.log('Warning: Less than 2 crossfade pairs');
             }
 
-            setlists[setlistKey] = selectedSongs;
-            updateSetlistDisplay(setlistKey);
-            updateDuration(setlistKey);
+            setlists['setlist-1'] = selectedSongs;
+            updateSetlistDisplay('setlist-1');
+            updateDuration('setlist-1');
             unsavedChanges = true;
         }
 
         function parseDuration(duration) {
             const [minutes, seconds] = duration.split(':').map(Number);
             return (minutes * 60) + seconds;
+        }
+
+        function getBPM(song) {
+            return parseInt(songData[song].bpm) || 0;
         }
 
         function showLyrics(setlistId) {
@@ -2155,13 +2251,11 @@
             unsavedChanges = true;
         }
 
-        document.querySelectorAll('.random-button').forEach(button => {
-            button.addEventListener('click', function() {
-                this.src = '200x200-button2.png';
-                setTimeout(() => {
-                    this.src = '200x200-button.png';
-                }, 5000);
-            });
+        document.getElementById('random-button').addEventListener('click', function() {
+            this.src = '200x200-button2.png';
+            setTimeout(() => {
+                this.src = '200x200-button.png';
+            }, 5000);
         });
     </script>
 
@@ -2201,7 +2295,7 @@
 
     <div class="setlist">
         <div class="randomizer-container">
-            <img src="200x200-button.png" class="random-button" onclick="generateRandomSetlistFor(1)" style="cursor: pointer;">
+            <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
         </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
@@ -2216,9 +2310,6 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
     </div>
     <div class="setlist">
-        <div class="randomizer-container">
-            <img src="200x200-button.png" class="random-button" onclick="generateRandomSetlistFor(2)" style="cursor: pointer;">
-        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
         </div>
@@ -2232,9 +2323,6 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
     </div>
     <div class="setlist">
-        <div class="randomizer-container">
-            <img src="200x200-button.png" class="random-button" onclick="generateRandomSetlistFor(3)" style="cursor: pointer;">
-        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
         </div>
