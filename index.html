@@ -149,14 +149,6 @@
         th:hover {
             background-color: #ddd;
         }
-        th.sorted-asc::after {
-            content: ' ↑';
-            color: #e31c1c;
-        }
-        th.sorted-desc::after {
-            content: ' ↓';
-            color: #e31c1c;
-        }
         .setlist {
             margin-top: 20px;
             background: #565656;
@@ -188,17 +180,6 @@
             align-items: center;
             color: #000;
             text-align: center;
-            transition: transform 0.2s ease;
-        }
-        .drop-indicator {
-            height: 2px;
-            background: #e31c1c;
-            margin: 5px 0;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-        .drop-indicator.active {
-            opacity: 1;
         }
         .crossfade-btn {
             padding: 5px 10px;
@@ -617,7 +598,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 10px;
+            margin-bottom: 10px;
         }
         .council-table, .mothballs-table {
             width: 100%;
@@ -644,7 +625,7 @@
         }
         .randomizer-container {
             text-align: center;
-            margin: 10px 0;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -687,14 +668,14 @@
 
     <div class="category">
         <h2>Alternative/Grunge/Rock</h2>
-        <table id="alternative-grunge-rock">
+        <table id="song-table">
             <thead>
                 <tr>
-                    <th onclick="sortSongs('title')">Song Title</th>
-                    <th onclick="sortSongs('bpm')">BPM</th>
-                    <th onclick="sortSongs('artist')">Artist</th>
-                    <th onclick="sortSongs('sn')">SN</th>
-                    <th onclick="sortSongs('duration')">Duration</th>
+                    <th onclick="sortTable('song-table', 0)">Song Title</th>
+                    <th onclick="sortTable('song-table', 1)">BPM</th>
+                    <th onclick="sortTable('song-table', 2)">Artist</th>
+                    <th onclick="sortTable('song-table', 3)">SN</th>
+                    <th onclick="sortTable('song-table', 4)">Duration</th>
                     <th>Crossfades</th>
                     <th>Actions</th>
                 </tr>
@@ -745,48 +726,48 @@
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
-        <div class="randomizer-container">
-            <img src="200x200-button.png" alt="Randomize Setlist 1" class="random-button" data-setlist="setlist-1">
-        </div>
-        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
             <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
         </div>
+        <div class="randomizer-container">
+            <img src="200x200-button.png" alt="Randomize Setlist 1" class="random-button" data-setlist="setlist-1">
+        </div>
+        <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
     </div>
 
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
         </div>
-        <div class="randomizer-container">
-            <img src="200x200-button.png" alt="Randomize Setlist 2" class="random-button" data-setlist="setlist-2">
-        </div>
-        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
             <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
         </div>
+        <div class="randomizer-container">
+            <img src="200x200-button.png" alt="Randomize Setlist 2" class="random-button" data-setlist="setlist-2">
+        </div>
+        <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
     </div>
 
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
         </div>
-        <div class="randomizer-container">
-            <img src="200x200-button.png" alt="Randomize Setlist 3" class="random-button" data-setlist="setlist-3">
-        </div>
-        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
             <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
         </div>
+        <div class="randomizer-container">
+            <img src="200x200-button.png" alt="Randomize Setlist 3" class="random-button" data-setlist="setlist-3">
+        </div>
+        <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
+        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
     </div>
 
     <div class="council">
@@ -838,6 +819,7 @@
 
     <script>
         let audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
         let songData = {};
@@ -850,23 +832,13 @@
         let lastSaveTime = Date.now();
         let currentSelectedSong = null;
         let unsavedChanges = false;
-        let currentSortColumn = 'title'; // Default sort by title
-        let currentSortDirection = 1; // 1 for ascending, -1 for descending
 
         const TUNING_OPTIONS = [
-            "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std", "Drop C",
-            "DADGAD", "Open G", "Open D", "Drop Db", "B Std", "Open C", "Open E", "C std"
+            "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std.", "Drop C",
+            "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C", "Open E", "C std"
         ];
 
         const TIME_SIGNATURE_OPTIONS = ["4/4", "3/4", "6/8", "5/4"];
-
-        const columnIndices = {
-            'title': 1,
-            'bpm': 2,
-            'artist': 3,
-            'sn': 4,
-            'duration': 5
-        };
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -1114,25 +1086,15 @@
 
         async function loadData() {
             try {
-                const dataResponse = await fetch(`data.json?t=${new Date().getTime()}`);
-                if (!dataResponse.ok) throw new Error(`HTTP error! status: ${dataResponse.status}`);
-                const data = await dataResponse.json();
+                const response = await fetch(`data.json?t=${new Date().getTime()}`);
+                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                const data = await response.json();
                 songData = data.songData || {};
                 setlists = data.setlists || { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
                 songIcons = data.songIcons || {};
                 songColors = data.songColors || {};
                 savedSetlists = data.savedSetlists || {};
-
-                const lyricsResponse = await fetch(`lyrics.json?t=${new Date().getTime()}`);
-                if (lyricsResponse.ok) {
-                    const lyricsData = await lyricsResponse.json();
-                    for (const song in songData) {
-                        songData[song].lyrics = lyricsData[song] || '';
-                    }
-                } else {
-                    console.warn('lyrics.json not found, lyrics will be empty');
-                }
-
+                console.log('Loaded songData:', songData);
                 for (const song in songData) {
                     if (!songData[song].status) songData[song].status = 'main';
                     if (songData[song].status === 'council' && !songData[song].votes) {
@@ -1141,16 +1103,17 @@
                     if (!songData[song].timeSignature) songData[song].timeSignature = '4/4';
                 }
             } catch (error) {
-                console.error('Error loading data:', error);
-                songData = JSON.parse(localStorage.getItem('songData') || '{}');
-                setlists = JSON.parse(localStorage.getItem('setlists') || '{}');
-                songIcons = JSON.parse(localStorage.getItem('songIcons') || '{}');
-                songColors = JSON.parse(localStorage.getItem('songColors') || '{}');
-                savedSetlists = JSON.parse(localStorage.getItem('savedSetlists') || '{}');
-                const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
-                for (const song in songData) {
-                    songData[song].lyrics = lyricsData[song] || '';
-                }
+                console.error('Error loading data.json:', error);
+                const storedSongs = localStorage.getItem('songData');
+                const storedSetlists = localStorage.getItem('setlists');
+                const storedIcons = localStorage.getItem('songIcons');
+                const storedColors = localStorage.getItem('songColors');
+                const storedSavedSetlists = localStorage.getItem('savedSetlists');
+                if (storedSongs) songData = JSON.parse(storedSongs);
+                if (storedSetlists) setlists = JSON.parse(storedSetlists);
+                if (storedIcons) songIcons = JSON.parse(storedIcons);
+                if (storedColors) songColors = JSON.parse(storedColors);
+                if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
             }
             populateSongTable();
             populateCouncilTable();
@@ -1194,35 +1157,22 @@
         }
 
         function saveData() {
-            const lyricsData = {};
-            for (const song in songData) {
-                if (songData[song].lyrics) {
-                    lyricsData[song] = songData[song].lyrics;
-                    delete songData[song].lyrics; // Temporarily remove lyrics
-                }
-            }
             const data = { songData, setlists, songIcons, songColors, savedSetlists };
             localStorage.setItem('songData', JSON.stringify(songData));
-            localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
             localStorage.setItem('setlists', JSON.stringify(setlists));
             localStorage.setItem('songIcons', JSON.stringify(songIcons));
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
-            syncToGitHub(data, lyricsData).then(() => {
+            syncToGitHub(data).then(() => {
                 alert('Save and sync completed!');
                 unsavedChanges = false;
                 lastSaveTime = Date.now();
             }).catch(err => {
                 alert('Save to local storage succeeded, but sync failed: ' + err.message);
-            }).finally(() => {
-                // Restore lyrics
-                for (const song in lyricsData) {
-                    songData[song].lyrics = lyricsData[song];
-                }
             });
         }
 
-        async function syncToGitHub(data, lyricsData) {
+        async function syncToGitHub(data) {
             if (!githubToken) {
                 githubToken = prompt('Enter your GitHub token (one-time setup):');
                 if (!githubToken) return;
@@ -1231,16 +1181,28 @@
 
             const repoOwner = 'graphicnix';
             const repoName = 'SB-Setlist-creator';
-            const dataUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data.json`;
-            const lyricsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/lyrics.json`;
+            const filePath = 'data.json';
+            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
-            const uploadFile = async (url, content, sha) => {
+            try {
+                const getResponse = await fetch(url, {
+                    headers: { 'Authorization': `token ${githubToken}` }
+                });
+                let sha = '';
+                if (getResponse.ok) {
+                    const fileData = await getResponse.json();
+                    sha = fileData.sha;
+                } else if (getResponse.status !== 404) {
+                    throw new Error('Failed to fetch current file');
+                }
+
                 const encoder = new TextEncoder();
-                const jsonString = JSON.stringify(content, null, 2);
+                const jsonString = JSON.stringify(data, null, 2);
                 const utf8Bytes = encoder.encode(jsonString);
                 const binaryString = String.fromCharCode(...utf8Bytes);
                 const base64Content = btoa(binaryString);
-                const response = await fetch(url, {
+
+                const updateResponse = await fetch(url, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `token ${githubToken}`,
@@ -1252,68 +1214,20 @@
                         sha: sha || undefined
                     })
                 });
-                if (!response.ok) throw new Error('Sync failed for ' + url);
-            };
 
-            let dataSha = '';
-            let lyricsSha = '';
-            try {
-                const dataResponse = await fetch(dataUrl, { headers: { 'Authorization': `token ${githubToken}` } });
-                if (dataResponse.ok) {
-                    const fileData = await dataResponse.json();
-                    dataSha = fileData.sha;
-                }
-                const lyricsResponse = await fetch(lyricsUrl, { headers: { 'Authorization': `token ${githubToken}` } });
-                if (lyricsResponse.ok) {
-                    const fileData = await lyricsResponse.json();
-                    lyricsSha = fileData.sha;
-                }
+                if (!updateResponse.ok) throw new Error('Sync failed');
             } catch (error) {
-                console.error('Error fetching SHAs:', error);
-            }
-
-            await uploadFile(dataUrl, data, dataSha);
-            await uploadFile(lyricsUrl, lyricsData, lyricsSha);
-        }
-
-        function getSortedSongKeys() {
-            let keys = Object.keys(songData).filter(key => songData[key].status === 'main');
-            if (currentSortColumn) {
-                keys.sort((a, b) => {
-                    const aValue = getSortValue(a, currentSortColumn);
-                    const bValue = getSortValue(b, currentSortColumn);
-                    if (aValue < bValue) return -currentSortDirection;
-                    if (aValue > bValue) return currentSortDirection;
-                    return 0;
-                });
-            }
-            return keys;
-        }
-
-        function getSortValue(songKey, column) {
-            const song = songData[songKey];
-            switch (column) {
-                case 'title':
-                    return songKey.split(' - ')[0].toLowerCase();
-                case 'artist':
-                    return songKey.split(' - ')[1].toLowerCase();
-                case 'bpm':
-                    return parseInt(song.bpm) || 0;
-                case 'sn':
-                    return song.sn.toLowerCase();
-                case 'duration':
-                    const [min, sec] = (song.duration || '0:00').split(':').map(Number);
-                    return min * 60 + sec;
-                default:
-                    return songKey.toLowerCase();
+                console.error('Sync error:', error);
+                throw error;
             }
         }
 
         function populateSongTable() {
             const tbody = document.getElementById('song-table-body');
             tbody.innerHTML = '';
-            const sortedKeys = getSortedSongKeys();
-            sortedKeys.forEach(song => {
+            console.log('Populating song table with', Object.keys(songData).length, 'songs');
+            for (const song in songData) {
+                if (songData[song].status !== 'main') continue;
                 const songInfo = songData[song];
                 const [title, artist] = song.split(' - ');
                 const iconsDisplay = getIconsDisplay(song);
@@ -1376,28 +1290,7 @@
                     </td>
                 `;
                 tbody.appendChild(row);
-            });
-            updateSortIndicators();
-        }
-
-        function updateSortIndicators() {
-            document.querySelectorAll('th').forEach(th => {
-                th.classList.remove('sorted-asc', 'sorted-desc');
-            });
-            if (currentSortColumn && columnIndices[currentSortColumn]) {
-                const header = document.querySelector(`th:nth-child(${columnIndices[currentSortColumn]})`);
-                header.classList.add(currentSortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
             }
-        }
-
-        function sortSongs(column) {
-            if (currentSortColumn === column) {
-                currentSortDirection *= -1;
-            } else {
-                currentSortColumn = column;
-                currentSortDirection = 1;
-            }
-            populateSongTable();
         }
 
         function populateCouncilTable() {
@@ -1589,11 +1482,9 @@
                 duration: duration || '0:00',
                 tuning: tuning,
                 timeSignature: timeSignature,
+                lyrics: lyrics || '',
                 status: 'main'
             };
-            const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
-            lyricsData[songKey] = lyrics || '';
-            localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
 
             document.getElementById('new-title').value = '';
             document.getElementById('new-artist').value = '';
@@ -1667,17 +1558,11 @@
                 duration: duration || '0:00',
                 tuning: tuning,
                 timeSignature: timeSignature,
+                lyrics: lyrics || '',
                 status: songInfo.status,
                 votes: songInfo.votes || { Y: 0, N: 0, IDC: 0 },
                 crossfadeInto: songInfo.crossfadeInto || []
             };
-
-            const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
-            lyricsData[newSongKey] = lyrics || '';
-            if (newSongKey !== originalSong) {
-                delete lyricsData[originalSong];
-            }
-            localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
 
             if (newSongKey !== originalSong) {
                 delete songData[originalSong];
@@ -1710,9 +1595,6 @@
                 for (const setlistKey in setlists) {
                     setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
                 }
-                const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
-                delete lyricsData[song];
-                localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
                 populateSongTable();
                 populateCouncilTable();
                 populateMothballsTable();
@@ -1750,141 +1632,117 @@
             unsavedChanges = true;
         }
 
-        let dragSrcEl = null;
-        let sourceSetlist = null;
-
         function allowDrop(ev) {
             ev.preventDefault();
-            const targetSetlist = ev.target.closest('ul');
-            if (!targetSetlist) return;
-
-            const indicator = getDropIndicator(ev);
-            if (indicator) indicator.classList.add('active');
         }
 
         function drag(ev) {
-            dragSrcEl = ev.target;
-            sourceSetlist = dragSrcEl.closest('ul').id;
-            ev.dataTransfer.setData("text", dragSrcEl.getAttribute('data-song'));
-            ev.dataTransfer.effectAllowed = 'move';
-        }
-
-        function getDropIndicator(ev) {
-            const setlist = ev.target.closest('ul');
-            if (!setlist) return null;
-            const items = Array.from(setlist.children).filter(child => !child.classList.contains('drop-indicator'));
-            const rect = setlist.getBoundingClientRect();
-            const y = ev.clientY - rect.top;
-
-            let indicator = setlist.querySelector('.drop-indicator');
-            if (!indicator) {
-                indicator = document.createElement('div');
-                indicator.className = 'drop-indicator';
-                setlist.appendChild(indicator);
+            const song = ev.target.getAttribute('data-song');
+            ev.dataTransfer.setData("text", song);
+            const parent = ev.target.closest('ul');
+            if (parent && parent.id.startsWith('setlist-')) {
+                ev.dataTransfer.setData("source", parent.id);
+            } else {
+                ev.dataTransfer.setData("source", "main");
             }
-
-            for (let i = 0; i < items.length; i++) {
-                const item = items[i];
-                const itemRect = item.getBoundingClientRect();
-                const offsetTop = itemRect.top - rect.top;
-                const offsetBottom = itemRect.bottom - rect.top;
-
-                if (y < offsetTop + (offsetBottom - offsetTop) / 2) {
-                    setlist.insertBefore(indicator, item);
-                    return indicator;
-                }
-            }
-
-            setlist.appendChild(indicator);
-            return indicator;
         }
 
         function drop(ev) {
             ev.preventDefault();
             const song = ev.dataTransfer.getData("text");
-            const targetSetlist = ev.target.closest('ul');
-            if (!targetSetlist) return;
-
-            const targetSetlistId = targetSetlist.id;
-            const indicator = targetSetlist.querySelector('.drop-indicator');
-            let insertIndex = indicator ? Array.from(targetSetlist.children).indexOf(indicator) : setlists[targetSetlistId].length;
-
-            if (indicator) indicator.remove();
-
-            if (sourceSetlist) {
-                const sourceSongs = setlists[sourceSetlist];
-                const sourceIndex = sourceSongs.indexOf(song);
-                if (sourceIndex !== -1) {
-                    sourceSongs.splice(sourceIndex, 1);
-                    if (sourceSetlist !== targetSetlistId) {
-                        updateSetlistDisplay(sourceSetlist);
-                        updateDuration(sourceSetlist);
-                    }
-                }
-            }
-
-            const targetSongs = setlists[targetSetlistId];
-            if (sourceSetlist === targetSetlistId) {
-                const originalIndex = targetSongs.indexOf(song);
-                if (originalIndex !== -1 && insertIndex > originalIndex) insertIndex--;
-            }
-            targetSongs.splice(insertIndex, 0, song);
-
+            const source = ev.dataTransfer.getData("source");
+            const targetList = ev.target.closest('ul');
+            if (!targetList) return;
+            const setlistKey = targetList.id;
+            const currentSongs = setlists[setlistKey];
             const songHasX = (songIcons[song] || []).includes('X');
-            if (songHasX) {
-                const prevSong = targetSongs[insertIndex - 1];
-                const nextSong = targetSongs[insertIndex + 1];
-                if ((prevSong && (songIcons[prevSong] || []).includes('X') && 
-                     insertIndex - 2 >= 0 && (songIcons[targetSongs[insertIndex - 2]] || []).includes('X')) ||
-                    (nextSong && (songIcons[nextSong] || []).includes('X') && 
-                     insertIndex + 2 < targetSongs.length && (songIcons[targetSongs[insertIndex + 2]] || []).includes('X'))) {
-                    if (!confirm("🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row!")) {
-                        targetSongs.splice(insertIndex, 1);
-                        if (sourceSetlist && sourceSetlist !== targetSetlistId) {
-                            setlists[sourceSetlist].push(song);
-                            updateSetlistDisplay(sourceSetlist);
-                            updateDuration(sourceSetlist);
-                        }
-                        updateSetlistDisplay(targetSetlistId);
-                        updateDuration(targetSetlistId);
-                        return;
-                    }
-                } else if ((prevSong && (songIcons[prevSong] || []).includes('X')) || 
-                           (nextSong && (songIcons[nextSong] || []).includes('X'))) {
-                    if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) {
-                        targetSongs.splice(insertIndex, 1);
-                        if (sourceSetlist && sourceSetlist !== targetSetlistId) {
-                            setlists[sourceSetlist].push(song);
-                            updateSetlistDisplay(sourceSetlist);
-                            updateDuration(sourceSetlist);
-                        }
-                        updateSetlistDisplay(targetSetlistId);
-                        updateDuration(targetSetlistId);
-                        return;
+
+            if (songHasX && currentSongs.length > 0) {
+                const lastSong = currentSongs[currentSongs.length - 1];
+                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
+                if (lastSongHasX) {
+                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) return;
+                    } else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
+                        if (!confirm("🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row!")) return;
                     }
                 }
             }
 
-            const crossfadeOptions = songData[song]?.crossfadeInto || [];
-            if (crossfadeOptions.length > 0) {
-                const currentSongTitle = song.split(' - ')[0];
-                const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
-                if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match? (OK = Yes, Cancel = nah IDC)`)) {
-                    let selectedSong;
-                    if (crossfadeOptions.length === 1) {
-                        selectedSong = crossfadeOptions[0];
-                    } else {
-                        selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+            const targetElement = ev.target.closest('li');
+            let index;
+            if (targetElement) {
+                index = Array.from(targetList.children).indexOf(targetElement);
+            } else {
+                index = currentSongs.length; // append to end
+            }
+
+            if (source === "main" || source !== setlistKey) {
+                // Add the song at the index
+                currentSongs.splice(index, 0, song);
+
+                const crossfadeOptions = songData[song]?.crossfadeInto || [];
+                if (crossfadeOptions.length > 0) {
+                    const currentSongTitle = song.split(' - ')[0];
+                    const compatibleSongs = crossfadeOptions.map(s => s.split(' - ')[0]).join(', ');
+                    if (confirm(`🤘 BAND HACK:\n${currentSongTitle} → ${compatibleSongs}\nAdd a crossfade match? (OK = Yes, Cancel = nah IDC)`)) {
+                        let selectedSong;
+                        if (crossfadeOptions.length === 1) {
+                            selectedSong = crossfadeOptions[0];
+                        } else {
+                            selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
+                        }
+                        if (selectedSong && crossfadeOptions.includes(selectedSong)) {
+                            currentSongs.splice(index + 1, 0, selectedSong);
+                        }
                     }
-                    if (selectedSong && crossfadeOptions.includes(selectedSong)) {
-                        targetSongs.splice(insertIndex + 1, 0, selectedSong);
-                    }
+                }
+            } else {
+                // Reorder: remove from current position and insert at new index
+                const existingIndex = currentSongs.indexOf(song);
+                if (existingIndex !== -1) {
+                    currentSongs.splice(existingIndex, 1);
+                    if (index > existingIndex) index--;
+                    currentSongs.splice(index, 0, song);
+                } else {
+                    // If not found, just add it
+                    currentSongs.splice(index, 0, song);
                 }
             }
 
-            updateSetlistDisplay(targetSetlistId);
-            updateDuration(targetSetlistId);
+            updateSetlistDisplay(setlistKey);
+            updateDuration(setlistKey);
             unsavedChanges = true;
+        }
+
+        function sortTable(tableId, colIndex) {
+            const table = document.getElementById(tableId);
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+
+            rows.sort((a, b) => {
+                let aText = a.children[colIndex].textContent.trim();
+                let bText = b.children[colIndex].textContent.trim();
+
+                if (colIndex === 4) { // Duration
+                    const parseDuration = (dur) => {
+                        const [min, sec] = dur.split(':').map(Number);
+                        return min * 60 + sec;
+                    };
+                    aText = parseDuration(aText);
+                    bText = parseDuration(bText);
+                    return aText - bText;
+                } else if (colIndex === 1) { // BPM
+                    aText = parseFloat(aText) || 0;
+                    bText = parseFloat(bText) || 0;
+                    return aText - bText;
+                } else {
+                    return aText.localeCompare(bText);
+                }
+            });
+
+            // Append rows in sorted order
+            rows.forEach(row => tbody.appendChild(row));
         }
 
         function updateDuration(setlistKey) {
@@ -2001,28 +1859,10 @@
                 <head>
                     <title>Lyrics for Setlist ${setlistKey.split('-')[1]}</title>
                     <style>
-                        body {
-                            font-family: Arial, sans-serif;
-                            margin: 20px;
-                            background-color: black;
-                            color: white;
-                        }
-                        h1 {
-                            text-align: center;
-                            font-size: 72pt;
-                            color: white;
-                        }
-                        h2 {
-                            margin-top: 40px;
-                            text-decoration: underline;
-                            font-size: 60pt;
-                            color: white;
-                        }
-                        pre {
-                            white-space: pre-wrap;
-                            font-size: 40pt;
-                            color: white;
-                        }
+                        body { font-family: Arial, sans-serif; margin: 20px; }
+                        h1 { text-align: center; }
+                        h2 { margin-top: 40px; }
+                        pre { white-space: pre-wrap; }
                     </style>
                 </head>
                 <body>
@@ -2042,10 +1882,11 @@
         function playMetronome(song, button) {
             const bpm = parseInt(songData[song].bpm) || 120;
             const interval = 60000 / bpm;
+            let isPlaying = button.dataset.playing === 'true';
+            let tickId;
 
-            if (button.dataset.playing === 'true') {
-                clearInterval(button.tickId);
-                button.oscillator.stop();
+            if (isPlaying) {
+                clearInterval(tickId);
                 button.dataset.playing = 'false';
                 button.textContent = `${String(bpm).padStart(3, '0')}->`;
                 return;
@@ -2059,20 +1900,28 @@
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
             oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
-            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
             oscillator.start();
-            button.oscillator = oscillator;
 
-            function triggerTick() {
-                const now = audioContext.currentTime;
-                gainNode.gain.setValueAtTime(0, now);
-                gainNode.gain.linearRampToValueAtTime(1, now + 0.001);
-                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
+            let isHigh = true;
+            tickId = setInterval(() => {
+                if (isHigh) {
+                    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
+                } else {
+                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+                }
+                isHigh = !isHigh;
+            }, interval);
+
+            button.addEventListener('click', stopMetronome, { once: true });
+
+            function stopMetronome() {
+                clearInterval(tickId);
+                oscillator.stop();
+                button.dataset.playing = 'false';
+                button.textContent = `${String(bpm).padStart(3, '0')}->`;
             }
-
-            triggerTick();
-            button.tickId = setInterval(triggerTick, interval);
         }
 
         function generateRandomSetlist(setlistKey) {
