@@ -1704,7 +1704,6 @@
 
             if (indicator) indicator.remove();
 
-            // Remove from source setlist
             if (sourceSetlist) {
                 const sourceSongs = setlists[sourceSetlist];
                 const sourceIndex = sourceSongs.indexOf(song);
@@ -1717,7 +1716,6 @@
                 }
             }
 
-            // Insert into target setlist
             const targetSongs = setlists[targetSetlistId];
             if (sourceSetlist === targetSetlistId) {
                 const originalIndex = targetSongs.indexOf(song);
@@ -1725,7 +1723,6 @@
             }
             targetSongs.splice(insertIndex, 0, song);
 
-            // Check for X violations
             const songHasX = (songIcons[song] || []).includes('X');
             if (songHasX) {
                 const prevSong = targetSongs[insertIndex - 1];
@@ -1761,7 +1758,6 @@
                 }
             }
 
-            // Handle crossfade options
             const crossfadeOptions = songData[song]?.crossfadeInto || [];
             if (crossfadeOptions.length > 0) {
                 const currentSongTitle = song.split(' - ')[0];
@@ -1921,11 +1917,10 @@
         function playMetronome(song, button) {
             const bpm = parseInt(songData[song].bpm) || 120;
             const interval = 60000 / bpm;
-            let isPlaying = button.dataset.playing === 'true';
-            let tickId;
 
-            if (isPlaying) {
-                clearInterval(tickId);
+            if (button.dataset.playing === 'true') {
+                clearInterval(button.tickId);
+                button.oscillator.stop();
                 button.dataset.playing = 'false';
                 button.textContent = `${String(bpm).padStart(3, '0')}->`;
                 return;
@@ -1939,28 +1934,20 @@
             oscillator.connect(gainNode);
             gainNode.connect(audioContext.destination);
             oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            oscillator.frequency.setValueAtTime(1000, audioContext.currentTime);
+            gainNode.gain.setValueAtTime(0, audioContext.currentTime);
             oscillator.start();
+            button.oscillator = oscillator;
 
-            let isHigh = true;
-            tickId = setInterval(() => {
-                if (isHigh) {
-                    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
-                } else {
-                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
-                }
-                isHigh = !isHigh;
-            }, interval);
-
-            button.addEventListener('click', stopMetronome, { once: true });
-
-            function stopMetronome() {
-                clearInterval(tickId);
-                oscillator.stop();
-                button.dataset.playing = 'false';
-                button.textContent = `${String(bpm).padStart(3, '0')}->`;
+            function triggerTick() {
+                const now = audioContext.currentTime;
+                gainNode.gain.setValueAtTime(0, now);
+                gainNode.gain.linearRampToValueAtTime(1, now + 0.001);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
             }
+
+            triggerTick();
+            button.tickId = setInterval(triggerTick, interval);
         }
 
         function generateRandomSetlist(setlistKey) {
