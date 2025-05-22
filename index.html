@@ -228,11 +228,6 @@
         .icon-G { color: #8B4513; }
         .icon-M { color: orange; }
         .icon-→ { color: black; }
-        .color-picker {
-            margin-left: 5px;
-            width: 100px;
-            padding: 3px;
-        }
         .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .mothball-btn, .clear-btn {
             background: #e31c1c;
             color: white;
@@ -289,7 +284,7 @@
             padding: 5px;
             color: #333;
         }
-        .welcome-popup, .instructions-popup, .song-edit-popup {
+        .welcome-popup, .song-edit-popup {
             position: fixed;
             top: 50%;
             left: 50%;
@@ -663,10 +658,10 @@
     <img src="500x300.spiralbound.logo.png" alt="SpiralBound Logo" class="logo">
 
     <div class="icon-legend-container">
-        <div class="tooltip"><span class="icon-O">O</span><span class="tooltiptext">Overdrive (Blue)</span></div>
-        <div class="tooltip"><span class="icon-X">X</span><span class="tooltiptext">Vocals (Red)</span></div>
-        <div class="tooltip"><span class="icon-G">G</span><span class="tooltiptext">Acoustic (Brown)</span></div>
-        <div class="tooltip"><span class="icon-M">M</span><span class="tooltiptext">MIDI Trigger (Orange)</span></div>
+        <div class="tooltip"><span class="icon-O">O</span><span class="tooltiptext">EZVocs (Blue)</span></div>
+        <div class="tooltip"><span class="icon-X">X</span><span class="tooltiptext">HardVocs (Red)</span></div>
+        <div class="tooltip"><span class="icon-G">G</span><span class="tooltiptext">GuitarChange (Brown)</span></div>
+        <div class="tooltip"><span class="icon-M">M</span><span class="tooltiptext">MattVocs (Orange)</span></div>
         <div class="tooltip"><span class="icon-→">→</span><span class="tooltiptext">Segue (Black)</span></div>
     </div>
 
@@ -1109,6 +1104,9 @@
                 savedSetlists = data.savedSetlists || {};
                 console.log('Loaded songData:', songData);
                 for (const song in songData) {
+                    if (songData[song].status === 'mothballs') {
+                        songData[song].status = 'mothball';
+                    }
                     if (!songData[song].status) songData[song].status = 'main';
                     if (songData[song].status === 'council' && !songData[song].votes) {
                         songData[song].votes = { Y: 0, N: 0, IDC: 0 };
@@ -1152,21 +1150,6 @@
                     }
                 }, 4000);
             }
-
-            setTimeout(() => {
-                document.body.insertAdjacentHTML('beforeend', `
-                    <div class="instructions-popup">
-                        <p><strong>How to Use:</strong><br>
-                        - Drag songs to a setlist or click "Add"<br>
-                        - Click "Save Setlist" to name and store<br>
-                        - Click "Print/Share" to generate a printable view<br>
-                        - Click "Lyrics" to view setlist lyrics</p>
-                    </div>
-                `);
-                setTimeout(() => {
-                    document.querySelector('.instructions-popup')?.remove();
-                }, 4000);
-            }, 1000);
         }
 
         function saveData() {
@@ -1289,15 +1272,7 @@
                                 </select>
                             `).join('')}
                         </div>
-                        <select class="color-picker" onchange="updateColor(this, '${song}')">
-                            <option value="">Default</option>
-                            <option value="#87CEEB" ${songColors[song] === '#87CEEB' ? 'selected' : ''}>Sky Blue</option>
-                            <option value="#FFA500" ${songColors[song] === '#FFA500' ? 'selected' : ''}>Bright Orange</option>
-                            <option value="#90EE90" ${songColors[song] === '#90EE90' ? 'selected' : ''}>Bright Green</option>
-                            <option value="#FFFF00" ${songColors[song] === '#FFFF00' ? 'selected' : ''}>Yellow</option>
-                            <option value="#FFC1CC" ${songColors[song] === '#FFC1CC' ? 'selected' : ''}>Pink</option>
-                            <option value="#D3D3D3" ${songColors[song] === '#D3D3D3' ? 'selected' : ''}>Faded Grey</option>
-                        </select>
+                        <button class="mothball-btn" onclick="mothballSong('${song}')">Mothball</button>
                         <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
                     </td>
@@ -1316,7 +1291,15 @@
                 const iconsDisplay = getIconsDisplay(song);
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${iconsDisplay} ${title}</td>
+                    <td class="song-cell">
+                        <div class="icons">${iconsDisplay}</div>
+                        <div class="song-title-container">
+                            <div class="song-title" onclick="editSong('${song}')">${title}</div>
+                            <div class="song-actions">
+                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
+                            </div>
+                        </div>
+                    </td>
                     <td>${songInfo.bpm}</td>
                     <td>${artist}</td>
                     <td>${songInfo.sn}</td>
@@ -1349,7 +1332,15 @@
                 const iconsDisplay = getIconsDisplay(song);
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${iconsDisplay} ${title}</td>
+                    <td class="song-cell">
+                        <div class="icons">${iconsDisplay}</div>
+                        <div class="song-title-container">
+                            <div class="song-title" onclick="editSong('${song}')">${title}</div>
+                            <div class="song-actions">
+                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
+                            </div>
+                        </div>
+                    </td>
                     <td>${songInfo.bpm}</td>
                     <td>${artist}</td>
                     <td>${songInfo.sn}</td>
@@ -1428,14 +1419,6 @@
             songIcons[song][index] = select.value;
             if (!select.value) songIcons[song].splice(index, 1);
             songIcons[song] = songIcons[song].filter(icon => validIcons.includes(icon));
-            populateSongTable();
-            updateAllSetlists();
-            unsavedChanges = true;
-        }
-
-        function updateColor(select, song) {
-            songColors[song] = select.value;
-            if (!select.value) delete songColors[song];
             populateSongTable();
             updateAllSetlists();
             unsavedChanges = true;
@@ -1625,14 +1608,16 @@
                 } else if (songData[song].votes.N >= 2) {
                     delete songData[song];
                 }
-                populateSongTable();
             }
+            populateSongTable();
             populateCouncilTable();
+            populateMothballsTable();
             unsavedChanges = true;
         }
 
         function mothballSong(song) {
             songData[song].status = 'mothball';
+            populateSongTable();
             populateCouncilTable();
             populateMothballsTable();
             unsavedChanges = true;
