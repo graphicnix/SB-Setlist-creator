@@ -233,7 +233,7 @@
             width: 100px;
             padding: 3px;
         }
-        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .mothball-btn {
+        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .mothball-btn, .clear-btn {
             background: #e31c1c;
             color: white;
             border: none;
@@ -596,9 +596,13 @@
         }
         .setlist-buttons {
             display: flex;
-            justify-content: center;
             gap: 10px;
-            margin-bottom: 10px;
+        }
+        .setlist-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
         }
         .council-table, .mothballs-table {
             width: 100%;
@@ -726,48 +730,57 @@
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
-        <div class="setlist-buttons">
-            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
-            <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
-        </div>
         <div class="randomizer-container">
             <img src="200x200-button.png" alt="Randomize Setlist 1" class="random-button" data-setlist="setlist-1">
         </div>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+        <div class="setlist-footer">
+            <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+            <div class="setlist-buttons">
+                <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
+                <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+                <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
+                <button class="clear-btn" onclick="clearSetlist('setlist-1')">Clear</button>
+            </div>
+        </div>
     </div>
 
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
         </div>
-        <div class="setlist-buttons">
-            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
-            <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
-        </div>
         <div class="randomizer-container">
             <img src="200x200-button.png" alt="Randomize Setlist 2" class="random-button" data-setlist="setlist-2">
         </div>
         <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+        <div class="setlist-footer">
+            <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+            <div class="setlist-buttons">
+                <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
+                <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+                <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
+                <button class="clear-btn" onclick="clearSetlist('setlist-2')">Clear</button>
+            </div>
+        </div>
     </div>
 
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
         </div>
-        <div class="setlist-buttons">
-            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
-            <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
-        </div>
         <div class="randomizer-container">
             <img src="200x200-button.png" alt="Randomize Setlist 3" class="random-button" data-setlist="setlist-3">
         </div>
         <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
-        <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+        <div class="setlist-footer">
+            <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+            <div class="setlist-buttons">
+                <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
+                <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+                <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
+                <button class="clear-btn" onclick="clearSetlist('setlist-3')">Clear</button>
+            </div>
+        </div>
     </div>
 
     <div class="council">
@@ -1678,7 +1691,6 @@
             }
 
             if (source === "main" || source !== setlistKey) {
-                // Add the song at the index
                 currentSongs.splice(index, 0, song);
 
                 const crossfadeOptions = songData[song]?.crossfadeInto || [];
@@ -1698,14 +1710,12 @@
                     }
                 }
             } else {
-                // Reorder: remove from current position and insert at new index
                 const existingIndex = currentSongs.indexOf(song);
                 if (existingIndex !== -1) {
                     currentSongs.splice(existingIndex, 1);
                     if (index > existingIndex) index--;
                     currentSongs.splice(index, 0, song);
                 } else {
-                    // If not found, just add it
                     currentSongs.splice(index, 0, song);
                 }
             }
@@ -1724,7 +1734,7 @@
                 let aText = a.children[colIndex].textContent.trim();
                 let bText = b.children[colIndex].textContent.trim();
 
-                if (colIndex === 4) { // Duration
+                if (colIndex === 4) { 
                     const parseDuration = (dur) => {
                         const [min, sec] = dur.split(':').map(Number);
                         return min * 60 + sec;
@@ -1732,7 +1742,7 @@
                     aText = parseDuration(aText);
                     bText = parseDuration(bText);
                     return aText - bText;
-                } else if (colIndex === 1) { // BPM
+                } else if (colIndex === 1) { 
                     aText = parseFloat(aText) || 0;
                     bText = parseFloat(bText) || 0;
                     return aText - bText;
@@ -1741,7 +1751,6 @@
                 }
             });
 
-            // Append rows in sorted order
             rows.forEach(row => tbody.appendChild(row));
         }
 
@@ -1859,10 +1868,27 @@
                 <head>
                     <title>Lyrics for Setlist ${setlistKey.split('-')[1]}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        h1 { text-align: center; }
-                        h2 { margin-top: 40px; }
-                        pre { white-space: pre-wrap; }
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                            color: white;
+                            background-color: black;
+                        }
+                        h1 {
+                            text-align: center;
+                            font-size: 60pt;
+                        }
+                        h2 {
+                            margin-top: 40px;
+                            text-decoration: underline;
+                            font-size: 60pt;
+                            text-align: center;
+                        }
+                        pre {
+                            white-space: pre-wrap;
+                            font-size: 40pt;
+                            text-align: center;
+                        }
                     </style>
                 </head>
                 <body>
@@ -1879,14 +1905,25 @@
             lyricsWindow.document.close();
         }
 
+        function clearSetlist(setlistKey) {
+            if (confirm('Are you sure you want to clear this setlist?')) {
+                setlists[setlistKey] = [];
+                updateSetlistDisplay(setlistKey);
+                updateDuration(setlistKey);
+                unsavedChanges = true;
+            }
+        }
+
         function playMetronome(song, button) {
             const bpm = parseInt(songData[song].bpm) || 120;
-            const interval = 60000 / bpm;
-            let isPlaying = button.dataset.playing === 'true';
-            let tickId;
+            const timeSignature = songData[song].timeSignature || '4/4';
+            const beatsPerMeasure = parseInt(timeSignature.split('/')[0]);
+            const totalTicks = 2 * beatsPerMeasure;
+            const intervalMs = 60000 / bpm;
 
-            if (isPlaying) {
-                clearInterval(tickId);
+            if (button.dataset.playing === 'true') {
+                button.timeoutIds.forEach(clearTimeout);
+                button.timeoutIds = [];
                 button.dataset.playing = 'false';
                 button.textContent = `${String(bpm).padStart(3, '0')}->`;
                 return;
@@ -1894,34 +1931,43 @@
 
             button.dataset.playing = 'true';
             button.textContent = 'Stop';
+            button.timeoutIds = [];
 
-            const oscillator = audioContext.createOscillator();
-            const gainNode = audioContext.createGain();
-            oscillator.connect(gainNode);
-            gainNode.connect(audioContext.destination);
-            oscillator.type = 'square';
-            oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
-            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
-            oscillator.start();
+            let currentTick = 0;
 
-            let isHigh = true;
-            tickId = setInterval(() => {
-                if (isHigh) {
-                    oscillator.frequency.setValueAtTime(880, audioContext.currentTime);
-                } else {
-                    oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+            const playTick = () => {
+                if (currentTick >= totalTicks) {
+                    setTimeout(() => {
+                        button.timeoutIds = [];
+                        button.dataset.playing = 'false';
+                        button.textContent = `${String(bpm).padStart(3, '0')}->`;
+                    }, intervalMs);
+                    return;
                 }
-                isHigh = !isHigh;
-            }, interval);
 
-            button.addEventListener('click', stopMetronome, { once: true });
+                const isAccent = (currentTick % beatsPerMeasure) === 0;
+                const frequency = isAccent ? 1500 : 1000;
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+                gainNode.gain.setValueAtTime(0, audioContext.currentTime);
+                gainNode.gain.linearRampToValueAtTime(1, audioContext.currentTime + 0.001);
+                gainNode.gain.linearRampToValueAtTime(0, audioContext.currentTime + 0.05);
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.05);
 
-            function stopMetronome() {
-                clearInterval(tickId);
-                oscillator.stop();
-                button.dataset.playing = 'false';
-                button.textContent = `${String(bpm).padStart(3, '0')}->`;
-            }
+                currentTick++;
+
+                if (currentTick < totalTicks) {
+                    const nextTimeout = setTimeout(playTick, intervalMs);
+                    button.timeoutIds.push(nextTimeout);
+                }
+            };
+
+            playTick();
         }
 
         function generateRandomSetlist(setlistKey) {
