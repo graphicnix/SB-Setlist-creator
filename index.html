@@ -233,7 +233,7 @@
             width: 100px;
             padding: 3px;
         }
-        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn {
+        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .mothball-btn {
             background: #e31c1c;
             color: white;
             border: none;
@@ -242,7 +242,7 @@
             cursor: pointer;
             margin-left: 5px;
         }
-        .add-btn, .edit-btn {
+        .add-btn, .edit-btn, .mothball-btn {
             background: #450202;
         }
         .sync-btn {
@@ -623,6 +623,9 @@
             justify-content: flex-start;
             margin-bottom: 5px;
         }
+        .randomizer-container {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -912,6 +915,7 @@
                 songIcons = data.songIcons || {};
                 songColors = data.songColors || {};
                 savedSetlists = data.savedSetlists || {};
+                console.log('Loaded songData:', songData);
                 for (const song in songData) {
                     if (!songData[song].status) songData[song].status = 'main';
                     if (songData[song].status === 'council' && !songData[song].votes) {
@@ -1041,6 +1045,7 @@
         function populateSongTable() {
             const tbody = document.getElementById('song-table-body');
             tbody.innerHTML = '';
+            console.log('Populating song table with', Object.keys(songData).length, 'songs');
             for (const song in songData) {
                 if (songData[song].status !== 'main') continue;
                 const songInfo = songData[song];
@@ -1170,6 +1175,7 @@
                     <label>Lyrics: <textarea id="edit-song-lyrics">${songInfo.lyrics || ''}</textarea></label>
                     <div class="song-edit-buttons">
                         <button class="save-btn" onclick="saveSongEdit('${song}')">Save</button>
+                        <button class="mothball-btn" onclick="moveSongToMothballs('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Mothball</button>
                         <button class="delete-btn" onclick="deleteSong('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Delete</button>
                         <button class="delete-btn" onclick="document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Cancel</button>
                     </div>
@@ -1226,53 +1232,98 @@
             }
         }
 
+        function moveSongToMothballs(song) {
+            songData[song].status = 'mothballs';
+            if (songData[song].votes) delete songData[song].votes;
+            populateSongTable();
+            populateCouncilTable();
+            populateMothballsTable();
+            unsavedChanges = true;
+        }
+
         function generateRandomSetlist() {
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
             let totalDuration = 0;
-            const maxDuration = 40 * 60;
-            let oCount = 0;
-            let xCount = 0;
+            const maxDuration = 40 * 60; // 40 minutes in seconds
+
+            // Select first song: high BPM
+            const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120);
+            if (strongSongs.length > 0) {
+                const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
+                selectedSongs.push(firstSong);
+                totalDuration += parseDuration(songData[firstSong].duration);
+            } else {
+                // Fallback to any song
+                const firstSong = allSongs[Math.floor(Math.random() * allSongs.length)];
+                selectedSongs.push(firstSong);
+                totalDuration += parseDuration(songData[firstSong].duration);
+            }
 
             while (totalDuration < maxDuration) {
+                const lastSong = selectedSongs[selectedSongs.length - 1];
                 let candidates = allSongs.filter(song => !selectedSongs.includes(song));
-                if (selectedSongs.length > 0) {
-                    const lastSong = selectedSongs[selectedSongs.length - 1];
-                    const lastBPM = getBPM(lastSong);
-                    const len = selectedSongs.length;
 
-                    if (len % 3 === 0 || len % 3 === 1) {
-                        candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) <= 10);
-                    } else {
-                        candidates = candidates.filter(song => Math.abs(getBPM(song) - lastBPM) > 20);
-                    }
-
-                    if ((songIcons[lastSong] || []).includes('O')) {
-                        candidates = candidates.filter(song => !(songIcons[song] || []).includes('O'));
-                    }
-                    if ((songIcons[lastSong] || []).includes('X')) {
-                        candidates = candidates.filter(song => !(songIcons[song] || []).includes('X'));
-                    }
-
-                    if (xCount >= 3 && oCount < Math.floor(xCount / 3)) {
-                        candidates = candidates.filter(song => (songIcons[song] || []).includes('O'));
+                // Prefer crossfade if possible
+                const crossfadeOptions = songData[lastSong]?.crossfadeInto || [];
+                if (crossfadeOptions.length > 0 && Math.random() < 0.3) {
+                    const availableCrossfade = crossfadeOptions.filter(song => candidates.includes(song));
+                    if (availableCrossfade.length > 0) {
+                        const nextSong = availableCrossfade[Math.floor(Math.random() * availableCrossfade.length)];
+                        selectedSongs.push(nextSong);
+                        totalDuration += parseDuration(songData[nextSong].duration);
+                        continue;
                     }
                 }
 
-                const suitableSongs = candidates.filter(song => {
-                    const duration = parseDuration(songData[song].duration);
-                    return totalDuration + duration <= maxDuration;
-                });
-
-                if (suitableSongs.length > 0) {
-                    const nextSong = suitableSongs[Math.floor(Math.random() * suitableSongs.length)];
+                // Prefer same SN
+                const sameSNSongs = candidates.filter(song => songData[song].sn === songData[lastSong].sn);
+                if (sameSNSongs.length > 0) {
+                    const nextSong = sameSNSongs[Math.floor(Math.random() * sameSNSongs.length)];
                     selectedSongs.push(nextSong);
                     totalDuration += parseDuration(songData[nextSong].duration);
-                    if ((songIcons[nextSong] || []).includes('O')) oCount++;
-                    if ((songIcons[nextSong] || []).includes('X')) xCount++;
+                    continue;
+                }
+
+                // Otherwise, select based on BPM
+                const lastBPM = parseInt(songData[lastSong].bpm) || 0;
+                const position = selectedSongs.length;
+                const totalSongsEstimate = Math.ceil(maxDuration / (totalDuration / position)); // rough estimate
+                if (position >= Math.floor(totalSongsEstimate / 3) && position <= Math.floor(2 * totalSongsEstimate / 3)) {
+                    candidates = candidates.filter(song => parseInt(songData[song].bpm) < 100);
+                } else {
+                    candidates = candidates.filter(song => Math.abs(parseInt(songData[song].bpm) - lastBPM) <= 10);
+                }
+
+                if (candidates.length > 0) {
+                    const nextSong = candidates[Math.floor(Math.random() * candidates.length)];
+                    selectedSongs.push(nextSong);
+                    totalDuration += parseDuration(songData[nextSong].duration);
                 } else {
                     break;
                 }
+            }
+
+            // Ensure last song is strong
+            if (selectedSongs.length > 1) {
+                const lastSong = selectedSongs[selectedSongs.length - 1];
+                if (parseInt(songData[lastSong].bpm) <= 120) {
+                    const strongCandidates = allSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
+                    if (strongCandidates.length > 0) {
+                        selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
+                    }
+                }
+            }
+
+            // Check for crossfade pairs
+            let crossfadeCount = 0;
+            for (let i = 0; i < selectedSongs.length - 1; i++) {
+                if (songData[selectedSongs[i]]?.crossfadeInto?.includes(selectedSongs[i + 1])) {
+                    crossfadeCount++;
+                }
+            }
+            if (crossfadeCount < 2) {
+                console.log('Warning: Less than 2 crossfade pairs');
             }
 
             setlists['setlist-1'] = selectedSongs;
@@ -2200,15 +2251,6 @@
             unsavedChanges = true;
         }
 
-        function moveSongToMothballs(song) {
-            songData[song].status = 'mothballs';
-            if (songData[song].votes) delete songData[song].votes;
-            populateSongTable();
-            populateCouncilTable();
-            populateMothballsTable();
-            unsavedChanges = true;
-        }
-
         document.getElementById('random-button').addEventListener('click', function() {
             this.src = '200x200-button2.png';
             setTimeout(() => {
@@ -2241,7 +2283,7 @@
                     <th onclick="sortTable(0, 'alternative-grunge-rock')">Song Title</th>
                     <th onclick="sortTable(1, 'alternative-grunge-rock')">BPM</th>
                     <th onclick="sortTable(2, 'alternative-grunge-rock')">Artist</th>
-                    <th onclick="sortTable(3, 'alternative-grunge-rock')">SN</th>
+                    <th onclick="sortTable(3, 'alternative-grunge-rock')" class="tooltip">SN<span class="tooltiptext">Circle of Fifths</span></th>
                     <th onclick="sortTable(4, 'alternative-grunge-rock')">Duration</th>
                     <th>Crossfade Options</th>
                     <th>Actions</th>
@@ -2252,7 +2294,9 @@
     </div>
 
     <div class="setlist">
-        <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
+        <div class="randomizer-container">
+            <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
+        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
