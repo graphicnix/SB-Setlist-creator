@@ -701,18 +701,17 @@
             loadData();
             setupSearch();
 
-            const randomButton = document.getElementById('random-button');
-            if (randomButton) {
-                randomButton.addEventListener('click', function() {
-                    this.src = '200x200-button2.png';  // Change image source on click
-                    generateRandomSetlist();
+            const randomButtons = document.querySelectorAll('.random-button');
+            randomButtons.forEach(button => {
+                const setlistKey = button.getAttribute('data-setlist');
+                button.addEventListener('click', function() {
+                    this.src = '200x200-button2.png';
+                    generateRandomSetlist(setlistKey);
                     setTimeout(() => {
-                        this.src = '200x200-button.png';  // Revert after 5 seconds
+                        this.src = '200x200-button.png';
                     }, 5000);
                 });
-            } else {
-                console.error('Element with id "random-button" not found.');
-            }
+            });
         }
 
         window.onload = function() {
@@ -1297,21 +1296,32 @@
             return songIcons[song] && songIcons[song].includes(icon);
         }
 
-        function generateRandomSetlist() {
+        function generateRandomSetlist(targetSetlistKey) {
+            const allSetlistsSongs = new Set();
+            Object.keys(setlists).forEach(key => {
+                setlists[key].forEach(song => allSetlistsSongs.add(song));
+            });
+
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
             let totalDuration = 0;
             const maxDuration = 40 * 60;
 
-            const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120);
+            const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120 && !allSetlistsSongs.has(song));
             if (strongSongs.length > 0) {
                 const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             } else {
-                const firstSong = allSongs[Math.floor(Math.random() * allSongs.length)];
-                selectedSongs.push(firstSong);
-                totalDuration += parseDuration(songData[firstSong].duration);
+                const availableSongs = allSongs.filter(song => !allSetlistsSongs.has(song));
+                if (availableSongs.length > 0) {
+                    const firstSong = availableSongs[Math.floor(Math.random() * availableSongs.length)];
+                    selectedSongs.push(firstSong);
+                    totalDuration += parseDuration(songData[firstSong].duration);
+                } else {
+                    alert('No available songs to start the setlist for ' + targetSetlistKey);
+                    return;
+                }
             }
 
             let lastBPM = parseInt(songData[selectedSongs[0]].bpm) || 0;
@@ -1320,7 +1330,7 @@
             while (totalDuration < maxDuration) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
                 const lastHasX = hasIcon(lastSong, 'X');
-                let candidates = allSongs.filter(song => !selectedSongs.includes(song));
+                let candidates = allSongs.filter(song => !selectedSongs.includes(song) && !allSetlistsSongs.has(song));
 
                 if (lastHasX) {
                     candidates = candidates.filter(song => !hasIcon(song, 'X'));
@@ -1393,16 +1403,16 @@
             if (selectedSongs.length > 1) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
                 if (parseInt(songData[lastSong].bpm) <= 120) {
-                    const strongCandidates = allSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
+                    const strongCandidates = allSongs.filter(song => !selectedSongs.includes(song) && !allSetlistsSongs.has(song) && parseInt(songData[song].bpm) > 120);
                     if (strongCandidates.length > 0) {
                         selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
                     }
                 }
             }
 
-            setlists['setlist-1'] = selectedSongs;
-            updateSetlistDisplay('setlist-1');
-            updateDuration('setlist-1');
+            setlists[targetSetlistKey] = selectedSongs;
+            updateSetlistDisplay(targetSetlistKey);
+            updateDuration(targetSetlistKey);
             unsavedChanges = true;
         }
 
@@ -2369,6 +2379,9 @@
     </div>
 
     <div class="setlist">
+        <div class="randomizer-container">
+            <img src="200x200-button.png" class="random-button" data-setlist="setlist-1" style="cursor: pointer;">
+        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
@@ -2383,6 +2396,9 @@
     </div>
 
     <div class="setlist">
+        <div class="randomizer-container">
+            <img src="200x200-button.png" class="random-button" data-setlist="setlist-2" style="cursor: pointer;">
+        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
         </div>
@@ -2396,11 +2412,10 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
     </div>
 
-    <div class="randomizer-container">
-        <img src="200x200-button.png" id="random-button" style="cursor: pointer;">
-    </div>
-
     <div class="setlist">
+        <div class="randomizer-container">
+            <img src="200x200-button.png" class="random-button" data-setlist="setlist-3" style="cursor: pointer;">
+        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
         </div>
