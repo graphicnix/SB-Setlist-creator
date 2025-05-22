@@ -617,7 +617,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-bottom: 10px;
+            margin-top: 10px;
         }
         .council-table, .mothballs-table {
             width: 100%;
@@ -644,7 +644,7 @@
         }
         .randomizer-container {
             text-align: center;
-            margin: 20px 0;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -745,48 +745,48 @@
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
-        <div class="setlist-buttons">
-            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
-            <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
-        </div>
         <div class="randomizer-container">
             <img src="200x200-button.png" alt="Randomize Setlist 1" class="random-button" data-setlist="setlist-1">
         </div>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
+        <div class="setlist-buttons">
+            <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
+        </div>
     </div>
 
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
         </div>
-        <div class="setlist-buttons">
-            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
-            <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
-        </div>
         <div class="randomizer-container">
             <img src="200x200-button.png" alt="Randomize Setlist 2" class="random-button" data-setlist="setlist-2">
         </div>
         <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
+        <div class="setlist-buttons">
+            <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
+        </div>
     </div>
 
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
         </div>
-        <div class="setlist-buttons">
-            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
-            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
-            <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
-        </div>
         <div class="randomizer-container">
             <img src="200x200-button.png" alt="Randomize Setlist 3" class="random-button" data-setlist="setlist-3">
         </div>
         <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
         <div class="duration-total" id="duration-3">Total Duration: 0:00</div>
+        <div class="setlist-buttons">
+            <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
+            <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <button class="lyrics-btn" onclick="showLyrics('setlist-3')">Lyrics</button>
+        </div>
     </div>
 
     <div class="council">
@@ -1964,10 +1964,28 @@
                 <head>
                     <title>Lyrics for Setlist ${setlistKey.split('-')[1]}</title>
                     <style>
-                        body { font-family: Arial, sans-serif; margin: 20px; }
-                        h1 { text-align: center; }
-                        h2 { margin-top: 40px; }
-                        pre { white-space: pre-wrap; }
+                        body {
+                            font-family: Arial, sans-serif;
+                            margin: 20px;
+                            background-color: black;
+                            color: white;
+                        }
+                        h1 {
+                            text-align: center;
+                            font-size: 72pt;
+                            color: white;
+                        }
+                        h2 {
+                            margin-top: 40px;
+                            text-decoration: underline;
+                            font-size: 60pt;
+                            color: white;
+                        }
+                        pre {
+                            white-space: pre-wrap;
+                            font-size: 40pt;
+                            color: white;
+                        }
                     </style>
                 </head>
                 <body>
