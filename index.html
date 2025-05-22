@@ -149,6 +149,14 @@
         th:hover {
             background-color: #ddd;
         }
+        th.sorted-asc::after {
+            content: ' ↑';
+            color: #e31c1c;
+        }
+        th.sorted-desc::after {
+            content: ' ↓';
+            color: #e31c1c;
+        }
         .setlist {
             margin-top: 20px;
             background: #565656;
@@ -682,11 +690,11 @@
         <table id="alternative-grunge-rock">
             <thead>
                 <tr>
-                    <th>Song Title</th>
-                    <th>BPM</th>
-                    <th>Artist</th>
-                    <th>SN</th>
-                    <th>Duration</th>
+                    <th onclick="sortSongs('title')">Song Title</th>
+                    <th onclick="sortSongs('bpm')">BPM</th>
+                    <th onclick="sortSongs('artist')">Artist</th>
+                    <th onclick="sortSongs('sn')">SN</th>
+                    <th onclick="sortSongs('duration')">Duration</th>
                     <th>Crossfades</th>
                     <th>Actions</th>
                 </tr>
@@ -830,7 +838,6 @@
 
     <script>
         let audioContext = new (window.AudioContext || window.webkitAudioContext)();
-
         const correctPassword = "haircut";
         let userPassword = localStorage.getItem('sitePassword');
         let songData = {};
@@ -843,6 +850,8 @@
         let lastSaveTime = Date.now();
         let currentSelectedSong = null;
         let unsavedChanges = false;
+        let currentSortColumn = 'title'; // Default sort by title
+        let currentSortDirection = 1; // 1 for ascending, -1 for descending
 
         const TUNING_OPTIONS = [
             "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std", "Drop C",
@@ -850,6 +859,14 @@
         ];
 
         const TIME_SIGNATURE_OPTIONS = ["4/4", "3/4", "6/8", "5/4"];
+
+        const columnIndices = {
+            'title': 1,
+            'bpm': 2,
+            'artist': 3,
+            'sn': 4,
+            'duration': 5
+        };
 
         function checkPassword() {
             const input = document.getElementById('password-input').value;
@@ -1233,12 +1250,44 @@
             }
         }
 
+        function getSortedSongKeys() {
+            let keys = Object.keys(songData).filter(key => songData[key].status === 'main');
+            if (currentSortColumn) {
+                keys.sort((a, b) => {
+                    const aValue = getSortValue(a, currentSortColumn);
+                    const bValue = getSortValue(b, currentSortColumn);
+                    if (aValue < bValue) return -currentSortDirection;
+                    if (aValue > bValue) return currentSortDirection;
+                    return 0;
+                });
+            }
+            return keys;
+        }
+
+        function getSortValue(songKey, column) {
+            const song = songData[songKey];
+            switch (column) {
+                case 'title':
+                    return songKey.split(' - ')[0].toLowerCase();
+                case 'artist':
+                    return songKey.split(' - ')[1].toLowerCase();
+                case 'bpm':
+                    return parseInt(song.bpm) || 0;
+                case 'sn':
+                    return song.sn.toLowerCase();
+                case 'duration':
+                    const [min, sec] = (song.duration || '0:00').split(':').map(Number);
+                    return min * 60 + sec;
+                default:
+                    return songKey.toLowerCase();
+            }
+        }
+
         function populateSongTable() {
             const tbody = document.getElementById('song-table-body');
             tbody.innerHTML = '';
-            console.log('Populating song table with', Object.keys(songData).length, 'songs');
-            for (const song in songData) {
-                if (songData[song].status !== 'main') continue;
+            const sortedKeys = getSortedSongKeys();
+            sortedKeys.forEach(song => {
                 const songInfo = songData[song];
                 const [title, artist] = song.split(' - ');
                 const iconsDisplay = getIconsDisplay(song);
@@ -1301,7 +1350,28 @@
                     </td>
                 `;
                 tbody.appendChild(row);
+            });
+            updateSortIndicators();
+        }
+
+        function updateSortIndicators() {
+            document.querySelectorAll('th').forEach(th => {
+                th.classList.remove('sorted-asc', 'sorted-desc');
+            });
+            if (currentSortColumn && columnIndices[currentSortColumn]) {
+                const header = document.querySelector(`th:nth-child(${columnIndices[currentSortColumn]})`);
+                header.classList.add(currentSortDirection === 1 ? 'sorted-asc' : 'sorted-desc');
             }
+        }
+
+        function sortSongs(column) {
+            if (currentSortColumn === column) {
+                currentSortDirection *= -1;
+            } else {
+                currentSortColumn = column;
+                currentSortDirection = 1;
+            }
+            populateSongTable();
         }
 
         function populateCouncilTable() {
