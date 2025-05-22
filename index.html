@@ -1114,15 +1114,25 @@
 
         async function loadData() {
             try {
-                const response = await fetch(`data.json?t=${new Date().getTime()}`);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
+                const dataResponse = await fetch(`data.json?t=${new Date().getTime()}`);
+                if (!dataResponse.ok) throw new Error(`HTTP error! status: ${dataResponse.status}`);
+                const data = await dataResponse.json();
                 songData = data.songData || {};
                 setlists = data.setlists || { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
                 songIcons = data.songIcons || {};
                 songColors = data.songColors || {};
                 savedSetlists = data.savedSetlists || {};
-                console.log('Loaded songData:', songData);
+
+                const lyricsResponse = await fetch(`lyrics.json?t=${new Date().getTime()}`);
+                if (lyricsResponse.ok) {
+                    const lyricsData = await lyricsResponse.json();
+                    for (const song in songData) {
+                        songData[song].lyrics = lyricsData[song] || '';
+                    }
+                } else {
+                    console.warn('lyrics.json not found, lyrics will be empty');
+                }
+
                 for (const song in songData) {
                     if (!songData[song].status) songData[song].status = 'main';
                     if (songData[song].status === 'council' && !songData[song].votes) {
@@ -1131,17 +1141,16 @@
                     if (!songData[song].timeSignature) songData[song].timeSignature = '4/4';
                 }
             } catch (error) {
-                console.error('Error loading data.json:', error);
-                const storedSongs = localStorage.getItem('songData');
-                const storedSetlists = localStorage.getItem('setlists');
-                const storedIcons = localStorage.getItem('songIcons');
-                const storedColors = localStorage.getItem('songColors');
-                const storedSavedSetlists = localStorage.getItem('savedSetlists');
-                if (storedSongs) songData = JSON.parse(storedSongs);
-                if (storedSetlists) setlists = JSON.parse(storedSetlists);
-                if (storedIcons) songIcons = JSON.parse(storedIcons);
-                if (storedColors) songColors = JSON.parse(storedColors);
-                if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
+                console.error('Error loading data:', error);
+                songData = JSON.parse(localStorage.getItem('songData') || '{}');
+                setlists = JSON.parse(localStorage.getItem('setlists') || '{}');
+                songIcons = JSON.parse(localStorage.getItem('songIcons') || '{}');
+                songColors = JSON.parse(localStorage.getItem('songColors') || '{}');
+                savedSetlists = JSON.parse(localStorage.getItem('savedSetlists') || '{}');
+                const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
+                for (const song in songData) {
+                    songData[song].lyrics = lyricsData[song] || '';
+                }
             }
             populateSongTable();
             populateCouncilTable();
@@ -1185,22 +1194,35 @@
         }
 
         function saveData() {
+            const lyricsData = {};
+            for (const song in songData) {
+                if (songData[song].lyrics) {
+                    lyricsData[song] = songData[song].lyrics;
+                    delete songData[song].lyrics; // Temporarily remove lyrics
+                }
+            }
             const data = { songData, setlists, songIcons, songColors, savedSetlists };
             localStorage.setItem('songData', JSON.stringify(songData));
+            localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
             localStorage.setItem('setlists', JSON.stringify(setlists));
             localStorage.setItem('songIcons', JSON.stringify(songIcons));
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
-            syncToGitHub(data).then(() => {
+            syncToGitHub(data, lyricsData).then(() => {
                 alert('Save and sync completed!');
                 unsavedChanges = false;
                 lastSaveTime = Date.now();
             }).catch(err => {
                 alert('Save to local storage succeeded, but sync failed: ' + err.message);
+            }).finally(() => {
+                // Restore lyrics
+                for (const song in lyricsData) {
+                    songData[song].lyrics = lyricsData[song];
+                }
             });
         }
 
-        async function syncToGitHub(data) {
+        async function syncToGitHub(data, lyricsData) {
             if (!githubToken) {
                 githubToken = prompt('Enter your GitHub token (one-time setup):');
                 if (!githubToken) return;
@@ -1209,28 +1231,16 @@
 
             const repoOwner = 'graphicnix';
             const repoName = 'SB-Setlist-creator';
-            const filePath = 'data.json';
-            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+            const dataUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/data.json`;
+            const lyricsUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/lyrics.json`;
 
-            try {
-                const getResponse = await fetch(url, {
-                    headers: { 'Authorization': `token ${githubToken}` }
-                });
-                let sha = '';
-                if (getResponse.ok) {
-                    const fileData = await getResponse.json();
-                    sha = fileData.sha;
-                } else if (getResponse.status !== 404) {
-                    throw new Error('Failed to fetch current file');
-                }
-
+            const uploadFile = async (url, content, sha) => {
                 const encoder = new TextEncoder();
-                const jsonString = JSON.stringify(data, null, 2);
+                const jsonString = JSON.stringify(content, null, 2);
                 const utf8Bytes = encoder.encode(jsonString);
                 const binaryString = String.fromCharCode(...utf8Bytes);
                 const base64Content = btoa(binaryString);
-
-                const updateResponse = await fetch(url, {
+                const response = await fetch(url, {
                     method: 'PUT',
                     headers: {
                         'Authorization': `token ${githubToken}`,
@@ -1242,12 +1252,28 @@
                         sha: sha || undefined
                     })
                 });
+                if (!response.ok) throw new Error('Sync failed for ' + url);
+            };
 
-                if (!updateResponse.ok) throw new Error('Sync failed');
+            let dataSha = '';
+            let lyricsSha = '';
+            try {
+                const dataResponse = await fetch(dataUrl, { headers: { 'Authorization': `token ${githubToken}` } });
+                if (dataResponse.ok) {
+                    const fileData = await dataResponse.json();
+                    dataSha = fileData.sha;
+                }
+                const lyricsResponse = await fetch(lyricsUrl, { headers: { 'Authorization': `token ${githubToken}` } });
+                if (lyricsResponse.ok) {
+                    const fileData = await lyricsResponse.json();
+                    lyricsSha = fileData.sha;
+                }
             } catch (error) {
-                console.error('Sync error:', error);
-                throw error;
+                console.error('Error fetching SHAs:', error);
             }
+
+            await uploadFile(dataUrl, data, dataSha);
+            await uploadFile(lyricsUrl, lyricsData, lyricsSha);
         }
 
         function getSortedSongKeys() {
@@ -1563,9 +1589,11 @@
                 duration: duration || '0:00',
                 tuning: tuning,
                 timeSignature: timeSignature,
-                lyrics: lyrics || '',
                 status: 'main'
             };
+            const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
+            lyricsData[songKey] = lyrics || '';
+            localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
 
             document.getElementById('new-title').value = '';
             document.getElementById('new-artist').value = '';
@@ -1639,11 +1667,17 @@
                 duration: duration || '0:00',
                 tuning: tuning,
                 timeSignature: timeSignature,
-                lyrics: lyrics || '',
                 status: songInfo.status,
                 votes: songInfo.votes || { Y: 0, N: 0, IDC: 0 },
                 crossfadeInto: songInfo.crossfadeInto || []
             };
+
+            const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
+            lyricsData[newSongKey] = lyrics || '';
+            if (newSongKey !== originalSong) {
+                delete lyricsData[originalSong];
+            }
+            localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
 
             if (newSongKey !== originalSong) {
                 delete songData[originalSong];
@@ -1676,6 +1710,9 @@
                 for (const setlistKey in setlists) {
                     setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
                 }
+                const lyricsData = JSON.parse(localStorage.getItem('lyricsData') || '{}');
+                delete lyricsData[song];
+                localStorage.setItem('lyricsData', JSON.stringify(lyricsData));
                 populateSongTable();
                 populateCouncilTable();
                 populateMothballsTable();
