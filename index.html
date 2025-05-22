@@ -283,7 +283,7 @@
         .song-actions {
             margin-left: 10px;
         }
-        input, textarea {
+        input, textarea, select {
             background-color: #d9d9d3;
             border: 1px solid #ccc;
             padding: 5px;
@@ -625,6 +625,7 @@
         }
         .randomizer-container {
             text-align: center;
+            margin: 20px 0;
         }
     </style>
 </head>
@@ -675,6 +676,8 @@
             "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C", "Open E", "C std"
         ];
 
+        const TIME_SIGNATURE_OPTIONS = ["4/4", "3/4", "6/8", "5/4"];
+
         function checkPassword() {
             const input = document.getElementById('password-input').value;
             if (input.toLowerCase() === correctPassword) {
@@ -694,7 +697,27 @@
             localStorage.removeItem('sitePassword');
         }
 
+        function initializeApp() {
+            loadData();
+            setupSearch();
+
+            const randomButton = document.getElementById('random-button');
+            if (randomButton) {
+                randomButton.addEventListener('click', function() {
+                    this.src = '200x200-button2.png';  // Change image source on click
+                    generateRandomSetlist();
+                    setTimeout(() => {
+                        this.src = '200x200-button.png';  // Revert after 5 seconds
+                    }, 5000);
+                });
+            } else {
+                console.error('Element with id "random-button" not found.');
+            }
+        }
+
         window.onload = function() {
+            initializeApp();
+
             setInterval(() => {
                 if (unsavedChanges && Date.now() - lastSaveTime >= 300000) {
                     if (confirm('You have unsaved changes. Would you like to save now?')) {
@@ -711,11 +734,6 @@
                 }
             });
         };
-
-        function initializeApp() {
-            loadData();
-            setupSearch();
-        }
 
         function getIconsDisplay(song) {
             const icons = songIcons[song] || [];
@@ -921,6 +939,7 @@
                     if (songData[song].status === 'council' && !songData[song].votes) {
                         songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                     }
+                    if (!songData[song].timeSignature) songData[song].timeSignature = '4/4';
                 }
             } catch (error) {
                 console.error('Error loading data.json:', error);
@@ -1164,6 +1183,13 @@
                     <label>Key: <input type="text" id="edit-song-key" value="${songInfo.key || ''}"></label>
                     <label>SN: <input type="text" id="edit-song-sn" value="${songInfo.sn || ''}"></label>
                     <label>BPM: <input type="text" id="edit-song-bpm" value="${songInfo.bpm || ''}"></label>
+                    <label>Time Signature:
+                        <select id="edit-song-time-signature">
+                            ${TIME_SIGNATURE_OPTIONS.map(opt =>
+                                `<option value="${opt}" ${songInfo.timeSignature === opt ? 'selected' : ''}>${opt}</option>`
+                            ).join('')}
+                        </select>
+                    </label>
                     <label>Duration: <input type="text" id="edit-song-duration" value="${songInfo.duration || ''}"></label>
                     <label>Tuning:
                         <select id="edit-song-tuning">
@@ -1189,6 +1215,7 @@
             const key = document.getElementById('edit-song-key').value;
             const sn = document.getElementById('edit-song-sn').value;
             const bpm = document.getElementById('edit-song-bpm').value;
+            const timeSignature = document.getElementById('edit-song-time-signature').value;
             const duration = document.getElementById('edit-song-duration').value;
             const tuning = document.getElementById('edit-song-tuning').value;
             const lyrics = document.getElementById('edit-song-lyrics').value;
@@ -1197,7 +1224,7 @@
                 const newSongKey = `${title} - ${artist}`;
                 if (newSongKey !== oldSong) {
                     songData[newSongKey] = {
-                        key, sn, bpm, duration, tuning,
+                        key, sn, bpm, duration, tuning, timeSignature,
                         crossfadeInto: songData[oldSong]?.crossfadeInto || [],
                         lyrics, status: songData[oldSong].status,
                         votes: songData[oldSong].votes
@@ -1218,7 +1245,7 @@
                         delete songColors[oldSong];
                     }
                 } else {
-                    songData[oldSong] = { ...songData[oldSong], key, sn, bpm, duration, tuning, lyrics };
+                    songData[oldSong] = { ...songData[oldSong], key, sn, bpm, duration, tuning, timeSignature, lyrics };
                 }
                 populateSongTable();
                 populateCouncilTable();
@@ -1241,12 +1268,10 @@
             unsavedChanges = true;
         }
 
-        // Helper function for Camelot code arithmetic
         function camelotAdd(num, delta) {
             return ((num - 1 + delta + 12) % 12) + 1;
         }
 
-        // Get adjacent Camelot codes (e.g., 8A → 7A, 9A, 8B)
         function getAdjacentCamelot(code) {
             const match = code.match(/^(\d+)([AB])$/);
             if (!match) return [];
@@ -1258,7 +1283,6 @@
             return [`${prevNum}${letter}`, `${nextNum}${letter}`, `${num}${otherLetter}`];
         }
 
-        // Get dramatic jump Camelot codes (e.g., 8A → 12A, 4A)
         function getDramaticCamelot(code) {
             const match = code.match(/^(\d+)([AB])$/);
             if (!match) return [];
@@ -1269,19 +1293,16 @@
             return [`${jumpPlus}${letter}`, `${jumpMinus}${letter}`];
         }
 
-        // Check if a song has a specific icon
         function hasIcon(song, icon) {
             return songIcons[song] && songIcons[song].includes(icon);
         }
 
-        // Updated randomizer function with new settings
         function generateRandomSetlist() {
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
             let totalDuration = 0;
-            const maxDuration = 40 * 60; // 40 minutes in seconds
+            const maxDuration = 40 * 60;
 
-            // Select first song: high BPM (>120)
             const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120);
             if (strongSongs.length > 0) {
                 const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
@@ -1301,14 +1322,12 @@
                 const lastHasX = hasIcon(lastSong, 'X');
                 let candidates = allSongs.filter(song => !selectedSongs.includes(song));
 
-                // Enforce X/O rule: no consecutive "X" songs
                 if (lastHasX) {
                     candidates = candidates.filter(song => !hasIcon(song, 'X'));
                 }
 
-                if (candidates.length === 0) break; // No more valid songs
+                if (candidates.length === 0) break;
 
-                // Prioritize crossfade transitions (50% chance if available)
                 const crossfadeOptions = songData[lastSong]?.crossfadeInto || [];
                 const availableCrossfade = crossfadeOptions.filter(song => candidates.includes(song));
                 if (availableCrossfade.length > 0 && Math.random() < 0.5) {
@@ -1325,7 +1344,6 @@
                     continue;
                 }
 
-                // Camelot harmony: 70% adjacent, 30% dramatic jumps
                 const lastCamelot = songData[lastSong].sn;
                 const adjacentCamelot = getAdjacentCamelot(lastCamelot);
                 const dramaticCamelot = getDramaticCamelot(lastCamelot);
@@ -1338,10 +1356,9 @@
                 }
 
                 if (camelotCandidates.length === 0) {
-                    camelotCandidates = candidates; // Relax Camelot constraint if no matches
+                    camelotCandidates = candidates;
                 }
 
-                // BPM flow: same or increasing, max 3 consecutive same BPM
                 let bpmCandidates;
                 if (consecutiveSameBPM < 3) {
                     bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) >= lastBPM);
@@ -1350,11 +1367,11 @@
                 }
 
                 if (bpmCandidates.length === 0) {
-                    bpmCandidates = camelotCandidates; // Relax BPM constraint if no matches
+                    bpmCandidates = camelotCandidates;
                 }
 
                 if (bpmCandidates.length === 0) {
-                    bpmCandidates = candidates; // Relax all constraints if necessary
+                    bpmCandidates = candidates;
                 }
 
                 if (bpmCandidates.length > 0) {
@@ -1369,11 +1386,10 @@
                         lastBPM = nextBPM;
                     }
                 } else {
-                    break; // Cannot add more songs
+                    break;
                 }
             }
 
-            // Ensure last song is strong (BPM > 120)
             if (selectedSongs.length > 1) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
                 if (parseInt(songData[lastSong].bpm) <= 120) {
@@ -2015,30 +2031,38 @@
                 audioContext.resume();
             }
             const bpm = parseInt(songData[song].bpm);
+            const timeSignature = songData[song].timeSignature || '4/4';
             if (isNaN(bpm) || bpm <= 0) {
                 alert('Invalid or missing BPM for this song.');
                 return;
             }
+            const [numerator, denominator] = timeSignature.split('/').map(Number);
+            const beatsPerMeasure = numerator;
+            const beatDuration = 60 / bpm;
+
             button.disabled = true;
             button.innerText = 'Playing...';
-            const beatInterval = 60 / bpm;
-            const numBeats = 8;
+
             let currentTime = audioContext.currentTime;
 
-            for (let i = 0; i < numBeats; i++) {
+            for (let i = 0; i < beatsPerMeasure; i++) {
                 const oscillator = audioContext.createOscillator();
                 oscillator.type = 'square';
-                oscillator.frequency.setValueAtTime(1000, currentTime);
+                if (i === 0) {
+                    oscillator.frequency.setValueAtTime(1500, currentTime);
+                } else {
+                    oscillator.frequency.setValueAtTime(1000, currentTime);
+                }
                 oscillator.connect(audioContext.destination);
                 oscillator.start(currentTime);
                 oscillator.stop(currentTime + 0.05);
-                currentTime += beatInterval;
+                currentTime += beatDuration;
             }
 
             setTimeout(() => {
                 button.disabled = false;
                 button.innerText = 'BPM->';
-            }, (numBeats * beatInterval) * 1000);
+            }, beatsPerMeasure * beatDuration * 1000);
         }
 
         function displaySavedSetlists() {
@@ -2083,7 +2107,7 @@
                 } else {
                     return isAscending ?
                         cellA.localeCompare(cellB) :
-                        cellB.localeCompare(cellB);
+                        cellB.localeCompare(cellA);
                 }
             });
 
@@ -2118,6 +2142,7 @@
             const bpm = document.getElementById('new-song-bpm').value;
             const duration = document.getElementById('new-song-duration').value;
             const tuning = document.getElementById('new-song-tuning').value;
+            const timeSignature = document.getElementById('new-song-time-signature').value;
             if (title && artist) {
                 const song = `${title} - ${artist}`;
                 const status = prompt("Where to add the song? Enter 1 for 'The Council of Yeas and Nays', 2 for 'Song List', or 3 for 'Mothballs'", "2");
@@ -2127,7 +2152,7 @@
                     '3': 'mothballs'
                 };
                 const mappedStatus = statusMap[status] || 'main';
-                songData[song] = { key, sn, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus };
                 if (mappedStatus === 'council') {
                     songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                 }
@@ -2141,6 +2166,7 @@
                 document.getElementById('new-song-bpm').value = '';
                 document.getElementById('new-song-duration').value = '';
                 document.getElementById('new-song-tuning').value = '';
+                document.getElementById('new-song-time-signature').value = '4/4';
                 unsavedChanges = true;
             }
         }
@@ -2162,7 +2188,7 @@
 
             songBlocks.forEach(block => {
                 const lines = block.split('\n').map(line => line.trim());
-                let title, artist, key, sn, bpm, duration, icons = [], tuning;
+                let title, artist, key, sn, bpm, duration, icons = [], tuning, timeSignature = '4/4';
 
                 if (lines.length >= 7) {
                     const firstLineParts = lines[0].split(',').map(part => part.trim());
@@ -2187,7 +2213,7 @@
 
                     if (title && artist) {
                         const song = `${title} - ${artist}`;
-                        songData[song] = { key, sn, bpm, duration, tuning, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                        songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus };
                         if (mappedStatus === 'council') {
                             songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                         }
@@ -2279,13 +2305,11 @@
                 const [title, artist] = song.split(' - ');
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>
-                        <div>${title}</div>
-                        <div>
-                            <button onclick="editSong('${song}')">Edit</button>
-                        </div>
-                    </td>
+                    <td>${title}</td>
                     <td>${artist}</td>
+                    <td>
+                        <button onclick="editSong('${song}')">Edit</button>
+                    </td>
                 `;
                 tbody.appendChild(row);
             }
@@ -2308,13 +2332,6 @@
             populateMothballsTable();
             unsavedChanges = true;
         }
-
-        document.getElementById('random-button').addEventListener('click', function() {
-            this.src = '200x200-button2.png';
-            setTimeout(() => {
-                this.src = '200x200-button.png';
-            }, 5000);
-        });
     </script>
 
     <a href="https://spiralbound.lol/" class="spiralbound-btn">Visit SpiralBound</a>
@@ -2352,9 +2369,6 @@
     </div>
 
     <div class="setlist">
-        <div class="randomizer-container">
-            <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
-        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
         </div>
@@ -2367,6 +2381,7 @@
         <div class="duration-total" id="duration-1">Total Duration: 0:00</div>
         <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
     </div>
+
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
@@ -2380,6 +2395,11 @@
         <div class="duration-total" id="duration-2">Total Duration: 0:00</div>
         <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
     </div>
+
+    <div class="randomizer-container">
+        <img src="200x200-button.png" id="random-button" style="cursor: pointer;">
+    </div>
+
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
@@ -2401,6 +2421,12 @@
         <input type="text" id="new-song-key" placeholder="Key" style="width: 50px;">
         <input type="text" id="new-song-sn" placeholder="SN" style="width: 50px;">
         <input type="text" id="new-song-bpm" placeholder="BPM">
+        <select id="new-song-time-signature">
+            <option value="4/4">4/4</option>
+            <option value="3/4">3/4</option>
+            <option value="6/8">6/8</option>
+            <option value="5/4">5/4</option>
+        </select>
         <input type="text" id="new-song-duration" placeholder="Duration">
         <input type="text" id="new-song-tuning" placeholder="Tuning">
         <button onclick="addNewSong()">Add Song</button>
@@ -2435,6 +2461,7 @@
                 <tr>
                     <th>Song Title</th>
                     <th>Artist</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="mothballs-table-body"></tbody>
