@@ -1241,140 +1241,152 @@
             unsavedChanges = true;
         }
 
-        // Helper functions for Camelot Key Harmony
-        function parseCamelot(code) {
-            const match = code.match(/(\d+)([AB])/);
-            if (match) {
-                return { num: parseInt(match[1]), letter: match[2] };
-            }
-            return null;
+        // Helper function for Camelot code arithmetic
+        function camelotAdd(num, delta) {
+            return ((num - 1 + delta + 12) % 12) + 1;
         }
 
-        function isAdjacent(code1, code2) {
-            const c1 = parseCamelot(code1);
-            const c2 = parseCamelot(code2);
-            if (!c1 || !c2) return false;
-            if (c1.letter === c2.letter) {
-                const diff = Math.abs(c1.num - c2.num) % 12;
-                return diff === 1 || diff === 11;
-            } else {
-                return c1.num === c2.num;
-            }
+        // Get adjacent Camelot codes (e.g., 8A → 7A, 9A, 8B)
+        function getAdjacentCamelot(code) {
+            const match = code.match(/^(\d+)([AB])$/);
+            if (!match) return [];
+            const num = parseInt(match[1]);
+            const letter = match[2];
+            const otherLetter = letter === 'A' ? 'B' : 'A';
+            const prevNum = camelotAdd(num, -1);
+            const nextNum = camelotAdd(num, 1);
+            return [`${prevNum}${letter}`, `${nextNum}${letter}`, `${num}${otherLetter}`];
         }
 
-        function isDramatic(code1, code2) {
-            const c1 = parseCamelot(code1);
-            const c2 = parseCamelot(code2);
-            if (!c1 || !c2 || c1.letter !== c2.letter) return false;
-            const diff = Math.abs(c1.num - c2.num) % 12;
-            return diff === 4 || diff === 8;
+        // Get dramatic jump Camelot codes (e.g., 8A → 12A, 4A)
+        function getDramaticCamelot(code) {
+            const match = code.match(/^(\d+)([AB])$/);
+            if (!match) return [];
+            const num = parseInt(match[1]);
+            const letter = match[2];
+            const jumpPlus = camelotAdd(num, 4);
+            const jumpMinus = camelotAdd(num, -4);
+            return [`${jumpPlus}${letter}`, `${jumpMinus}${letter}`];
         }
 
-        function generateRandomSetlist(setlistKey) {
+        // Check if a song has a specific icon
+        function hasIcon(song, icon) {
+            return songIcons[song] && songIcons[song].includes(icon);
+        }
+
+        // Updated randomizer function with new settings
+        function generateRandomSetlist() {
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             let selectedSongs = [];
             let totalDuration = 0;
             const maxDuration = 40 * 60; // 40 minutes in seconds
 
-            // Select first song: high BPM > 120 for energetic start
-            const highBPMSongs = allSongs.filter(song => getBPM(song) > 120);
-            if (highBPMSongs.length > 0) {
-                const firstSong = highBPMSongs[Math.floor(Math.random() * highBPMSongs.length)];
+            // Select first song: high BPM (>120)
+            const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120);
+            if (strongSongs.length > 0) {
+                const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             } else {
-                // Fallback to any song
                 const firstSong = allSongs[Math.floor(Math.random() * allSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             }
 
+            let lastBPM = parseInt(songData[selectedSongs[0]].bpm) || 0;
+            let consecutiveSameBPM = 1;
+
             while (totalDuration < maxDuration) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
-                const lastBPM = getBPM(lastSong);
-                const lastSN = songData[lastSong].sn;
-                const lastHasX = (songIcons[lastSong] || []).includes('X');
+                const lastHasX = hasIcon(lastSong, 'X');
                 let candidates = allSongs.filter(song => !selectedSongs.includes(song));
 
-                // Check for crossfade with 50% probability
-                const crossfadeOptions = songData[lastSong]?.crossfadeInto?.filter(song => candidates.includes(song)) || [];
-                if (crossfadeOptions.length > 0 && Math.random() < 0.5) {
-                    const nextSong = crossfadeOptions[Math.floor(Math.random() * crossfadeOptions.length)];
+                // Enforce X/O rule: no consecutive "X" songs
+                if (lastHasX) {
+                    candidates = candidates.filter(song => !hasIcon(song, 'X'));
+                }
+
+                if (candidates.length === 0) break; // No more valid songs
+
+                // Prioritize crossfade transitions (50% chance if available)
+                const crossfadeOptions = songData[lastSong]?.crossfadeInto || [];
+                const availableCrossfade = crossfadeOptions.filter(song => candidates.includes(song));
+                if (availableCrossfade.length > 0 && Math.random() < 0.5) {
+                    const nextSong = availableCrossfade[Math.floor(Math.random() * availableCrossfade.length)];
                     selectedSongs.push(nextSong);
                     totalDuration += parseDuration(songData[nextSong].duration);
+                    const nextBPM = parseInt(songData[nextSong].bpm) || 0;
+                    if (nextBPM === lastBPM) {
+                        consecutiveSameBPM++;
+                    } else {
+                        consecutiveSameBPM = 1;
+                        lastBPM = nextBPM;
+                    }
                     continue;
                 }
 
-                // Enforce vocal strain rule: no consecutive "X" songs
-                if (lastHasX) {
-                    candidates = candidates.filter(song => !(songIcons[song] || []).includes('X'));
-                }
+                // Camelot harmony: 70% adjacent, 30% dramatic jumps
+                const lastCamelot = songData[lastSong].sn;
+                const adjacentCamelot = getAdjacentCamelot(lastCamelot);
+                const dramaticCamelot = getDramaticCamelot(lastCamelot);
 
-                // Camelot Key Harmony: 70% adjacent, 30% dramatic
-                const preferAdjacent = Math.random() < 0.7;
-                const adjacentCandidates = candidates.filter(song => isAdjacent(lastSN, songData[song].sn));
-                const dramaticCandidates = candidates.filter(song => isDramatic(lastSN, songData[song].sn));
-                let keyCandidates;
-                if (preferAdjacent && adjacentCandidates.length > 0) {
-                    keyCandidates = adjacentCandidates;
-                } else if (!preferAdjacent && dramaticCandidates.length > 0) {
-                    keyCandidates = dramaticCandidates;
+                let camelotCandidates;
+                if (Math.random() < 0.7) {
+                    camelotCandidates = candidates.filter(song => adjacentCamelot.includes(songData[song].sn));
                 } else {
-                    keyCandidates = candidates;
+                    camelotCandidates = candidates.filter(song => dramaticCamelot.includes(songData[song].sn));
                 }
 
-                // BPM Flow: Prefer same or increasing BPM, limit 3 consecutive same BPM
-                let consecutiveSameBPM = 0;
-                for (let i = selectedSongs.length - 1; i >= 0; i--) {
-                    if (getBPM(selectedSongs[i]) === lastBPM) {
-                        consecutiveSameBPM++;
-                    } else {
-                        break;
-                    }
+                if (camelotCandidates.length === 0) {
+                    camelotCandidates = candidates; // Relax Camelot constraint if no matches
                 }
 
-                // Prefer increasing BPM
-                let bpmCandidates = keyCandidates.filter(song => getBPM(song) > lastBPM);
+                // BPM flow: same or increasing, max 3 consecutive same BPM
+                let bpmCandidates;
+                if (consecutiveSameBPM < 3) {
+                    bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) >= lastBPM);
+                } else {
+                    bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) > lastBPM);
+                }
+
                 if (bpmCandidates.length === 0) {
-                    // Allow same BPM if less than 3 consecutive
-                    if (consecutiveSameBPM < 3) {
-                        bpmCandidates = keyCandidates.filter(song => getBPM(song) === lastBPM);
-                    }
-                    // If still no candidates, allow any BPM
-                    if (bpmCandidates.length === 0) {
-                        bpmCandidates = keyCandidates;
-                    }
+                    bpmCandidates = camelotCandidates; // Relax BPM constraint if no matches
+                }
+
+                if (bpmCandidates.length === 0) {
+                    bpmCandidates = candidates; // Relax all constraints if necessary
                 }
 
                 if (bpmCandidates.length > 0) {
                     const nextSong = bpmCandidates[Math.floor(Math.random() * bpmCandidates.length)];
                     selectedSongs.push(nextSong);
                     totalDuration += parseDuration(songData[nextSong].duration);
-                } else {
-                    // Fallback to any candidate if no BPM matches
-                    if (candidates.length > 0) {
-                        const nextSong = candidates[Math.floor(Math.random() * candidates.length)];
-                        selectedSongs.push(nextSong);
-                        totalDuration += parseDuration(songData[nextSong].duration);
+                    const nextBPM = parseInt(songData[nextSong].bpm) || 0;
+                    if (nextBPM === lastBPM) {
+                        consecutiveSameBPM++;
                     } else {
-                        break; // No more songs available
+                        consecutiveSameBPM = 1;
+                        lastBPM = nextBPM;
+                    }
+                } else {
+                    break; // Cannot add more songs
+                }
+            }
+
+            // Ensure last song is strong (BPM > 120)
+            if (selectedSongs.length > 1) {
+                const lastSong = selectedSongs[selectedSongs.length - 1];
+                if (parseInt(songData[lastSong].bpm) <= 120) {
+                    const strongCandidates = allSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
+                    if (strongCandidates.length > 0) {
+                        selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
                     }
                 }
             }
 
-            // Ensure last song is high BPM (> 120) for energetic end
-            const lastSong = selectedSongs[selectedSongs.length - 1];
-            if (getBPM(lastSong) <= 120) {
-                const unusedHighBPMSongs = allSongs.filter(song => !selectedSongs.includes(song) && getBPM(song) > 120);
-                if (unusedHighBPMSongs.length > 0) {
-                    const newLastSong = unusedHighBPMSongs[Math.floor(Math.random() * unusedHighBPMSongs.length)];
-                    selectedSongs[selectedSongs.length - 1] = newLastSong;
-                }
-            }
-
-            setlists[setlistKey] = selectedSongs;
-            updateSetlistDisplay(setlistKey);
-            updateDuration(setlistKey);
+            setlists['setlist-1'] = selectedSongs;
+            updateSetlistDisplay('setlist-1');
+            updateDuration('setlist-1');
             unsavedChanges = true;
         }
 
@@ -2297,16 +2309,11 @@
             unsavedChanges = true;
         }
 
-        // Event listener for randomizer buttons
-        document.querySelectorAll('.random-button').forEach(button => {
-            button.addEventListener('click', function() {
-                const setlistKey = this.dataset.setlist;
-                generateRandomSetlist(setlistKey);
-                this.src = '200x200-button2.png';
-                setTimeout(() => {
-                    this.src = '200x200-button.png';
-                }, 5000);
-            });
+        document.getElementById('random-button').addEventListener('click', function() {
+            this.src = '200x200-button2.png';
+            setTimeout(() => {
+                this.src = '200x200-button.png';
+            }, 5000);
         });
     </script>
 
@@ -2346,7 +2353,7 @@
 
     <div class="setlist">
         <div class="randomizer-container">
-            <img src="200x200-button.png" class="random-button" data-setlist="setlist-1" style="cursor: pointer;">
+            <img src="200x200-button.png" id="random-button" onclick="generateRandomSetlist()" style="cursor: pointer;">
         </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
@@ -2361,9 +2368,6 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
     </div>
     <div class="setlist">
-        <div class="randomizer-container">
-            <img src="200x200-button.png" class="random-button" data-setlist="setlist-2" style="cursor: pointer;">
-        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
         </div>
@@ -2377,9 +2381,6 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-2')">Lyrics</button>
     </div>
     <div class="setlist">
-        <div class="randomizer-container">
-            <img src="200x200-button.png" class="random-button" data-setlist="setlist-3" style="cursor: pointer;">
-        </div>
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
         </div>
