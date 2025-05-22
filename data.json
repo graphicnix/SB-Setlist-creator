@@ -1,4 +1,3 @@
-
 {
   "songData": {
     "Pride and Joy - Stevie Ray Vaughan": {
@@ -1019,12 +1018,7 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Devil's Bleeding Crown - Volbeat",
-      "Drunken Lullabies - Flogging Molly",
-      "Cult of Personality - Living Colour",
-      "Zero - Smashing Pumpkins"
-    ],
+    "setlist-1": [],
     "setlist-2": [],
     "setlist-3": []
   },
