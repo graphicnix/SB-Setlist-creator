@@ -180,6 +180,17 @@
             align-items: center;
             color: #000;
             text-align: center;
+            transition: transform 0.2s ease;
+        }
+        .drop-indicator {
+            height: 2px;
+            background: #e31c1c;
+            margin: 5px 0;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        .drop-indicator.active {
+            opacity: 1;
         }
         .crossfade-btn {
             padding: 5px 10px;
@@ -834,8 +845,8 @@
         let unsavedChanges = false;
 
         const TUNING_OPTIONS = [
-            "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std.", "Drop C",
-            "DADGAD", "Open G", "Open D", "Drop Db", "B Std.", "Open C", "Open E", "C std"
+            "Standard", "Drop D", "Eb", "Eb Standard", "D", "D Std", "Drop C",
+            "DADGAD", "Open G", "Open D", "Drop Db", "B Std", "Open C", "Open E", "C std"
         ];
 
         const TIME_SIGNATURE_OPTIONS = ["4/4", "3/4", "6/8", "5/4"];
@@ -1632,35 +1643,125 @@
             unsavedChanges = true;
         }
 
+        let dragSrcEl = null;
+        let sourceSetlist = null;
+
         function allowDrop(ev) {
             ev.preventDefault();
+            const targetSetlist = ev.target.closest('ul');
+            if (!targetSetlist) return;
+
+            const indicator = getDropIndicator(ev);
+            if (indicator) indicator.classList.add('active');
         }
 
         function drag(ev) {
-            ev.dataTransfer.setData("text", ev.target.getAttribute('data-song'));
+            dragSrcEl = ev.target;
+            sourceSetlist = dragSrcEl.closest('ul').id;
+            ev.dataTransfer.setData("text", dragSrcEl.getAttribute('data-song'));
+            ev.dataTransfer.effectAllowed = 'move';
+        }
+
+        function getDropIndicator(ev) {
+            const setlist = ev.target.closest('ul');
+            if (!setlist) return null;
+            const items = Array.from(setlist.children).filter(child => !child.classList.contains('drop-indicator'));
+            const rect = setlist.getBoundingClientRect();
+            const y = ev.clientY - rect.top;
+
+            let indicator = setlist.querySelector('.drop-indicator');
+            if (!indicator) {
+                indicator = document.createElement('div');
+                indicator.className = 'drop-indicator';
+                setlist.appendChild(indicator);
+            }
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                const itemRect = item.getBoundingClientRect();
+                const offsetTop = itemRect.top - rect.top;
+                const offsetBottom = itemRect.bottom - rect.top;
+
+                if (y < offsetTop + (offsetBottom - offsetTop) / 2) {
+                    setlist.insertBefore(indicator, item);
+                    return indicator;
+                }
+            }
+
+            setlist.appendChild(indicator);
+            return indicator;
         }
 
         function drop(ev) {
             ev.preventDefault();
             const song = ev.dataTransfer.getData("text");
-            const targetList = ev.target.closest('ul');
-            if (!targetList) return;
-            const setlistKey = targetList.id;
-            const currentSongs = setlists[setlistKey];
-            const songHasX = (songIcons[song] || []).includes('X');
+            const targetSetlist = ev.target.closest('ul');
+            if (!targetSetlist) return;
 
-            if (songHasX && currentSongs.length > 0) {
-                const lastSong = currentSongs[currentSongs.length - 1];
-                const lastSongHasX = (songIcons[lastSong] || []).includes('X');
-                if (lastSongHasX) {
-                    if (currentSongs.length === 1 || !(songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
-                        if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) return;
-                    } else if (currentSongs.length > 1 && (songIcons[currentSongs[currentSongs.length - 2]] || []).includes('X')) {
-                        if (!confirm("🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row!")) return;
+            const targetSetlistId = targetSetlist.id;
+            const indicator = targetSetlist.querySelector('.drop-indicator');
+            let insertIndex = indicator ? Array.from(targetSetlist.children).indexOf(indicator) : setlists[targetSetlistId].length;
+
+            if (indicator) indicator.remove();
+
+            // Remove from source setlist
+            if (sourceSetlist) {
+                const sourceSongs = setlists[sourceSetlist];
+                const sourceIndex = sourceSongs.indexOf(song);
+                if (sourceIndex !== -1) {
+                    sourceSongs.splice(sourceIndex, 1);
+                    if (sourceSetlist !== targetSetlistId) {
+                        updateSetlistDisplay(sourceSetlist);
+                        updateDuration(sourceSetlist);
                     }
                 }
             }
 
+            // Insert into target setlist
+            const targetSongs = setlists[targetSetlistId];
+            if (sourceSetlist === targetSetlistId) {
+                const originalIndex = targetSongs.indexOf(song);
+                if (originalIndex !== -1 && insertIndex > originalIndex) insertIndex--;
+            }
+            targetSongs.splice(insertIndex, 0, song);
+
+            // Check for X violations
+            const songHasX = (songIcons[song] || []).includes('X');
+            if (songHasX) {
+                const prevSong = targetSongs[insertIndex - 1];
+                const nextSong = targetSongs[insertIndex + 1];
+                if ((prevSong && (songIcons[prevSong] || []).includes('X') && 
+                     insertIndex - 2 >= 0 && (songIcons[targetSongs[insertIndex - 2]] || []).includes('X')) ||
+                    (nextSong && (songIcons[nextSong] || []).includes('X') && 
+                     insertIndex + 2 < targetSongs.length && (songIcons[targetSongs[insertIndex + 2]] || []).includes('X'))) {
+                    if (!confirm("🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row!")) {
+                        targetSongs.splice(insertIndex, 1);
+                        if (sourceSetlist && sourceSetlist !== targetSetlistId) {
+                            setlists[sourceSetlist].push(song);
+                            updateSetlistDisplay(sourceSetlist);
+                            updateDuration(sourceSetlist);
+                        }
+                        updateSetlistDisplay(targetSetlistId);
+                        updateDuration(targetSetlistId);
+                        return;
+                    }
+                } else if ((prevSong && (songIcons[prevSong] || []).includes('X')) || 
+                           (nextSong && (songIcons[nextSong] || []).includes('X'))) {
+                    if (!confirm("⚠️ Friendly Warning: Two X's in a row!")) {
+                        targetSongs.splice(insertIndex, 1);
+                        if (sourceSetlist && sourceSetlist !== targetSetlistId) {
+                            setlists[sourceSetlist].push(song);
+                            updateSetlistDisplay(sourceSetlist);
+                            updateDuration(sourceSetlist);
+                        }
+                        updateSetlistDisplay(targetSetlistId);
+                        updateDuration(targetSetlistId);
+                        return;
+                    }
+                }
+            }
+
+            // Handle crossfade options
             const crossfadeOptions = songData[song]?.crossfadeInto || [];
             if (crossfadeOptions.length > 0) {
                 const currentSongTitle = song.split(' - ')[0];
@@ -1673,19 +1774,13 @@
                         selectedSong = prompt(`Select compatible song to add next:\n${crossfadeOptions.join('\n')}`);
                     }
                     if (selectedSong && crossfadeOptions.includes(selectedSong)) {
-                        setlists[setlistKey].push(song);
-                        setlists[setlistKey].push(selectedSong);
-                        updateSetlistDisplay(setlistKey);
-                        updateDuration(setlistKey);
-                        unsavedChanges = true;
-                        return;
+                        targetSongs.splice(insertIndex + 1, 0, selectedSong);
                     }
                 }
             }
 
-            setlists[setlistKey].push(song);
-            updateSetlistDisplay(setlistKey);
-            updateDuration(setlistKey);
+            updateSetlistDisplay(targetSetlistId);
+            updateDuration(targetSetlistId);
             unsavedChanges = true;
         }
 
