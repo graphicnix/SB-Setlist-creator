@@ -1029,20 +1029,36 @@
         "N": 0,
         "IDC": 0
       }
+    },
+    "check - check": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "council",
+      "votes": {
+        "Y": 0,
+        "N": 0,
+        "IDC": 0
+      }
     }
   },
   "setlists": {
     "setlist-1": [
-      "Santeria - Sublime",
-      "Under the Bridge - RHCP",
-      "Little One  - Highly Suspect",
-      "Even Flow - Pearl Jam",
-      "Like a Stone - Audioslave",
-      "Zero - Smashing Pumpkins",
-      "Tripping on a Hole - STP",
-      "46 & 2 - Tool",
-      "Blister in the Sun - Violent Femmes",
-      "Hash Pipe - Weezer"
+      "Them Bones - Alice in chains",
+      "Sex on Fire - Kings of Leon",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Cherub Rock - Smashing Pumpkins",
+      "Interstate Love Song - STP",
+      "Love Me Two Times - The Doors",
+      "Possum Kingdom - Toadies",
+      "Good Times Bad - Led Zeppelin",
+      "S.O.S. - Glorious Sons",
+      "Sweet Emotion - Aerosmith",
+      "Drunken Lullabies - Flogging Molly"
     ],
     "setlist-2": [],
     "setlist-3": []
