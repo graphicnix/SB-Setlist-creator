@@ -1099,6 +1099,23 @@
             unsavedChanges = true;
         }
 
+        // Helper function to split songData into chunks
+        function splitIntoChunks(data, chunkSize) {
+            const stringified = JSON.stringify(data);
+            const chunks = [];
+            for (let i = 0; i < stringified.length; i += chunkSize) {
+                chunks.push(stringified.slice(i, i + chunkSize));
+            }
+            return chunks;
+        }
+
+        // Helper function to reassemble chunks into songData
+        function reassembleChunks(chunks) {
+            const fullString = chunks.join('');
+            return JSON.parse(fullString);
+        }
+
+        // Modified loadData function to handle chunked songData
         async function loadData() {
             try {
                 const response = await fetch(`data.json?t=${new Date().getTime()}`);
@@ -1122,16 +1139,22 @@
                 }
             } catch (error) {
                 console.error('Error loading data.json:', error);
-                const storedSongs = localStorage.getItem('songData');
-                const storedSetlists = localStorage.getItem('setlists');
-                const storedIcons = localStorage.getItem('songIcons');
-                const storedColors = localStorage.getItem('songColors');
-                const storedSavedSetlists = localStorage.getItem('savedSetlists');
-                if (storedSongs) songData = JSON.parse(storedSongs);
-                if (storedSetlists) setlists = JSON.parse(storedSetlists);
-                if (storedIcons) songIcons = JSON.parse(storedIcons);
-                if (storedColors) songColors = JSON.parse(storedColors);
-                if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
+                // Load from localStorage with chunking support
+                const chunkCount = localStorage.getItem('songDataChunkCount');
+                if (chunkCount) {
+                    const chunks = [];
+                    for (let i = 0; i < chunkCount; i++) {
+                        const chunk = localStorage.getItem(`songDataChunk_${i}`);
+                        if (chunk) chunks.push(chunk);
+                    }
+                    if (chunks.length === parseInt(chunkCount)) {
+                        songData = reassembleChunks(chunks);
+                    }
+                }
+                setlists = JSON.parse(localStorage.getItem('setlists')) || setlists;
+                songIcons = JSON.parse(localStorage.getItem('songIcons')) || songIcons;
+                songColors = JSON.parse(localStorage.getItem('songColors')) || songColors;
+                savedSetlists = JSON.parse(localStorage.getItem('savedSetlists')) || savedSetlists;
             }
             populateSongTable();
             populateCouncilTable();
@@ -1159,13 +1182,20 @@
             }
         }
 
+        // Modified saveData function to handle chunking
         function saveData() {
-            const data = { songData, setlists, songIcons, songColors, savedSetlists };
-            localStorage.setItem('songData', JSON.stringify(songData));
+            const chunkSize = 5000; // 5KB chunks
+            const songDataChunks = splitIntoChunks(songData, chunkSize);
+            localStorage.setItem('songDataChunkCount', songDataChunks.length);
+            songDataChunks.forEach((chunk, index) => {
+                localStorage.setItem(`songDataChunk_${index}`, chunk);
+            });
             localStorage.setItem('setlists', JSON.stringify(setlists));
             localStorage.setItem('songIcons', JSON.stringify(songIcons));
             localStorage.setItem('songColors', JSON.stringify(songColors));
             localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
+
+            const data = { songData, setlists, songIcons, songColors, savedSetlists };
             syncToGitHub(data).then(() => {
                 alert('Save and sync completed!');
                 unsavedChanges = false;
@@ -1175,6 +1205,7 @@
             });
         }
 
+        // Adjusted syncToGitHub function to handle data correctly
         async function syncToGitHub(data) {
             if (!githubToken) {
                 githubToken = prompt('Enter your GitHub token (one-time setup):');
@@ -1202,8 +1233,7 @@
                 const encoder = new TextEncoder();
                 const jsonString = JSON.stringify(data, null, 2);
                 const utf8Bytes = encoder.encode(jsonString);
-                const binaryString = String.fromCharCode(...utf8Bytes);
-                const base64Content = btoa(binaryString);
+                const base64Content = btoa(String.fromCharCode(...utf8Bytes));
 
                 const updateResponse = await fetch(url, {
                     method: 'PUT',
@@ -1403,7 +1433,7 @@
             if (!songIcons[song]) songIcons[song] = [];
             songIcons[song][index] = select.value;
             if (!select.value) songIcons[song].splice(index, 1);
-            songIcons[song] = songIcons[song].filter(icon => validIcons.includes(icon));
+            songIcons[song] = songIcons[sandg].filter(icon => validIcons.includes(icon));
             populateSongTable();
             updateAllSetlists();
             unsavedChanges = true;
