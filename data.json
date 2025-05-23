@@ -1,7 +1,7 @@
 {
   "songData": {
     "Pride and Joy - Stevie Ray Vaughan": {
-      "key": "A♭ Major",
+      "key": "Ab Major",
       "riff": "E",
       "bpm": "112",
       "duration": "3:39",
@@ -363,7 +363,7 @@
       "timeSignature": "4/4"
     },
     "Even Flow - Pearl Jam": {
-      "key": "B♭ Minor",
+      "key": "Bb Minor",
       "riff": "Em",
       "bpm": "105",
       "duration": "4:53",
