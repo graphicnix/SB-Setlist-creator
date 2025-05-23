@@ -781,7 +781,7 @@
       "duration": "3:22",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "No Rest for the Wicked - Cage the Elephant": {
@@ -903,7 +903,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "R U B my Girl - Jet": {
@@ -914,7 +914,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "Paranoid - Black Sabbath ": {
@@ -925,7 +925,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "Fire - Hendricks ": {
@@ -936,7 +936,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "pardon me - incubus ": {
@@ -947,7 +947,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "Little One - Highly Suspect": {
@@ -958,7 +958,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "Beggin - måneskin": {
@@ -969,7 +969,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "Muddshovel - Stained": {
@@ -980,7 +980,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "closing time - semisonics": {
@@ -991,7 +991,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "mothballs",
+      "status": "mothball",
       "timeSignature": "4/4"
     },
     "S.O.S. - Glorious Sons": {
@@ -1015,6 +1015,20 @@
       "lyrics": "[Verse 1]\nI'm cornered in fire, so break out the secrets\nI hope you know that you were worth it all along\nI'm tired, you're angry, and everyone looks blurry\nI love you\nI'm leaving, so long\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only friend\n\n[Post-Chorus]\nMy little one\n\n[Verse 2]\nThe places I took you, they seem so fuckin' empty\nI have trouble going anywhere at all\nEspecially my own bedroom\nYeah, it stays awake to haunt me\nSo pass out, blackout drunk in another bathroom stall\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only friend\nHow long must I justify my pain through these songs?\nHow long? How long?\nSee upcoming rock shows\nGet tickets for your favorite artists\nYou might also like\nI Had Some Help\nPost Malone\nFamily Matters\nDrake\nLost\nLinkin Park\n[Guitar Solo]\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only little one (my little one)\nI'm so scared of what this could have been\nI know that today I lost my only friend\nHow long must I talk about my pain in these songs?\nHow long? How long?\n\n[Outro]\nIt's raining, it's sunny\nIt doesn't make a difference\nI don't care about anything at all\nIt's raining, it's sunny\nIt doesn't make a difference\nI don't care about anything at all",
       "status": "main",
       "timeSignature": "4/4"
+    },
+    "test - ticks": {
+      "bpm": "000",
+      "sn": "",
+      "duration": "0:00",
+      "tuning": "Standard",
+      "timeSignature": "4/4",
+      "lyrics": "",
+      "status": "council",
+      "votes": {
+        "Y": 0,
+        "N": 0,
+        "IDC": 0
+      }
     }
   },
   "setlists": {
