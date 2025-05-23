@@ -214,6 +214,9 @@
             border-radius: 5px;
             color: #000;
         }
+        .add-song h2 {
+            color: darkred;
+        }
         .icon-container {
             display: flex;
             gap: 5px;
@@ -557,6 +560,12 @@
         .youtube-link img:hover {
             filter: brightness(0.8);
         }
+        .youtube-link p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #fff;
+            text-align: center;
+        }
         .youtube-tooltip {
             visibility: hidden;
             width: 120px;
@@ -780,6 +789,7 @@
 
     <div class="council">
         <h2>Song Council</h2>
+        <button class="spiralbound-btn" onclick="openAddSongPopup('council')">Add New</button>
         <table id="council-table" class="council-table">
             <thead>
                 <tr>
@@ -798,6 +808,7 @@
 
     <div class="mothballs">
         <h2>Mothballs</h2>
+        <button class="spiralbound-btn" onclick="openAddSongPopup('mothball')">Add New</button>
         <table id="mothballs-table" class="mothballs-table">
             <thead>
                 <tr>
@@ -823,6 +834,8 @@
             <img src="350x177sb-setlist.jpg" alt="YouTube">
             <span class="youtube-tooltip">SpiralBound YouTube</span>
         </a>
+        <p>Spiralbound734.gmail</p>
+        <p>PW:L33tB@nd</p>
     </div>
 
     <script>
@@ -1291,15 +1304,7 @@
                 const iconsDisplay = getIconsDisplay(song);
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="song-cell">
-                        <div class="icons">${iconsDisplay}</div>
-                        <div class="song-title-container">
-                            <div class="song-title" onclick="editSong('${song}')">${title}</div>
-                            <div class="song-actions">
-                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
-                            </div>
-                        </div>
-                    </td>
+                    <td>${iconsDisplay} ${title}</td>
                     <td>${songInfo.bpm}</td>
                     <td>${artist}</td>
                     <td>${songInfo.sn}</td>
@@ -1332,15 +1337,7 @@
                 const iconsDisplay = getIconsDisplay(song);
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td class="song-cell">
-                        <div class="icons">${iconsDisplay}</div>
-                        <div class="song-title-container">
-                            <div class="song-title" onclick="editSong('${song}')">${title}</div>
-                            <div class="song-actions">
-                                <button class="add-btn" onclick="showSetlistSelection('${song}', this)">Add</button>
-                            </div>
-                        </div>
-                    </td>
+                    <td>${iconsDisplay} ${title}</td>
                     <td>${songInfo.bpm}</td>
                     <td>${artist}</td>
                     <td>${songInfo.sn}</td>
@@ -1987,6 +1984,78 @@
             setlists[setlistKey] = newSetlist;
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
+            unsavedChanges = true;
+        }
+
+        function openAddSongPopup(status) {
+            document.body.insertAdjacentHTML('beforeend', `
+                <div class="overlay"></div>
+                <div class="song-edit-popup">
+                    <h3>Add New Song to ${status.charAt(0).toUpperCase() + status.slice(1)}</h3>
+                    <label>Song Title: <input type="text" id="add-title"></label>
+                    <label>Artist: <input type="text" id="add-artist"></label>
+                    <label>BPM: <input type="text" id="add-bpm"></label>
+                    <label>SN: <input type="text" id="add-sn"></label>
+                    <label>Duration: <input type="text" id="add-duration" placeholder="e.g., 3:45"></label>
+                    <label>Tuning: 
+                        <select id="add-tuning">
+                            ${TUNING_OPTIONS.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                    </label>
+                    <label>Time Signature: 
+                        <select id="add-time-signature">
+                            ${TIME_SIGNATURE_OPTIONS.map(opt => `<option value="${opt}">${opt}</option>`).join('')}
+                        </select>
+                    </label>
+                    <label>Lyrics: <textarea id="add-lyrics"></textarea></label>
+                    <div class="song-edit-buttons">
+                        <button class="spiralbound-btn" onclick="addSongFromPopup('${status}')">Save</button>
+                        <button class="spiralbound-btn" onclick="this.parentElement.parentElement.remove(); document.querySelector('.overlay').remove();">Cancel</button>
+                    </div>
+                </div>
+            `);
+        }
+
+        function addSongFromPopup(status) {
+            const title = document.getElementById('add-title').value.trim();
+            const artist = document.getElementById('add-artist').value.trim();
+            const bpm = document.getElementById('add-bpm').value.trim();
+            const sn = document.getElementById('add-sn').value.trim();
+            const duration = document.getElementById('add-duration').value.trim();
+            const tuning = document.getElementById('add-tuning').value;
+            const timeSignature = document.getElementById('add-time-signature').value;
+            const lyrics = document.getElementById('add-lyrics').value.trim();
+
+            if (!title || !artist) {
+                alert('Song title and artist are required!');
+                return;
+            }
+
+            const songKey = `${title} - ${artist}`;
+            if (songData[songKey]) {
+                alert('Song already exists!');
+                return;
+            }
+
+            songData[songKey] = {
+                bpm: bpm || '000',
+                sn: sn || '',
+                duration: duration || '0:00',
+                tuning: tuning,
+                timeSignature: timeSignature,
+                lyrics: lyrics || '',
+                status: status
+            };
+
+            if (status === 'council') {
+                songData[songKey].votes = { Y: 0, N: 0, IDC: 0 };
+            }
+
+            populateSongTable();
+            populateCouncilTable();
+            populateMothballsTable();
+            document.querySelector('.song-edit-popup').remove();
+            document.querySelector('.overlay').remove();
             unsavedChanges = true;
         }
     </script>
