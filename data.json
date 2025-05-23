@@ -1043,6 +1043,21 @@
         "Y": 0,
         "N": 0,
         "IDC": 0
+      },
+      "timeSignature": "4/4"
+    },
+    "1 - 1": {
+      "bpm": "000",
+      "sn": "",
+      "duration": "0:00",
+      "tuning": "Standard",
+      "timeSignature": "4/4",
+      "lyrics": "",
+      "status": "council",
+      "votes": {
+        "Y": 0,
+        "N": 0,
+        "IDC": 0
       }
     }
   },
