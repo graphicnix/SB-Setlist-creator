@@ -1073,6 +1073,20 @@
         "N": 0,
         "IDC": 0
       }
+    },
+    "firefox new - test": {
+      "bpm": "000",
+      "sn": "",
+      "duration": "0:00",
+      "tuning": "Standard",
+      "timeSignature": "4/4",
+      "lyrics": "",
+      "status": "council",
+      "votes": {
+        "Y": 0,
+        "N": 0,
+        "IDC": 0
+      }
     }
   },
   "setlists": {
