@@ -553,7 +553,7 @@
             background: #450202;
         }
         .youtube-link img {
-            width: 403px;
+            width: 411px;
             height: 272px;
             transition: filter 0.3s;
         }
@@ -793,17 +793,23 @@
         <table id="council-table" class="council-table">
             <thead>
                 <tr>
-                    <th>Song Title</th>
-                    <th>BPM</th>
-                    <th>Artist</th>
-                    <th>SN</th>
-                    <th>Duration</th>
                     <th>Votes</th>
+                    <th>Song Title</th>
+                    <th>Artist</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody id="council-table-body"></tbody>
         </table>
+    </div>
+
+    <div class="youtube-link">
+        <a href="https://www.youtube.com/@SpiralboundOfficial" target="_blank">
+            <img src="350x177sb-setlist.jpg" alt="YouTube">
+            <span class="youtube-tooltip">SpiralBound YouTube</span>
+        </a>
+        <p>Spiralbound734.gmail</p>
+        <p>PW:L33tB@nd</p>
     </div>
 
     <div class="mothballs">
@@ -813,10 +819,7 @@
             <thead>
                 <tr>
                     <th>Song Title</th>
-                    <th>BPM</th>
                     <th>Artist</th>
-                    <th>SN</th>
-                    <th>Duration</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -827,15 +830,6 @@
     <div>
         <h2>Saved Setlists</h2>
         <div id="saved-setlists"></div>
-    </div>
-
-    <div class="youtube-link">
-        <a href="https://www.youtube.com/@SpiralboundOfficial" target="_blank">
-            <img src="350x177sb-setlist.jpg" alt="YouTube">
-            <span class="youtube-tooltip">SpiralBound YouTube</span>
-        </a>
-        <p>Spiralbound734.gmail</p>
-        <p>PW:L33tB@nd</p>
     </div>
 
     <script>
@@ -1304,11 +1298,6 @@
                 const iconsDisplay = getIconsDisplay(song);
                 const row = document.createElement('tr');
                 row.innerHTML = `
-                    <td>${iconsDisplay} ${title}</td>
-                    <td>${songInfo.bpm}</td>
-                    <td>${artist}</td>
-                    <td>${songInfo.sn}</td>
-                    <td>${songInfo.duration}</td>
                     <td>
                         <div class="vote-counter">
                             Y: ${songInfo.votes.Y} | N: ${songInfo.votes.N} | IDC: ${songInfo.votes.IDC}
@@ -1317,6 +1306,8 @@
                         <button onclick="voteSong('${song}', 'N')">N</button>
                         <button onclick="voteSong('${song}', 'IDC')">IDC</button>
                     </td>
+                    <td>${iconsDisplay} ${title}</td>
+                    <td>${artist}</td>
                     <td>
                         <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         <button class="mothball-btn" onclick="mothballSong('${song}')">Mothball</button>
@@ -1338,10 +1329,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td>${iconsDisplay} ${title}</td>
-                    <td>${songInfo.bpm}</td>
                     <td>${artist}</td>
-                    <td>${songInfo.sn}</td>
-                    <td>${songInfo.duration}</td>
                     <td>
                         <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
                         <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
@@ -1380,7 +1368,7 @@
                     emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
                 }
                 return `
-                    <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)"
+                   (rel="noopener noreferrer") <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)"
                         style="background:${songColor}" class="${tuningClass}">
                         ${emojiStart}${iconsDisplay} ${song}${emojiEnd}
                         <button class="play-btn" onclick="playMetronome('${song}', this)">${formattedBpm}-></button>
