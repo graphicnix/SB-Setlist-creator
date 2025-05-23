@@ -1032,7 +1032,18 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Santeria - Sublime",
+      "Under the Bridge - RHCP",
+      "Little One  - Highly Suspect",
+      "Even Flow - Pearl Jam",
+      "Like a Stone - Audioslave",
+      "Zero - Smashing Pumpkins",
+      "Tripping on a Hole - STP",
+      "46 & 2 - Tool",
+      "Blister in the Sun - Violent Femmes",
+      "Hash Pipe - Weezer"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
@@ -1055,12 +1066,7 @@
       "",
       ""
     ],
-    "I Alone - Live": [
-      "X",
-      "",
-      "",
-      ""
-    ],
+    "I Alone - Live": [],
     "Fell on Black Days - Soundgarden": [
       "X",
       "",
@@ -1240,6 +1246,33 @@
       "",
       "",
       ""
+    ],
+    "Little One  - Highly Suspect": [
+      "X"
+    ],
+    "Them Bones - Alice in chains": [
+      "X"
+    ],
+    "Would? - Alice in chains": [
+      "X"
+    ],
+    "Everlong - Foo Fighters": [
+      "O"
+    ],
+    "Interstate Love Song - STP": [
+      "O"
+    ],
+    "Under the Bridge - RHCP": [
+      "O"
+    ],
+    "Blue on Black - Kenny Wayne": [
+      "O"
+    ],
+    "Soul to Squeeze - R.H.C.P": [
+      "O"
+    ],
+    "Feeling Good - various": [
+      "O"
     ]
   },
   "songColors": {
