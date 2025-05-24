@@ -4,6 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SpiralBound Setlist Creator</title>
+    <!-- Firebase SDK Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js"></script>
+    <!-- Initialize Firebase -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyC289lXytXUPx-fvOigFozjizrebiAWJ1I",
+        authDomain: "setlist-sync.firebaseapp.com",
+        databaseURL: "https://setlist-sync-default-rtdb.firebaseio.com",
+        projectId: "setlist-sync",
+        storageBucket: "setlist-sync.firebasestorage.app",
+        messagingSenderId: "616495970325",
+        appId: "1:616495970325:web:fe507e32c3362feba6361c",
+        measurementId: "G-88ESL8XCEL"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const db = firebase.database();
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -843,7 +861,6 @@
         let songColors = {};
         let savedSetlists = {};
         const validIcons = ['O', 'X', 'G', 'M', '→'];
-        let githubToken = localStorage.getItem('githubToken');
         let lastSaveTime = Date.now();
         let currentSelectedSong = null;
         let unsavedChanges = false;
@@ -1101,146 +1118,45 @@
 
         async function loadData() {
             try {
-                const response = await fetch(`data.json?t=${new Date().getTime()}`);
-                if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                const data = await response.json();
-                songData = data.songData || {};
-                setlists = data.setlists || { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
-                songIcons = data.songIcons || {};
-                songColors = data.songColors || {};
-                savedSetlists = data.savedSetlists || {};
-                console.log('Loaded songData:', songData);
-                for (const song in songData) {
-                    if (songData[song].status === 'mothballs') {
-                        songData[song].status = 'mothball';
-                    }
-                    if (!songData[song].status) songData[song].status = 'main';
-                    if (songData[song].status === 'council' && !songData[song].votes) {
-                        songData[song].votes = { Y: 0, N: 0, IDC: 0 };
-                    }
-                    if (!songData[song].timeSignature) songData[song].timeSignature = '4/4';
+                const snapshot = await db.ref('appData').once('value');
+                const data = snapshot.val();
+                if (data) {
+                    songData = data.songData || {};
+                    setlists = data.setlists || { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
+                    songIcons = data.songIcons || {};
+                    songColors = data.songColors || {};
+                    savedSetlists = data.savedSetlists || {};
+                    console.log('Loaded data from Firebase:', data);
+                } else {
+                    console.log('No data in Firebase, starting fresh');
+                    songData = {};
+                    setlists = { 'setlist-1': [], 'setlist-2': [], 'setlist-3': [] };
+                    songIcons = {};
+                    songColors = {};
+                    savedSetlists = {};
                 }
+                populateSongTable();
+                populateCouncilTable();
+                populateMothballsTable();
+                updateAllSetlists();
+                displaySavedSetlists();
             } catch (error) {
-                console.error('Error loading data.json:', error);
-                const storedSongs = localStorage.getItem('songData');
-                const storedSetlists = localStorage.getItem('setlists');
-                const storedIcons = localStorage.getItem('songIcons');
-                const storedColors = localStorage.getItem('songColors');
-                const storedSavedSetlists = localStorage.getItem('savedSetlists');
-                if (storedSongs) songData = JSON.parse(storedSongs);
-                if (storedSetlists) setlists = JSON.parse(storedSetlists);
-                if (storedIcons) songIcons = JSON.parse(storedIcons);
-                if (storedColors) songColors = JSON.parse(storedColors);
-                if (storedSavedSetlists) savedSetlists = JSON.parse(storedSavedSetlists);
-            }
-            populateSongTable();
-            populateCouncilTable();
-            populateMothballsTable();
-            updateAllSetlists();
-            displaySavedSetlists();
-
-            if (!localStorage.getItem('welcomeShown')) {
-                document.body.insertAdjacentHTML('beforeend', `
-                    <div class="overlay"></div>
-                    <div class="welcome-popup">
-                        <h3>Welcome to SpiralBound Setlist Creator</h3>
-                        <p>To save changes to GitHub, you'll need a personal access token from Weston.</p>
-                        <button onclick="this.parentElement.remove(); document.querySelector('.overlay').remove(); localStorage.setItem('welcomeShown', 'true')">Got it!</button>
-                    </div>
-                `);
-                setTimeout(() => {
-                    const popup = document.querySelector('.welcome-popup');
-                    if (popup) {
-                        popup.remove();
-                        document.querySelector('.overlay').remove();
-                        localStorage.setItem('welcomeShown', 'true');
-                    }
-                }, 4000);
+                console.error('Error loading from Firebase:', error);
+                alert('Failed to load data from Firebase. Check console for details.');
             }
         }
 
         function saveData() {
             const data = { songData, setlists, songIcons, songColors, savedSetlists };
-            localStorage.setItem('songData', JSON.stringify(songData));
-            localStorage.setItem('setlists', JSON.stringify(setlists));
-            localStorage.setItem('songIcons', JSON.stringify(songIcons));
-            localStorage.setItem('songColors', JSON.stringify(songColors));
-            localStorage.setItem('savedSetlists', JSON.stringify(savedSetlists));
-            syncToGitHub(data).then(() => {
-                alert('Save and sync completed!');
-                unsavedChanges = false;
-                lastSaveTime = Date.now();
-            }).catch(err => {
-                alert('Save to local storage succeeded, but sync failed: ' + err.message);
-            });
-        }
-
-        async function syncToGitHub(data) {
-            if (!githubToken) {
-                githubToken = prompt('Enter your GitHub token (one-time setup):');
-                if (!githubToken) return;
-                localStorage.setItem('githubToken', githubToken);
-            }
-
-            const repoOwner = 'graphicnix';
-            const repoName = 'SB-Setlist-creator';
-            const filePath = 'data.json';
-            const url = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-
-            try {
-                const getResponse = await fetch(url, {
-                    headers: { 'Authorization': `token ${githubToken}` }
+            db.ref('appData').set(data)
+                .then(() => {
+                    alert('Save and sync completed!');
+                    unsavedChanges = false;
+                    lastSaveTime = Date.now();
+                })
+                .catch(err => {
+                    alert('Save failed: ' + err.message);
                 });
-                let sha = '';
-                if (getResponse.ok) {
-                    const fileData = await getResponse.json();
-                    sha = fileData.sha;
-                } else if (getResponse.status !== 404) {
-                    throw new Error('Failed to fetch current file');
-                }
-
-                const songDataEntries = Object.entries(data.songData).map(([key, value]) => {
-                    const escapedKey = key.replace(/"/g, '\\"');
-                    return `"${escapedKey}":${JSON.stringify(value)}`;
-                });
-                const songDataString = `{${songDataEntries.join(',')}}`;
-
-                const setlistsString = JSON.stringify(data.setlists);
-                const songIconsString = JSON.stringify(data.songIcons);
-                const songColorsString = JSON.stringify(data.songColors);
-                const savedSetlistsString = JSON.stringify(data.savedSetlists);
-
-                const jsonString = `{
-                    "songData": ${songDataString},
-                    "setlists": ${setlistsString},
-                    "songIcons": ${songIconsString},
-                    "songColors": ${songColorsString},
-                    "savedSetlists": ${savedSetlistsString}
-                }`;
-
-                const encoder = new TextEncoder();
-                const utf8Bytes = encoder.encode(jsonString);
-                const base64Content = btoa(String.fromCharCode(...utf8Bytes));
-
-                const updateResponse = await fetch(url, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${githubToken}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        message: 'Auto-save update ' + new Date().toISOString(),
-                        content: base64Content,
-                        sha: sha || undefined
-                    })
-                });
-
-                if (!updateResponse.ok) throw new Error('Sync failed');
-                console.log('Sync successful!');
-            } catch (error) {
-                console.error('Sync error:', error);
-                throw error;
-            }
         }
 
         function populateSongTable() {
@@ -1328,7 +1244,7 @@
                     <td>${artist}</td>
                     <td>
                         <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
- Protects against XSS vulnerabilities                        <button class="mothball-btn" onclick="mothballSong('${song}')">Mothball</button>
+                        <button class="mothball-btn" onclick="mothballSong('${song}')">Mothball</button>
                         <button class="delete-btn" onclick="deleteSong('${song}')">Delete</button>
                     </td>
                 `;
