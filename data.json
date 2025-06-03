@@ -841,12 +841,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 1,
-        "N": 0,
-        "IDC": 0
-      },
+      "status": "main",
       "timeSignature": "4/4"
     },
     "Test - Tickles ": {
@@ -1034,7 +1029,19 @@
       "Beautiful Disaster - 311",
       "Bullet w Butterfly - TSP"
     ],
-    "setlist-2": [],
+    "setlist-2": [
+      "Holiday - Green Day",
+      "Blister in the Sun - Violent Femmes",
+      "Sultans of Swing - Dire Straits",
+      "Shipping Up to Boston - Dropkick Murphys",
+      "Song for the Dead - Queens of the Stone Age",
+      "Cult of Personality - Living Colour",
+      "Zero - Smashing Pumpkins",
+      "Under the Bridge - RHCP",
+      "Interstate Love Song - STP",
+      "Lydia - Highly Suspect",
+      "Cherub Rock - Smashing Pumpkins"
+    ],
     "setlist-3": []
   },
   "songIcons": {
