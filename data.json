@@ -80,16 +80,6 @@
       "sn": "5B",
       "timeSignature": "4/4"
     },
-    "Say It Ain't So - Weezer": {
-      "key": "C",
-      "riff": "C",
-      "bpm": "112",
-      "duration": "4:18",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main",
-      "timeSignature": "4/4"
-    },
     "Fell on Black Days - Soundgarden": {
       "key": "Em",
       "riff": "Em",
@@ -162,26 +152,6 @@
       "status": "main",
       "sn": "11A",
       "tuning": "Standard",
-      "timeSignature": "4/4"
-    },
-    "Thunder Kiss '65 - White Zombie": {
-      "key": "E",
-      "riff": "E",
-      "bpm": "116",
-      "duration": "3:54",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main",
-      "timeSignature": "4/4"
-    },
-    "Devil's Bleeding Crown - Volbeat": {
-      "key": "Em",
-      "riff": "Em",
-      "bpm": "110",
-      "duration": "3:58",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main",
       "timeSignature": "4/4"
     },
     "Come Down - Bush": {
