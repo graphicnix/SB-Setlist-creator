@@ -1052,41 +1052,20 @@
   "setlists": {
     "setlist-1": [
       "Blue on Black - Kenny Wayne",
+      "No Rest for the Wicked - Cage the Elephant",
+      "Drunken Lullabies - Flogging Molly",
       "La Grange - ZZ Top",
       "Ruby Soho - Rancid",
-      "Lola Montez - Volbeat",
-      "Cherub Rock - Smashing Pumpkins",
+      "Inside Out - Eve 6",
       "Breed - Nirvana",
-      "Zero - Smashing Pumpkins",
-      "Blister in the Sun - Violent Femmes",
-      "Drunken Lullabies - Flogging Molly",
-      "No Excuses - Alice in Chains",
-      "Holiday - Green Day"
-    ],
-    "setlist-2": [
-      "S.O.S. - Glorious Sons",
-      "Under the Bridge - RHCP",
-      "Sex on Fire - Kings of Leon",
-      "Bullet w Butterfly - TSP",
-      "Hemorrhage - Fuel",
-      "Song for the Dead - Queens of the Stone Age",
-      "Come Together - The Beatles",
-      "Even Flow - Pearl Jam",
-      "Sponge - Plowed",
-      "Hash Pipe - Weezer"
-    ],
-    "setlist-3": [
-      "Them Bones - Alice in chains",
-      "She Talks to Angels - The Black Crowes",
       "Cumbersome - Seven Mary Three",
-      "Devils Bleedin Crown - Volbeat",
-      "No Rest for the Wicked - Cage the Elephant",
-      "Soul to Squeeze - R.H.C.P",
-      "Cult of Personality - Living Colour",
-      "Creep - Radiohead",
-      "Everlong - Foo Fighters",
-      "Love Me Two Times - The Doors"
-    ]
+      "I Alone - Live",
+      "Lump - The Presidents USA",
+      "Beautiful Disaster - 311",
+      "Bullet w Butterfly - TSP"
+    ],
+    "setlist-2": [],
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
@@ -1337,6 +1316,20 @@
       "Cumbersome - Seven Mary Three",
       "What If - Creed",
       "War Pigs - Black Sabbath"
+    ],
+    "Test": [
+      "Blue on Black - Kenny Wayne",
+      "No Rest for the Wicked - Cage the Elephant",
+      "Drunken Lullabies - Flogging Molly",
+      "La Grange - ZZ Top",
+      "Ruby Soho - Rancid",
+      "Inside Out - Eve 6",
+      "Breed - Nirvana",
+      "Cumbersome - Seven Mary Three",
+      "I Alone - Live",
+      "Lump - The Presidents USA",
+      "Beautiful Disaster - 311",
+      "Bullet w Butterfly - TSP"
     ]
   }
 }
