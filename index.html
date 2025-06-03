@@ -701,18 +701,22 @@
             loadData();
             setupSearch();
 
-            const randomButton = document.getElementById('random-button');
-            if (randomButton) {
-                randomButton.addEventListener('click', function() {
-                    this.src = '200x200-button2.png';
-                    generateRandomSetlist('setlist-1');
-                    setTimeout(() => {
-                        this.src = '200x200-button.png';
-                    }, 5000);
-                });
-            } else {
-                console.error('Element with id "random-button" not found.');
-            }
+            const randomButtons = ['random-button-1', 'random-button-2', 'random-button-3'];
+            randomButtons.forEach(buttonId => {
+                const button = document.getElementById(buttonId);
+                if (button) {
+                    button.addEventListener('click', function() {
+                        this.src = '200x200-button2.png';
+                        const setlistKey = `setlist-${buttonId.split('-')[2]}`;
+                        generateRandomSetlist(setlistKey);
+                        setTimeout(() => {
+                            this.src = '200x200-button.png';
+                        }, 5000);
+                    });
+                } else {
+                    console.error(`Element with id "${buttonId}" not found.`);
+                }
+            });
         }
 
         window.onload = function() {
@@ -1308,17 +1312,26 @@
 
         function generateRandomSetlist(setlistKey) {
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
+            const otherSetlists = Object.keys(setlists).filter(key => key !== setlistKey);
+            const songsInOtherSetlists = new Set(otherSetlists.flatMap(key => setlists[key]));
+            const availableSongs = allSongs.filter(song => !songsInOtherSetlists.has(song));
+
+            if (availableSongs.length === 0) {
+                alert('No available songs to generate a unique setlist.');
+                return;
+            }
+
             let selectedSongs = [];
             let totalDuration = 0;
             const maxDuration = 40 * 60;
 
-            const strongSongs = allSongs.filter(song => parseInt(songData[song].bpm) > 120);
+            const strongSongs = availableSongs.filter(song => parseInt(songData[song].bpm) > 120);
             if (strongSongs.length > 0) {
                 const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             } else {
-                const firstSong = allSongs[Math.floor(Math.random() * allSongs.length)];
+                const firstSong = availableSongs[Math.floor(Math.random() * availableSongs.length)];
                 selectedSongs.push(firstSong);
                 totalDuration += parseDuration(songData[firstSong].duration);
             }
@@ -1329,7 +1342,7 @@
             while (totalDuration < maxDuration) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
                 const lastHasX = hasIcon(lastSong, 'X');
-                let candidates = allSongs.filter(song => !selectedSongs.includes(song));
+                let candidates = availableSongs.filter(song => !selectedSongs.includes(song));
 
                 if (lastHasX) {
                     candidates = candidates.filter(song => !hasIcon(song, 'X'));
@@ -1402,7 +1415,7 @@
             if (selectedSongs.length > 1) {
                 const lastSong = selectedSongs[selectedSongs.length - 1];
                 if (parseInt(songData[lastSong].bpm) <= 120) {
-                    const strongCandidates = allSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
+                    const strongCandidates = availableSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
                     if (strongCandidates.length > 0) {
                         selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
                     }
@@ -2377,6 +2390,9 @@
         </table>
     </div>
 
+    <div class="randomizer-container">
+        <img src="200x200-button.png" id="random-button-1" style="cursor: pointer;">
+    </div>
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 1</h3>
@@ -2384,7 +2400,6 @@
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
-            <button onclick="generateRandomSetlist('setlist-1')">Randomize</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </div>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
@@ -2392,6 +2407,9 @@
         <button class="lyrics-btn" onclick="showLyrics('setlist-1')">Lyrics</button>
     </div>
 
+    <div class="randomizer-container">
+        <img src="200x200-button.png" id="random-button-2" style="cursor: pointer;">
+    </div>
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 2</h3>
@@ -2399,7 +2417,6 @@
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
-            <button onclick="generateRandomSetlist('setlist-2')">Randomize</button>
             <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </div>
         <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
@@ -2408,9 +2425,8 @@
     </div>
 
     <div class="randomizer-container">
-        <img src="200x200-button.png" id="random-button" style="cursor: pointer;">
+        <img src="200x200-button.png" id="random-button-3" style="cursor: pointer;">
     </div>
-
     <div class="setlist">
         <div class="setlist-title-container">
             <h3 class="setlist-title">Setlist 3</h3>
@@ -2418,7 +2434,6 @@
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
-            <button onclick="generateRandomSetlist('setlist-3')">Randomize</button>
             <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </div>
         <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
