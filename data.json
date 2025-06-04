@@ -978,7 +978,7 @@
       "tuning": "Standard",
       "crossfadeInto": [],
       "lyrics": "[Verse 1]\nI'm cornered in fire, so break out the secrets\nI hope you know that you were worth it all along\nI'm tired, you're angry, and everyone looks blurry\nI love you\nI'm leaving, so long\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only friend\n\n[Post-Chorus]\nMy little one\n\n[Verse 2]\nThe places I took you, they seem so fuckin' empty\nI have trouble going anywhere at all\nEspecially my own bedroom\nYeah, it stays awake to haunt me\nSo pass out, blackout drunk in another bathroom stall\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only friend\nHow long must I justify my pain through these songs?\nHow long? How long?\nSee upcoming rock shows\nGet tickets for your favorite artists\nYou might also like\nI Had Some Help\nPost Malone\nFamily Matters\nDrake\nLost\nLinkin Park\n[Guitar Solo]\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only little one (my little one)\nI'm so scared of what this could have been\nI know that today I lost my only friend\nHow long must I talk about my pain in these songs?\nHow long? How long?\n\n[Outro]\nIt's raining, it's sunny\nIt doesn't make a difference\nI don't care about anything at all\nIt's raining, it's sunny\nIt doesn't make a difference\nI don't care about anything at all",
-      "status": "main",
+      "status": "mothballs",
       "timeSignature": "4/4"
     },
     "Iphone - Test": {
@@ -1012,6 +1012,17 @@
         "N": 1,
         "IDC": 0
       }
+    },
+    "Drop B -  Before I Forget - Slipknot": {
+      "key": "",
+      "sn": "11A",
+      "bpm": "135",
+      "duration": "4:39",
+      "tuning": "B Std.",
+      "timeSignature": "4/4",
+      "crossfadeInto": [],
+      "lyrics": "[Intro]\nGo\n\n[Verse 1]\nStapled shut, inside an outside world, and I'm\nSealed in tight, bizarre but right at home\nI'm claustrophobic, closing in\nAnd I'm catastrophic, not again\nI'm smeared across the page and doused in gasoline\nI wear you like a stain, yet I'm the one who's obscene\nCatch me up on all your sordid little insurrections\nI've got no time to lose, I'm just caught up in all the cattle\n\n[Pre-Chorus]\nFray the strings\nThrow the shapes\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nSee Slipknot Live\nGet tickets as low as $59\nYou might also like\nmeet the grahams\nKendrick Lamar\nNot Like Us\nKendrick Lamar\neuphoria\nKendrick Lamar\n[Verse 2]\nI'm ripped across the ditch\nAnd settled in the dirt and I\nWear you like a stitch\nYet I'm the one who's hurt\nPay attention to your twisted little indiscretions\nI've got no right to win, I'm just caught up in all the battles\n\n[Pre-Chorus]\nLocked in clutch\nPushed in place\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Bridge]\nMy end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\nAnd my end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Outro]\nYeah, yeah, yeah, yeah, yeah\nYeah, yeah, oh\n\n[Segue]\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it",
+      "status": "main"
     }
   },
   "setlists": {
@@ -1026,7 +1037,8 @@
       "Blue on Black - Kenny Wayne",
       "Breed - Nirvana",
       "Song 2 - Blur",
-      "Drunken Lullabies - Flogging Molly"
+      "Drunken Lullabies - Flogging Molly",
+      "Drop B -  Before I Forget - Slipknot"
     ],
     "setlist-2": [
       "Holiday - Green Day",
@@ -1051,7 +1063,8 @@
       "Them Bones - Alice in chains",
       "Cowboys from Hell - Pantera",
       "Everlong - Foo Fighters",
-      "No One Knows - Queens Stone Age"
+      "No One Knows - Queens Stone Age",
+      "Drop B -  Before I Forget - Slipknot"
     ]
   },
   "songIcons": {
@@ -1276,6 +1289,9 @@
     ],
     "Come Together - The Beatles": [
       "O"
+    ],
+    "Little One  - Highly Suspect": [
+      "X"
     ]
   },
   "songColors": {
