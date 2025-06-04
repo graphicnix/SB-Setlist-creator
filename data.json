@@ -1016,18 +1016,17 @@
   },
   "setlists": {
     "setlist-1": [
-      "Blue on Black - Kenny Wayne",
+      "Hash Pipe - Weezer",
       "No Rest for the Wicked - Cage the Elephant",
-      "Drunken Lullabies - Flogging Molly",
-      "La Grange - ZZ Top",
       "Ruby Soho - Rancid",
-      "Inside Out - Eve 6",
+      "Fell on Black Days - Soundgarden",
+      "Come Down - Bush",
+      "La Grange - ZZ Top",
+      "Tripping on a Hole - STP",
+      "Blue on Black - Kenny Wayne",
       "Breed - Nirvana",
-      "Cumbersome - Seven Mary Three",
-      "I Alone - Live",
-      "Lump - The Presidents USA",
-      "Beautiful Disaster - 311",
-      "Bullet w Butterfly - TSP"
+      "Song 2 - Blur",
+      "Drunken Lullabies - Flogging Molly"
     ],
     "setlist-2": [
       "Holiday - Green Day",
@@ -1259,6 +1258,24 @@
       "",
       "",
       ""
+    ],
+    "Blue on Black - Kenny Wayne": [
+      "O"
+    ],
+    "Soul to Squeeze - R.H.C.P": [
+      "O"
+    ],
+    "Under the Bridge - RHCP": [
+      "O"
+    ],
+    "Interstate Love Song - STP": [
+      "O"
+    ],
+    "96 Quite Bitter Beings - CKY": [
+      "O"
+    ],
+    "Come Together - The Beatles": [
+      "O"
     ]
   },
   "songColors": {
