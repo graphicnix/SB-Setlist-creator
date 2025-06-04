@@ -19,7 +19,9 @@
       "riff": "Ebm",
       "bpm": "92",
       "duration": "3:56",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Creep - Radiohead"
+      ],
       "lyrics": "Ebm                        Ebm    \nBirds flying high, you know how I feel.    \nEbm                   Ebm    \nSun in the sky, you know how I feel.      \nEbm         Ebm/C#  G#/C               G#m/B      \nBreeze drifting on by, you know how I feel.      \nBbm                      G#m              Ebm/F#       Bb/F      \nIt's a new dawn, it's a new day, it's a new life   for me.      \n      \nAnd I'm feeling good\n      \nEbm  Ebm/C#  B  Bb       \n      \nEbm         Ebm/C#  B             Bb       \nFish in the sea, you know how I feel.      \nEbm           Ebm/C#     B             Bb       \nRiver running free, you know how I feel.      \nEbm                  Ebm/C#  G#/C            G#m/B      \nBlossom in the trees, you know how I feel.      \n      \n          Bbm                       G#m                    Ebm/F#    Bb/F      \nIt's a new dawn, it's a new day, it's a new life     for me      \n      \nAnd I'm feeling good.\n      \nEbm  Ebm/C#  B  Bb   (2x)    \n\nKey Change Fm  Fm/Eb  C#  C  (2x)    \n      \nEbm         Ebm/C#          B                Bb       \nDragonflies out in the sun, you know what I mean, don't you know?      \n      \nEbm         Ebm/C#       B              Bb       \nButterflies all having fun, you know what I mean.      \n      \nEbm                  Ebm/C#         G#/C         G#m/B      \nSleep in peace when day is done, that's what I mean.      \n      \n               Bbm                      G#m                      Ebm/F#         Bb/F      \nIt's and old world, it's a new world, it's a bold world     for me.      \n      \nEbm  Ebm/C#  B  Bb      \n      \nEbm             Ebm/C#   B             Bb       \nStars when you shine, you know how I feel.      \n      \nEbm          Ebm/C#    B            Bb       \nSaid I'll be fine, you know how I feel.      \n      \nEbm            Ebm/C#  G#/C           G#m/B      \nOh freedom is mine, and I know how I feel.      \n        \nBbm                      G#m                   Ebm/F#                Bb/F      \nIt's a new dawn, it's a new day, it's a new life   for me      \n      \nAnd I'm feeling good.\n      \nEbm  Ebm/C#  B  Bb       \nooooooh feeling good! ooh feeling good!",
       "tuning": "Eb",
       "timeSignature": "4/4",
@@ -121,7 +123,9 @@
       "riff": "G",
       "bpm": "168",
       "duration": "2:37",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Drunken Lullabies - Flogging Molly"
+      ],
       "lyrics": "Rancid Lyrics\n\"Ruby Soho\"\n\nEchoes of reggae comin' through my bedroom wall\nhavin' a party up next door but i'm sittin here all alone\ntwo lovers in the bedroom and the other starts to shout\nall i got is this blank stare and that don't carry no clout at all\n\n[Chorus]\nDestination unknown\nRuby ruby ruby ruby soho\n[x2]\n\nHe's singin and she's there to lend a hand\nhe's seen his name on the marquee but she will never understand\nonce again he's leavin' and she's there with a tear in her eye\nembraces with a warm gesture it's time, time to say goodbye\n\n[Chorus]\n\nRuby's heart ain't beatin cause she knows the feelin' is gone\nshe's not the only one who knew there's somethin' wrong\nher lover's in the distance as she wipes a tear from her eye\nruby's fading out, she disappears, it's time, time to say goodbye\n\n[Chorus]\n\nRuby ruby ruby ruby soho\nRuby ruby ruby ruby soho\nRuby ruby ruby ruby soho\nRuby ruby ruby ruby soho\n\nDestination unknown (Ruby ruby ruby ruby soho)\nRuby ruby ruby ruby soho\n[x2]\n",
       "status": "main",
       "sn": "9B",
@@ -183,7 +187,9 @@
       "riff": "G",
       "bpm": "156",
       "duration": "3:50",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Ruby Soho - Rancid"
+      ],
       "lyrics": "Verse\n \nG \nMust it take a life for hateful eyes \n \nEm   \nTo glisten once again \n \nC \nFive hundred years like Gelignite \n \nEm                   D \nHave blown us all to hell \n \nG \nWhat savior rests while on his cross we die \n \nEm   \nForgotten freedom burns \n \nC \nHas the Shepard led his lambs astray \n \nEm                   D \nTo the bigot and the gun \n \n \nChorus\n \n        C               G \nMust it take a life for hateful eyes \n \n   C            D \nTo glisten once again \n \n         G       C             Em   \nCause we find ourselves in the same old mess \n \n       G       D    G \nSingin drunken lullabies \n \n \nBridge\n \n        C              D         G \nAh, but maybe it's the way we're taught \n \n   C              D      G \nOr maybe it's the way we fought \n \n      C           D             G        C \nBut a smile never grins without tears to begin \n \n                   D          G \nFor each kiss is a cry we all lost \n \n       C                  G \nThough nothing is left to gain \n \n            C                      D \nBut for the banshee that stole the grave \n \n         G       C             Em   \nCause we find ourselves in the same old mess \n \n       G       D    G \nSingin drunken lullabies",
       "timeSignature": "6/8",
       "tuning": "Standard",
@@ -275,7 +281,7 @@
       "duration": "4:02",
       "crossfadeInto": [
         "Come Down - Bush",
-        "Fell on Black Days - Soundgarden",
+        "Cumbersome - Seven Mary Three",
         "Like a Stone - Audioslave"
       ],
       "lyrics": "311 Lyrics\n\"Beautiful Disaster\"\n\nToday seems like a good day to burn a bridge or two\nThe one with old wood creaking that would burn right away on cue\nI try to be not like that, but some people really suck\nPeople need to get the axing, chalk it up to bad luck\n\nI know a drugstore cowgirl so afraid of getting bored\nShe's always running from something, so many things ignored\nI might do that stuff if it didn't make me feel like shit\nI'm on some old reality tip, so many trips in it\n\nBeautiful disaster\nFlyin' down the street again\nI tried to keep up\nYou wore me out and left me ate up\nNow I wish you all the luck\nYou're a butterfly in the wind without a care\nA pretty train crash to me and I can't care\nI do, I don't, whatever\n\nI know a drugstore cowgirl so afraid of getting bored\nShe's always running from something, so many things ignored\nI try to be not like this, but I thought it'd make a good song\nThere's nothing to see, shows over, people just move along\n\nBeautiful disaster\nFlyin' down the street again\nI tried to keep up\nYou wore me out and left me ate up\nNow I wish you all the luck\nYou're a butterfly in the wind without a care\nA pretty train crash to me and I can't care\nI do, I don't, whatever\n\n",
@@ -427,18 +433,6 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "9B"
-    },
-    "Plowed - Sponge": {
-      "key": "Db Major",
-      "riff": "Em",
-      "bpm": "92",
-      "duration": "4:32",
-      "crossfadeInto": [],
-      "lyrics": "Sponge Lyrics\n\"Plowed\"\n\nWill I wake up? Some dream I made up\nNo, I guess it's reality\nWhat will change us? Or will we mess up\nOur only chance to connect with a dream\n\nSay a prayer for me\n(Say a prayer for me)\nSay a prayer for me\n\nSay a prayer for me\n(Say a prayer for me)\nI'm buried by the sound\n\nOf a world of human wreckage\nIn a world of human wreckage\nIn a world of human wreckage\nWhere I'm lost and I'm found and I can't touch the ground\nI'm plowed into the sound\n\nTo see wide open with a head that's broken\nHang a life on some tragedy\nPlow me under the ground that covers\nThe message that is the seed\n\nSay a prayer for me\n(Say a prayer for me)\nSay a prayer for me\n\nSay a prayer for me\n(Say a prayer for me)\nI'm buried by the sound\n\nOf a world of human wreckage\nIn a world of human wreckage\nIn a world of human wreckage\nWhere I'm lost and I'm found and I can't touch the ground\nI'm plowed into the sound\n\nWill I wake up? Some dream I made up\nNo, I guess it's reality\n\n\n",
-      "status": "main",
-      "sn": "3B",
-      "tuning": "Standard",
-      "timeSignature": "4/4"
     },
     "She Talks to Angels - The Black Crowes": {
       "key": "E Major",
@@ -725,7 +719,9 @@
       "riff": "E",
       "bpm": "144",
       "duration": "3:53",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Song 2 - Blur"
+      ],
       "lyrics": "\"Holiday\"\n\nSay hey!\nCha!\n\nHear the sound of the falling rain\nComing down like an Armageddon flame (Hey!)\nThe shame, the ones who died without a name\nHear the dogs howling out of key\nTo a hymn called \"Faith and Misery\" (Hey!)\nAnd bleed, the company lost the war today\n\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nOn holiday!\n\nHear the drum pounding out of time\nAnother protester has crossed the line (Hey!)\nTo find the money's on the other side\nCan I get another Amen? (Amen!)\nThere's a flag wrapped around a score of men (Hey!)\nA gag, a plastic bag on a monument\n\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nOn holiday! (Hey!)\n\nThree, four!\n\"The representative from California has the floor.\"\n\n\"Sieg Heil\" to the president Gasman\nBombs away is your punishment\nPulverize the Eiffel towers\nWho criticize your government\nBang bang goes the broken glass, and\nKill all the fags that don't agree\nTrials by fire, setting fire\nIs not a way that's meant for me\nJust 'cause (Hey! Hey! Hey! Hey!)\nJust 'cause (Hey! Hey! Hey! Hey!)\nBecause we're outlaws, yeah!\n\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nI beg to dream and differ from the hollow lies\nThis is the dawning of the rest of our lives\nThis is our lives on holiday!",
       "status": "main",
       "sn": "4B",
@@ -737,7 +733,9 @@
       "riff": "E",
       "bpm": "144",
       "duration": "2:02",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Holiday - Green Day"
+      ],
       "lyrics": "\"Song 2\"\n\nWoo-hoo [4x]\n\nI got my head checked\nBy a jumbo jet\nIt wasn't easy\nBut nothing i-is\nNo\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nI got my head done\nWhen I was young\nIt's not my problem\nIt's not my problem\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nYeah yeah\nYeah yeah\nYeah yeah\nOh yeah\n",
       "tuning": "Eb",
       "status": "main",
@@ -835,9 +833,9 @@
     },
     "santa monica  - Everclear": {
       "key": "",
-      "sn": "",
-      "bpm": "",
-      "duration": "",
+      "sn": "9B",
+      "bpm": "100",
+      "duration": "3:12",
       "tuning": "Standard",
       "crossfadeInto": [],
       "lyrics": "[Verse 1]\nI am still living with your ghost\nLonely and dreaming of the west coast\nI don't want to be your downtime\nI don't want to be your stupid game\n\n[Verse 2]\nWith my big black boots and an old suitcase\nI do believe I'll find myself a new place\nI don't want to be the bad guy\nI don't want do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to see some palm trees\nI will try and shake away this disease\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nSee Everclear Live\nGet tickets as low as $40\nYou might also like\nThought I Was Dead\nTyler, The Creator\nShe Knows\nJ. Cole\nI Will Buy You a New Life\nEverclear\n[Verse 3]\nI am still dreaming of your face\nHungry and hollow for all the things you took away\nI don't want to be your good time\nI don't want to be your fallback crutch anymore\n\n[Verse 4]\nWalk right out into a brand-new day\nInsane and rising in my own weird way\nI don't want to be the bad guy\nI don't want to do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to feel some sunshine\nI just want to find some place to be alone\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\n[Outro]\nOh, yeah, watch the world die\nYeah, yeah, watch the world die\nWhoa, yeah, watch the world die\nYeah, watch the world die",
