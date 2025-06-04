@@ -1013,14 +1013,18 @@
         "IDC": 0
       }
     },
-    "Drop B -  Before I Forget - Slipknot": {
+    " Before I Forget Drop B Tuning - Slipknot": {
       "key": "",
       "sn": "11A",
       "bpm": "135",
       "duration": "4:39",
       "tuning": "B Std.",
       "timeSignature": "4/4",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Breed - Nirvana",
+        "Cowboys from Hell - Pantera",
+        "Schism - Tool"
+      ],
       "lyrics": "[Intro]\nGo\n\n[Verse 1]\nStapled shut, inside an outside world, and I'm\nSealed in tight, bizarre but right at home\nI'm claustrophobic, closing in\nAnd I'm catastrophic, not again\nI'm smeared across the page and doused in gasoline\nI wear you like a stain, yet I'm the one who's obscene\nCatch me up on all your sordid little insurrections\nI've got no time to lose, I'm just caught up in all the cattle\n\n[Pre-Chorus]\nFray the strings\nThrow the shapes\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nSee Slipknot Live\nGet tickets as low as $59\nYou might also like\nmeet the grahams\nKendrick Lamar\nNot Like Us\nKendrick Lamar\neuphoria\nKendrick Lamar\n[Verse 2]\nI'm ripped across the ditch\nAnd settled in the dirt and I\nWear you like a stitch\nYet I'm the one who's hurt\nPay attention to your twisted little indiscretions\nI've got no right to win, I'm just caught up in all the battles\n\n[Pre-Chorus]\nLocked in clutch\nPushed in place\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Bridge]\nMy end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\nAnd my end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Outro]\nYeah, yeah, yeah, yeah, yeah\nYeah, yeah, oh\n\n[Segue]\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it",
       "status": "main"
     }
@@ -1038,7 +1042,7 @@
       "Breed - Nirvana",
       "Song 2 - Blur",
       "Drunken Lullabies - Flogging Molly",
-      "Drop B -  Before I Forget - Slipknot"
+      " Before I Forget Drop B Tuning - Slipknot"
     ],
     "setlist-2": [
       "Holiday - Green Day",
@@ -1064,7 +1068,7 @@
       "Cowboys from Hell - Pantera",
       "Everlong - Foo Fighters",
       "No One Knows - Queens Stone Age",
-      "Drop B -  Before I Forget - Slipknot"
+      " Before I Forget Drop B Tuning - Slipknot"
     ]
   },
   "songIcons": {
