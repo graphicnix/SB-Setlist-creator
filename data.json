@@ -1055,10 +1055,10 @@
     },
     "sugar were going down  - Fall out boy": {
       "key": "",
-      "sn": "",
-      "bpm": "",
+      "sn": "9B",
+      "bpm": "162",
       "duration": "",
-      "tuning": "",
+      "tuning": "Standard",
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
@@ -1322,6 +1322,9 @@
     ],
     "Song 2 - Blur": [
       "O",
+      "M"
+    ],
+    "sugar were going down  - Fall out boy": [
       "M"
     ]
   },
