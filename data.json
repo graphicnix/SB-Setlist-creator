@@ -987,12 +987,7 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 0,
-        "N": 0,
-        "IDC": 0
-      }
+      "status": "main"
     },
     "Bleed America - JEW": {
       "key": "",
@@ -1041,6 +1036,33 @@
         "N": 0,
         "IDC": 0
       }
+    },
+    "supermans dead - our lady peace": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "timeSignature": "4/4",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "council",
+      "votes": {
+        "Y": 0,
+        "N": 0,
+        "IDC": 0
+      }
+    },
+    "sugar were going down  - Fall out boy": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "timeSignature": "4/4",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "main"
     }
   },
   "setlists": {
