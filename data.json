@@ -823,12 +823,7 @@
       "tuning": "",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 2,
-        "N": 0,
-        "IDC": 0
-      },
+      "status": "main",
       "timeSignature": "4/4"
     },
     "santa monica  - Everclear": {
@@ -983,10 +978,10 @@
       "sn": "",
       "bpm": "",
       "duration": "",
-      "tuning": "",
+      "tuning": "Standard",
       "timeSignature": "4/4",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "\"Aeroplane\"\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\n\nLooking in my own eyes, hey Lord\nI can't find the love I want\nSomeone better slap me\nBefore I start to rust\nBefore I start to decompose\nLooking in my rear-view mirror\nLooking in my rear-view mirror\nI can make it disappear\nI can make it disappear, have no fear\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\n\nSitting in my kitchen, hey girl\nI'm turning into dust again\nMy melancholy baby\nThe star of Mazzy must\nPush her voice inside of me\nI'm overcoming gravity\nI'm overcoming gravity\nIt's easy when you're sad to be\nIt's easy when you're sad, sad like me\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\nJust one note could make me float\nCould make me float away\nOne note from the song she wrote\nCould fuck me where I lay\nJust one note could make me choke\nOne note, that's not a lie\nJust one note could cut my throat\nOne note could make me die\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\nMy aeroplane, my aeroplane\nIt's my aeroplane",
       "status": "main"
     },
     "Bleed America - JEW": {
@@ -998,28 +993,18 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 0,
-        "N": 0,
-        "IDC": 0
-      }
+      "status": "main"
     },
     "GEL - Collective soul": {
       "key": "",
       "sn": "",
       "bpm": "",
       "duration": "",
-      "tuning": "",
+      "tuning": "Standard",
       "timeSignature": "4/4",
       "crossfadeInto": [],
-      "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 0,
-        "N": 0,
-        "IDC": 0
-      }
+      "lyrics": "[Verse 1]\nColor me any color\nSpeak to me in tongues and share\nTell me how you'd love to hate me\nTell me how you'd love to care\n\n[Pre-Chorus]\nWell, I just want\n(To shake us up)\nWell, I just want, I just want to\nTo shake us up (Ah-ha, ah-ha, ah-ha)\n\n[Chorus]\nLet's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel\n\n[Verse 2]\nClothe me in any fashion\nGlitter to so mundane\nTell me how you'd love to change me\nTell me I can stay the same\n\n[Bridge]\nWell, I just want\n(To shake us up)\nWell, I just want, I just want to\nTo shake us up (Ah-ha, ah-ha, ah-ha)\nSee Collective Soul Live\nGet tickets as low as $38\nYou might also like\nloml\nTaylor Swift\nDirty Deeds Done Dirt Cheap\nAC/DC\nRun\nCollective Soul\n[Chorus]\nLet's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel\n\n[Guitar solo]\n\n[Chorus]\nWell, let's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel (Ah-ha, ah-ha, ah-ha)\n\n[Outro]\nWell, let's bungle (Ah-ha, ah-ha, ah-ha)\nAnd live to tell (Ah-ha, ah-ha, ah-ha)\nWow, we came together\nYeah, how we gelled",
+      "status": "main"
     },
     "Love spreads - Stone Roses": {
       "key": "",
@@ -1030,12 +1015,7 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 0,
-        "N": 0,
-        "IDC": 0
-      }
+      "status": "main"
     },
     "supermans dead - our lady peace": {
       "key": "",
@@ -1046,12 +1026,7 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "council",
-      "votes": {
-        "Y": 0,
-        "N": 0,
-        "IDC": 0
-      }
+      "status": "main"
     },
     "sugar were going down  - Fall out boy": {
       "key": "",
