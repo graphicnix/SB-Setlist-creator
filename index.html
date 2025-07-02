@@ -1256,8 +1256,7 @@
             document.getElementById('current-priority').innerText = 'None';
             unsavedChanges = true;
         }
-
-        function saveSongEdit(oldSong) {
+function saveSongEdit(oldSong) {
             const title = document.getElementById('edit-song-title').value;
             const artist = document.getElementById('edit-song-artist').value;
             const key = document.getElementById('edit-song-key').value;
@@ -1306,6 +1305,34 @@
             } else {
                 alert("Title and Artist are required fields.");
             }
+        }
+
+        function setPriority(song, setlistNumber) {
+            // Clear priority from other songs first for this setlist
+            for (const s in songData) {
+                if (songData[s].prioritySetlist === setlistNumber) {
+                    songData[s].prioritySetlist = null;
+                }
+            }
+            songData[song].prioritySetlist = setlistNumber;
+            // Update the display in the currently open edit modal if it's the same song
+            const currentPrioritySpan = document.getElementById('current-priority');
+            if (currentPrioritySpan) {
+                currentPrioritySpan.innerText = 'Setlist ' + setlistNumber;
+            }
+            populateSongTable(); // Re-render main table to show/update badge
+            unsavedChanges = true;
+        }
+
+        function clearPriority(song) {
+            songData[song].prioritySetlist = null;
+            // Update the display in the currently open edit modal if it's the same song
+            const currentPrioritySpan = document.getElementById('current-priority');
+            if (currentPrioritySpan) {
+                currentPrioritySpan.innerText = 'None';
+            }
+            populateSongTable(); // Re-render main table to remove badge
+            unsavedChanges = true;
         }
 
         function moveSongToMothballs(song) {
@@ -1362,7 +1389,7 @@
             let totalDuration = 0;
 
             const mustIncludeSongs = availableSongs.filter(song => songData[song].prioritySetlist === setlistNumber);
-            selectedSongs = [...mustIncludeSongs];
+            selectedSongs = [...mustIncludeSongs]; // Initialize with must-include songs
             mustIncludeSongs.forEach(song => {
                 totalDuration += parseDuration(songData[song].duration);
             });
@@ -1371,22 +1398,30 @@
             const targetMinutes = parseFloat(durationInput.value) || 45;
             const maxDuration = targetMinutes * 60;
 
-            if (totalDuration >= maxDuration) {
-                setlists[setlistKey] = selectedSongs;
-                updateSetlistDisplay(setlistKey);
-                updateDuration(setlistKey);
-                unsavedChanges = true;
-                return;
+            // If must-include songs already exceed max duration, set and warn
+            if (totalDuration >= maxDuration && mustIncludeSongs.length > 0) {
+                 setlists[setlistKey] = selectedSongs;
+                 updateSetlistDisplay(setlistKey);
+                 updateDuration(setlistKey);
+                 alert(`Warning: Prioritized songs for Setlist ${setlistNumber} exceed the target duration of ${targetMinutes} minutes. Current total: ${formatDuration(totalDuration)}`);
+                 unsavedChanges = true;
+                 return;
             }
+
 
             let lastSong;
             let lastBPM;
             let consecutiveSameBPM;
+
+            // Initialize lastSong, lastBPM, consecutiveSameBPM based on prioritized songs
             if (selectedSongs.length > 0) {
+                // For now, if multiple prioritized songs, use the last one for initial algorithm seeding
+                // A more complex optimization for initial placement of multiple prioritized songs can be built later if needed.
                 lastSong = selectedSongs[selectedSongs.length - 1];
                 lastBPM = parseInt(songData[lastSong].bpm) || 0;
                 consecutiveSameBPM = 1;
             } else {
+                // Original logic for picking the first song if no prioritized songs
                 const strongSongs = availableSongs.filter(song => parseInt(songData[song].bpm) > 120);
                 if (strongSongs.length > 0) {
                     lastSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
@@ -1401,7 +1436,10 @@
 
             while (totalDuration < maxDuration) {
                 const lastHasX = hasIcon(lastSong, 'X');
-                let candidates = availableSongs.filter(song => !selectedSongs.includes(song));
+                // Filter out already selected songs AND prioritized songs for THIS setlist
+                let candidates = availableSongs.filter(song =>
+                    !selectedSongs.includes(song) && !mustIncludeSongs.includes(song)
+                );
 
                 if (lastHasX) {
                     candidates = candidates.filter(song => !hasIcon(song, 'X'));
@@ -1416,14 +1454,14 @@
                     selectedSongs.push(nextSong);
                     totalDuration += parseDuration(songData[nextSong].duration);
                     const nextBPM = parseInt(songData[nextSong].bpm) || 0;
-                    if (nextBPM === lastBPM) {
+                    if (Math.abs(nextBPM - lastBPM) <= 5) { // Check for BPM stagnation within +/- 5
                         consecutiveSameBPM++;
                     } else {
                         consecutiveSameBPM = 1;
-                        lastBPM = nextBPM;
                     }
+                    lastBPM = nextBPM;
                     lastSong = nextSong;
-                    continue;
+                    continue; // Skip to next iteration to add more songs
                 }
 
                 const lastCamelot = songData[lastSong].sn;
@@ -1431,54 +1469,67 @@
                 const dramaticCamelot = getDramaticCamelot(lastCamelot);
 
                 let camelotCandidates;
+                // Prioritize adjacent Camelot keys (70% chance)
                 if (Math.random() < 0.7) {
                     camelotCandidates = candidates.filter(song => adjacentCamelot.includes(songData[song].sn));
                 } else {
+                    // Otherwise, try dramatic jumps
                     camelotCandidates = candidates.filter(song => dramaticCamelot.includes(songData[song].sn));
                 }
 
                 if (camelotCandidates.length === 0) {
-                    camelotCandidates = candidates;
+                    camelotCandidates = candidates; // Fallback: if no suitable Camelot candidates, use all remaining
                 }
 
                 let bpmCandidates;
-                if (consecutiveSameBPM < 3) {
-                    bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) >= lastBPM);
+                // BPM sequencing rules
+                const recentBPMs = selectedSongs.slice(-3).map(s => parseInt(songData[s].bpm) || 0);
+                const avgRecentBPM = recentBPMs.reduce((sum, bpm) => sum + bpm, 0) / recentBPMs.length;
+
+                if (recentBPMs.length >= 3 && recentBPMs.every(bpm => Math.abs(bpm - avgRecentBPM) <= 5)) {
+                    // If last 3 songs had similar BPMs, next must be distinctly higher (+5 BPM from average)
+                    bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) >= (avgRecentBPM + 5));
                 } else {
-                    bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) > lastBPM);
+                    // Otherwise, prefer BPMs close to the last song's BPM (+/- 5)
+                    bpmCandidates = camelotCandidates.filter(song => Math.abs(parseInt(songData[song].bpm) - lastBPM) <= 5);
                 }
 
                 if (bpmCandidates.length === 0) {
-                    bpmCandidates = camelotCandidates;
-                }
-
-                if (bpmCandidates.length === 0) {
-                    bpmCandidates = candidates;
+                    // If no perfect BPM match, consider any song that doesn't drastically lower BPM
+                    bpmCandidates = camelotCandidates.filter(song => parseInt(songData[song].bpm) >= (lastBPM * 0.8)); // Allow up to 20% drop
+                    if (bpmCandidates.length === 0) {
+                        bpmCandidates = camelotCandidates; // Fallback: if still no candidates, take any
+                    }
                 }
 
                 if (bpmCandidates.length > 0) {
                     const nextSong = bpmCandidates[Math.floor(Math.random() * bpmCandidates.length)];
                     selectedSongs.push(nextSong);
                     totalDuration += parseDuration(songData[nextSong].duration);
-                    const nextBPM = parseInt(songData[nextSong].bpm) || 0;
-                    if (nextBPM === lastBPM) {
-                        consecutiveSameBPM++;
-                    } else {
-                        consecutiveSameBPM = 1;
-                        lastBPM = nextBPM;
-                    }
+                    lastBPM = parseInt(songData[nextSong].bpm) || 0;
                     lastSong = nextSong;
                 } else {
-                    break;
+                    break; // No more suitable songs to add
                 }
             }
 
-            if (selectedSongs.length > 1) {
-                const lastSongCheck = selectedSongs[selectedSongs.length - 1];
-                if (parseInt(songData[lastSongCheck].bpm) <= 120) {
-                    const strongCandidates = availableSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
+            // Ending Strong: Replace the last song if its BPM is slow (<= 120) and a stronger option is available.
+            if (selectedSongs.length > 0) {
+                const lastSongInSetlist = selectedSongs[selectedSongs.length - 1];
+                if (parseInt(songData[lastSongInSetlist].bpm) <= 120) {
+                    const strongCandidates = availableSongs.filter(song =>
+                        !selectedSongs.includes(song) &&
+                        parseInt(songData[song].bpm) > 120 &&
+                        !mustIncludeSongs.includes(song) // Don't replace a prioritized song
+                    );
                     if (strongCandidates.length > 0) {
-                        selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
+                        // Pick a random strong song
+                        const replacementSong = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
+                        // Calculate duration difference and update totalDuration
+                        totalDuration -= parseDuration(songData[lastSongInSetlist].duration);
+                        totalDuration += parseDuration(songData[replacementSong].duration);
+                        // Replace the last song
+                        selectedSongs[selectedSongs.length - 1] = replacementSong;
                     }
                 }
             }
@@ -1486,976 +1537,261 @@
             setlists[setlistKey] = selectedSongs;
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
+
+            // Check if duration exceeds and show warning
+            if (totalDuration > maxDuration) {
+                alert(`Warning: Setlist ${setlistNumber} exceeds the target duration of ${targetMinutes} minutes by ${formatDuration(totalDuration - maxDuration)}. Consider removing songs or adjusting duration.`);
+            }
+
             unsavedChanges = true;
         }
+
+        function formatDuration(totalSeconds) {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
 
         function getScore(lastSong, candidateSong) {
             const lastCamelot = songData[lastSong].sn;
             const candidateCamelot = songData[candidateSong].sn;
             const adjacentCamelot = getAdjacentCamelot(lastCamelot);
+            const dramaticCamelot = getDramaticCamelot(lastCamelot);
             const lastHasX = hasIcon(lastSong, 'X');
             const candidateHasX = hasIcon(candidateSong, 'X');
+            const lastBPM = parseInt(songData[lastSong].bpm) || 0;
+            const candidateBPM = parseInt(songData[candidateSong].bpm) || 0;
 
             let score = 0;
 
+            // Prioritize crossfades
             if (songData[lastSong].crossfadeInto?.includes(candidateSong)) {
+                score += 500; // High score for direct crossfade
+            }
+
+            // Prioritize Camelot adjacency
+            if (adjacentCamelot.includes(candidateCamelot)) {
                 score += 100;
-            } else if (adjacentCamelot.includes(candidateCamelot)) {
+            }
+            // Add a smaller bonus for dramatic jumps if adjacent is not possible
+            else if (dramaticCamelot.includes(candidateCamelot)) {
+                score += 20;
+            }
+
+            // BPM flow (prefer same or increasing BPM)
+            if (candidateBPM === lastBPM) {
                 score += 50;
+            } else if (candidateBPM > lastBPM) {
+                score += 30;
+            } else if (candidateBPM < lastBPM && (lastBPM - candidateBPM <= 10)) { // Small penalty for slight decrease
+                score += 5;
+            } else { // Larger penalty for significant BPM drops
+                score -= 20;
             }
 
-            const lastBPM = parseInt(songData[lastSong].bpm) || 0;
-            const candidateBPM = parseInt(songData[candidateSong].bpm) || 0;
-            if (candidateBPM >= lastBPM) {
-                score += 10;
-            }
-
+            // Vocal Stress (penalize consecutive X songs)
             if (lastHasX && candidateHasX) {
-                score -= 50;
+                score -= 1000; // Very high penalty to strongly discourage
             }
+
+            // Prefer songs that haven't been in the current setlist (implicit by filtering candidates)
+            // No explicit score needed for this as it's handled by `candidates.filter`
 
             return score;
         }
 
         function optimizeSetlist(setlistKey) {
-            const songs = setlists[setlistKey].slice();
-            if (songs.length === 0) return;
+            const originalSongs = setlists[setlistKey].slice();
+            if (originalSongs.length === 0) return;
 
-            songs.sort((a, b) => (parseInt(songData[b].bpm) || 0) - (parseInt(songData[a].bpm) || 0));
-            const startingSong = songs.shift();
-            const orderedSongs = [startingSong];
+            // Separate prioritized songs from non-prioritized ones
+            const setlistNumber = parseInt(setlistKey.split('-')[1]);
+            const prioritizedSongs = originalSongs.filter(song => songData[song].prioritySetlist === setlistNumber);
+            let nonPrioritizedSongs = originalSongs.filter(song => !prioritizedSongs.includes(song));
 
-            while (songs.length > 0) {
-                let bestScore = -Infinity;
-                let bestSong = null;
-                const lastSong = orderedSongs[orderedSongs.length - 1];
-                songs.forEach(song => {
-                    const score = getScore(lastSong, song);
-                    if (score > bestScore) {
-                        bestScore = score;
-                        bestSong = song;
-                    }
+            let orderedSongs = [...prioritizedSongs]; // Start with prioritized songs
+            let tempTotalDuration = prioritizedSongs.reduce((sum, song) => sum + parseDuration(songData[song].duration), 0);
+
+            // Re-sort prioritized songs if there are more than one, for initial best fit
+            if (orderedSongs.length > 1) {
+                // A basic re-ordering for prioritized songs - can be expanded for more complex rules
+                // For simplicity, sort by BPM descending, then by Camelot for initial placement
+                orderedSongs.sort((a, b) => {
+                    const bpmDiff = (parseInt(songData[b].bpm) || 0) - (parseInt(songData[a].bpm) || 0);
+                    if (bpmDiff !== 0) return bpmDiff;
+                    return songData[a].sn.localeCompare(songData[b].sn);
                 });
-                if (bestSong) {
-                    orderedSongs.push(bestSong);
-                    songs.splice(songs.indexOf(bestSong), 1);
+            }
+
+            let lastSong = orderedSongs.length > 0 ? orderedSongs[orderedSongs.length - 1] : null;
+
+            // Intelligent insertion of non-prioritized songs around prioritized ones
+            // This is a simplified approach; a full greedy algorithm for optimal insertion
+            // would be more complex and is usually handled by the main generation algorithm.
+            // For optimize, we'll try to append them in a sensible order.
+
+            // Sort non-prioritized songs by score relative to the last song (if any)
+            if (lastSong) {
+                nonPrioritizedSongs.sort((a, b) => getScore(lastSong, b) - getScore(lastSong, a));
+            } else {
+                // If no prioritized songs, sort by BPM for a strong start
+                nonPrioritizedSongs.sort((a, b) => (parseInt(songData[b].bpm) || 0) - (parseInt(songData[a].bpm) || 0));
+            }
+
+
+            // Attempt to build the sequence, inserting prioritized songs where they were or optimally
+            let finalOrderedSetlist = [];
+            let currentTempSet = [];
+            let tempLastSong = null; // For local sequencing within segments
+
+            // The main challenge here is intelligently integrating *existing* songs, including prioritized ones.
+            // The existing `generateRandomSetlist` is built for *adding* songs to an empty or partially filled list.
+            // For `optimizeSetlist`, we need to re-sequence the *given* songs.
+
+            // A simple re-sequencing of the *entire* list based on scores (this might move prioritized songs)
+            // If prioritized songs *must* stay in their original relative positions, this approach needs adjustment.
+            // For the requirement "re-orders *only* the songs within that specific setlist according to *all* the algorithm's existing flow and compatibility rules, without adding or removing songs,"
+            // a full re-sort is the most direct interpretation.
+
+            // Let's create a score-based optimization that tries to place songs optimally
+            let allSongsInSet = [...originalSongs];
+            let optimizedTempSet = [];
+            let availableForOptimization = new Set(allSongsInSet);
+
+            // Start with the first prioritized song, or the highest BPM song if none
+            let firstSong = prioritizedSongs.length > 0 ? prioritizedSongs[0] : null;
+            if (!firstSong) {
+                firstSong = [...availableForOptimization].sort((a, b) => (parseInt(songData[b].bpm) || 0) - (parseInt(songData[a].bpm) || 0))[0];
+            }
+
+            if (firstSong) {
+                optimizedTempSet.push(firstSong);
+                availableForOptimization.delete(firstSong);
+            }
+
+            let vocalStressWarning = false;
+            let vocalCordArmageddonWarning = false;
+            let currentBPMs = optimizedTempSet.map(s => parseInt(songData[s].bpm) || 0);
+
+            while (availableForOptimization.size > 0) {
+                let lastAddedSong = optimizedTempSet[optimizedTempSet.length - 1];
+                let bestNextSong = null;
+                let highestScore = -Infinity;
+
+                let candidatesForNext = [...availableForOptimization];
+
+                // Apply vocal stress rule: if lastAddedSong has 'X', prefer non-'X' candidates
+                let lastHasX = hasIcon(lastAddedSong, 'X');
+                if (lastHasX) {
+                    // Check if the previous two also had 'X' to trigger Armageddon
+                    const recentXsongs = optimizedTempSet.slice(-2).filter(s => hasIcon(s, 'X')).length;
+                    if (recentXsongs >= 1) { // Current song is 2nd X in a row
+                         candidatesForNext = candidatesForNext.filter(song => !hasIcon(song, 'X'));
+                    }
+                    if (recentXsongs >= 2) { // Current song is 3rd X in a row, next should definitely not be X
+                         vocalCordArmageddonWarning = true; // Mark for warning, but don't prevent if only option
+                    }
+                }
+
+
+                // Prioritize crossfade matches
+                const crossfadeMatches = songData[lastAddedSong]?.crossfadeInto?.filter(s => candidatesForNext.includes(s)) || [];
+                if (crossfadeMatches.length > 0) {
+                    // Randomly pick one of the crossfade matches to ensure some variety
+                    bestNextSong = crossfadeMatches[Math.floor(Math.random() * crossfadeMatches.length)];
                 } else {
-                    orderedSongs.push(songs.shift());
+                    // Score all candidates if no direct crossfade match
+                    candidatesForNext.forEach(candidate => {
+                        let currentScore = getScore(lastAddedSong, candidate);
+
+                        // Adjust score based on BPM flow (more dynamic)
+                        let tempCurrentBPMs = [...currentBPMs, parseInt(songData[candidate].bpm) || 0];
+                        const lastThreeBPMs = tempCurrentBPMs.slice(-3);
+                        const avgLastThreeBPM = lastThreeBPMs.reduce((sum, bpm) => sum + bpm, 0) / lastThreeBPMs.length;
+
+                        if (lastThreeBPMs.length >= 3 && lastThreeBPMs.every(bpm => Math.abs(bpm - avgLastThreeBPM) <= 5)) {
+                            // If last 3 were close, highly prefer significantly higher BPM
+                            if ((parseInt(songData[candidate].bpm) || 0) >= (avgLastThreeBPM + 5)) {
+                                currentScore += 70; // Strong bonus for breaking stagnation
+                            } else {
+                                currentScore -= 50; // Penalty for contributing to stagnation
+                            }
+                        } else {
+                            // Otherwise, prefer BPM close to last song's BPM (+/- 5)
+                            if (Math.abs((parseInt(songData[candidate].bpm) || 0) - (parseInt(songData[lastAddedSong].bpm) || 0)) <= 5) {
+                                currentScore += 40;
+                            } else if ((parseInt(songData[candidate].bpm) || 0) > (parseInt(songData[lastAddedSong].bpm) || 0)) {
+                                currentScore += 10; // Small bonus for increasing BPM
+                            }
+                        }
+
+                        // Further vocal stress check for potential third 'X' in a row
+                        if (lastHasX && hasIcon(candidate, 'X')) {
+                             const twoBeforeLast = optimizedTempSet[optimizedTempSet.length - 2];
+                             if (twoBeforeLast && hasIcon(twoBeforeLast, 'X')) {
+                                 currentScore -= 2000; // Even harsher penalty for 3 in a row
+                             } else {
+                                 currentScore -= 500; // Penalty for 2 in a row
+                             }
+                        }
+
+                        if (currentScore > highestScore) {
+                            highestScore = currentScore;
+                            bestNextSong = candidate;
+                        }
+                    });
+                }
+
+                if (bestNextSong) {
+                    optimizedTempSet.push(bestNextSong);
+                    availableForOptimization.delete(bestNextSong);
+                    currentBPMs.push(parseInt(songData[bestNextSong].bpm) || 0);
+
+                    // Check for vocal stress warnings after adding
+                    if (hasIcon(bestNextSong, 'X')) {
+                        const xCount = optimizedTempSet.slice(-2).filter(s => hasIcon(s, 'X')).length;
+                        if (xCount === 2) vocalStressWarning = true;
+                        if (xCount === 3) vocalCordArmageddonWarning = true;
+                    }
+                } else {
+                    // Fallback if no song scored well - just take any remaining to ensure all songs are included
+                    const remainingSongs = [...availableForOptimization];
+                    if (remainingSongs.length > 0) {
+                        optimizedTempSet.push(remainingSongs[0]);
+                        availableForOptimization.delete(remainingSongs[0]);
+                        currentBPMs.push(parseInt(songData[remainingSongs[0]].bpm) || 0);
+                    } else {
+                        break;
+                    }
                 }
             }
 
-            setlists[setlistKey] = orderedSongs;
-            updateSetlistDisplay(setlistKey);
-            unsavedChanges = true;
-        }
-
-        function parseDuration(duration) {
-            const [minutes, seconds] = duration.split(':').map(Number);
-            return (minutes * 60) + seconds;
-        }
-
-        function getBPM(song) {
-            return parseInt(songData[song].bpm) || 0;
-        }
-
-        function showLyrics(setlistId) {
-            const songs = setlists[setlistId];
-            let lyricsContent = '';
-            songs.forEach(song => {
-                const lyrics = songData[song]?.lyrics?.trim();
-                if (lyrics) {
-                    const [title, artist] = song.split(' - ');
-                    lyricsContent += `${title} - ${artist}\n${lyrics}\n\n`;
+            // Final check for ending strong
+            if (optimizedTempSet.length > 1) {
+                const lastSongOptimized = optimizedTempSet[optimizedTempSet.length - 1];
+                if (parseInt(songData[lastSongOptimized].bpm) <= 120) {
+                    const strongCandidates = originalSongs.filter(song =>
+                        !optimizedTempSet.includes(song) && parseInt(songData[song].bpm) > 120
+                    );
+                    if (strongCandidates.length > 0) {
+                        const replacementSong = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
+                        optimizedTempSet[optimizedTempSet.length - 1] = replacementSong;
+                    }
                 }
-            });
-
-            if (!lyricsContent) {
-                alert('No lyrics available for this setlist.');
-                return;
             }
 
-            const lyricsWindow = window.open('', '_blank', 'width=800,height=1000');
-            lyricsWindow.document.write(`
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Lyrics - ${setlistId.toUpperCase()}</title>
-                    <style>
-                        body {
-                            background-color: black;
-                            color: white;
-                            font-family: Arial, sans-serif;
-                            padding: 20px;
-                            margin: 0;
-                            height: 100vh;
-                            overflow-y: auto;
-                            text-align: center;
-                        }
-                        .lyrics-container {
-                            max-width: 100%;
-                            margin: 0 auto;
-                            padding: 20px;
-                            font-size: 14pt;
-                            line-height: 1.5;
-                            white-space: pre-wrap;
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="lyrics-container">${lyricsContent}</div>
-                </body>
-                </html>
-            `);
-            lyricsWindow.document.close();
-        }
 
-        function updateIcons(selectElement, song, iconIndex) {
-            if (!songIcons[song]) songIcons[song] = [];
-            songIcons[song][iconIndex] = selectElement.value;
-            if (!selectElement.value) songIcons[song].splice(iconIndex, 1);
-            populateSongTable();
-            updateAllSetlists();
-            unsavedChanges = true;
-        }
-
-        function updateColor(selectElement, song) {
-            songColors[song] = selectElement.value;
-            updateAllSetlists();
-            unsavedChanges = true;
-        }
-
-        function deleteFromSetlist(setlistKey, song) {
-            setlists[setlistKey] = setlists[setlistKey].filter(s => s !== song);
+            setlists[setlistKey] = optimizedTempSet;
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
             unsavedChanges = true;
-        }
 
-        function printSetlist(setlistId) {
-            const songs = setlists[setlistId];
-            const songCount = songs.length;
-            const windowHeight = 1056;
-            const maxTitleFontSize = 60;
-            const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
-            const setlistTitleFontSize = baseTitleFontSize - 10;
-            const artistFontSize = 8;
-            const iconFontSize = 20;
-
-            const crossfadePairs = [];
-            for (let i = 0; i < songs.length - 1; i++) {
-                const currentSong = songs[i];
-                const nextSong = songs[i + 1];
-                if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
-                    crossfadePairs.push(i);
-                    crossfadePairs.push(i + 1);
-                }
-            }
-
-            const tuningsInSetlist = new Set();
-            const iconsInSetlist = new Set();
-            songs.forEach(song => {
-                const tuning = songData[song]?.tuning || 'Standard';
-                tuningsInSetlist.add(tuning);
-                const icons = songIcons[song] || [];
-                icons.forEach(icon => {
-                    if (icon) iconsInSetlist.add(icon);
-                });
-            });
-
-            let printWindow = window.open('', '_blank', 'width=816,height=1056');
-            printWindow.document.write(`
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Setlist</title>
-                    <style>
-                        body {
-                            margin: 0;
-                            padding: 20px;
-                            text-align: center;
-                            font-family: Arial, sans-serif;
-                        }
-                        ${Array.from(iconsInSetlist).map(icon => `
-                            .icon-${icon} {
-                                color: ${getIconColor(icon)};
-                                font-size: ${iconFontSize}px;
-                            }
-                        `).join('')}
-                        .setlist-header {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            margin-bottom: 10px;
-                        }
-                        .setlist-title {
-                            font-size: ${setlistTitleFontSize}px;
-                            background-color: yellow;
-                            display: inline-block;
-                            padding: 5px 10px;
-                        }
-                        .tuning-legend {
-                            display: flex;
-                            gap: 10px;
-                            font-size: 12px;
-                            flex-wrap: wrap;
-                            justify-content: center;
-                        }
-                        .tuning-legend-item {
-                            display: flex;
-                            align-items: center;
-                            gap: 4px;
-                        }
-                        .tuning-legend-color {
-                            width: 15px;
-                            height: 15px;
-                            border: 1px solid #000;
-                        }
-                        ol {
-                            padding: 0;
-                            margin: 0;
-                            list-style-position: inside;
-                        }
-                        li {
-                            margin: 10px 0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            position: relative;
-                            padding: 10px;
-                            page-break-inside: avoid;
-                        }
-                        .song-title {
-                            font-size: ${baseTitleFontSize}px;
-                            margin: 0 10px;
-                        }
-                        .artist {
-                            font-size: ${artistFontSize}px;
-                        }
-                        .icons {
-                            margin-right: 10px;
-                        }
-                        ${TUNING_OPTIONS.map(tuning => `
-                            .tuning-${tuning.replace(' ', '-')} {
-                                background-color: ${getTuningColor(tuning)} !important;
-                                ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
-                            }
-                        `).join('')}
-                        .crossfade-pair::before {
-                            content: "⇄";
-                            position: absolute;
-                            left: -20px;
-                            font-size: 16px;
-                            color: #006400;
-                        }
-                        .crossfade-pair::after {
-                            content: "⇄";
-                            position: absolute;
-                            right: -20px;
-                            font-size: 16px;
-                            color: #006400;
-                        }
-                        .emoji-thumbs-down, .emoji-thumbs-up {
-                            color: black;
-                        }
-                        @media print {
-                            body { padding: 0; margin: 0; }
-                            .setlist-header { margin-bottom: 5px; }
-                            .setlist-title { font-size: 24px; }
-                            li { margin: 5px 0; padding: 5px; }
-                            .song-title { font-size: 36px; }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="setlist-header">
-                        <h2 class="setlist-title">${document.getElementById(`${setlistId}-name`).value || setlistId.toUpperCase()}</h2>
-                        <div class="tuning-legend">
-                            ${Array.from(tuningsInSetlist).map(tuning => `
-                                <div class="tuning-legend-item">
-                                    <div class="tuning-legend-color" style="background-color: ${getTuningColor(tuning)}"></div>
-                                    <span>${tuning}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    <ol>${songs.map((song, index) => {
-                        const iconsDisplay = getIconsDisplay(song);
-                        const [title, artist] = song.split(' - ');
-                        const tuning = songData[song]?.tuning || 'Standard';
-                        const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
-                        const songColor = songColors[song] || '';
-                        const isCrossfadePair = crossfadePairs.includes(index);
-                        const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
-                        let emojiStart = '';
-                        let emojiEnd = '';
-                        if (index < songs.length - 1 && songData[song]?.crossfadeInto?.includes(songs[index + 1])) {
-                            emojiStart = '<span class="emoji-thumbs-down">👎</span> ';
-                            emojiEnd = ' <span class="emoji-thumbs-down">👎</span>';
-                        }
-                        if (index > 0 && songData[songs[index - 1]]?.crossfadeInto?.includes(song)) {
-                            emojiStart = '<span class="emoji-thumbs-up">👍</span> ';
-                            emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
-                        }
-                        return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
-                            <span class="icons">${iconsDisplay}</span>
-                            <span class="song-title">${emojiStart}${title}${emojiEnd}</span>
-                        </li>`;
-                    }).join('')}</ol>
-                    <button onclick="window.print()">Print</button>
-                </body>
-                </html>
-            `);
-            printWindow.document.close();
-        }
-
-        function getTuningColor(tuning) {
-            const tuningMap = {
-                'Standard': 'inherit',
-                'Drop D': '#000',
-                'Eb': '#ff0000',
-                'Eb Standard': '#ff0000',
-                'D': '#D3D3D3',
-                'D Std.': '#D3D3D3',
-                'Drop C': '#FFFF00',
-                'DADGAD': '#FFA500',
-                'Open G': '#90EE90',
-                'Open D': '#FFC1CC',
-                'Drop Db': '#808080',
-                'B Std.': '#800080',
-                'Open C': '#A52A2A',
-                'Open E': '#87CEEB',
-                'C std': '#A52A2A'
-            };
-            return tuningMap[tuning] || 'inherit';
-        }
-
-        function getIconColor(icon) {
-            const iconMap = {
-                'O': 'blue',
-                'X': 'red',
-                'G': '#8B4513',
-                'M': 'orange',
-                '→': 'black'
-            };
-            return iconMap[icon] || 'inherit';
-        }
-
-        function saveSetlist(setlistId) {
-            const name = document.getElementById(`${setlistId}-name`).value;
-            if (name) {
-                savedSetlists[name] = [...setlists[setlistId]];
-                alert(`Setlist saved as "${name}"`);
-                displaySavedSetlists();
-                unsavedChanges = true;
-            } else {
-                alert("Please enter a name for the setlist.");
-            }
-        }
-
-        function deleteSavedSetlist(name) {
-            if (confirm(`Are you sure you want to delete the saved setlist "${name}"?`)) {
-                delete savedSetlists[name];
-                displaySavedSetlists();
-                unsavedChanges = true;
-            }
-        }
-
-        function viewSavedSetlist(name) {
-            const songs = savedSetlists[name];
-            const songCount = songs.length;
-            const windowHeight = 1056;
-            const maxTitleFontSize = 60;
-            const baseTitleFontSize = Math.min(maxTitleFontSize, Math.floor((windowHeight - 100) / (songCount * 1.5)));
-            const setlistTitleFontSize = baseTitleFontSize - 10;
-            const artistFontSize = 8;
-            const iconFontSize = 20;
-
-            const crossfadePairs = [];
-            for (let i = 0; i < songs.length - 1; i++) {
-                const currentSong = songs[i];
-                const nextSong = songs[i + 1];
-                if (songData[currentSong]?.crossfadeInto?.includes(nextSong)) {
-                    crossfadePairs.push(i);
-                    crossfadePairs.push(i + 1);
-                }
-            }
-
-            const tuningsInSetlist = new Set();
-            const iconsInSetlist = new Set();
-            songs.forEach(song => {
-                const tuning = songData[song]?.tuning || 'Standard';
-                tuningsInSetlist.add(tuning);
-                const icons = songIcons[song] || [];
-                icons.forEach(icon => {
-                    if (icon) iconsInSetlist.add(icon);
-                });
-            });
-
-            let setlistWindow = window.open('', '_blank', 'width=816,height=1056');
-            setlistWindow.document.write(`
-                <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <title>Saved Setlist - ${name}</title>
-                    <style>
-                        body {
-                            margin: 0;
-                            padding: 20px;
-                            text-align: center;
-                            font-family: Arial, sans-serif;
-                        }
-                        ${Array.from(iconsInSetlist).map(icon => `
-                            .icon-${icon} {
-                                color: ${getIconColor(icon)};
-                                font-size: ${iconFontSize}px;
-                            }
-                        `).join('')}
-                        .setlist-header {
-                            display: flex;
-                            justify-content: space-between;
-                            align-items: center;
-                            margin-bottom: 10px;
-                        }
-                        .setlist-title {
-                            font-size: ${setlistTitleFontSize}px;
-                            background-color: yellow;
-                            display: inline-block;
-                            padding: 5px 10px;
-                        }
-                        .tuning-legend {
-                            display: flex;
-                            gap: 10px;
-                            font-size: 12px;
-                            flex-wrap: wrap;
-                            justify-content: center;
-                        }
-                        .tuning-legend-item {
-                            display: flex;
-                            align-items: center;
-                            gap: 4px;
-                        }
-                        .tuning-legend-color {
-                            width: 15px;
-                            height: 15px;
-                            border: 1px solid #000;
-                        }
-                        ol {
-                            padding: 0;
-                            margin: 0;
-                            list-style-position: inside;
-                        }
-                        li {
-                            margin: 10px 0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            position: relative;
-                            padding: 10px;
-                            page-break-inside: avoid;
-                        }
-                        .song-title {
-                            font-size: ${baseTitleFontSize}px;
-                            margin: 0 10px;
-                        }
-                        .artist {
-                            font-size: ${artistFontSize}px;
-                        }
-                        .icons {
-                            margin-right: 10px;
-                        }
-                        ${TUNING_OPTIONS.map(tuning => `
-                            .tuning-${tuning.replace(' ', '-')} {
-                                background-color: ${getTuningColor(tuning)} !important;
-                                ${tuning === 'Drop D' || tuning === 'Eb' || tuning === 'Eb Standard' || tuning === 'B Std.' || tuning === 'Open C' || tuning === 'C std' ? 'color: white !important;' : ''}
-                            }
-                        `).join('')}
-                        .crossfade-pair::before {
-                            content: "⇄";
-                            position: absolute;
-                            left: -20px;
-                            font-size: 16px;
-                            color: #006400;
-                        }
-                        .crossfade-pair::after {
-                            content: "⇄";
-                            position: absolute;
-                            right: -20px;
-                            font-size: 16px;
-                            color: #006400;
-                        }
-                        .emoji-thumbs-down, .emoji-thumbs-up {
-                            color: black;
-                        }
-                        @media print {
-                            body { padding: 0; margin: 0; }
-                            .setlist-header { margin-bottom: 5px; }
-                            .setlist-title { font-size: 24px; }
-                            li { margin: 5px 0; padding: 5px; }
-                            .song-title { font-size: 36px; }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="setlist-header">
-                        <h2 class="setlist-title">${name}</h2>
-                        <div class="tuning-legend">
-                            ${Array.from(tuningsInSetlist).map(tuning => `
-                                <div class="tuning-legend-item">
-                                    <div class="tuning-legend-color" style="background-color: ${getTuningColor(tuning)}"></div>
-                                    <span>${tuning}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    <ol>${songs.map((song, index) => {
-                        const iconsDisplay = getIconsDisplay(song);
-                        const [title, artist] = song.split(' - ');
-                        const tuning = songData[song]?.tuning || 'Standard';
-                        const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
-                        const songColor = songColors[song] || '';
-                        const isCrossfadePair = crossfadePairs.includes(index);
-                        const crossfadeClass = isCrossfadePair ? 'crossfade-pair' : '';
-                        let emojiStart = '';
-                        let emojiEnd = '';
-                        if (index < songs.length - 1 && songData[song]?.crossfadeInto?.includes(songs[index + 1])) {
-                            emojiStart = '<span class="emoji-thumbs-down">👎</span> ';
-                            emojiEnd = ' <span class="emoji-thumbs-down">👎</span>';
-                        }
-                        if (index > 0 && songData[songs[index - 1]]?.crossfadeInto?.includes(song)) {
-                            emojiStart = '<span class="emoji-thumbs-up">👍</span> ';
-                            emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
-                        }
-                        return `<li style="background:${songColor}" class="${tuningClass} ${crossfadeClass}">
-                            <span class="icons">${iconsDisplay}</span>
-                            <span class="song-title">${emojiStart}${title}${emojiEnd}</span>
-                        </li>`;
-                    }).join('')}</ol>
-                    <button onclick="window.print()">Print</button>
-                </body>
-                </html>
-            `);
-            setlistWindow.document.close();
-        }
-
-        function editSavedSetlist(name) {
-            const songs = savedSetlists[name];
-            if (!songs) return;
-            document.body.insertAdjacentHTML('beforeend', `
-                <div class="overlay"></div>
-                <div class="edit-setlist-popup">
-                    <h3>Edit Setlist: ${name}</h3>
-                    <ul id="edit-setlist-songs">
-                        ${songs.map(song => `
-                            <li>
-                                ${song}
-                                <button class="delete-btn" onclick="removeSongFromSavedSetlist('${name}', '${song}')">Remove</button>
-                            </li>
-                        `).join('')}
-                    </ul>
-                    <div>
-                        <button onclick="loadSavedSetlistToWorkingSetlist('${name}')">Load to Working Setlist</button>
-                        <button onclick="document.querySelector('.edit-setlist-popup').remove(); document.querySelector('.overlay').remove();">Close</button>
-                    </div>
-                </div>
-            `);
-        }
-
-        function removeSongFromSavedSetlist(setlistName, song) {
-            if (confirm(`Remove "${song}" from "${setlistName}"?`)) {
-                savedSetlists[setlistName] = savedSetlists[setlistName].filter(s => s !== song);
-                document.querySelector('.edit-setlist-popup').remove();
-                document.querySelector('.overlay').remove();
-                editSavedSetlist(setlistName);
-                unsavedChanges = true;
-            }
-        }
-
-        function loadSavedSetlistToWorkingSetlist(setlistName) {
-            const setlistId = prompt("Which working setlist should this replace? (1, 2, or 3)", "1");
-            if (setlistId && ['1', '2', '3'].includes(setlistId)) {
-                const setlistKey = `setlist-${setlistId}`;
-                setlists[setlistKey] = [...savedSetlists[setlistName]];
-                updateSetlistDisplay(setlistKey);
-                updateDuration(setlistKey);
-                document.querySelector('.edit-setlist-popup').remove();
-                document.querySelector('.overlay').remove();
-                unsavedChanges = true;
-            }
-        }
-
-        function allowDrop(ev) { ev.preventDefault(); }
-        function drag(ev) {
-            const song = ev.target.closest('li').dataset.song;
-            ev.dataTransfer.setData("text", song);
-            ev.dataTransfer.effectAllowed = "move";
-        }
-        function drop(ev) {
-            ev.preventDefault();
-            const song = ev.dataTransfer.getData("text");
-            const setlistId = ev.target.closest('ul').id;
-            const setlistKey = setlistId;
-            const targetIndex = Array.from(ev.target.closest('ul').children).indexOf(ev.target);
-
-            let originalKey;
-            let originalIndex;
-            for (const key in setlists) {
-                const index = setlists[key].indexOf(song);
-                if (index > -1) {
-                    originalKey = key;
-                    originalIndex = index;
-                    break;
-                }
-            }
-
-            if (originalKey) {
-                const originalSetlist = setlists[originalKey];
-                let isPartOfCrossfade = false;
-                let pairedSong = '';
-                if (originalIndex > 0 && songData[originalSetlist[originalIndex - 1]]?.crossfadeInto?.includes(song)) {
-                    isPartOfCrossfade = true;
-                    pairedSong = originalSetlist[originalIndex - 1];
-                } else if (originalIndex < originalSetlist.length - 1 && songData[song]?.crossfadeInto?.includes(originalSetlist[originalIndex + 1])) {
-                    isPartOfCrossfade = true;
-                    pairedSong = originalSetlist[originalIndex + 1];
-                }
-
-                if (isPartOfCrossfade) {
-                    if (!confirm(`This song is part of a crossfade with "${pairedSong}". Do you really want to separate them?`)) {
-                        return;
-                    }
-                }
-
-                setlists[originalKey].splice(originalIndex, 1);
-                setlists[setlistKey].splice(targetIndex, 0, song);
-                updateAllSetlists();
-                unsavedChanges = true;
-            }
-        }
-
-        function updateAllSetlists() {
-            ['setlist-1', 'setlist-2', 'setlist-3'].forEach(setlistKey => {
-                updateSetlistDisplay(setlistKey);
-                updateDuration(setlistKey);
-            });
-        }
-
-        function updateSetlistDisplay(setlistKey) {
-            const setlistElement = document.getElementById(setlistKey);
-            const songs = setlists[setlistKey];
-            setlistElement.innerHTML = songs.map((song, index) => {
-                const iconsDisplay = getIconsDisplay(song);
-                const tuning = songData[song]?.tuning || 'Standard';
-                const tuningClass = `tuning-${tuning.replace(' ', '-')}`;
-                const songColor = songColors[song] || '';
-                let emojiStart = '';
-                let emojiEnd = '';
-                if (index < songs.length - 1 && songData[song]?.crossfadeInto?.includes(songs[index + 1])) {
-                    emojiStart = '<span class="emoji-thumbs-down">👎</span> ';
-                    emojiEnd = ' <span class="emoji-thumbs-down">👎</span>';
-                }
-                if (index > 0 && songData[songs[index - 1]]?.crossfadeInto?.includes(song)) {
-                    emojiStart = '<span class="emoji-thumbs-up">👍</span> ';
-                    emojiEnd = ' <span class="emoji-thumbs-up">👍</span>';
-                }
-                return `
-                    <li draggable="true" data-song="${song}" ondragstart="drag(event)" ondragover="allowDrop(event)"
-                        style="background:${songColor}" class="${tuningClass}">
-                        ${emojiStart}${iconsDisplay} ${song}${emojiEnd}
-                        <button class="play-btn" onclick="playMetronome('${song}', this)">${songData[song].bpm}</button>
-                        <button class="delete-btn" onclick="deleteFromSetlist('${setlistKey}', '${song}')">Delete</button>
-                    </li>
-                `;
-            }).join('');
-        }
-
-        function playMetronome(song, button) {
-            if (audioContext.state === 'suspended') {
-                audioContext.resume();
-            }
-            const bpm = parseInt(songData[song].bpm);
-            const timeSignature = songData[song].timeSignature || '4/4';
-            if (isNaN(bpm) || bpm <= 0) {
-                alert('Invalid or missing BPM for this song.');
-                return;
-            }
-            const [numerator, denominator] = timeSignature.split('/').map(Number);
-            const beatsPerMeasure = numerator;
-            const beatDuration = 60 / bpm;
-
-            button.disabled = true;
-            button.innerText = 'Playing...';
-
-            let currentTime = audioContext.currentTime;
-            const totalBeats = beatsPerMeasure * 3;
-
-            for (let beat = 0; beat < totalBeats; beat++) {
-                const oscillator = audioContext.createOscillator();
-                oscillator.type = 'square';
-                if (beat % beatsPerMeasure === 0) {
-                    oscillator.frequency.setValueAtTime(1500, currentTime);
-                } else {
-                    oscillator.frequency.setValueAtTime(1000, currentTime);
-                }
-                oscillator.connect(audioContext.destination);
-                oscillator.start(currentTime);
-                oscillator.stop(currentTime + 0.05);
-                currentTime += beatDuration;
-            }
-
-            setTimeout(() => {
-                button.disabled = false;
-                button.innerText = songData[song].bpm;
-            }, totalBeats * beatDuration * 1000);
-        }
-
-        function displaySavedSetlists() {
-            const savedSetlistsDiv = document.getElementById('saved-setlists');
-            savedSetlistsDiv.innerHTML = '<h2>Saved Setlists</h2>';
-            for (const name in savedSetlists) {
-                const setlistItem = document.createElement('div');
-                setlistItem.className = 'saved-setlist-item';
-                setlistItem.innerHTML = `
-                    <h3>${name}</h3>
-                    <div class="saved-setlist-buttons">
-                        <button class="print-btn" onclick="viewSavedSetlist('${name}')">View</button>
-                        <button class="edit-btn" onclick="editSavedSetlist('${name}')">Edit</button>
-                        <button class="delete-btn" onclick="deleteSavedSetlist('${name}')">Delete</button>
-                    </div>
-                `;
-                savedSetlistsDiv.appendChild(setlistItem);
-            }
-        }
-
-        function sortTable(columnIndex, tableId) {
-            const table = document.getElementById(tableId);
-            const rows = Array.from(table.rows).slice(1);
-            const isAscending = table.rows[0].cells[columnIndex].getAttribute('data-order') !== 'desc';
-
-            rows.sort((a, b) => {
-                let cellA = columnIndex === 0 ? a.cells[0].querySelector('.song-title')?.innerText : a.cells[columnIndex].innerText;
-                let cellB = columnIndex === 0 ? b.cells[0].querySelector('.song-title')?.innerText : b.cells[columnIndex].innerText;
-                cellA = cellA?.trim() || '';
-                cellB = cellB?.trim() || '';
-
-                if (columnIndex === 1) {
-                    return isAscending ?
-                        (parseInt(cellA) || 0) - (parseInt(cellB) || 0) :
-                        (parseInt(cellB) || 0) - (parseInt(cellA) || 0);
-                } else if (columnIndex === 4) {
-                    const timeA = cellA.split(':').map(Number);
-                    const timeB = cellB.split(':').map(Number);
-                    const secA = (timeA[0] || 0) * 60 + (timeA[1] || 0);
-                    const secB = (timeB[0] || 0) * 60 + (timeB[1] || 0);
-                    return isAscending ? secA - secB : secB - secA;
-                } else {
-                    return isAscending ?
-                        cellA.localeCompare(cellB) :
-                        cellB.localeCompare(cellA);
-                }
-            });
-
-            table.tBodies[0].append(...rows);
-            table.rows[0].cells[columnIndex].setAttribute('data-order', isAscending ? 'desc' : 'asc');
-        }
-
-        function deleteSong(song) {
-            if (confirm(`Are you sure you want to delete "${song}"?`)) {
-                delete songData[song];
-                delete songIcons[song];
-                delete songColors[song];
-                Object.keys(setlists).forEach(key => {
-                    setlists[key] = setlists[key].filter(s => s !== song);
-                });
-                Object.keys(savedSetlists).forEach(name => {
-                    savedSetlists[name] = savedSetlists[name].filter(s => s !== song);
-                });
-                populateSongTable();
-                populateCouncilTable();
-                populateMothballsTable();
-                updateAllSetlists();
-                unsavedChanges = true;
-            }
-        }
-
-        function addNewSong() {
-            const title = document.getElementById('new-song-title').value;
-            const artist = document.getElementById('new-song-artist').value;
-            const key = document.getElementById('new-song-key').value;
-            const sn = document.getElementById('new-song-sn').value;
-            const bpm = document.getElementById('new-song-bpm').value;
-            const duration = document.getElementById('new-song-duration').value;
-            const tuning = document.getElementById('new-song-tuning').value;
-            const timeSignature = document.getElementById('new-song-time-signature').value;
-            if (title && artist) {
-                const song = `${title} - ${artist}`;
-                const status = prompt("Where to add the song? Enter 1 for 'The Council of Yeas and Nays', 2 for 'Song List', or 3 for 'Mothballs'", "2");
-                const statusMap = {
-                    '1': 'council',
-                    '2': 'main',
-                    '3': 'mothballs'
-                };
-                const mappedStatus = statusMap[status] || 'main';
-                songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus, prioritySetlist: null };
-                if (mappedStatus === 'council') {
-                    songData[song].votes = { Y: 0, N: 0, IDC: 0 };
-                }
-                populateSongTable();
-                populateCouncilTable();
-                populateMothballsTable();
-                document.getElementById('new-song-title').value = '';
-                document.getElementById('new-song-artist').value = '';
-                document.getElementById('new-song-key').value = '';
-                document.getElementById('new-song-sn').value = '';
-                document.getElementById('new-song-bpm').value = '';
-                document.getElementById('new-song-duration').value = '';
-                document.getElementById('new-song-tuning').value = '';
-                document.getElementById('new-song-time-signature').value = '4/4';
-                unsavedChanges = true;
-            }
-        }
-
-        function parseAndAddSongs() {
-            const text = document.getElementById('paste-song-details').value.trim();
-            if (!text) return;
-
-            const status = prompt("Where to add the songs? Enter 1 for 'The Council of Yeas and Nays', 2 for 'Song List', or 3 for 'Mothballs'", "2");
-            const statusMap = {
-                '1': 'council',
-                '2': 'main',
-                '3': 'mothballs'
-            };
-            const mappedStatus = statusMap[status] || 'main';
-
-            const songBlocks = text.split(/\n\s*\n/).filter(block => block.trim());
-            let addedCount = 0;
-
-            songBlocks.forEach(block => {
-                const lines = block.split('\n').map(line => line.trim());
-                let title, artist, key, sn, bpm, duration, icons = [], tuning, timeSignature = '4/4';
-
-                if (lines.length >= 7) {
-                    const firstLineParts = lines[0].split(',').map(part => part.trim());
-                    if (firstLineParts.length > 1 && firstLineParts.every(part => validIcons.includes(part) || !validIcons.includes(part.split(' ')[0]))) {
-                        icons = firstLineParts.filter(part => validIcons.includes(part));
-                        title = firstLineParts.filter(part => !validIcons.includes(part)).join(' ').trim();
-                        artist = lines[1].replace('Artist:', '').trim();
-                        key = lines[2].replace('Key:', '').trim();
-                        sn = lines[3].replace('SN:', '').trim();
-                        bpm = lines[4].replace('BPM:', '').trim();
-                        duration = lines[5].replace('Duration:', '').trim();
-                        tuning = lines[6].replace('Tuning:', '').trim();
-                    } else {
-                        title = lines[0];
-                        artist = lines[1].replace('Artist:', '').trim();
-                        key = lines[2].replace('Key:', '').trim();
-                        sn = lines[3].replace('SN:', '').trim();
-                        bpm = lines[4].replace('BPM:', '').trim();
-                        duration = lines[5].replace('Duration:', '').trim();
-                        tuning = lines[6].replace('Tuning:', '').trim();
-                    }
-
-                    if (title && artist) {
-                        const song = `${title} - ${artist}`;
-                        songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus, prioritySetlist: null };
-                        if (mappedStatus === 'council') {
-                            songData[song].votes = { Y: 0, N: 0, IDC: 0 };
-                        }
-                        if (icons.length) songIcons[song] = icons;
-                        addedCount++;
-                    }
-                }
-            });
-
-            if (addedCount > 0) {
-                populateSongTable();
-                populateCouncilTable();
-                populateMothballsTable();
-                document.getElementById('paste-song-details').value = '';
-                alert(`Successfully added ${addedCount} song${addedCount > 1 ? 's' : ''}!`);
-                unsavedChanges = true;
-            }
-        }
-
-        function updateDuration(setlistKey) {
-            const songs = setlists[setlistKey];
-            let totalSeconds = 0;
-            songs.forEach(song => {
-                const duration = songData[song]?.duration;
-                if (duration) {
-                    const [minutes, seconds] = duration.split(':').map(Number);
-                    totalSeconds += (minutes * 60) + seconds;
-                }
-            });
-            const totalMinutes = Math.floor(totalSeconds / 60);
-            const remainingSeconds = totalSeconds % 60;
-            document.getElementById(`duration-${setlistKey.split('-')[1]}`).innerText =
-                `Total Duration: ${totalMinutes}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
-        function populateCouncilTable() {
-            const tbody = document.getElementById('council-table-body');
-            tbody.innerHTML = '';
-            for (const song in songData) {
-                if (songData[song].status !== 'council') continue;
-                const songInfo = songData[song];
-                const [title, artist] = song.split(' - ');
-                const votes = songInfo.votes || { Y: 0, N: 0, IDC: 0 };
-                const yCount = votes.Y || 0;
-                const nCount = votes.N || 0;
-                const idcCount = votes.IDC || 0;
-                let rowClass = '';
-                if (yCount >= 3 || (yCount >= 2 && idcCount >= 1)) {
-                    rowClass = 'highlight-gold';
-                }
-                if (nCount >= 3) {
-                    rowClass += ' strikethrough-red';
-                }
-                const row = document.createElement('tr');
-                row.className = rowClass;
-                row.innerHTML = `
-                    <td>
-                        <div class="vote-counter">
-                            <button onclick="voteSong('${song}', 'Y')">Y</button>
-                            <button onclick="voteSong('${song}', 'N')">N</button>
-                            <button onclick="voteSong('${song}', 'IDC')">IDC</button>
-                        </div>
-                        <div>${title}</div>
-                        <div>(Y: ${yCount}, N: ${nCount}, IDC: ${idcCount})</div>
-                    </td>
-                    <td>
-                        <div>${artist}</div>
-                        <div>
-                            <button onclick="moveSongToMain('${song}')">Add Song</button>
-                        </div>
-                    </td>
-                `;
-                tbody.appendChild(row);
-            }
-        }
-
-        function voteSong(song, voteType) {
-            if (!songData[song].votes) songData[song].votes = { Y: 0, N: 0, IDC: 0 };
-            songData[song].votes[voteType]++;
-            populateCouncilTable();
-            unsavedChanges = true;
-        }
-
-        function populateMothballsTable() {
-            const tbody = document.getElementById('mothballs-table-body');
-            tbody.innerHTML = '';
-            for (const song in songData) {
-                if (songData[song].status !== 'mothballs') continue;
-                const [title, artist] = song.split(' - ');
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${title}</td>
-                    <td>${artist}</td>
-                    <td>
-                        <button onclick="editSong('${song}')">Edit</button>
-                    </td>
-                `;
-                tbody.appendChild(row);
+            // Display warnings if triggered
+            if (vocalCordArmageddonWarning) {
+                alert("🚨 VOCAL CORD ARMAGEDDON WARNING 🚨\nThree X's in a row were detected in the optimized setlist!");
+            } else if (vocalStressWarning) {
+                alert("⚠️ Friendly Warning: Two X's in a row were detected in the optimized setlist!");
             }
         }
 
