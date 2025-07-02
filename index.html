@@ -233,7 +233,7 @@
             width: 100px;
             padding: 3px;
         }
-        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .mothball-btn {
+        .print-btn, .delete-btn, .save-btn, .add-btn, .edit-btn, .lyrics-btn, .mothball-btn, .optimize-btn {
             background: #e31c1c;
             color: white;
             border: none;
@@ -627,6 +627,18 @@
             text-align: center;
             margin: 20px 0;
         }
+        .priority-badge {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: gray;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            margin-right: 5px;
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -769,14 +781,15 @@
                 if (matches.length > 0) {
                     matches.forEach(song => {
                         const iconsDisplay = getIconsDisplay(song);
+                        const badge = songData[song].prioritySetlist ? `<span class="priority-badge">${songData[song].prioritySetlist}</span>` : '';
                         const item = document.createElement('div');
                         item.className = 'search-result-item';
                         item.innerHTML = `
                             <div>
-                                ${iconsDisplay} ${song}
+                                ${iconsDisplay} ${badge} ${song}
                             </div>
                             <div>
-                                <button class="add-btn" onclick="addSongFromSearch('${song}', 1, this)">1</button>
+                                <button class="add-btn" onclick="addSongFromSearch('${song}', 795 1, this)">1</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 2, this)">2</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 3, this)">3</button>
                                 <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
@@ -944,6 +957,7 @@
                         songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                     }
                     if (!songData[song].timeSignature) songData[song].timeSignature = '4/4';
+                    if (!songData[song].prioritySetlist) songData[song].prioritySetlist = null;
                 }
             } catch (error) {
                 console.error('Error loading data.json:', error);
@@ -1083,6 +1097,7 @@
                 const songInfo = songData[song];
                 const [title, artist] = song.split(' - ');
                 const iconsDisplay = getIconsDisplay(song);
+                const badge = songData[song].prioritySetlist ? `<span class="priority-badge">${songData[song].prioritySetlist}</span>` : '';
                 const safeSongId = btoa(song).replace(/[^a-zA-Z0-9]/g, '');
                 const tuning = songInfo.tuning || 'Standard';
                 const row = document.createElement('tr');
@@ -1091,6 +1106,7 @@
                 row.innerHTML = `
                     <td class="song-cell">
                         <div class="icons">${iconsDisplay}</div>
+                        ${badge}
                         <div class="song-title-container">
                             <div class="song-title" onclick="editSong('${song}')">${title}</div>
                             <div class="song-actions">
@@ -1212,6 +1228,13 @@
                         </select>
                     </label>
                     <label>Lyrics: <textarea id="edit-song-lyrics">${songInfo.lyrics || ''}</textarea></label>
+                    <div class="setlist-priority">
+                        <label>Setlist Priority: <span id="current-priority">${songInfo.prioritySetlist ? 'Setlist ' + songInfo.prioritySetlist : 'None'}</span></label>
+                        <button onclick="setPriority('${song}', 1)">Setlist 1</button>
+                        <button onclick="setPriority('${song}', 2)">Setlist 2</button>
+                        <button onclick="setPriority('${song}', 3)">Setlist 3</button>
+                        <button onclick="clearPriority('${song}')">None</button>
+                    </div>
                     <div class="song-edit-buttons">
                         <button class="save-btn" onclick="saveSongEdit('${song}')">Save</button>
                         <button class="mothball-btn" onclick="moveSongToMothballs('${song}'); document.querySelector('.song-edit-popup').remove(); document.querySelector('.overlay').remove();">Mothball</button>
@@ -1220,6 +1243,18 @@
                     </div>
                 </div>
             `);
+        }
+
+        function setPriority(song, setlistNumber) {
+            songData[song].prioritySetlist = setlistNumber;
+            document.getElementById('current-priority').innerText = 'Setlist ' + setlistNumber;
+            unsavedChanges = true;
+        }
+
+        function clearPriority(song) {
+            songData[song].prioritySetlist = null;
+            document.getElementById('current-priority').innerText = 'None';
+            unsavedChanges = true;
         }
 
         function saveSongEdit(oldSong) {
@@ -1232,12 +1267,13 @@
             const duration = document.getElementById('edit-song-duration').value;
             const tuning = document.getElementById('edit-song-tuning').value;
             const lyrics = document.getElementById('edit-song-lyrics').value;
+            const prioritySetlist = songData[oldSong].prioritySetlist;
 
             if (title && artist) {
                 const newSongKey = `${title} - ${artist}`;
                 if (newSongKey !== oldSong) {
                     songData[newSongKey] = {
-                        key, sn, bpm, duration, tuning, timeSignature,
+                        key, sn, bpm, duration, tuning, timeSignature, prioritySetlist,
                         crossfadeInto: songData[oldSong]?.crossfadeInto || [],
                         lyrics, status: songData[oldSong].status,
                         votes: songData[oldSong].votes
@@ -1258,7 +1294,7 @@
                         delete songColors[oldSong];
                     }
                 } else {
-                    songData[oldSong] = { ...songData[oldSong], key, sn, bpm, duration, tuning, timeSignature, lyrics };
+                    songData[oldSong] = { ...songData[oldSong], key, sn, bpm, duration, tuning, timeSignature, lyrics, prioritySetlist };
                 }
                 populateSongTable();
                 populateCouncilTable();
@@ -1311,6 +1347,7 @@
         }
 
         function generateRandomSetlist(setlistKey) {
+            const setlistNumber = parseInt(setlistKey.split('-')[1]);
             const allSongs = Object.keys(songData).filter(song => songData[song].status === 'main');
             const otherSetlists = Object.keys(setlists).filter(key => key !== setlistKey);
             const songsInOtherSetlists = new Set(otherSetlists.flatMap(key => setlists[key]));
@@ -1323,24 +1360,46 @@
 
             let selectedSongs = [];
             let totalDuration = 0;
-            const maxDuration = 40 * 60;
 
-            const strongSongs = availableSongs.filter(song => parseInt(songData[song].bpm) > 120);
-            if (strongSongs.length > 0) {
-                const firstSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
-                selectedSongs.push(firstSong);
-                totalDuration += parseDuration(songData[firstSong].duration);
-            } else {
-                const firstSong = availableSongs[Math.floor(Math.random() * availableSongs.length)];
-                selectedSongs.push(firstSong);
-                totalDuration += parseDuration(songData[firstSong].duration);
+            const mustIncludeSongs = availableSongs.filter(song => songData[song].prioritySetlist === setlistNumber);
+            selectedSongs = [...mustIncludeSongs];
+            mustIncludeSongs.forEach(song => {
+                totalDuration += parseDuration(songData[song].duration);
+            });
+
+            const durationInput = document.getElementById('setlist-duration');
+            const targetMinutes = parseFloat(durationInput.value) || 45;
+            const maxDuration = targetMinutes * 60;
+
+            if (totalDuration >= maxDuration) {
+                setlists[setlistKey] = selectedSongs;
+                updateSetlistDisplay(setlistKey);
+                updateDuration(setlistKey);
+                unsavedChanges = true;
+                return;
             }
 
-            let lastBPM = parseInt(songData[selectedSongs[0]].bpm) || 0;
-            let consecutiveSameBPM = 1;
+            let lastSong;
+            let lastBPM;
+            let consecutiveSameBPM;
+            if (selectedSongs.length > 0) {
+                lastSong = selectedSongs[selectedSongs.length - 1];
+                lastBPM = parseInt(songData[lastSong].bpm) || 0;
+                consecutiveSameBPM = 1;
+            } else {
+                const strongSongs = availableSongs.filter(song => parseInt(songData[song].bpm) > 120);
+                if (strongSongs.length > 0) {
+                    lastSong = strongSongs[Math.floor(Math.random() * strongSongs.length)];
+                } else {
+                    lastSong = availableSongs[Math.floor(Math.random() * availableSongs.length)];
+                }
+                selectedSongs.push(lastSong);
+                totalDuration += parseDuration(songData[lastSong].duration);
+                lastBPM = parseInt(songData[lastSong].bpm) || 0;
+                consecutiveSameBPM = 1;
+            }
 
             while (totalDuration < maxDuration) {
-                const lastSong = selectedSongs[selectedSongs.length - 1];
                 const lastHasX = hasIcon(lastSong, 'X');
                 let candidates = availableSongs.filter(song => !selectedSongs.includes(song));
 
@@ -1363,6 +1422,7 @@
                         consecutiveSameBPM = 1;
                         lastBPM = nextBPM;
                     }
+                    lastSong = nextSong;
                     continue;
                 }
 
@@ -1407,14 +1467,15 @@
                         consecutiveSameBPM = 1;
                         lastBPM = nextBPM;
                     }
+                    lastSong = nextSong;
                 } else {
                     break;
                 }
             }
 
             if (selectedSongs.length > 1) {
-                const lastSong = selectedSongs[selectedSongs.length - 1];
-                if (parseInt(songData[lastSong].bpm) <= 120) {
+                const lastSongCheck = selectedSongs[selectedSongs.length - 1];
+                if (parseInt(songData[lastSongCheck].bpm) <= 120) {
                     const strongCandidates = availableSongs.filter(song => !selectedSongs.includes(song) && parseInt(songData[song].bpm) > 120);
                     if (strongCandidates.length > 0) {
                         selectedSongs[selectedSongs.length - 1] = strongCandidates[Math.floor(Math.random() * strongCandidates.length)];
@@ -1425,6 +1486,66 @@
             setlists[setlistKey] = selectedSongs;
             updateSetlistDisplay(setlistKey);
             updateDuration(setlistKey);
+            unsavedChanges = true;
+        }
+
+        function getScore(lastSong, candidateSong) {
+            const lastCamelot = songData[lastSong].sn;
+            const candidateCamelot = songData[candidateSong].sn;
+            const adjacentCamelot = getAdjacentCamelot(lastCamelot);
+            const lastHasX = hasIcon(lastSong, 'X');
+            const candidateHasX = hasIcon(candidateSong, 'X');
+
+            let score = 0;
+
+            if (songData[lastSong].crossfadeInto?.includes(candidateSong)) {
+                score += 100;
+            } else if (adjacentCamelot.includes(candidateCamelot)) {
+                score += 50;
+            }
+
+            const lastBPM = parseInt(songData[lastSong].bpm) || 0;
+            const candidateBPM = parseInt(songData[candidateSong].bpm) || 0;
+            if (candidateBPM >= lastBPM) {
+                score += 10;
+            }
+
+            if (lastHasX && candidateHasX) {
+                score -= 50;
+            }
+
+            return score;
+        }
+
+        function optimizeSetlist(setlistKey) {
+            const songs = setlists[setlistKey].slice();
+            if (songs.length === 0) return;
+
+            songs.sort((a, b) => (parseInt(songData[b].bpm) || 0) - (parseInt(songData[a].bpm) || 0));
+            const startingSong = songs.shift();
+            const orderedSongs = [startingSong];
+
+            while (songs.length > 0) {
+                let bestScore = -Infinity;
+                let bestSong = null;
+                const lastSong = orderedSongs[orderedSongs.length - 1];
+                songs.forEach(song => {
+                    const score = getScore(lastSong, song);
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestSong = song;
+                    }
+                });
+                if (bestSong) {
+                    orderedSongs.push(bestSong);
+                    songs.splice(songs.indexOf(bestSong), 1);
+                } else {
+                    orderedSongs.push(songs.shift());
+                }
+            }
+
+            setlists[setlistKey] = orderedSongs;
+            updateSetlistDisplay(setlistKey);
             unsavedChanges = true;
         }
 
@@ -2066,11 +2187,12 @@
             button.innerText = 'Playing...';
 
             let currentTime = audioContext.currentTime;
+            const totalBeats = beatsPerMeasure * 3;
 
-            for (let i = 0; i < beatsPerMeasure; i++) {
+            for (let beat = 0; beat < totalBeats; beat++) {
                 const oscillator = audioContext.createOscillator();
                 oscillator.type = 'square';
-                if (i === 0) {
+                if (beat % beatsPerMeasure === 0) {
                     oscillator.frequency.setValueAtTime(1500, currentTime);
                 } else {
                     oscillator.frequency.setValueAtTime(1000, currentTime);
@@ -2084,7 +2206,7 @@
             setTimeout(() => {
                 button.disabled = false;
                 button.innerText = songData[song].bpm;
-            }, beatsPerMeasure * beatDuration * 1000);
+            }, totalBeats * beatDuration * 1000);
         }
 
         function displaySavedSetlists() {
@@ -2174,7 +2296,7 @@
                     '3': 'mothballs'
                 };
                 const mappedStatus = statusMap[status] || 'main';
-                songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus, prioritySetlist: null };
                 if (mappedStatus === 'council') {
                     songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                 }
@@ -2235,7 +2357,7 @@
 
                     if (title && artist) {
                         const song = `${title} - ${artist}`;
-                        songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus };
+                        songData[song] = { key, sn, bpm, duration, tuning, timeSignature, crossfadeInto: [], lyrics: "", status: mappedStatus, prioritySetlist: null };
                         if (mappedStatus === 'council') {
                             songData[song].votes = { Y: 0, N: 0, IDC: 0 };
                         }
@@ -2390,6 +2512,11 @@
         </table>
     </div>
 
+    <div class="setlist-duration-input">
+        <label for="setlist-duration">Set Setlist Duration (minutes):</label>
+        <input type="number" id="setlist-duration" value="45" min="1" step="1">
+    </div>
+
     <div class="randomizer-container">
         <img src="200x200-button.png" id="random-button-1" style="cursor: pointer;">
     </div>
@@ -2400,6 +2527,7 @@
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-1')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-1')">Save Setlist</button>
+            <button class="optimize-btn" onclick="optimizeSetlist('setlist-1')">Optimize This Setlist</button>
             <input type="text" id="setlist-1-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </div>
         <ul id="setlist-1" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
@@ -2417,6 +2545,7 @@
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-2')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-2')">Save Setlist</button>
+            <button class="optimize-btn" onclick="optimizeSetlist('setlist-2')">Optimize This Setlist</button>
             <input type="text" id="setlist-2-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </div>
         <ul id="setlist-2" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
@@ -2434,6 +2563,7 @@
         <div class="setlist-buttons">
             <button class="print-btn" onclick="printSetlist('setlist-3')">Print/Share</button>
             <button class="save-btn" onclick="saveSetlist('setlist-3')">Save Setlist</button>
+            <button class="optimize-btn" onclick="optimizeSetlist('setlist-3')">Optimize This Setlist</button>
             <input type="text" id="setlist-3-name" placeholder="Name Setlist" style="margin-left: 5px;">
         </div>
         <ul id="setlist-3" ondrop="drop(event)" ondragover="allowDrop(event)"></ul>
