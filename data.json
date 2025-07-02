@@ -882,15 +882,18 @@
     "Stone cold Crazy - Metallica/queen": {
       "key": "",
       "riff": "",
-      "bpm": "",
-      "duration": "",
+      "bpm": "126",
+      "duration": "2:18",
       "tuning": "Standard",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Cowboys from Hell - Pantera",
+        "Devils Bleedin Crown - Volbeat"
+      ],
       "lyrics": "Sleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round, gotta clear out of town,\nSmell like a dry fishbone.\nHere come the law, gonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nRainy afternoon, ought to kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nWalking down the street, shooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy, try fucking getting me,\nGotta fucking get up and run.\nThey got the sirens loose, I ran right out of juice.\nThey're gonna put me in a cell,\nIf I can't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know, yeah.",
       "status": "main",
       "timeSignature": "4/4",
-      "sn": "",
-      "prioritySetlist": null
+      "sn": "9B",
+      "prioritySetlist": 1
     },
     "santa monica  - Everclear": {
       "key": "",
@@ -898,11 +901,13 @@
       "bpm": "100",
       "duration": "3:12",
       "tuning": "Standard",
-      "crossfadeInto": [],
-      "lyrics": "[Verse 1]\nI am still living with your ghost\nLonely and dreaming of the west coast\nI don't want to be your downtime\nI don't want to be your stupid game\n\n[Verse 2]\nWith my big black boots and an old suitcase\nI do believe I'll find myself a new place\nI don't want to be the bad guy\nI don't want do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to see some palm trees\nI will try and shake away this disease\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nSee Everclear Live\nGet tickets as low as $40\nYou might also like\nThought I Was Dead\nTyler, The Creator\nShe Knows\nJ. Cole\nI Will Buy You a New Life\nEverclear\n[Verse 3]\nI am still dreaming of your face\nHungry and hollow for all the things you took away\nI don't want to be your good time\nI don't want to be your fallback crutch anymore\n\n[Verse 4]\nWalk right out into a brand-new day\nInsane and rising in my own weird way\nI don't want to be the bad guy\nI don't want to do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to feel some sunshine\nI just want to find some place to be alone\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\n[Outro]\nOh, yeah, watch the world die\nYeah, yeah, watch the world die\nWhoa, yeah, watch the world die\nYeah, watch the world die",
+      "crossfadeInto": [
+        "Fell on Black Days - Soundgarden"
+      ],
+      "lyrics": "[Verse 1]\nI am still living with your ghost\nLonely and dreaming of the west coast\nI don't want to be your downtime\nI don't want to be your stupid game\n\n[Verse 2]\nWith my big black boots and an old suitcase\nI do believe I'll find myself a new place\nI don't want to be the bad guy\nI don't want do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to see some palm trees\nI will try and shake away this disease\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nEverclear\n[Verse 3]\nI am still dreaming of your face\nHungry and hollow for all the things you took away\nI don't want to be your good time\nI don't want to be your fallback crutch anymore\n\n[Verse 4]\nWalk right out into a brand-new day\nInsane and rising in my own weird way\nI don't want to be the bad guy\nI don't want to do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to feel some sunshine\nI just want to find some place to be alone\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\n[Outro]\nOh, yeah, watch the world die\nYeah, yeah, watch the world die\nWhoa, yeah, watch the world die\nYeah, watch the world die",
       "status": "main",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Float on - i forget": {
       "key": "",
@@ -1048,9 +1053,9 @@
         "Cowboys from Hell - Pantera",
         "Schism - Tool"
       ],
-      "lyrics": "[Intro]\nGo\n\n[Verse 1]\nStapled shut, inside an outside world, and I'm\nSealed in tight, bizarre but right at home\nI'm claustrophobic, closing in\nAnd I'm catastrophic, not again\nI'm smeared across the page and doused in gasoline\nI wear you like a stain, yet I'm the one who's obscene\nCatch me up on all your sordid little insurrections\nI've got no time to lose, I'm just caught up in all the cattle\n\n[Pre-Chorus]\nFray the strings\nThrow the shapes\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nSee Slipknot Live\nGet tickets as low as $59\nYou might also like\nmeet the grahams\nKendrick Lamar\nNot Like Us\nKendrick Lamar\neuphoria\nKendrick Lamar\n[Verse 2]\nI'm ripped across the ditch\nAnd settled in the dirt and I\nWear you like a stitch\nYet I'm the one who's hurt\nPay attention to your twisted little indiscretions\nI've got no right to win, I'm just caught up in all the battles\n\n[Pre-Chorus]\nLocked in clutch\nPushed in place\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Bridge]\nMy end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\nAnd my end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Outro]\nYeah, yeah, yeah, yeah, yeah\nYeah, yeah, oh\n\n[Segue]\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it",
+      "lyrics": "[Intro]\nGo\n\n[Verse 1]\nStapled shut, inside an outside world, and I'm\nSealed in tight, bizarre but right at home\nI'm claustrophobic, closing in\nAnd I'm catastrophic, not again\nI'm smeared across the page and doused in gasoline\nI wear you like a stain, yet I'm the one who's obscene\nCatch me up on all your sordid little insurrections\nI've got no time to lose, I'm just caught up in all the cattle\n\n[Pre-Chorus]\nFray the strings\nThrow the shapes\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Verse 2]\nI'm ripped across the ditch\nAnd settled in the dirt and I\nWear you like a stitch\nYet I'm the one who's hurt\nPay attention to your twisted little indiscretions\nI've got no right to win, I'm just caught up in all the battles\n\n[Pre-Chorus]\nLocked in clutch\nPushed in place\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Bridge]\nMy end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\nAnd my end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Outro]\nYeah, yeah, yeah, yeah, yeah\nYeah, yeah, oh\n\n[Segue]\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it",
       "status": "main",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Aeroplane - RHCP": {
       "key": "",
@@ -1059,10 +1064,14 @@
       "duration": "4:45",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Come Together - The Beatles",
+        "Like a Stone - Audioslave",
+        "Song for the Dead - Queens of the Stone Age"
+      ],
       "lyrics": "\"Aeroplane\"\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nLooking in my own eyes, hey Lord\nI can't find the love I want\nSomeone better slap me\nBefore I start to rust\nBefore I start to decompose\nLooking in my rear-view mirror\nLooking in my rear-view mirror\nI can make it disappear\nI can make it disappear, have no fear\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nSitting in my kitchen, hey girl\nI'm turning into dust again\nMy melancholy baby\nThe star of Mazzy must\nPush her voice inside of me\n\nI'm overcoming gravity\nI'm overcoming gravity\nIt's easy when you're sad to be\nIt's easy when you're sad, sad like me\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n1MEASUE\nJust one note could make me float\nCould make me float away\nOne note from the song she wrote\nCould fuck me where I lay\nJust one note could make me choke\nOne note, that's not a lie\nJust one note could cut my throat\nOne note could make me die\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\nMy aeroplane, my aeroplane\nIt's my aeroplane",
       "status": "main",
-      "prioritySetlist": 1
+      "prioritySetlist": 2
     },
     "GEL - Collective soul": {
       "key": "",
@@ -1074,7 +1083,7 @@
       "crossfadeInto": [],
       "lyrics": "[Verse 1]\nColor me any color\nSpeak to me in tongues and share\nTell me how you'd love to hate me\nTell me how you'd love to care\n\n[Pre-Chorus]\nWell, I just want\n(To shake us up)\nWell, I just want, I just want to\nTo shake us up (Ah-ha, ah-ha, ah-ha)\n\n[Chorus]\nLet's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel\n\n[Verse 2]\nClothe me in any fashion\nGlitter to so mundane\nTell me how you'd love to change me\nTell me I can stay the same\n\n[Bridge]\nWell, I just want\n(To shake us up)\nWell, I just want, I just want to\nTo shake us up (Ah-ha, ah-ha, ah-ha)\n\n[Chorus]\nLet's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel\n\n[Guitar solo]\n\n[Chorus]\nWell, let's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel (Ah-ha, ah-ha, ah-ha)\n\n[Outro]\nWell, let's bungle (Ah-ha, ah-ha, ah-ha)\nAnd live to tell (Ah-ha, ah-ha, ah-ha)\nWow, we came together\nYeah, how we gelled",
       "status": "main",
-      "prioritySetlist": 1
+      "prioritySetlist": 3
     },
     "Love spreads - Stone Roses": {
       "key": "",
@@ -1367,7 +1376,20 @@
       "M"
     ],
     "sugar were going down  - Fall out boy": [
-      "M"
+      "M",
+      "X"
+    ],
+    "Love spreads - Stone Roses": [
+      "O"
+    ],
+    "GEL - Collective soul": [
+      "O"
+    ],
+    "Aeroplane - RHCP": [
+      "O"
+    ],
+    "Stone cold Crazy - Metallica/queen": [
+      "O"
     ]
   },
   "songColors": {
