@@ -748,7 +748,9 @@
       "bpm": "158",
       "duration": "4:11",
       "crossfadeInto": [
-        "Even Flow - Pearl Jam"
+        "Cherub Rock - Smashing Pumpkins",
+        "Hemorrhage - Fuel",
+        "Like a Stone - Audioslave"
       ],
       "lyrics": "\"Everlong\"\n\nHello\nI've waited here for you\nEverlong\nTonight\nI throw myself into\nAnd out of the red\nOut of her head she sang\n\nCome down\nAnd waste away with me\nDown with me\nSlow how\nYou wanted it to be\nI'm over my head\nOut of her head she sang\n\nAnd I wonder\nWhen I sing along with you\nIf everything could ever feel this real forever\nIf anything could ever be this good again\nThe only thing I'll ever ask of you\nYou gotta promise not to stop when I say when she sang\n\nBreathe out\nSo I can breathe you in\nHold you in\nAnd now\nI know you've always been\nOut of your head\nOut of my head I sang\n\nAnd I wonder\nWhen I sing along with you\nIf everything could ever feel this real forever\nIf anything could ever be this good again\nThe only thing I'll ever ask of you\nYou gotta promise not to stop when I say when she sang\n\n[Whisper:]\n\n\nAnd I wonder\nIf everything could ever feel this real forever\nIf anything could ever be this good again\nThe only thing I'll ever ask of you\nYou've got to promise not to stop when I say when\n",
       "tuning": "Drop D",
@@ -762,13 +764,15 @@
       "riff": "D",
       "bpm": "120",
       "duration": "5:52",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "War Pigs - Black Sabbath"
+      ],
       "lyrics": "[Instrumental Intro]\nbank4/1\n\nSound 455 or 644 high G,Bb,G\nAh, ah, ah\nAh, ah, ah\nAh, ah, ah\nAh, ah, ah\n\n\nIt's late enough to go drivin'\nAnd see what's miiine\nLife's the study of dyin'\nHow to do it right\nYou're a holy roller\nIf you're bettin' lose\nIf you're hangin' ar^oooound(retard)\nIm holdin' the noose\nAh, ah, ah, ah\nAh, ah, ah, ah\nAh, ah, ah, ah\nAh, ah, ah, ah\n(riff 1 time)\n\n\nCome a little bit closer\nAnd get untied\nIn a hearse rollin' over\nJust a track in the line\n f*ckit \n\nSound 455 or 644 high G,Bb,G\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\n\n\n[Guitar Solo]\n(organ sound 86 middle C\nOh, oh, oh\nOh, oh, oh\nOh, oh, oh\nOh, oh, oh\n\n\n(short Drum breakdown )\n(no lead in)\nCome on, let's go drivin'\nCome on, let's take a little ride\nThat's the study of dyin'\nHow to do it righhhhhhhhhht\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\nAh, ah, ^ah, ah\n",
       "status": "main",
       "sn": "7B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "Holiday - Green Day": {
       "key": "Ab Major",
@@ -846,7 +850,11 @@
       "bpm": "165",
       "duration": "3:33",
       "tuning": "Drop Db",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Breed - Nirvana",
+        "Cowboys from Hell - Pantera",
+        "Say it aint so - Weezer "
+      ],
       "lyrics": "\"Them Bones\"\n\nAaah! Aaah! Aaah! Aaah!\n\nI believe them bones are me\nSome say we're born into the grave\n\nI feel so alone, gonna end up a\nBig ole pile of them bones\n\nAaah! Aaah! Aaaaaaaaah!\n\nDust rise right on over my time\nEmpty fossil of the new scene\n\nI feel so alone, gonna end up a\nBig ole pile of them bones\n\nToll due bad dream come true\nI lie dead gone under red sky\n\nI feel so alone, gonna end up a\nBig ole pile of them...\nI feel so alone, gonna end up a\nBig ole pile of them...\nI feel so alone, gonna end up a\nBig ole pile of them bones\n",
       "status": "main",
       "sn": "11B",
@@ -887,7 +895,8 @@
       "tuning": "Standard",
       "crossfadeInto": [
         "Cowboys from Hell - Pantera",
-        "Devils Bleedin Crown - Volbeat"
+        "Devils Bleedin Crown - Volbeat",
+        "War Pigs - Black Sabbath"
       ],
       "lyrics": "Sleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round, gotta clear out of town,\nSmell like a dry fishbone.\nHere come the law, gonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nRainy afternoon, ought to kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nWalking down the street, shooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy, try fucking getting me,\nGotta fucking get up and run.\nThey got the sirens loose, I ran right out of juice.\nThey're gonna put me in a cell,\nIf I can't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know, yeah.",
       "status": "main",
