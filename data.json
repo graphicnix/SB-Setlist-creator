@@ -1062,19 +1062,7 @@
       "crossfadeInto": [],
       "lyrics": "\"Aeroplane\"\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nLooking in my own eyes, hey Lord\nI can't find the love I want\nSomeone better slap me\nBefore I start to rust\nBefore I start to decompose\nLooking in my rear-view mirror\nLooking in my rear-view mirror\nI can make it disappear\nI can make it disappear, have no fear\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nSitting in my kitchen, hey girl\nI'm turning into dust again\nMy melancholy baby\nThe star of Mazzy must\nPush her voice inside of me\n\nI'm overcoming gravity\nI'm overcoming gravity\nIt's easy when you're sad to be\nIt's easy when you're sad, sad like me\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n1MEASUE\nJust one note could make me float\nCould make me float away\nOne note from the song she wrote\nCould fuck me where I lay\nJust one note could make me choke\nOne note, that's not a lie\nJust one note could cut my throat\nOne note could make me die\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\nMy aeroplane, my aeroplane\nIt's my aeroplane",
       "status": "main",
-      "prioritySetlist": null
-    },
-    "Bleed America - JEW": {
-      "key": "",
-      "sn": "",
-      "bpm": "",
-      "duration": "",
-      "tuning": "",
-      "timeSignature": "4/4",
-      "crossfadeInto": [],
-      "lyrics": "",
-      "status": "main",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "GEL - Collective soul": {
       "key": "",
@@ -1106,12 +1094,14 @@
     },
     "supermans dead - our lady peace": {
       "key": "",
-      "sn": "",
+      "sn": "3B",
       "bpm": "175",
       "duration": "4:15",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Lump - The Presidents USA"
+      ],
       "lyrics": "Do you worry that you're not liked\nHow long 'til you break\nYou're happy cause you smile\nBut how much can you fake\nAn ordinary boy, an ordinary name\nBut ordinary's just not good enough today\n\nNo, a woo oo\nOw, a woo oo\nOw, a woo oo\n\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nI'm thinking\n\nWhy-eieieie yeah, is Superman dead\nEieieie, yeah, is it in my head?\nEieieie, yeah, we'll just laugh instead\nYou worry about the weather\nWhether not you should hate hate hate\n\nAre you worried about your faith\nKneel down and obey\nYou're happy you're in love\nYou need someone to hate\nAn ordinary girl, an ordinary waist\nBut ordinary's just not good enough today\n\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nI'm thinking\n\nWhy-eieieie yeah, is Superman dead\nEieieie, yeah, is it in my head?\nEieieie, yeah, we'll just laugh instead\nYou worry about the weather\nWhether not you should hate hate hate\n\nNo, a woo wo\nOw, a woo wo\nOw, a woo wo\nWhy-eieieie yeah\nWhy-eieieie yeah\nWhy-eieieie yeah\nWhy-eieieie yeah\n\nDoesn't anybody ever know\nDoesn't anybody ever know\nDoesn't anybody ever know\nThat the world's a subway, subway\nDoesn't any, any, any, any, any\nThat the world's a subway, subway, hie",
       "status": "main",
       "prioritySetlist": 1
@@ -1127,6 +1117,18 @@
       "lyrics": "",
       "status": "main",
       "prioritySetlist": null
+    },
+    "Bleed America - JimmyEW": {
+      "key": "",
+      "sn": "11A",
+      "bpm": "160",
+      "duration": "3:01",
+      "tuning": "Standard",
+      "timeSignature": "4/4",
+      "prioritySetlist": 1,
+      "crossfadeInto": [],
+      "lyrics": "The last 60 years of American culture summed up in in 7 words: \n\"Sign up, the picketline or the parade.\"\nEverything in American society is an either-or. \nDemocrat or Republican? Fat or Skinny? Hot or Not?\n Coke or Pepsi? Patriot or Terrorist? Guilty or Innocent?\nYou have to sign up to be someone.\n So pick your side... picketline or parade?\n\n\n\n\nI'm not alone cause the TV's on yeah\nI'm not crazy cause I take the right pills everyday and rest\nClean your conscience,\nclear your thoughts with speyside with your grain\nClean your conscience, clear your thoughts with speyside\n\nSalt, sweat, sugar on the asphalt\nOur hearts littering the topsoil\nTune in and we can get the last call\nOur lives, our coal\nSalt, sweat, sugar on the asphalt\nOur hearts littering the topsoil\nSign up the picket line or the parade, our lives\n\nI'm not alone cause the TV's on yeah\nI'm not crazy cause I take the right pills everyday and rest\nClean your conscience,\nclear your thoughts with speyside with your grain\nClean your conscience, clear your thoughts with speyside\n\nSalt, sweat, sugar on the asphalt\nOur hearts littering the topsoil\nTune in and we can get the last call\nOur lives, our coal\nSalt, sweat, sugar on the asphalt\nOur hearts littering the topsoil\nSign up the picket line or the parade, our lives\n\nGreed from my arm\nWon't they give it a rest now, rest now, now, now, now?\n\nSalt, sweat, sugar on the asphalt\nOur hearts littering the topsoil\nTune in and we can get the last call\nOur lives, our coal\n\nSalt, sweat, sugar on the asphalt,\nOur hearts littering the topsoil\nSign up the picket line or the parade\nOur lives, our coal\n",
+      "status": "main"
     }
   },
   "setlists": {
