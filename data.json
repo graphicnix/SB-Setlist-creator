@@ -12,7 +12,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "4B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Feeling Good - various": {
       "key": "B minor",
@@ -26,7 +27,8 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "10A"
+      "sn": "10A",
+      "prioritySetlist": null
     },
     "Creep - Radiohead": {
       "key": "Gb Major",
@@ -40,7 +42,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "8A",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "I Alone - Live": {
       "key": "Em",
@@ -56,7 +59,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "2B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Santeria - Sublime": {
       "key": "Db minor",
@@ -68,7 +72,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "12A",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "No Excuses - Alice in Chains": {
       "key": "Eb Major",
@@ -80,7 +85,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "5B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Fell on Black Days - Soundgarden": {
       "key": "Em",
@@ -92,7 +98,8 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "9A"
+      "sn": "9A",
+      "prioritySetlist": null
     },
     "Sex on Fire - Kings of Leon": {
       "key": "B",
@@ -104,7 +111,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "11B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Sponge - Plowed": {
       "key": "Db Major",
@@ -116,7 +124,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "3B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Ruby Soho - Rancid": {
       "key": "G Major",
@@ -130,7 +139,8 @@
       "status": "main",
       "sn": "9B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Love Me Two Times - The Doors": {
       "key": "A Major",
@@ -144,7 +154,8 @@
       "status": "main",
       "sn": "11B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Lydia - Highly Suspect": {
       "key": "Gb Minor",
@@ -156,7 +167,8 @@
       "status": "main",
       "sn": "11A",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Come Down - Bush": {
       "key": "B minor",
@@ -168,7 +180,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "10A"
+      "sn": "10A",
+      "prioritySetlist": null
     },
     "Tennessee Whiskey - Chris Stapleton": {
       "key": "A Major",
@@ -180,7 +193,8 @@
       "status": "main",
       "sn": "11B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Drunken Lullabies - Flogging Molly": {
       "key": "G Major",
@@ -194,7 +208,8 @@
       "timeSignature": "6/8",
       "tuning": "Standard",
       "status": "main",
-      "sn": "9B"
+      "sn": "9B",
+      "prioritySetlist": null
     },
     "Shipping Up to Boston - Dropkick Murphys": {
       "key": "C Major",
@@ -206,7 +221,8 @@
       "status": "main",
       "sn": "8B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "War Pigs - Black Sabbath": {
       "key": "A maj",
@@ -220,7 +236,8 @@
       "status": "main",
       "sn": "11b",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Cumbersome - Seven Mary Three": {
       "key": "B Major",
@@ -234,7 +251,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "1B"
+      "sn": "1B",
+      "prioritySetlist": null
     },
     "La Grange - ZZ Top": {
       "key": "E Minor",
@@ -246,7 +264,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "9A"
+      "sn": "9A",
+      "prioritySetlist": null
     },
     "Blister in the Sun - Violent Femmes": {
       "key": "C Major",
@@ -258,7 +277,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "8B"
+      "sn": "8B",
+      "prioritySetlist": null
     },
     "Cult of Personality - Living Colour": {
       "key": "C Major",
@@ -272,7 +292,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "8B"
+      "sn": "8B",
+      "prioritySetlist": null
     },
     "Beautiful Disaster - 311": {
       "key": "B Major",
@@ -288,7 +309,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "1B"
+      "sn": "1B",
+      "prioritySetlist": null
     },
     "Inside Out - Eve 6": {
       "key": "B Major",
@@ -300,7 +322,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "1B"
+      "sn": "1B",
+      "prioritySetlist": null
     },
     "Sultans of Swing - Dire Straits": {
       "key": "Dm",
@@ -312,7 +335,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "7B"
+      "sn": "7B",
+      "prioritySetlist": null
     },
     "Possum Kingdom - Toadies": {
       "key": "A maj",
@@ -324,7 +348,8 @@
       "status": "main",
       "sn": "11B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Sweet Emotion - Aerosmith": {
       "key": "A Major",
@@ -336,7 +361,8 @@
       "status": "main",
       "sn": "11B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Even Flow - Pearl Jam": {
       "key": "B♭ Minor",
@@ -348,7 +374,8 @@
       "tuning": "Drop D",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "3A"
+      "sn": "3A",
+      "prioritySetlist": null
     },
     "Schism - Tool": {
       "key": "A Minor",
@@ -360,7 +387,8 @@
       "tuning": "D",
       "status": "main",
       "sn": "8A",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Come Together - The Beatles": {
       "key": "D Minor",
@@ -372,7 +400,8 @@
       "tuning": "Drop D",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "7A"
+      "sn": "7A",
+      "prioritySetlist": null
     },
     "Lola Montez - Volbeat": {
       "key": "D Major",
@@ -384,7 +413,8 @@
       "tuning": "Drop D",
       "status": "main",
       "sn": "10B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Superstition - Stevie Wonder": {
       "key": "G",
@@ -396,7 +426,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "4B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Breed - Nirvana": {
       "key": "E Major",
@@ -408,7 +439,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "12B"
+      "sn": "12B",
+      "prioritySetlist": null
     },
     "Cowboys from Hell - Pantera": {
       "key": "D Major",
@@ -420,7 +452,8 @@
       "timeSignature": "4/4",
       "tuning": "Eb",
       "status": "main",
-      "sn": "10B"
+      "sn": "10B",
+      "prioritySetlist": null
     },
     "Hash Pipe - Weezer": {
       "key": "G Major",
@@ -432,7 +465,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "9B"
+      "sn": "9B",
+      "prioritySetlist": null
     },
     "She Talks to Angels - The Black Crowes": {
       "key": "E Major",
@@ -444,7 +478,8 @@
       "tuning": "Open E",
       "status": "main",
       "sn": "12B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "46 & 2 - Tool": {
       "key": "C Minor",
@@ -456,7 +491,8 @@
       "timeSignature": "7/8",
       "tuning": "Standard",
       "status": "main",
-      "sn": "5A"
+      "sn": "5A",
+      "prioritySetlist": null
     },
     "What If - Creed": {
       "key": "D Minor",
@@ -468,7 +504,8 @@
       "tuning": "Drop D",
       "status": "main",
       "sn": "7A",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Like a Stone - Audioslave": {
       "key": "G Minor",
@@ -483,7 +520,8 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "6A"
+      "sn": "6A",
+      "prioritySetlist": null
     },
     "Say it aint so - Weezer ": {
       "key": "Eb Major",
@@ -497,7 +535,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "5B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Bullet w Butterfly - TSP": {
       "key": "Bb Minor",
@@ -509,7 +548,8 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "3A"
+      "sn": "3A",
+      "prioritySetlist": null
     },
     "Hemorrhage - Fuel": {
       "key": "bm",
@@ -521,7 +561,8 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "3B"
+      "sn": "3B",
+      "prioritySetlist": null
     },
     "Good Times Bad - Led Zeppelin": {
       "key": "A",
@@ -533,7 +574,8 @@
       "tuning": "Eb",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "11B"
+      "sn": "11B",
+      "prioritySetlist": null
     },
     "Tripping on a Hole - STP": {
       "key": "G Major",
@@ -545,7 +587,8 @@
       "status": "main",
       "sn": "9B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Soul to Squeeze - R.H.C.P": {
       "key": "F Major",
@@ -557,7 +600,8 @@
       "status": "main",
       "sn": "7B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Blue on Black - Kenny Wayne": {
       "bpm": "155",
@@ -572,7 +616,8 @@
         "N": 0,
         "IDC": 0
       },
-      "crossfadeInto": []
+      "crossfadeInto": [],
+      "prioritySetlist": null
     },
     "Lump - The Presidents USA": {
       "key": "Gb Major",
@@ -586,7 +631,8 @@
       "status": "main",
       "sn": "2B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Under the Bridge - RHCP": {
       "key": "E Major",
@@ -600,7 +646,8 @@
       "status": "main",
       "sn": "12B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Interstate Love Song - STP": {
       "key": "A Major",
@@ -612,7 +659,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "11B"
+      "sn": "11B",
+      "prioritySetlist": null
     },
     "Zero - Smashing Pumpkins": {
       "key": "Ab Major",
@@ -624,7 +672,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "4B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Stillborn - BLS": {
       "key": "Em",
@@ -636,7 +685,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "4A",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Plush - STP": {
       "key": "G Minor",
@@ -648,7 +698,8 @@
       "status": "main",
       "sn": "6A",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Cherub Rock - Smashing Pumpkins": {
       "key": "A Major",
@@ -662,7 +713,8 @@
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "11B"
+      "sn": "11B",
+      "prioritySetlist": null
     },
     "No One Knows - Queens Stone Age": {
       "key": "Cm",
@@ -674,7 +726,8 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "Cm",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Short SkirtLong Jacket - Cake": {
       "key": "D Major",
@@ -686,7 +739,8 @@
       "status": "main",
       "sn": "10b",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Everlong - Foo Fighters": {
       "key": "B Minor",
@@ -700,7 +754,8 @@
       "tuning": "Drop D",
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "10A"
+      "sn": "10A",
+      "prioritySetlist": null
     },
     "Song for the Dead - Queens of the Stone Age": {
       "key": "F Major",
@@ -712,7 +767,8 @@
       "status": "main",
       "sn": "7B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Holiday - Green Day": {
       "key": "Ab Major",
@@ -726,7 +782,8 @@
       "status": "mothballs",
       "sn": "4B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Song 2 - Blur": {
       "key": "E",
@@ -740,7 +797,8 @@
       "tuning": "Eb",
       "status": "main",
       "sn": "4B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Loser - Beck": {
       "key": "E",
@@ -750,7 +808,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "No Rest for the Wicked - Cage the Elephant": {
       "key": "C Major",
@@ -762,7 +821,8 @@
       "status": "main",
       "sn": "8B",
       "tuning": "Standard",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Would? - Alice in chains": {
       "key": "Gb Major",
@@ -777,7 +837,8 @@
       "lyrics": "Alice In Chains Lyrics\n\"Would?\"\n\nKnow me broken by my master\nTeach thee on child of love hereafter\n\nInto the flood again\nSame old trip it was back then\nSo I made a big mistake\nTry to see it once my way\n\nDrifting body it's sole desertion\nFlying not yet quite the notion\n\nInto the flood again\nSame old trip it was back then\nSo I made a big mistake\nTry to see it once my way\n\nInto the flood again\nSame old trip it was back then\nSo I made a big mistake\nTry to see it once my way\n\nAm I wrong?\nHave I run too far to get home?\nHave I gone?\nAnd left you here alone?\n\nAm I wrong?\nHave I run too far to get home?\nHave I gone?\nAnd left you here alone?\n\nIf I would, could you?\n\n\n",
       "status": "main",
       "sn": "2B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Them Bones - Alice in chains": {
       "key": "",
@@ -789,7 +850,8 @@
       "lyrics": "\"Them Bones\"\n\nAaah! Aaah! Aaah! Aaah!\n\nI believe them bones are me\nSome say we're born into the grave\n\nI feel so alone, gonna end up a\nBig ole pile of them bones\n\nAaah! Aaah! Aaaaaaaaah!\n\nDust rise right on over my time\nEmpty fossil of the new scene\n\nI feel so alone, gonna end up a\nBig ole pile of them bones\n\nToll due bad dream come true\nI lie dead gone under red sky\n\nI feel so alone, gonna end up a\nBig ole pile of them...\nI feel so alone, gonna end up a\nBig ole pile of them...\nI feel so alone, gonna end up a\nBig ole pile of them bones\n",
       "status": "main",
       "sn": "11B",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "96 Quite Bitter Beings - CKY": {
       "key": "Dm",
@@ -801,7 +863,8 @@
       "crossfadeInto": [],
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "2A"
+      "sn": "2A",
+      "prioritySetlist": null
     },
     "Devils Bleedin Crown - Volbeat": {
       "key": "Gmaj",
@@ -813,7 +876,8 @@
       "crossfadeInto": [],
       "timeSignature": "4/4",
       "status": "main",
-      "sn": "9B"
+      "sn": "9B",
+      "prioritySetlist": null
     },
     "Stone cold Crazy - Metallica/queen": {
       "key": "",
@@ -825,7 +889,8 @@
       "lyrics": "Sleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round, gotta clear out of town,\nSmell like a dry fishbone.\nHere come the law, gonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nRainy afternoon, ought to kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nWalking down the street, shooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy, try fucking getting me,\nGotta fucking get up and run.\nThey got the sirens loose, I ran right out of juice.\nThey're gonna put me in a cell,\nIf I can't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know, yeah.",
       "status": "main",
       "timeSignature": "4/4",
-      "sn": ""
+      "sn": "",
+      "prioritySetlist": null
     },
     "santa monica  - Everclear": {
       "key": "",
@@ -836,7 +901,8 @@
       "crossfadeInto": [],
       "lyrics": "[Verse 1]\nI am still living with your ghost\nLonely and dreaming of the west coast\nI don't want to be your downtime\nI don't want to be your stupid game\n\n[Verse 2]\nWith my big black boots and an old suitcase\nI do believe I'll find myself a new place\nI don't want to be the bad guy\nI don't want do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to see some palm trees\nI will try and shake away this disease\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nSee Everclear Live\nGet tickets as low as $40\nYou might also like\nThought I Was Dead\nTyler, The Creator\nShe Knows\nJ. Cole\nI Will Buy You a New Life\nEverclear\n[Verse 3]\nI am still dreaming of your face\nHungry and hollow for all the things you took away\nI don't want to be your good time\nI don't want to be your fallback crutch anymore\n\n[Verse 4]\nWalk right out into a brand-new day\nInsane and rising in my own weird way\nI don't want to be the bad guy\nI don't want to do your sleepwalk dance anymore\n\n[Pre-Chorus]\nI just want to feel some sunshine\nI just want to find some place to be alone\n\n[Chorus]\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe can live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\nWe could live beside the ocean\nLeave the fire behind\nSwim out past the breakers\nWatch the world die\n\n[Outro]\nOh, yeah, watch the world die\nYeah, yeah, watch the world die\nWhoa, yeah, watch the world die\nYeah, watch the world die",
       "status": "main",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Float on - i forget": {
       "key": "",
@@ -847,7 +913,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "R U B my Girl - Jet": {
       "key": "",
@@ -858,7 +925,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Paranoid - Black Sabbath ": {
       "key": "",
@@ -869,7 +937,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Fire - Hendricks ": {
       "key": "",
@@ -880,7 +949,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "pardon me - incubus ": {
       "key": "",
@@ -891,7 +961,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Little One - Highly Suspect": {
       "key": "",
@@ -902,7 +973,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Beggin - måneskin": {
       "key": "",
@@ -913,7 +985,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Muddshovel - Stained": {
       "key": "",
@@ -924,7 +997,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "closing time - semisonics": {
       "key": "",
@@ -935,7 +1009,8 @@
       "crossfadeInto": [],
       "lyrics": "",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "S.O.S. - Glorious Sons": {
       "key": "A Major",
@@ -946,7 +1021,8 @@
       "crossfadeInto": [],
       "lyrics": "The Glorious Sons Lyrics\n\"Sawed Off Shotgun\"\n\nMother I don't wanna take my medicine\n24 years in the gutter again, I'm losing it\nI'm losing it\n\nEverybody's acting like they're all alright\nI can barely get myself to sleep at night, I'm sick of it\nYeah, I'm sick of it\n\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\n\nI'd rather be crazy than to take these pills\nI'm sick of being okay against my will\nI'm losing it, I'm losing it\n\nAin't a thing in this world that I'm gonna miss\nIt's all fake smiles and leather jackets\nWe're full of it, yeah we're full of shit\n\nI don't know who to trust\n\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\n\nI'm losing it\nI bought a sawed-off shotgun\nI'm losing it\nI bought a sawed-off shotgun\n\nI don't know who to trust\nThey need people like us\n\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\nYeah, they sent the taxman\nI lost my job, and\nYou got hooked on oxycodone\nThey shut the lights off\nThey took the car, and\nI bought a sawed-off shotgun\n",
       "status": "main",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     "Little One  - Highly Suspect": {
       "key": "G Major",
@@ -957,7 +1033,8 @@
       "crossfadeInto": [],
       "lyrics": "[Verse 1]\nI'm cornered in fire, so break out the secrets\nI hope you know that you were worth it all along\nI'm tired, you're angry, and everyone looks blurry\nI love you\nI'm leaving, so long\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only friend\n\n[Post-Chorus]\nMy little one\n\n[Verse 2]\nThe places I took you, they seem so fuckin' empty\nI have trouble going anywhere at all\nEspecially my own bedroom\nYeah, it stays awake to haunt me\nSo pass out, blackout drunk in another bathroom stall\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only friend\nHow long must I justify my pain through these songs?\nHow long? How long?\nSee upcoming rock shows\nGet tickets for your favorite artists\nYou might also like\nI Had Some Help\nPost Malone\nFamily Matters\nDrake\nLost\nLinkin Park\n[Guitar Solo]\n\n[Chorus]\nHey, little one\nI'm so scared of what this could have been\nI know that today I lost my only little one (my little one)\nI'm so scared of what this could have been\nI know that today I lost my only friend\nHow long must I talk about my pain in these songs?\nHow long? How long?\n\n[Outro]\nIt's raining, it's sunny\nIt doesn't make a difference\nI don't care about anything at all\nIt's raining, it's sunny\nIt doesn't make a difference\nI don't care about anything at all",
       "status": "mothballs",
-      "timeSignature": "4/4"
+      "timeSignature": "4/4",
+      "prioritySetlist": null
     },
     " Before I Forget Drop B Tuning - Slipknot": {
       "key": "",
@@ -972,7 +1049,8 @@
         "Schism - Tool"
       ],
       "lyrics": "[Intro]\nGo\n\n[Verse 1]\nStapled shut, inside an outside world, and I'm\nSealed in tight, bizarre but right at home\nI'm claustrophobic, closing in\nAnd I'm catastrophic, not again\nI'm smeared across the page and doused in gasoline\nI wear you like a stain, yet I'm the one who's obscene\nCatch me up on all your sordid little insurrections\nI've got no time to lose, I'm just caught up in all the cattle\n\n[Pre-Chorus]\nFray the strings\nThrow the shapes\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nSee Slipknot Live\nGet tickets as low as $59\nYou might also like\nmeet the grahams\nKendrick Lamar\nNot Like Us\nKendrick Lamar\neuphoria\nKendrick Lamar\n[Verse 2]\nI'm ripped across the ditch\nAnd settled in the dirt and I\nWear you like a stitch\nYet I'm the one who's hurt\nPay attention to your twisted little indiscretions\nI've got no right to win, I'm just caught up in all the battles\n\n[Pre-Chorus]\nLocked in clutch\nPushed in place\nHold your breath\nListen\n\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Bridge]\nMy end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\nAnd my end, it justifies my means\nAll I ever do is delay\nMy every attempt to evade\nThe end of the road\n[Chorus]\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\nI am a world before I am a man\nI was a creature before I could stand\nI will remember before I forget\nBefore I forget that\n\n[Outro]\nYeah, yeah, yeah, yeah, yeah\nYeah, yeah, oh\n\n[Segue]\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it\nYou're wasting it",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": null
     },
     "Aeroplane - RHCP": {
       "key": "",
@@ -983,7 +1061,8 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "\"Aeroplane\"\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nLooking in my own eyes, hey Lord\nI can't find the love I want\nSomeone better slap me\nBefore I start to rust\nBefore I start to decompose\nLooking in my rear-view mirror\nLooking in my rear-view mirror\nI can make it disappear\nI can make it disappear, have no fear\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nSitting in my kitchen, hey girl\nI'm turning into dust again\nMy melancholy baby\nThe star of Mazzy must\nPush her voice inside of me\n\nI'm overcoming gravity\nI'm overcoming gravity\nIt's easy when you're sad to be\nIt's easy when you're sad, sad like me\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n1MEASUE\nJust one note could make me float\nCould make me float away\nOne note from the song she wrote\nCould fuck me where I lay\nJust one note could make me choke\nOne note, that's not a lie\nJust one note could cut my throat\nOne note could make me die\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\nMy aeroplane, my aeroplane\nIt's my aeroplane",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": null
     },
     "Bleed America - JEW": {
       "key": "",
@@ -994,7 +1073,8 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": null
     },
     "GEL - Collective soul": {
       "key": "",
@@ -1005,18 +1085,23 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "[Verse 1]\nColor me any color\nSpeak to me in tongues and share\nTell me how you'd love to hate me\nTell me how you'd love to care\n\n[Pre-Chorus]\nWell, I just want\n(To shake us up)\nWell, I just want, I just want to\nTo shake us up (Ah-ha, ah-ha, ah-ha)\n\n[Chorus]\nLet's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel\n\n[Verse 2]\nClothe me in any fashion\nGlitter to so mundane\nTell me how you'd love to change me\nTell me I can stay the same\n\n[Bridge]\nWell, I just want\n(To shake us up)\nWell, I just want, I just want to\nTo shake us up (Ah-ha, ah-ha, ah-ha)\nSee Collective Soul Live\nGet tickets as low as $38\nYou might also like\nloml\nTaylor Swift\nDirty Deeds Done Dirt Cheap\nAC/DC\nRun\nCollective Soul\n[Chorus]\nLet's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel\n\n[Guitar solo]\n\n[Chorus]\nWell, let's mingle (Ah-ha, ah-ha, ah-ha)\nAnd make it well (Ah-ha, ah-ha, ah-ha)\nCome together now (Ah-ha, ah-ha, ah-ha)\nYeah, let's gel (Ah-ha, ah-ha, ah-ha)\n\n[Outro]\nWell, let's bungle (Ah-ha, ah-ha, ah-ha)\nAnd live to tell (Ah-ha, ah-ha, ah-ha)\nWow, we came together\nYeah, how we gelled",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": null
     },
     "Love spreads - Stone Roses": {
       "key": "",
       "sn": "10B",
-      "bpm": "",
+      "bpm": "91",
       "duration": "5:47",
       "tuning": "Drop D",
       "timeSignature": "4/4",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Cherub Rock - Smashing Pumpkins",
+        "No Excuses - Alice in Chains"
+      ],
       "lyrics": "Love spreads her arms, waits there for the nails\nI forgive you boy, I will prevail\nToo much to take, some cross to bear\nI'm hiding in the trees with a picnic, she's over there\nYeah\nYeah Yeah Yeah\nYeah Yeah Yeah\n\nShe didn't scream, she didn't make a sound\nI forgive you boy, but don't leave town\nCold black skin, naked in the rain\nHammer flash in the lightning\nThey're hurting her again\n\n[Chorus:]\nLet me put you in the picture\nLet me show you what I mean\nThe messiah is my sister\nAin't no king man she's my queen\n[x2]\n\nI have a dream, I've seen the light\nDon't put it out, say she's alright\nYeah she's my sister\n\nShe didn't scream, she didn't make a sound\nI forgive you boy, but don't leave town\nCold black skin, naked in the rain\nHammer flash in the lightning\nThey're hurting her again\nOh Oh\n\n[repeat the chorus seven times]\n\nI have a dream, I've seen the light\nDon't put it out, says she's alright\nYeah she's my sister!",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": 1
     },
     "supermans dead - our lady peace": {
       "key": "",
@@ -1027,7 +1112,8 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "Do you worry that you're not liked\nHow long 'til you break\nYou're happy cause you smile\nBut how much can you fake\nAn ordinary boy, an ordinary name\nBut ordinary's just not good enough today\n\nNo, a woo oo\nOw, a woo oo\nOw, a woo oo\n\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nI'm thinking\n\nWhy-eieieie yeah, is Superman dead\nEieieie, yeah, is it in my head?\nEieieie, yeah, we'll just laugh instead\nYou worry about the weather\nWhether not you should hate hate hate\n\nAre you worried about your faith\nKneel down and obey\nYou're happy you're in love\nYou need someone to hate\nAn ordinary girl, an ordinary waist\nBut ordinary's just not good enough today\n\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nAlone\nI'm thinking\n\nWhy-eieieie yeah, is Superman dead\nEieieie, yeah, is it in my head?\nEieieie, yeah, we'll just laugh instead\nYou worry about the weather\nWhether not you should hate hate hate\n\nNo, a woo wo\nOw, a woo wo\nOw, a woo wo\nWhy-eieieie yeah\nWhy-eieieie yeah\nWhy-eieieie yeah\nWhy-eieieie yeah\n\nDoesn't anybody ever know\nDoesn't anybody ever know\nDoesn't anybody ever know\nThat the world's a subway, subway\nDoesn't any, any, any, any, any\nThat the world's a subway, subway, hie",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": null
     },
     "sugar were going down  - Fall out boy": {
       "key": "",
@@ -1038,45 +1124,14 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "",
-      "status": "main"
+      "status": "main",
+      "prioritySetlist": null
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Hash Pipe - Weezer",
-      "Superstition - Stevie Wonder",
-      "Would? - Alice in chains",
-      "96 Quite Bitter Beings - CKY",
-      "Song 2 - Blur",
-      "sugar were going down  - Fall out boy",
-      "Cherub Rock - Smashing Pumpkins",
-      "Tripping on a Hole - STP"
-    ],
-    "setlist-2": [
-      "Everlong - Foo Fighters",
-      "Even Flow - Pearl Jam",
-      "Lola Montez - Volbeat",
-      "Sponge - Plowed",
-      "Pride and Joy - Stevie Ray Vaughan",
-      "La Grange - ZZ Top",
-      "GEL - Collective soul",
-      "Aeroplane - RHCP",
-      "sugar were going down  - Fall out boy"
-    ],
-    "setlist-3": [
-      "Blister in the Sun - Violent Femmes",
-      "Breed - Nirvana",
-      "Inside Out - Eve 6",
-      "Lump - The Presidents USA",
-      "Beautiful Disaster - 311",
-      "Say it aint so - Weezer ",
-      "Zero - Smashing Pumpkins",
-      "Stillborn - BLS",
-      "46 & 2 - Tool",
-      "No Excuses - Alice in Chains",
-      "Ruby Soho - Rancid",
-      "Sex on Fire - Kings of Leon"
-    ]
+    "setlist-1": [],
+    "setlist-2": [],
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
