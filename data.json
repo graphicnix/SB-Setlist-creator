@@ -929,7 +929,7 @@
         "Devils Bleedin Crown - Volbeat",
         "War Pigs - Black Sabbath"
       ],
-      "lyrics": "Sleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round, gotta clear out of town,\nSmell like a dry fishbone.\nHere come the law, gonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nRainy afternoon, ought to kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nWalking down the street, shooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy, try fucking getting me,\nGotta fucking get up and run.\nThey got the sirens loose, I ran right out of juice.\nThey're gonna put me in a cell,\nIf I can't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know, yeah.",
+      "lyrics": "Sleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round, \ngotta clear out of town,\nSmell like a dry fishbone.\nHere come the law,\n gonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nRainy afternoon, gotta kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nWalking down the street, \nshooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy, \ntryin fucking gettin-me\nGotta fucking get up and run.\nThey got the sirens loose, \nI ran right out of juice.\nThey're gonna put me in a cell,\ncan't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know, yeah.",
       "status": "main",
       "timeSignature": "4/4",
       "sn": "9B",
@@ -1193,7 +1193,20 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Stone cold Crazy - Metallica/queen",
+      "Song for the Dead - Queens of the Stone Age",
+      "Love spreads - Stone Roses",
+      "supermans dead - our lady peace",
+      "Bleed America - JimmyEW",
+      "Bullet w Butterfly - TSP",
+      "Sponge - Plowed",
+      "Lump - The Presidents USA",
+      "Hemorrhage - Fuel",
+      "Love Me Two Times - The Doors",
+      "Cherub Rock - Smashing Pumpkins",
+      "Sex on Fire - Kings of Leon"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
