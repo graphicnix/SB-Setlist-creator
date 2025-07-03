@@ -1186,10 +1186,10 @@
       "sn": "11B",
       "bpm": "113",
       "duration": "3:52",
-      "tuning": "",
+      "tuning": "Standard",
       "timeSignature": "4/4",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "Well, sweet little sister's high in hell cheating on a halo\nGrind in a odyssey holocaust heart kick on tomorrow\nBreakdown—agony, I said \"ecstacy\" in overdrive\nWell riding on the world, thunder kissing\n\n1965\nDemon-warp is coming alive in 1965\n\nLiving fast and dying young like a endless poetry\nMy motor-psycho nightmare freak out inside of me\nMy soul salvation liberation on the drive\nThe power of the blaster move me faster\n\n1965\nDemon-warp is coming alive in 1965\n\n(\"You're all shook up, aren't you baby?\")\n(\"I never try anything. I just do it.\")\n(\"Wanna try me?\")\n\nAw, shout! Gimme that gimme that now!\n\nRolling like a supersonic, another fool that gets down on it\nPig sweat a million miles, I got a heart atomic style\nI make it look easy, that's what I said\nBlast of silence explodes in my head\n\nYeah, yeah, yeah\nGimme that, gimme that now!\nGimme that, gimme that now!\nGimme that, gimme that nOW!\nGimme that, gimme that\n\nStep to the moonshine frenzy hail: the resurrection\nWhat's new, pussycat? Can you dig the satisfaction?\nWell you can't take it with you but you can! In overdrive\nSome like it hot, yeah twist'n\n\n1965\nDemon-warp is coming alive in 1965",
       "status": "main",
       "prioritySetlist": null
     },
@@ -1208,16 +1208,25 @@
   },
   "setlists": {
     "setlist-1": [
-      "Stone cold Crazy - Metallica/queen",
       "Cowboys from Hell - Pantera",
       "Would? - Alice in chains",
       "Creep - Radiohead",
-      "Love spreads - Stone Roses",
-      "Bleed America - JimmyEW",
-      "Lump - The Presidents USA",
       "thunderkiss 65 - Rob Zombie"
     ],
-    "setlist-2": [],
+    "setlist-2": [
+      "santa monica  - Everclear",
+      " Before I Forget Drop B Tuning - Slipknot",
+      "Aeroplane - RHCP",
+      "No Rest for the Wicked - Cage the Elephant",
+      "Ruby Soho - Rancid",
+      "Beautiful Disaster - 311",
+      "Like a Stone - Audioslave",
+      "Song for the Dead - Queens of the Stone Age",
+      "Even Flow - Pearl Jam",
+      "supermans dead - our lady peace",
+      "Zero - Smashing Pumpkins",
+      "Song 2 - Blur"
+    ],
     "setlist-3": []
   },
   "songIcons": {
