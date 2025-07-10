@@ -804,7 +804,7 @@
       "sn": "7B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": 1
+      "prioritySetlist": null
     },
     "Holiday - Green Day": {
       "key": "Ab Major",
@@ -1211,7 +1211,13 @@
   "setlists": {
     "setlist-1": [
       "Stone cold Crazy - Metallica/queen",
-      "Devils Bleedin Crown - Volbeat"
+      "Devils Bleedin Crown - Volbeat",
+      "Bleed America - JimmyEW",
+      "Meant to live  - Switchfoot",
+      "Everlong - Foo Fighters",
+      "supermans dead - our lady peace",
+      "Song for the Dead - Queens of the Stone Age",
+      "Love spreads - Stone Roses"
     ],
     "setlist-2": [],
     "setlist-3": [
@@ -1419,8 +1425,8 @@
     "Song for the Dead - Queens of the Stone Age": [
       "O",
       "→",
-      "",
-      ""
+      "→",
+      "→"
     ],
     "S.O.S. - Glorious Sons": [
       "X",
@@ -1464,32 +1470,51 @@
       "→"
     ],
     "GEL - Collective soul": [
+      "O",
       "→",
       "→",
       "→"
     ],
     "Aeroplane - RHCP": [
-      "O"
+      "O",
+      "→",
+      "→",
+      "→"
     ],
     "Stone cold Crazy - Metallica/queen": [
-      "O"
+      "O",
+      "→",
+      "→",
+      "→"
     ],
     "Hash Pipe - Weezer": [
       null,
       "→"
     ],
     "santa monica  - Everclear": [
+      "→",
+      "→",
+      "→",
       "→"
     ],
     " Before I Forget Drop B Tuning - Slipknot": [
+      "→",
       "→"
     ],
     "supermans dead - our lady peace": [
       "→",
       "→",
+      "→",
       "→"
     ],
     "Meant to live  - Switchfoot": [
+      "→",
+      "→",
+      "→",
+      "→"
+    ],
+    "Bleed America - JimmyEW": [
+      "→",
       "→",
       "→",
       "→"
