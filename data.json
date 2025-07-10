@@ -1210,11 +1210,8 @@
   },
   "setlists": {
     "setlist-1": [
-      "Cowboys from Hell - Pantera",
-      "Would? - Alice in chains",
-      "Creep - Radiohead",
-      "thunderkiss 65 - Rob Zombie",
-      "Stone cold Crazy - Metallica/queen"
+      "Stone cold Crazy - Metallica/queen",
+      "Devils Bleedin Crown - Volbeat"
     ],
     "setlist-2": [],
     "setlist-3": [
@@ -1421,7 +1418,7 @@
     ],
     "Song for the Dead - Queens of the Stone Age": [
       "O",
-      "",
+      "→",
       "",
       ""
     ],
@@ -1461,16 +1458,41 @@
       "X"
     ],
     "Love spreads - Stone Roses": [
-      "O"
+      "O",
+      "→",
+      "→",
+      "→"
     ],
     "GEL - Collective soul": [
-      "O"
+      "→",
+      "→",
+      "→"
     ],
     "Aeroplane - RHCP": [
       "O"
     ],
     "Stone cold Crazy - Metallica/queen": [
       "O"
+    ],
+    "Hash Pipe - Weezer": [
+      null,
+      "→"
+    ],
+    "santa monica  - Everclear": [
+      "→"
+    ],
+    " Before I Forget Drop B Tuning - Slipknot": [
+      "→"
+    ],
+    "supermans dead - our lady peace": [
+      "→",
+      "→",
+      "→"
+    ],
+    "Meant to live  - Switchfoot": [
+      "→",
+      "→",
+      "→"
     ]
   },
   "songColors": {
