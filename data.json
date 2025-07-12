@@ -1211,18 +1211,18 @@
   "setlists": {
     "setlist-1": [
       "Zero - Smashing Pumpkins",
-      "Hash Pipe - Weezer",
       "Tripping on a Hole - STP",
+      "Hash Pipe - Weezer",
       "Lump - The Presidents USA",
+      "Bleed America - JimmyEW",
+      "What If - Creed",
+      "I Alone - Live",
       "Santeria - Sublime",
       "Would? - Alice in chains",
-      "I Alone - Live",
-      "What If - Creed",
-      "Bleed America - JimmyEW",
       "Aeroplane - RHCP",
-      "santa monica  - Everclear",
       "Possum Kingdom - Toadies",
-      "GEL - Collective soul"
+      "GEL - Collective soul",
+      "santa monica  - Everclear"
     ],
     "setlist-2": [],
     "setlist-3": [
@@ -1564,6 +1564,21 @@
       "Lump - The Presidents USA",
       "Beautiful Disaster - 311",
       "Bullet w Butterfly - TSP"
+    ],
+    "LIPPERT 1": [
+      "Zero - Smashing Pumpkins",
+      "Tripping on a Hole - STP",
+      "Hash Pipe - Weezer",
+      "Lump - The Presidents USA",
+      "Bleed America - JimmyEW",
+      "What If - Creed",
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "Would? - Alice in chains",
+      "Aeroplane - RHCP",
+      "Possum Kingdom - Toadies",
+      "GEL - Collective soul",
+      "santa monica  - Everclear"
     ]
   }
 }
