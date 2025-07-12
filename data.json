@@ -1174,7 +1174,7 @@
       "sn": "11A",
       "bpm": "160",
       "duration": "3:01",
-      "tuning": "Standard",
+      "tuning": "Drop D",
       "timeSignature": "4/4",
       "prioritySetlist": null,
       "crossfadeInto": [],
@@ -1210,9 +1210,14 @@
   },
   "setlists": {
     "setlist-1": [
+      "GEL - Collective soul",
+      "Would? - Alice in chains",
       "Zero - Smashing Pumpkins",
-      "Cowboys from Hell - Pantera",
-      "Breed - Nirvana"
+      "Hash Pipe - Weezer",
+      "What If - Creed",
+      "Aeroplane - RHCP",
+      "Tripping on a Hole - STP",
+      "Bleed America - JimmyEW"
     ],
     "setlist-2": [],
     "setlist-3": []
