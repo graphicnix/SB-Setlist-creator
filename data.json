@@ -1230,20 +1230,12 @@
       "Love spreads - Stone Roses",
       "Plush - STP",
       "Come Together - The Beatles",
-      "Shipping Up to Boston - Dropkick Murphys",
       "Song for the Dead - Queens of the Stone Age",
-      "Blister in the Sun - Violent Femmes",
       "Sultans of Swing - Dire Straits",
+      "Blister in the Sun - Violent Femmes",
       "Breed - Nirvana"
     ],
-    "setlist-3": [
-      "Blue on Black - Kenny Wayne",
-      "No Rest for the Wicked - Cage the Elephant",
-      "Drunken Lullabies - Flogging Molly",
-      "Ruby Soho - Rancid",
-      "La Grange - ZZ Top",
-      "sugar were going down  - Fall out boy"
-    ]
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
@@ -1595,6 +1587,17 @@
       "Possum Kingdom - Toadies",
       "GEL - Collective soul",
       "santa monica  - Everclear"
+    ],
+    "lol 1st random \\m/(-..-)\\m/": [
+      "Meant to live  - Switchfoot",
+      "Everlong - Foo Fighters",
+      "Love spreads - Stone Roses",
+      "Plush - STP",
+      "Come Together - The Beatles",
+      "Song for the Dead - Queens of the Stone Age",
+      "Sultans of Swing - Dire Straits",
+      "Blister in the Sun - Violent Femmes",
+      "Breed - Nirvana"
     ]
   }
 }
