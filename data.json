@@ -1235,7 +1235,17 @@
       "Blister in the Sun - Violent Femmes",
       "Breed - Nirvana"
     ],
-    "setlist-3": []
+    "setlist-3": [
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Love Me Two Times - The Doors",
+      "Cherub Rock - Smashing Pumpkins",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Blister in the Sun - Violent Femmes",
+      "Even Flow - Pearl Jam",
+      "Superstition - Stevie Wonder",
+      "Say it aint so - Weezer ",
+      "Everlong - Foo Fighters"
+    ]
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
@@ -1598,6 +1608,17 @@
       "Sultans of Swing - Dire Straits",
       "Blister in the Sun - Violent Femmes",
       "Breed - Nirvana"
+    ],
+    "Matt's swag": [
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Love Me Two Times - The Doors",
+      "Cherub Rock - Smashing Pumpkins",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Blister in the Sun - Violent Femmes",
+      "Even Flow - Pearl Jam",
+      "Superstition - Stevie Wonder",
+      "Say it aint so - Weezer ",
+      "Everlong - Foo Fighters"
     ]
   }
 }
