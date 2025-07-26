@@ -1244,7 +1244,9 @@
       "Even Flow - Pearl Jam",
       "Superstition - Stevie Wonder",
       "Say it aint so - Weezer ",
-      "Everlong - Foo Fighters"
+      "Everlong - Foo Fighters",
+      "War Pigs - Black Sabbath",
+      "Sod Off - Clutch"
     ]
   },
   "songIcons": {
@@ -1619,6 +1621,21 @@
       "Superstition - Stevie Wonder",
       "Say it aint so - Weezer ",
       "Everlong - Foo Fighters"
+    ],
+    "Lippert camp set 1": [
+      "Zero - Smashing Pumpkins",
+      "Tripping on a Hole - STP",
+      "Hash Pipe - Weezer",
+      "Lump - The Presidents USA",
+      "Bleed America - JimmyEW",
+      "What If - Creed",
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "Would? - Alice in chains",
+      "Aeroplane - RHCP",
+      "Possum Kingdom - Toadies",
+      "GEL - Collective soul",
+      "santa monica  - Everclear"
     ]
   }
 }
