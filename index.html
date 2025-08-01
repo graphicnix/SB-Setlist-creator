@@ -457,7 +457,6 @@
             margin-left: 10px;
             font-size: 12px;
             align-items: center;
-            flex-wrap: wrap;
         }
         .tuning-legend-item {
             display: flex;
@@ -789,7 +788,7 @@
                                 ${iconsDisplay} ${badge} ${song}
                             </div>
                             <div>
-                                <button class="add-btn" onclick="addSongFromSearch('${song}', 795 1, this)">1</button>
+                                <button class="add-btn" onclick="addSongFromSearch('${song}', 1, this)">1</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 2, this)">2</button>
                                 <button class="add-btn" onclick="addSongFromSearch('${song}', 3, this)">3</button>
                                 <button class="edit-btn" onclick="editSong('${song}')">Edit</button>
@@ -1452,10 +1451,6 @@
                     bpmCandidates = camelotCandidates;
                 }
 
-                if (bpmCandidates.length === 0) {
-                    bpmCandidates = candidates;
-                }
-
                 if (bpmCandidates.length > 0) {
                     const nextSong = bpmCandidates[Math.floor(Math.random() * bpmCandidates.length)];
                     selectedSongs.push(nextSong);
@@ -2093,9 +2088,38 @@
         function drop(ev) {
             ev.preventDefault();
             const song = ev.dataTransfer.getData("text");
-            const setlistId = ev.target.closest('ul').id;
-            const setlistKey = setlistId;
-            const targetIndex = Array.from(ev.target.closest('ul').children).indexOf(ev.target);
+            const ul = ev.target.closest('ul');
+            const setlistKey = ul.id;
+            
+            // Calculate target index based on mouse position
+            const children = Array.from(ul.children);
+            const rect = ul.getBoundingClientRect();
+            const y = ev.clientY - rect.top;
+            
+            let targetIndex = 0;
+            let found = false;
+            
+            for (let i = 0; i < children.length; i++) {
+                const childRect = children[i].getBoundingClientRect();
+                const childTop = childRect.top - rect.top;
+                const childBottom = childRect.bottom - rect.top;
+                
+                if (y > childTop && y < childBottom) {
+                    // Check if mouse is in top half of child element
+                    if (y < childTop + (childRect.height / 2)) {
+                        targetIndex = i;
+                    } else {
+                        targetIndex = i + 1;
+                    }
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (!found) {
+                // Append at end if not found
+                targetIndex = children.length;
+            }
 
             let originalKey;
             let originalIndex;
@@ -2126,9 +2150,13 @@
                     }
                 }
 
+                // Remove from original position
                 setlists[originalKey].splice(originalIndex, 1);
+                
+                // Add to new position
                 setlists[setlistKey].splice(targetIndex, 0, song);
-                updateAllSetlists();
+                
+                updateSetlistDisplay(setlistKey);
                 unsavedChanges = true;
             }
         }
