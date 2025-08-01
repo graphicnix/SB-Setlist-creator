@@ -538,7 +538,7 @@
     "Say it aint so - Weezer ": {
       "key": "Eb Major",
       "riff": "",
-      "bpm": "112",
+      "bpm": "71",
       "duration": "4:18",
       "crossfadeInto": [
         "Creep - Radiohead",
@@ -1211,15 +1211,15 @@
       "Santa Monica - Everclear"
     ],
     "setlist-2": [
+      "Even Flow - Pearl Jam",
       "Everlong - Foo Fighters",
       "Cherub Rock - Smashing Pumpkins",
       "Blister in the Sun - Violent Femmes",
       "Love Me Two Times - The Doors",
       "Tennessee Whiskey - Chris Stapleton",
-      "Pride and Joy - Stevie Ray Vaughan",
       "Say it aint so - Weezer ",
+      "Pride and Joy - Stevie Ray Vaughan",
       "Superstition - Stevie Wonder",
-      "Even Flow - Pearl Jam",
       "War Pigs - Black Sabbath",
       "Short Skirt/Long Jacket - Cake",
       "Sultans of Swing - Dire Straits",
