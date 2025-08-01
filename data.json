@@ -1,4 +1,4 @@
- {
+{
   "songData": {
     "Pride and Joy - Stevie Ray Vaughan": {
       "key": "A♭ Major",
@@ -1208,32 +1208,21 @@
       "Aeroplane - RHCP",
       "Possum Kingdom - Toadies",
       "GEL - Collective soul",
-      "Santa Monica - Everclear",
-      "War Pigs - Black Sabbath"
+      "Santa Monica - Everclear"
     ],
     "setlist-2": [
-      "Meant to live  - Switchfoot",
-      "Love spreads - Stone Roses",
-      "Plush - STP",
-      "Come Together - The Beatles",
-      "Song for the Dead - Queens of the Stone Age",
-      "Sultans of Swing - Dire Straits",
-      "Blister in the Sun - Violent Femmes",
-      "Breed - Nirvana"
-    ],
-    "setlist-3": [
-      "Pride and Joy - Stevie Ray Vaughan",
-      "Even Flow - Pearl Jam",
-      "Love Me Two Times - The Doors",
       "Everlong - Foo Fighters",
       "Cherub Rock - Smashing Pumpkins",
-      "Tennessee Whiskey - Chris Stapleton",
       "Blister in the Sun - Violent Femmes",
-      "Superstition - Stevie Wonder",
+      "Love Me Two Times - The Doors",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Pride and Joy - Stevie Ray Vaughan",
       "Say it aint so - Weezer ",
-      "Everlong - Foo Fighters",
+      "Superstition - Stevie Wonder",
+      "Even Flow - Pearl Jam",
       "War Pigs - Black Sabbath"
-    ]
+    ],
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
@@ -1619,6 +1608,18 @@
       "Possum Kingdom - Toadies",
       "GEL - Collective soul",
       "Santa Monica - Everclear"
+    ],
+    "Matts Swag ": [
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Love Me Two Times - The Doors",
+      "Cherub Rock - Smashing Pumpkins",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Blister in the Sun - Violent Femmes",
+      "Even Flow - Pearl Jam",
+      "Superstition - Stevie Wonder",
+      "Say it aint so - Weezer ",
+      "Everlong - Foo Fighters",
+      "War Pigs - Black Sabbath"
     ]
   }
 }
