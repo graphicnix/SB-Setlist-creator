@@ -1211,16 +1211,16 @@
       "Santa Monica - Everclear"
     ],
     "setlist-2": [
-      "Even Flow - Pearl Jam",
       "Everlong - Foo Fighters",
+      "Cherub Rock - Smashing Pumpkins",
+      "Ruby Soho - Rancid",
       "Blister in the Sun - Violent Femmes",
       "Love Me Two Times - The Doors",
       "Tennessee Whiskey - Chris Stapleton",
-      "Say it aint so - Weezer ",
       "Pride and Joy - Stevie Ray Vaughan",
+      "Say it aint so - Weezer ",
       "Superstition - Stevie Wonder",
-      "Cherub Rock - Smashing Pumpkins",
-      "Ruby Soho - Rancid",
+      "Even Flow - Pearl Jam",
       "War Pigs - Black Sabbath"
     ],
     "setlist-3": []
@@ -1609,6 +1609,19 @@
       "Superstition - Stevie Wonder",
       "Say it aint so - Weezer ",
       "Everlong - Foo Fighters",
+      "War Pigs - Black Sabbath"
+    ],
+    "2nd set optomized2": [
+      "Everlong - Foo Fighters",
+      "Cherub Rock - Smashing Pumpkins",
+      "Ruby Soho - Rancid",
+      "Blister in the Sun - Violent Femmes",
+      "Love Me Two Times - The Doors",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Say it aint so - Weezer ",
+      "Superstition - Stevie Wonder",
+      "Even Flow - Pearl Jam",
       "War Pigs - Black Sabbath"
     ]
   }
