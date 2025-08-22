@@ -198,7 +198,9 @@
       "riff": "A",
       "bpm": "154",
       "duration": "4:53",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Pride and Joy - Stevie Ray Vaughan"
+      ],
       "lyrics": "Used to spend my nights at a barroom\nLiquor was the only love I've known\nBut you rescued me from reaching for the bottom\nAnd brought me back from being too far gone\n\nYou're as smooth as Tennessee whiskey\nYou're as sweet as strawberry wine\nYou're as warm as a glass of brandy\nAnd honey I stay stoned on your love all the time\n\nI've looked for love in all the same old places\nFound the bottom of the bottle's always dry\nBut when you poured out your heart I didn't waste it\nCause there nothing like your love to get me high. You're as\n\nSmooooooth as Tennessee whiskey\nYou're as sweeeeeeet as strawberry wine\nYou're as waaaarrrrm as a glass of brandy\nAnd honey I stay stoned on your love all the time\n\nHey, blue on black, tears on a river\nPush on a shove it don't mean much\nJoker on jack, match on a fire\nCold on ice, a dead man's touch\nWhisper on a scream\nDoesn't change a thing\nDon't bring you back\nBlue on black",
       "status": "main",
       "sn": "11B",
@@ -377,7 +379,9 @@
       "riff": "Em",
       "bpm": "105",
       "duration": "4:53",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Everlong - Foo Fighters"
+      ],
       "lyrics": "Freezin', rests his head on a pillow made of concrete, again\nFeelin' maybe he'll see a little better set a days, ooh yeah\nHand out, faces that he sees time again ain't that familiar, ooh yeah\nDark grin, he can't help, when he's happy looks insane, oh yeah\n\nEven flow, thoughts arrive like butterflies\nOh, he don't know, so he chases them away, yeah...\nOh, someday yet, he'll begin his life again life again life again...\n\nKneelin', looking through the paper though he doesn't know to read, ooh yeah\nPrayin', now to something that has never showed him anything\nFeelin', understands the weather of the winters on its way\nCeilings, few and far between all the legal halls of shame, yeah...\n\nEven flow, thoughts arrive like butterflies\nOh, he don't know, so he chases them away, yeah...\nOh, someday yet, he'll begin his life again\nOh, whispering hands, gently lead, lead him away... him away, him away...",
       "tuning": "Drop D",
       "timeSignature": "4/4",
@@ -602,7 +606,6 @@
       "duration": "2:55",
       "crossfadeInto": [
         "Beautiful Disaster - 311",
-        "Hash Pipe - Weezer",
         "Song for the Dead - Queens of the Stone Age"
       ],
       "lyrics": "Don't cut out my paper heart\nI ain't dyin' anyway\nTake a look at eye full towers\nNever trust them dirty liars\n\nSippin' lemon yellow booze\nOld lead-belly sings the blues\nAll dressed up on wedding day\nKeep on trippin' anyway\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nSo keep your bankroll lottery\nEat your salad day\nDeathbed motorcade\n\nFake the heat and scratch the itch\nSkinned up knees and salty lips\nI'll breathe your life Vicks vapor life\nAnd when you binge I purge alike\nLet go it's harder holding on\nOne more trip and I'll be gone\nSo keep your head up, keep it on\nJust a whisper I'll be gone\nTake a breath and make it big\nIt's the last you'll ever get\nBreak your neck with diamond noose\nIt's the last you'll ever choose\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nHold me closer, closer let me go\nLet me be just let me be\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nSo keep your bankroll lottery\nEat your salad day\nDeathbed motorcade\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nHold me closer, closer let me go\nLet me be just let me be\n\nI am I am I said I'm not myself\nI'm not dead and I'm not for sale\nSo keep your bankroll lottery\nEat your salad day\nDeathbed motorcade",
@@ -692,9 +695,9 @@
       "bpm": "128",
       "duration": "2:40",
       "crossfadeInto": [
-        "Come Down - Bush",
         "Like a Stone - Audioslave",
-        "Song 2 - Blur"
+        "Song 2 - Blur",
+        "Tripping on a Hole - STP"
       ],
       "lyrics": "My reflection, dirty mirror\nThere's no connection to myself\nI'm your lover, I'm your zero\nI'm the face in your dreams of glass\n\nSo save your prayers\nFor when we're really gonna need them\nThrow out your cares and fly\nWanna go for a ride?\n\nShe's the one for me\nShe's all I really need, oh yeah\nShe's the one for me\n\nEmptiness is loneliness, and loneliness is cleanliness\nAnd cleanliness is godliness, and God is empty\nJust like me\n\nIntoxicated with the madness\nI'm in love with my sadness\nBullshit fakers, enchanted kingdoms\nThe fashion victims chew their charcoal teeth\n\nI never let on\nThat I was on a sinking ship\nI never let on that I was down\n\nYou blame yourself\nFor what you can't ignore\nYou blame yourself for wanting more\nShe's the one for me\nShe's all I really need, oh yeah\nShe's the one for me\nShe's my one and only",
       "tuning": "Eb",
@@ -1219,8 +1222,8 @@
       "Love Me Two Times - The Doors",
       "Tennessee Whiskey - Chris Stapleton",
       "Pride and Joy - Stevie Ray Vaughan",
-      "Superstition - Stevie Wonder",
       "Say it aint so - Weezer ",
+      "Superstition - Stevie Wonder",
       "War Pigs - Black Sabbath"
     ],
     "setlist-3": []
