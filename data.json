@@ -1199,19 +1199,18 @@
   },
   "setlists": {
     "setlist-1": [
-      "Zero - Smashing Pumpkins",
-      "Tripping on a Hole - STP",
       "Hash Pipe - Weezer",
-      "Lump - The Presidents USA",
-      "Bleed America - JimmyEW",
-      "What If - Creed",
-      "I Alone - Live",
-      "Santeria - Sublime",
-      "Would? - Alice in chains",
-      "GEL - Collective soul",
-      "Aeroplane - RHCP",
-      "Possum Kingdom - Toadies",
-      "Santa Monica - Everclear"
+      "Meant to live  - Switchfoot",
+      "Blue on Black - Kenny Wayne",
+      "No Rest for the Wicked - Cage the Elephant",
+      "sugar were going down  - Fall out boy",
+      "Inside Out - Eve 6",
+      "Drunken Lullabies - Flogging Molly",
+      "No Excuses - Alice in Chains",
+      "Devils Bleedin Crown - Volbeat",
+      "La Grange - ZZ Top",
+      "Tripping on a Hole - STP",
+      "Sultans of Swing - Dire Straits"
     ],
     "setlist-2": [
       "Even Flow - Pearl Jam",
@@ -1625,6 +1624,34 @@
       "Say it aint so - Weezer ",
       "Superstition - Stevie Wonder",
       "Even Flow - Pearl Jam",
+      "War Pigs - Black Sabbath"
+    ],
+    "lippert 2025 set 1": [
+      "Zero - Smashing Pumpkins",
+      "Tripping on a Hole - STP",
+      "Hash Pipe - Weezer",
+      "Lump - The Presidents USA",
+      "Bleed America - JimmyEW",
+      "What If - Creed",
+      "I Alone - Live",
+      "Santeria - Sublime",
+      "Would? - Alice in chains",
+      "GEL - Collective soul",
+      "Aeroplane - RHCP",
+      "Possum Kingdom - Toadies",
+      "Santa Monica - Everclear"
+    ],
+    "lippert set 2 2025": [
+      "Even Flow - Pearl Jam",
+      "Everlong - Foo Fighters",
+      "Cherub Rock - Smashing Pumpkins",
+      "Ruby Soho - Rancid",
+      "Blister in the Sun - Violent Femmes",
+      "Love Me Two Times - The Doors",
+      "Tennessee Whiskey - Chris Stapleton",
+      "Pride and Joy - Stevie Ray Vaughan",
+      "Superstition - Stevie Wonder",
+      "Say it aint so - Weezer ",
       "War Pigs - Black Sabbath"
     ]
   }
