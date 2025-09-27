@@ -478,7 +478,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "9B",
-      "prioritySetlist": 1
+      "prioritySetlist": null
     },
     "She Talks to Angels - The Black Crowes": {
       "key": "E Major",
@@ -1199,31 +1199,30 @@
   },
   "setlists": {
     "setlist-1": [
-      "Hash Pipe - Weezer",
-      "Meant to live  - Switchfoot",
-      "Blue on Black - Kenny Wayne",
-      "No Rest for the Wicked - Cage the Elephant",
-      "sugar were going down  - Fall out boy",
-      "Inside Out - Eve 6",
-      "Drunken Lullabies - Flogging Molly",
-      "No Excuses - Alice in Chains",
-      "Devils Bleedin Crown - Volbeat",
-      "La Grange - ZZ Top",
-      "Tripping on a Hole - STP",
-      "Sultans of Swing - Dire Straits"
+      "Sex on Fire - Kings of Leon",
+      "Bleed America - JimmyEW",
+      "Come Together - The Beatles",
+      "Aeroplane - RHCP",
+      "Like a Stone - Audioslave",
+      "Song for the Dead - Queens of the Stone Age",
+      "Would? - Alice in chains",
+      "I Alone - Live",
+      "Schism - Tool",
+      "Shipping Up to Boston - Dropkick Murphys",
+      "sugar were going down  - Fall out boy"
     ],
     "setlist-2": [
-      "Even Flow - Pearl Jam",
-      "Everlong - Foo Fighters",
+      "Them Bones - Alice in chains",
+      "supermans dead - our lady peace",
+      "Bullet with Butterfly - TSP",
+      "96 Quite Bitter Beings - CKY",
+      "Plush - STP",
+      "What If - Creed",
+      "Cumbersome - Seven Mary Three",
+      "Breed - Nirvana",
       "Cherub Rock - Smashing Pumpkins",
-      "Ruby Soho - Rancid",
-      "Blister in the Sun - Violent Femmes",
-      "Love Me Two Times - The Doors",
-      "Tennessee Whiskey - Chris Stapleton",
-      "Pride and Joy - Stevie Ray Vaughan",
-      "Superstition - Stevie Wonder",
-      "Say it aint so - Weezer ",
-      "War Pigs - Black Sabbath"
+      "Lydia - Highly Suspect",
+      "Song 2 - Blur"
     ],
     "setlist-3": []
   },
