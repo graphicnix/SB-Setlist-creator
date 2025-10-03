@@ -526,7 +526,7 @@
     "Like a Stone - Audioslave": {
       "key": "G Minor",
       "riff": "Am",
-      "bpm": "72",
+      "bpm": "108",
       "duration": "4:54",
       "crossfadeInto": [
         "Song 2 - Blur",
