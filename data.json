@@ -496,11 +496,11 @@
     "46 & 2 - Tool": {
       "key": "C Minor",
       "riff": "D",
-      "bpm": "96",
+      "bpm": "80",
       "duration": "6:04",
       "crossfadeInto": [],
       "lyrics": "Join in my, join in my child,\nAnd listen, I've been digging through my old numb shadow...\n\nMy shadow's\nShedding skin\nI've been picking\nScabs again.\nI'm down\nDigging through\nMy old muscles\nLooking for a clue.\n\nI've been crawling on my belly\nClearing out what could've been.\nI've been wallowing in my own confused and insecure delusions\nFor a piece to cross me over\nOr a word to guide me in.\nI wanna feel the changes coming down.\nI wanna know what I've been hiding in\nMy shadow.\nMy shadow.\n\nChange is coming through my shadow.\nMy shadow's shedding skin\nI've been picking\nMy scabs again.\n\nJoin in my\nJoin in my child\nMy shadow moves\nCloser to meaning\n\nI've been crawling on my belly\nClearing out what could've been.\nI've been wallowing in my own chaotic, insecure delusions.\n\nI wanna feel the change consume me,\nFeel the outside turning in.\nI wanna feel the metamorphosis and\nCleansing I've endured in\nMy shadow\nMy shadow\n\nChange is coming.\nNow is my time.\nListen to my muscle memory.\nContemplate what I've been clinging to.\nForty-six & 2 ahead of me.\n\nI choose to live and to grow,\nTake and give and to move,\nLearn and love and to cry,\nKill and die and to be paranoid and to lie,\nHate and fear and to do\nWhat it takes to move through.\n\nI choose to live and to lie,\nKill and give and to die,\nLearn and love and to do\nWhat it takes to step through.\n\nSee my shadow changing,\nStretching up and over me.\nSoften this old armor.\nHoping I can clear the way\nBy stepping through my shadow,\nComing out the other side.\nStep into the shadow.\nForty-six & 2 are just ahead of me.",
-      "timeSignature": "7/8",
+      "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
       "sn": "5A",
@@ -1213,16 +1213,16 @@
       "Pride and Joy - Stevie Ray Vaughan"
     ],
     "setlist-2": [
-      "Them Bones - Alice in chains",
-      "supermans dead - our lady peace",
-      "Bullet with Butterfly - TSP",
+      "Before I Forget - Slipknot",
+      "Cowboys from Hell - Pantera",
+      "Would? - Alice in chains",
       "96 Quite Bitter Beings - CKY",
-      "Plush - STP",
+      "Even Flow - Pearl Jam",
       "What If - Creed",
-      "Cumbersome - Seven Mary Three",
-      "Breed - Nirvana",
+      "Bleed America - JimmyEW",
       "Cherub Rock - Smashing Pumpkins",
-      "Lydia - Highly Suspect",
+      "Tripping on a Hole - STP",
+      "Song for the Dead - Queens of the Stone Age",
       "Song 2 - Blur"
     ],
     "setlist-3": []
