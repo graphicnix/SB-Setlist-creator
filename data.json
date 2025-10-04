@@ -793,7 +793,7 @@
     "Song for the Dead - Queens of the Stone Age": {
       "key": "F Major",
       "riff": "D",
-      "bpm": "120",
+      "bpm": "105",
       "duration": "5:52",
       "crossfadeInto": [
         "Even Flow - Pearl Jam",
@@ -803,7 +803,7 @@
       "lyrics": "It's late enough to go drivin'\nAnd see what's mine\nLife's the study of dyin'\nHow to do it right\nYou're a holy roller\nIf you're bettin' lose\nIf you're hangin' around\nI'm holdin' the noose\n\nCome a little bit closer\nAnd get untied\nIn a hearse rollin' over\nJust a track in the line\n\nWith the sultans\nWith the sultans of swing\n\nWhy is Superman dead\nIs it in my head?\nWe'll just laugh instead\nYou worry about the weather\nWhether not you should hate",
       "status": "main",
       "sn": "7B",
-      "tuning": "Standard",
+      "tuning": "D Std.",
       "timeSignature": "4/4",
       "prioritySetlist": null
     },
@@ -831,7 +831,7 @@
         "Holiday - Green Day"
       ],
       "lyrics": "Woo-hoo\n\nI got my head checked\nBy a jumbo jet\nIt wasn't easy\nBut nothing is\nNo\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nI got my head done\nWhen I was young\nIt's not my problem\nIt's not my problem\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nYeah yeah\nYeah yeah\nYeah yeah\nOh yeah",
-      "tuning": "Eb",
+      "tuning": "B Std.",
       "status": "main",
       "sn": "4B",
       "timeSignature": "4/4",
