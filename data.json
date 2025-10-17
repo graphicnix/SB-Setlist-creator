@@ -1198,7 +1198,19 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Cherub Rock - Smashing Pumpkins",
+      "Breed - Nirvana",
+      "Them Bones - Alice in chains",
+      "Cowboys from Hell - Pantera",
+      "Everlong - Foo Fighters",
+      "Meant to live  - Switchfoot",
+      "thunderkiss 65 - Rob Zombie",
+      "Love spreads - Stone Roses",
+      "Lump - The Presidents USA",
+      "Inside Out - Eve 6",
+      "Would? - Alice in chains"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
