@@ -1198,33 +1198,8 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Zero - Smashing Pumpkins",
-      "Like a Stone - Audioslave",
-      "Everlong - Foo Fighters",
-      "Hemorrhage - Fuel",
-      "Lump - The Presidents USA",
-      "Meant to live  - Switchfoot",
-      "Ruby Soho - Rancid",
-      "Drunken Lullabies - Flogging Molly",
-      "La Grange - ZZ Top",
-      "46 & 2 - Tool",
-      "No Excuses - Alice in Chains",
-      "Pride and Joy - Stevie Ray Vaughan"
-    ],
-    "setlist-2": [
-      "Before I Forget - Slipknot",
-      "Cowboys from Hell - Pantera",
-      "Would? - Alice in chains",
-      "96 Quite Bitter Beings - CKY",
-      "Even Flow - Pearl Jam",
-      "What If - Creed",
-      "Bleed America - JimmyEW",
-      "Cherub Rock - Smashing Pumpkins",
-      "Tripping on a Hole - STP",
-      "Song for the Dead - Queens of the Stone Age",
-      "Song 2 - Blur"
-    ],
+    "setlist-1": [],
+    "setlist-2": [],
     "setlist-3": []
   },
   "songIcons": {
