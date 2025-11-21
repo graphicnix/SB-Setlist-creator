@@ -442,16 +442,20 @@
       "prioritySetlist": null
     },
     "Breed - Nirvana": {
-      "key": "E Major",
+      "key": "A Major",
       "riff": "F5",
       "bpm": "172",
       "duration": "3:03",
-      "crossfadeInto": [],
+      "crossfadeInto": [
+        "Good Times Bad - Led Zeppelin",
+        "Song 2 - Blur",
+        "Song for the Dead - Queens of the Stone Age"
+      ],
       "lyrics": "I don't care, I don't care, I don't care\nI don't care, I don't care, care if it's old\nI don't mind, I don't mind, I don't mind\nI don't mind, mind, don't have a mind\nGet away, get away, get away\nGet away, away, away from your home\nI'm afraid, I'm afraid, I'm afraid\nI'm afraid, afraid, ghost\n\nEven if you have, even if you need\nI don't mean to stare, we don't have to breed\nWe could plant a house, we could build a tree\nI don't even care, we could have all three\nShe said, she said\nShe said, she said\nShe said, she said\nShe said, she said\n\nI don't care, I don't care, I don't care\nI don't care, I don't care, care if it's old\nI don't mind, I don't mind, I don't mind\nI don't mind, mind, don't have a mind\nGet away, get away, get away\nGet away, away, away from your home\nI'm afraid, I'm afraid, I'm afraid\nI'm afraid, afraid, ghost\n\nEven if you have, even if you need\nI don't mean to stare, we don't have to breed\nWe could plant a house, we could build a tree\nI don't even care, we could have all three\nShe said, she said\nShe said, she said\nShe said, she said\nShe said, she said\n\nEven if you have, even if you need\nI don't mean to stare, we don't have to breed\nWe could plant a house, we could build a tree\nI don't even care, we could have all three\nShe said, she said\nShe said, she said\nShe said, she said\nShe said, she said\nShe said",
       "timeSignature": "4/4",
       "tuning": "Standard",
       "status": "main",
-      "sn": "12B",
+      "sn": "11B",
       "prioritySetlist": null
     },
     "Cowboys from Hell - Pantera": {
@@ -1201,15 +1205,15 @@
   },
   "setlists": {
     "setlist-1": [
-      "Blister in the Sun - Violent Femmes",
+      "Breed - Nirvana",
+      "Song 2 - Blur",
       "Song for the Dead - Queens of the Stone Age",
       "Would? - Alice in chains",
-      "Breed - Nirvana",
       "Tennessee Whiskey - Chris Stapleton",
       "Meant to live  - Switchfoot",
       "Lydia - Highly Suspect",
-      "Sweet Emotion - Aerosmith",
       "Under the Bridge - RHCP",
+      "Sweet Emotion - Aerosmith",
       "Superstition - Stevie Wonder"
     ],
     "setlist-2": [
