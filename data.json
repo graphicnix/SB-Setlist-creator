@@ -932,7 +932,7 @@
         "Devils Bleedin Crown - Volbeat",
         "War Pigs - Black Sabbath"
       ],
-      "lyrics": "Sleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round,\ngotta clear out of town,\nSmell like a dry fishbone.\nHere come the law,\ngonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nRainy afternoon, gotta kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\nWalking down the street,\nshooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy,\ntryin fucking gettin-me\nGotta fucking get up and run.\nThey got the sirens loose,\nI ran right out of juice.\nThey're gonna put me in a cell,\ncan't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know, yeah.",
+      "lyrics": "1 RIFF 2 RIFF 3 RIFF 4 RIFF\nSleeping very soundly on a Saturday morning,\nI was dreaming I was Al Capone.\nRumours going round,\ngotta clear out of town,\nSmell like a dry fishbone.\nHere come the law,\ngonna break down the door,\nCarry me away once more.\nNever, never, never want it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.\n\n1RIFF 2 RIFF PAUSE SOLO 1 RIFF 2 RIFF \n\nRainy afternoon, gotta kill a typhoon,\nAnd she's playing on my slide trombone.\nAnymore, anymore, cannot take it anymore,\nGotta get away from this stone cold floor.\nCrazy, stone cold crazy, you know.(PAUSE)HEY\n1 RIFF 2 RIFF \nWalking down the street,\nshooting people that I meet,\nFully loaded Tommy gun.\nHere come the deputy,\ntryin fucking gettin-me\nGotta fucking get up and run.\nThey got the sirens loose,\nI rUn right out of juice.\nThey're gonna put me in a cell,\ncan't go to heaven, let me go to hell.\nCrazy, stone cold crazy, you know,(PAUSE) yeah.",
       "status": "main",
       "timeSignature": "4/4",
       "sn": "9B",
@@ -1190,7 +1190,9 @@
       "tuning": "Drop D",
       "timeSignature": "4/4",
       "crossfadeInto": [
-        "Everlong - Foo Fighters"
+        "Beautiful Disaster - 311",
+        "Lydia - Highly Suspect",
+        "Possum Kingdom - Toadies"
       ],
       "lyrics": "RIFFX3\nFumbling his confidence\nAnd wondering why the world has passed him by\nRIFFX1\nHoping that he's bet for more than arguments\nAnd failed attempts to fly\nRIFF\nFly\nWe were meant to live for so much more\nHave we lost ourselves?\nSomewhere we live inside\nSomewhere we live insIDE\nWe were meant to live for so much more\nHave we lost ourselves?\nSomewhere we live insiIIIde\nRiffx1\nDreaming about providence\nAnd whether mice or men have second tries\nRIFFX1\nMaybe-we've-been-living with our eyes half open\nMaybe we're bent and broken\n\nBroken\n\nOHH We were meant to live for so much more\nHave we lost ourselves?\nSomewhere we live inside\nSomewhere we live insiIIIde\n\nWe were meant to live for so much more\nHave we lost ourselves?\nSomewhere we live inside\nRIFFX2\nWe want more than this world's got to offer\nWe want more than this world's got to offer\nWe want more than the wars of our fathers\nAnd everything inside\n screams for second life\nYeah\nWe were meant to live for so much more\nHave we lost ourselves?\n\nWe were meant to live for so much more\nHave we lost ourselves?\n\nWe were meant to live for so much more\nHave we lost ourselves?\n\nWe were meant to live (we were meant to live)\nWe were meant to live",
       "status": "main",
@@ -1199,16 +1201,16 @@
   },
   "setlists": {
     "setlist-1": [
-      "Cherub Rock - Smashing Pumpkins",
+      "Blister in the Sun - Violent Femmes",
+      "Song for the Dead - Queens of the Stone Age",
+      "Would? - Alice in chains",
       "Breed - Nirvana",
-      "Them Bones - Alice in chains",
-      "Cowboys from Hell - Pantera",
-      "Everlong - Foo Fighters",
+      "Tennessee Whiskey - Chris Stapleton",
       "Meant to live  - Switchfoot",
-      "thunderkiss 65 - Rob Zombie",
-      "Lump - The Presidents USA",
-      "Inside Out - Eve 6",
-      "Would? - Alice in chains"
+      "Lydia - Highly Suspect",
+      "Sweet Emotion - Aerosmith",
+      "Under the Bridge - RHCP",
+      "Superstition - Stevie Wonder"
     ],
     "setlist-2": [
       "La Grange - ZZ Top",
