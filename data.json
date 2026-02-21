@@ -836,7 +836,7 @@
       ],
       "lyrics": "Woo-hoo\n\nI got my head checked\nBy a jumbo jet\nIt wasn't easy\nBut nothing is\nNo\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nI got my head done\nWhen I was young\nIt's not my problem\nIt's not my problem\n\nWoo-hoo\nWhen I feel heavy-metal\nWoo-hoo\nAnd I'm pins and I'm needles\nWoo-hoo\nWell, I lie and I'm easy\nAll of the time but I'm never sure\nWhy I need you\nPleased to meet you\n\nYeah yeah\nYeah yeah\nYeah yeah\nOh yeah",
       "tuning": "B Std.",
-      "status": "main",
+      "status": "mothballs",
       "sn": "4B",
       "timeSignature": "4/4",
       "prioritySetlist": null
@@ -1159,7 +1159,7 @@
       "timeSignature": "4/4",
       "crossfadeInto": [],
       "lyrics": "lyrics here",
-      "status": "main",
+      "status": "mothballs",
       "prioritySetlist": null
     },
     "Bleed America - JimmyEW": {
@@ -1213,7 +1213,16 @@
       "Bleed America - JimmyEW",
       "Love spreads - Stone Roses"
     ],
-    "setlist-2": [],
+    "setlist-2": [
+      "sugar were going down  - Fall out boy",
+      "La Grange - ZZ Top",
+      "46 & 2 - Tool",
+      "Stillborn - BLS",
+      "Superstition - Stevie Wonder",
+      "No Excuses - Alice in Chains",
+      "Song 2 - Blur",
+      "Blister in the Sun - Violent Femmes"
+    ],
     "setlist-3": []
   },
   "songIcons": {
