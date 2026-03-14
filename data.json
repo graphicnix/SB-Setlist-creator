@@ -1205,34 +1205,16 @@
   },
   "setlists": {
     "setlist-1": [
-      "Tennessee Whiskey - Chris Stapleton",
-      "Bleed America - JimmyEW",
-      "Good Times Bad - Led Zeppelin",
-      "Before I Forget - Slipknot",
-      "Cowboys from Hell - Pantera",
-      "Blue on Black - Kenny Wayne",
-      "Blister in the Sun - Violent Femmes",
-      "Devils Bleedin Crown - Volbeat"
+      "Sultans of Swing - Dire Straits",
+      "Zero - Smashing Pumpkins",
+      "Like a Stone - Audioslave",
+      "46 & 2 - Tool",
+      "Stillborn - BLS",
+      "Bullet with Butterfly - TSP",
+      "supermans dead - our lady peace"
     ],
-    "setlist-2": [
-      "Cherub Rock - Smashing Pumpkins",
-      "Meant to live  - Switchfoot",
-      "GEL - Collective soul",
-      "Beautiful Disaster - 311",
-      "Lola Montez - Volbeat",
-      "Under the Bridge - RHCP",
-      "Sweet Emotion - Aerosmith",
-      "S.O.S. - Glorious Sons"
-    ],
-    "setlist-3": [
-      "Breed - Nirvana",
-      "supermans dead - our lady peace",
-      "Possum Kingdom - Toadies",
-      "Love spreads - Stone Roses",
-      "Come Down - Bush",
-      "La Grange - ZZ Top",
-      "Pride and Joy - Stevie Ray Vaughan"
-    ]
+    "setlist-2": [],
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
