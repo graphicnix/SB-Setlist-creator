@@ -262,7 +262,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "1B",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "La Grange - ZZ Top": {
       "key": "E Minor",
@@ -482,7 +482,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "9B",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "She Talks to Angels - The Black Crowes": {
       "key": "E Major",
@@ -1216,6 +1216,18 @@
       "lyrics": "All my life I've been searching for something\nSomething never comes, never leads to nothing\nNothing satisfies, but I'm getting close\nCloser to the prize at the end of the rope\nAll night long I dream of the day\nWhen it comes around, then it's taken away\nLeaves me with the feeling that I feel the most\nFeel it come to life when I see your ghost\n\nCome down don't you resist\nYou've such a delicate wrist\nAnd if I give it a twist\nSomething to hold when I lose my grip\nWill I find something in there?\nSo give me just what I need\nAnother reason to bleed\nOne by one, hidden up my sleeve\nOne by one, hidden up my sleeve\n\nHey, don't let it go to waste\nI love it, but I hate the taste\nWeight keeping me down\nHey, don't let it go to waste\nI love it, but I hate the taste\nWeight keeping me down\n\nWill I find a believer?\nAnother one who believes?\nAnother one to deceive?\nOver and over, down on my knees\nIf I get any closer\nAnd if you open up wide\nAnd if you let me inside\nOn and on, I got nothing to hide\nOn and on, I got nothing to hide\n\nHey, don't let it go to waste\nI love it, but I hate the taste\nWeight keeping me down\nHey, don't let it go to waste\nI love it, but I hate the taste\nWeight keeping me down\n\nAll my life I've been searching for something\nSomething never comes, never leads to nothing\nNothing satisfies, but I'm getting close\nCloser to the prize at the end of the rope\nAll night long I dream of the day\nWhen it comes around, then it's taken away\nLeaves me with the feeling that I feel the most\nFeel it come to life when I see your ghost\nAnd I'm done, done, on to the next one\n\nDone, done, and I'm on to the next one\nDone, done and I'm on to the next one\nDone, done, and I'm on to the next one\nDone, done, and I'm on to the next one\nDone, done, and I'm on to the next one\nDone, done, and I'm on to the next one\nDone, I'm done and I'm on to the next—\nDone, done, on to the next one\nDone, I'm done and I'm on to the next one\nDone, done, on to the next one\nDone, I'm done and I'm on to the next—\n\nHey, don't let it go to waste\nI love it, but I hate the taste\nWeight keeping me down\nHey, don't let it go to waste\nI love it, but I hate the taste\nWeight keeping me down\n\nDone, done, on to the next one\nDone, and I'm done, and I'm on to the next\n",
       "status": "main",
       "prioritySetlist": 1
+    },
+    "Black hole sun - Soundgarden": {
+      "key": "",
+      "sn": "2B",
+      "bpm": "105",
+      "duration": "5:25",
+      "tuning": "Drop D",
+      "timeSignature": "4/4",
+      "crossfadeInto": [],
+      "lyrics": "Soundgarden Lyrics\n\"Black Hole Sun\"\n\n\n\nIn my eyes\nIndisposed\nIn disguise\nAs no one knows\nHides the face\nLies the snake\nAnd the sun\nIn my disgrace\n\nBoiling heat\nSummer stench\n'Neath the black\nThe sky looks dead\nCall my name\nThrough the cream\nAnd I'll hear you\nScream again\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\nWon't you come?\n\nStuttering\nCold and damp\nSteal the warm wind\nTired friend\nTimes are gone\nFor honest men\nAnd sometimes\nFar too long\nFor snakes\n\nIn my shoes\nA walking sleep\nAnd my youth\nI pray to keep\nHeaven send\nHell away\nNo one sings\nLike you anymore\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\n\nHang my head\nDrown my fear\n'Til you all just disappear\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\n\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\nWon't you come?\nWon't you come?\n",
+      "status": "main",
+      "prioritySetlist": null
     }
   },
   "setlists": {
