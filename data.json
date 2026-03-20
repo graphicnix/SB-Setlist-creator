@@ -13,7 +13,7 @@
       "status": "main",
       "sn": "4B",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Feeling Good - various": {
       "key": "B minor",
@@ -247,7 +247,7 @@
       "sn": "11b",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 3
     },
     "Cumbersome - Seven Mary Three": {
       "key": "B Major",
@@ -275,7 +275,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "9A",
-      "prioritySetlist": null
+      "prioritySetlist": 3
     },
     "Blister in the Sun - Violent Femmes": {
       "key": "C Major",
@@ -346,7 +346,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "7B",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Possum Kingdom - Toadies": {
       "key": "A maj",
@@ -372,7 +372,7 @@
       "sn": "11B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Even Flow - Pearl Jam": {
       "key": "B♭ Minor",
@@ -413,7 +413,7 @@
       "timeSignature": "4/4",
       "status": "main",
       "sn": "7A",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "Lola Montez - Volbeat": {
       "key": "D Major",
@@ -439,7 +439,7 @@
       "status": "main",
       "sn": "4B",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 3
     },
     "Breed - Nirvana": {
       "key": "A Major",
@@ -456,7 +456,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "11B",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Cowboys from Hell - Pantera": {
       "key": "D Major",
@@ -558,7 +558,7 @@
       "status": "main",
       "sn": "5B",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Bullet with Butterfly - TSP": {
       "key": "Bb Minor",
@@ -630,7 +630,7 @@
       "sn": "7B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 3
     },
     "Blue on Black - Kenny Wayne": {
       "bpm": "155",
@@ -646,7 +646,8 @@
         "IDC": 0
       },
       "crossfadeInto": [],
-      "prioritySetlist": null
+      "prioritySetlist": 2,
+      "key": ""
     },
     "Lump - The Presidents USA": {
       "key": "Gb Major",
@@ -678,7 +679,7 @@
       "sn": "12B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Interstate Love Song - STP": {
       "key": "A Major",
@@ -691,7 +692,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "11B",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "Zero - Smashing Pumpkins": {
       "key": "Ab Major",
@@ -809,7 +810,7 @@
       "sn": "7B",
       "tuning": "D Std.",
       "timeSignature": "4/4",
-      "prioritySetlist": null
+      "prioritySetlist": 2
     },
     "Holiday - Green Day": {
       "key": "Ab Major",
@@ -910,7 +911,7 @@
       "timeSignature": "4/4",
       "status": "main",
       "sn": "2A",
-      "prioritySetlist": null
+      "prioritySetlist": 3
     },
     "Devils Bleedin Crown - Volbeat": {
       "key": "Gmaj",
@@ -1106,7 +1107,7 @@
       ],
       "lyrics": "I like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nLooking in my own eyes, hey Lord\nI can't find the love I want\nSomeone better slap me\nBefore I start to rust\nBefore I start to decompose\nLooking in my rear-view mirror\nLooking in my rear-view mirror\nI can make it disappear\nI can make it disappear, have no fear\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\n\n\nSitting in my kitchen, hey girl\nI'm turning into dust again\nMy melancholy baby\nThe star of Mazzy must\nPush her voice inside of me\nI'm overcoming gravity\nI'm overcoming gravity\nIt's easy when you're sad to be\nIt's easy when you're sad, sad like me\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\n\nbridge\nJust one note could make me float\nCould make me float away\nOne note from the song she wrote\nCould fuck me where I lay\nJust one note could make me choke\nOne note, that's not a lie\nJust one note could cut my throat\nOne note could make me die\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\n\nG7 C7\nMy aeroplane, my aeroplane\nIt's my aeroplane",
       "status": "main",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     },
     "GEL - Collective soul": {
       "key": "E Major",
@@ -1118,7 +1119,7 @@
       "crossfadeInto": [],
       "lyrics": "Bb 79 electricorg2\n\nColor me any color\nSpeak to me in tongues and share\nTell me how you'd love to hate me\nTell me how you'd love to care\n\nWell, I just want to shake us up\nWell, I just want, I just want to shake us up\n\nLet's mingle and make it well\nCome together now\nYeah, let's gel\n\nClothe me in any fashion\nGlitter to so mundane\nTell me how you'd love to change me\nTell me I can stay the same\n\nWell, I just want to shake us up\nWell, I just want, I just want to shake us up\n\nLet's mingle and make it well\nCome together now\nYeah, let's gel\n\nLet's mingle and make it well\nCome together now\nYeah, let's gel\n\nWell, let's bungle and live to tell\nWow, we came together\nYeah, how we gelled",
       "status": "main",
-      "prioritySetlist": null
+      "prioritySetlist": 3
     },
     "Love spreads - Stone Roses": {
       "key": "F# Minor",
@@ -1246,12 +1247,12 @@
       "sn": "",
       "bpm": "",
       "duration": "",
-      "tuning": "",
+      "tuning": "Standard",
       "timeSignature": "4/4",
       "crossfadeInto": [],
-      "lyrics": "",
+      "lyrics": "Queens Of The Stone Age Lyrics\n\"Little Sister\"\n\nHey, sister, why you all alone?\nI'm standing out your window\nHey, little sister, can I come inside, dear?\nI want to show you all my love\nI want to be the only one\nI know you like nobody ever, baby\n\nLittle sister, can't you find another way?\nNo more living life behind a shadow\nLittle sister, can't you find another way?\nNo more living life behind a shadow\n\nYou whisper secrets in my ear\nSlowly dancing cheek to cheek\nSuch a sweet thing when you open up, baby\nThey say I'll only do you wrong\nCome together 'cause I understand\nJust who you really are, yeah, baby\n\nLittle sister, can't you find another way?\nNo more living life behind a shadow\nLittle sister, can't you find another way?\nNo more living life behind a shadow\nA shadow",
       "status": "main",
-      "prioritySetlist": null
+      "prioritySetlist": 1
     }
   },
   "setlists": {
