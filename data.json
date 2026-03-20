@@ -1256,7 +1256,16 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Interstate Love Song - STP",
+      "Little sister - Queens of the stone age",
+      "All my life - Foo fighters",
+      "Hash Pipe - Weezer",
+      "Love spreads - Stone Roses",
+      "Black hole sun - Soundgarden",
+      "Even Flow - Pearl Jam",
+      "Aeroplane - RHCP"
+    ],
     "setlist-2": [],
     "setlist-3": []
   },
