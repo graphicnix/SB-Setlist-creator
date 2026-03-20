@@ -1227,35 +1227,25 @@
       "crossfadeInto": [],
       "lyrics": "Soundgarden Lyrics\n\"Black Hole Sun\"\n\n\n\nIn my eyes\nIndisposed\nIn disguise\nAs no one knows\nHides the face\nLies the snake\nAnd the sun\nIn my disgrace\n\nBoiling heat\nSummer stench\n'Neath the black\nThe sky looks dead\nCall my name\nThrough the cream\nAnd I'll hear you\nScream again\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\nWon't you come?\n\nStuttering\nCold and damp\nSteal the warm wind\nTired friend\nTimes are gone\nFor honest men\nAnd sometimes\nFar too long\nFor snakes\n\nIn my shoes\nA walking sleep\nAnd my youth\nI pray to keep\nHeaven send\nHell away\nNo one sings\nLike you anymore\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\n\nHang my head\nDrown my fear\n'Til you all just disappear\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\nBlack hole sun\nWon't you come\nAnd wash away the rain?\nBlack hole sun\nWon't you come?\nWon't you come?\n\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\n\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\n(Black hole sun,\nBlack hole sun)\nWon't you come?\nWon't you come?\nWon't you come?\n",
       "status": "main",
+      "prioritySetlist": 1
+    },
+    "Dr Feelgood - Motley Crue": {
+      "key": "",
+      "sn": "",
+      "bpm": "",
+      "duration": "",
+      "tuning": "",
+      "timeSignature": "4/4",
+      "crossfadeInto": [],
+      "lyrics": "",
+      "status": "main",
       "prioritySetlist": null
     }
   },
   "setlists": {
-    "setlist-1": [
-      "Sultans of Swing - Dire Straits",
-      "Zero - Smashing Pumpkins",
-      "Like a Stone - Audioslave",
-      "46 & 2 - Tool",
-      "Stillborn - BLS",
-      "Bullet with Butterfly - TSP",
-      "supermans dead - our lady peace"
-    ],
-    "setlist-2": [
-      "GEL - Collective soul",
-      "Sex on Fire - Kings of Leon",
-      "Bleed America - JimmyEW",
-      "Cumbersome - Seven Mary Three",
-      "Under the Bridge - RHCP",
-      "Blue on Black - Kenny Wayne"
-    ],
-    "setlist-3": [
-      "Soul to Squeeze - R.H.C.P",
-      "Drunken Lullabies - Flogging Molly",
-      "Ruby Soho - Rancid",
-      "Blister in the Sun - Violent Femmes",
-      "Superstition - Stevie Wonder",
-      "Cherub Rock - Smashing Pumpkins"
-    ]
+    "setlist-1": [],
+    "setlist-2": [],
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
