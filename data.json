@@ -1280,20 +1280,17 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
-    "setlist-2": [],
-    "setlist-3": [
-      "My curse - Kill switch engaged",
-      "Smooth criminal  - Alien ant farm",
-      "Little sister - Queens of the stone age",
-      "Dr Feelgood - Motley Crue",
-      "Black hole sun - Soundgarden",
+    "setlist-1": [
       "All my life - Foo fighters",
-      "Meant to live  - Switchfoot",
-      "Before I Forget - Slipknot",
-      "Cowboys from Hell - Pantera",
-      "Aeroplane - RHCP"
-    ]
+      "Hash Pipe - Weezer",
+      "Black hole sun - Soundgarden",
+      "Cumbersome - Seven Mary Three",
+      "Interstate Love Song - STP",
+      "Little sister - Queens of the stone age",
+      "Dr Feelgood - Motley Crue"
+    ],
+    "setlist-2": [],
+    "setlist-3": []
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
