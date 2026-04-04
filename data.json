@@ -1280,42 +1280,16 @@
     }
   },
   "setlists": {
-    "setlist-1": [
-      "All my life - Foo fighters",
-      "Everlong - Foo Fighters",
-      "Black hole sun - Soundgarden",
-      "Cult of Personality - Living Colour",
-      "Zero - Smashing Pumpkins",
-      "I Alone - Live",
-      "Stone cold Crazy - Metallica/queen",
-      "Dr Feelgood - Motley Crue",
-      "Soul to Squeeze - R.H.C.P"
-    ],
-    "setlist-2": [
-      "Sultans of Swing - Dire Straits",
-      "Sweet Emotion - Aerosmith",
-      "Say it aint so - Weezer ",
-      "Under the Bridge - RHCP",
-      "Song for the Dead - Queens of the Stone Age",
-      "What If - Creed",
-      "All my life - Foo fighters",
-      "No One Knows - Queens of the Stone Age",
-      "Dr Feelgood - Motley Crue"
-    ],
+    "setlist-1": [],
+    "setlist-2": [],
     "setlist-3": [
-      "War Pigs - Black Sabbath",
-      "La Grange - ZZ Top",
-      "Superstition - Stevie Wonder",
-      "Soul to Squeeze - R.H.C.P",
-      "96 Quite Bitter Beings - CKY",
-      "GEL - Collective soul",
-      "No Rest for the Wicked - Cage the Elephant",
-      "Drunken Lullabies - Flogging Molly",
-      "Inside Out - Eve 6",
-      "I Alone - Live",
-      "Lump - The Presidents USA",
-      "supermans dead - our lady peace",
-      "Dr Feelgood - Motley Crue"
+      "My curse - Kill switch engaged",
+      "Smooth criminal  - Alien ant farm",
+      "Little sister - Queens of the stone age",
+      "Dr Feelgood - Motley Crue",
+      "Black hole sun - Soundgarden",
+      "All my life - Foo fighters",
+      "Meant to live  - Switchfoot"
     ]
   },
   "songIcons": {
