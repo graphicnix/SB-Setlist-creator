@@ -262,7 +262,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "1B",
-      "prioritySetlist": 1
+      "prioritySetlist": null
     },
     "La Grange - ZZ Top": {
       "key": "E Minor",
@@ -482,7 +482,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "9B",
-      "prioritySetlist": 1
+      "prioritySetlist": null
     },
     "She Talks to Angels - The Black Crowes": {
       "key": "E Major",
@@ -1281,16 +1281,29 @@
   },
   "setlists": {
     "setlist-1": [
-      "Cumbersome - Seven Mary Three",
-      "Hash Pipe - Weezer",
       "Aeroplane - RHCP",
-      "Them Bones - Alice in chains",
-      "Cowboys from Hell - Pantera",
-      "Everlong - Foo Fighters",
-      "Before I Forget - Slipknot"
+      "Come Together - The Beatles",
+      "Schism - Tool",
+      "Fell on Black Days - Soundgarden",
+      "Ruby Soho - Rancid",
+      "Blister in the Sun - Violent Femmes"
     ],
-    "setlist-2": [],
-    "setlist-3": []
+    "setlist-2": [
+      "Sweet Emotion - Aerosmith",
+      "Breed - Nirvana",
+      "Say it aint so - Weezer ",
+      "Blue on Black - Kenny Wayne",
+      "Under the Bridge - RHCP",
+      "Song for the Dead - Queens of the Stone Age"
+    ],
+    "setlist-3": [
+      "War Pigs - Black Sabbath",
+      "Superstition - Stevie Wonder",
+      "Soul to Squeeze - R.H.C.P",
+      "96 Quite Bitter Beings - CKY",
+      "GEL - Collective soul",
+      "No Rest for the Wicked - Cage the Elephant"
+    ]
   },
   "songIcons": {
     "Pride and Joy - Stevie Ray Vaughan": [
