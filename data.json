@@ -372,7 +372,7 @@
       "sn": "11B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": 2
+      "prioritySetlist": null
     },
     "Even Flow - Pearl Jam": {
       "key": "B♭ Minor",
@@ -439,7 +439,7 @@
       "status": "main",
       "sn": "4B",
       "timeSignature": "4/4",
-      "prioritySetlist": 3
+      "prioritySetlist": null
     },
     "Breed - Nirvana": {
       "key": "A Major",
@@ -456,7 +456,7 @@
       "tuning": "Standard",
       "status": "main",
       "sn": "11B",
-      "prioritySetlist": 2
+      "prioritySetlist": null
     },
     "Cowboys from Hell - Pantera": {
       "key": "D Major",
@@ -630,7 +630,7 @@
       "sn": "7B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": 3
+      "prioritySetlist": null
     },
     "Blue on Black - Kenny Wayne": {
       "bpm": "155",
@@ -810,7 +810,7 @@
       "sn": "7B",
       "tuning": "D Std.",
       "timeSignature": "4/4",
-      "prioritySetlist": 2
+      "prioritySetlist": null
     },
     "Holiday - Green Day": {
       "key": "Ab Major",
@@ -1119,7 +1119,7 @@
       "crossfadeInto": [],
       "lyrics": "Bb 79 electricorg2\n\nColor me any color\nSpeak to me in tongues and share\nTell me how you'd love to hate me\nTell me how you'd love to care\n\nWell, I just want to shake us up\nWell, I just want, I just want to shake us up\n\nLet's mingle and make it well\nCome together now\nYeah, let's gel\n\nClothe me in any fashion\nGlitter to so mundane\nTell me how you'd love to change me\nTell me I can stay the same\n\nWell, I just want to shake us up\nWell, I just want, I just want to shake us up\n\nLet's mingle and make it well\nCome together now\nYeah, let's gel\n\nLet's mingle and make it well\nCome together now\nYeah, let's gel\n\nWell, let's bungle and live to tell\nWow, we came together\nYeah, how we gelled",
       "status": "main",
-      "prioritySetlist": 3
+      "prioritySetlist": null
     },
     "Love spreads - Stone Roses": {
       "key": "F# Minor",
@@ -1298,12 +1298,10 @@
       "Song for the Dead - Queens of the Stone Age"
     ],
     "setlist-3": [
-      "War Pigs - Black Sabbath",
-      "Superstition - Stevie Wonder",
-      "Soul to Squeeze - R.H.C.P",
+      "Cherub Rock - Smashing Pumpkins",
+      "Hemorrhage - Fuel",
       "96 Quite Bitter Beings - CKY",
-      "GEL - Collective soul",
-      "No Rest for the Wicked - Cage the Elephant"
+      "supermans dead - our lady peace"
     ]
   },
   "songIcons": {
