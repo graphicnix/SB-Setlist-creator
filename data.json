@@ -1107,7 +1107,7 @@
       ],
       "lyrics": "I like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\nLooking in my own eyes, hey Lord\nI can't find the love I want\nSomeone better slap me\nBefore I start to rust\nBefore I start to decompose\nLooking in my rear-view mirror\nLooking in my rear-view mirror\nI can make it disappear\nI can make it disappear, have no fear\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\nThat motherfucker's always spiked with pain\n\n\nSitting in my kitchen, hey girl\nI'm turning into dust again\nMy melancholy baby\nThe star of Mazzy must\nPush her voice inside of me\nI'm overcoming gravity\nI'm overcoming gravity\nIt's easy when you're sad to be\nIt's easy when you're sad, sad like me\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\n\nbridge\nJust one note could make me float\nCould make me float away\nOne note from the song she wrote\nCould fuck me where I lay\nJust one note could make me choke\nOne note, that's not a lie\nJust one note could cut my throat\nOne note could make me die\n\nI like pleasure spiked with pain\nAnd music is my aeroplane\nIt's my aeroplane\nSongbird sweet and sour Jane\nAnd music is my aeroplane\nIt's my aeroplane\nPleasure spiked with pain\n\n\nG7 C7\nMy aeroplane, my aeroplane\nIt's my aeroplane",
       "status": "main",
-      "prioritySetlist": 1
+      "prioritySetlist": null
     },
     "GEL - Collective soul": {
       "key": "E Major",
@@ -1281,13 +1281,18 @@
   },
   "setlists": {
     "setlist-1": [
-      "Aeroplane - RHCP",
-      "Fell on Black Days - Soundgarden",
-      "Ruby Soho - Rancid",
-      "Blister in the Sun - Violent Femmes",
-      "Come Together - The Beatles",
-      "Schism - Tool",
-      "Them Bones - Alice in chains"
+      "All my life - Foo fighters",
+      "Would? - Alice in chains",
+      "Inside Out - Eve 6",
+      "I Alone - Live",
+      "Sponge - Plowed",
+      "Bullet with Butterfly - TSP",
+      "What If - Creed",
+      "Bleed America - JimmyEW",
+      "Even Flow - Pearl Jam",
+      "Everlong - Foo Fighters",
+      "La Grange - ZZ Top",
+      "Ruby Soho - Rancid"
     ],
     "setlist-2": [
       "Sweet Emotion - Aerosmith",
