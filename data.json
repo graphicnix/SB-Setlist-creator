@@ -558,7 +558,7 @@
       "status": "main",
       "sn": "5B",
       "timeSignature": "4/4",
-      "prioritySetlist": 2
+      "prioritySetlist": null
     },
     "Bullet with Butterfly - TSP": {
       "key": "Bb Minor",
@@ -679,7 +679,7 @@
       "sn": "12B",
       "tuning": "Standard",
       "timeSignature": "4/4",
-      "prioritySetlist": 2
+      "prioritySetlist": null
     },
     "Interstate Love Song - STP": {
       "key": "A Major",
@@ -1291,14 +1291,14 @@
       "Meant to live  - Switchfoot"
     ],
     "setlist-2": [
-      "Say it aint so - Weezer ",
-      "Under the Bridge - RHCP",
-      "Sweet Emotion - Aerosmith",
-      "Cowboys from Hell - Pantera",
-      "Stone cold Crazy - Metallica/queen",
-      "Lola Montez - Volbeat",
-      "Lump - The Presidents USA",
-      "supermans dead - our lady peace"
+      "Stillborn - BLS",
+      "Zero - Smashing Pumpkins",
+      "supermans dead - our lady peace",
+      "Bullet with Butterfly - TSP",
+      "Beautiful Disaster - 311",
+      "Tripping on a Hole - STP",
+      "Come Down - Bush",
+      "La Grange - ZZ Top"
     ],
     "setlist-3": [
       "Bleed America - JimmyEW",
