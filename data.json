@@ -1280,7 +1280,16 @@
     }
   },
   "setlists": {
-    "setlist-1": [],
+    "setlist-1": [
+      "Superstition - Stevie Wonder",
+      "No One Knows - Queens of the Stone Age",
+      "Bullet with Butterfly - TSP",
+      "Sponge - Plowed",
+      "Pride and Joy - Stevie Ray Vaughan",
+      "No Excuses - Alice in Chains",
+      "Hemorrhage - Fuel",
+      "Even Flow - Pearl Jam"
+    ],
     "setlist-2": [
       "Stillborn - BLS",
       "Zero - Smashing Pumpkins",
