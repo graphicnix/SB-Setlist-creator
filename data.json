@@ -1281,43 +1281,25 @@
   },
   "setlists": {
     "setlist-1": [
-      "Love spreads - Stone Roses",
-      "Them Bones - Alice in chains",
-      "Drunken Lullabies - Flogging Molly",
-      "GEL - Collective soul"
-    ],
-    "setlist-2": [
-      "Hemorrhage - Fuel",
-      "Ruby Soho - Rancid",
-      "Blister in the Sun - Violent Femmes",
       "No One Knows - Queens of the Stone Age",
-      "Schism - Tool",
-      "Bullet with Butterfly - TSP",
-      "Blue on Black - Kenny Wayne",
-      "Cult of Personality - Living Colour",
-      "Stone cold Crazy - Metallica/queen",
-      "Santeria - Sublime",
-      "Creep - Radiohead",
-      "Pride and Joy - Stevie Ray Vaughan",
-      "Sponge - Plowed",
-      "Even Flow - Pearl Jam",
-      "No Excuses - Alice in Chains",
+      "Good Times Bad - Led Zeppelin",
+      "Lola Montez - Volbeat",
+      "Them Bones - Alice in chains",
+      "She Talks to Angels - The Black Crowes",
       "Superstition - Stevie Wonder",
-      "La Grange - ZZ Top"
+      "Bleed America - JimmyEW"
     ],
+    "setlist-2": [],
     "setlist-3": [
       "supermans dead - our lady peace",
+      "Hemorrhage - Fuel",
       "Zero - Smashing Pumpkins",
-      "Beautiful Disaster - 311",
+      "Schism - Tool",
       "Come Down - Bush",
-      "96 Quite Bitter Beings - CKY",
       "Stillborn - BLS",
+      "Creep - Radiohead",
       "Devils Bleedin Crown - Volbeat",
-      "Black hole sun - Soundgarden",
-      "Inside Out - Eve 6",
-      "She Talks to Angels - The Black Crowes",
-      "War Pigs - Black Sabbath",
-      "Tripping on a Hole - STP"
+      "Inside Out - Eve 6"
     ]
   },
   "songIcons": {
