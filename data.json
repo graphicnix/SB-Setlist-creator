@@ -196,7 +196,7 @@
     "Tennessee Whiskey - Chris Stapleton": {
       "key": "A Major",
       "riff": "A",
-      "bpm": "154",
+      "bpm": "100",
       "duration": "4:53",
       "crossfadeInto": [
         "Pride and Joy - Stevie Ray Vaughan"
