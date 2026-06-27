@@ -911,7 +911,7 @@
       "timeSignature": "4/4",
       "status": "main",
       "sn": "2A",
-      "prioritySetlist": 3
+      "prioritySetlist": null
     },
     "Devils Bleedin Crown - Volbeat": {
       "key": "Gmaj",
@@ -1298,18 +1298,20 @@
       "Drunken Lullabies - Flogging Molly",
       "La Grange - ZZ Top",
       "Stone cold Crazy - Metallica/queen",
-      "Them Bones - Alice in chains"
+      "Schism - Tool",
+      "supermans dead - our lady peace",
+      "Come Down - Bush",
+      "Hemorrhage - Fuel",
+      "Them Bones - Alice in chains",
+      "Creep - Radiohead",
+      "Devils Bleedin Crown - Volbeat"
     ],
     "setlist-3": [
-      "supermans dead - our lady peace",
-      "Hemorrhage - Fuel",
-      "Zero - Smashing Pumpkins",
-      "Schism - Tool",
-      "Come Down - Bush",
-      "Stillborn - BLS",
-      "Creep - Radiohead",
-      "Devils Bleedin Crown - Volbeat",
-      "Inside Out - Eve 6"
+      "Inside Out - Eve 6",
+      "Lump - The Presidents USA",
+      "Cherub Rock - Smashing Pumpkins",
+      "War Pigs - Black Sabbath",
+      "I Alone - Live"
     ]
   },
   "songIcons": {
